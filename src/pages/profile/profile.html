@@ -1,0 +1,78 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+          PROFILE
+        </ion-title>
+      </ion-navbar>
+</ion-header>
+
+<ion-content class="profile-content">
+  <div class="user-details">
+    <ion-row class="user-main-data-row">
+      <ion-col no-padding width-33>
+        <preload-image class="user-image" [ratio]="{w:1, h:1}" [(src)]="image" alt="profile.displayname" title="profile.displayname"></preload-image>
+        <h3 class="profile-title">{{profile.displayname}}</h3>
+          
+      </ion-col>
+      <ion-col no-padding>
+        <ion-row class="profile-action-row">
+          <ion-col no-padding>
+            <button ion-button block small (click)="goToSettings()">
+              EDIT PROFILE
+            </button>
+            <br>
+            <button ion-button block small (click)="goToAddUser()" [hidden]="!role">
+                ADD USER
+            </button>
+            <br>
+            <button ion-button block small (click)="goToCreateActivity()">
+                CREATE ACTIVITY
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  
+  
+  </div>
+      <h3 class="activities-title">SIGNED UP ACTIVITIES</h3>
+
+      <h3 class="activities-title">SIGNED UP THEMES</h3>
+      
+      <ion-list>
+        <div *ngFor="let group of groups">
+          
+          <ion-item class="item-accordion-title">
+            <ion-row>
+              <ion-col col-8>  
+                  <span (click)="toggleGroup(group)">
+                      
+                        <ion-icon name= "{{isGroupShown(group) ? 'arrow-up' : 'arrow-down'}}"></ion-icon>
+                    </span>
+                  &nbsp;
+                  {{group.name}}
+                  
+              </ion-col>
+              <ion-col col-4>
+                <ion-buttons end>      
+                    <button ion-button clear small color="light" (click)="doJoinTheme()" [hidden]="group.status">
+                      <ion-icon name= "checkmark"></ion-icon>
+                    </button>
+                    <button ion-button clear small color="light" (click)="doLeaveTheme()" [hidden]="!group.status">
+                      <ion-icon name= "close"></ion-icon>
+                    </button>
+              </ion-buttons>
+              </ion-col>
+          </ion-row>
+          </ion-item>
+          <ion-item class="item-accordion"
+                *ngFor="let item of group.areas"
+                [hidden] ="!isGroupShown(group)">
+            Area {{item}}
+          </ion-item>
+        </div>
+      </ion-list>
+</ion-content>

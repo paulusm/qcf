@@ -1,0 +1,28 @@
+<ion-header class="signup-header auth-header">
+  <ion-navbar>
+    <ion-title>ADD USER</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="signup-content auth-content">
+   <form class="signup-form auth-form" [formGroup]="new_user" (ngSubmit)="doAddUser()">
+    <ion-item>
+      <ion-label  floating>Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    
+    <ion-item-divider>Select Role</ion-item-divider>
+      <ion-list class="radio-group" radio-group formControlName="selected_option">
+        <ion-item class="">
+          <ion-label>Business Admin</ion-label>
+          <ion-radio item-left value="BusinessAdmin"></ion-radio>
+        </ion-item>
+        <ion-item class="">
+          <ion-label>Employee</ion-label>
+          <ion-radio item-left value="Employee"></ion-radio>
+        </ion-item>
+      </ion-list>
+    
+    <button ion-button block class="auth-action-button signup-button" type="submit" [disabled]="!new_user.valid">ADD</button>
+  </form>
+</ion-content>

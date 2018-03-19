@@ -1,0 +1,75 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>EDIT PROFILE</ion-title>
+      <ion-buttons end [hidden]="!settingsForm.dirty">
+        <button ion-button (click)="saveChanges()">
+          SAVE
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="edit-profile-content">
+    <div class="user-image-content">
+      <ion-row no-padding class="user-image-row">
+        <ion-col no-padding width-40>
+          <preload-image class="user-image" [ratio]="{w:1, h:1}" [src]="lastImage" alt="this is the image" title="IMAGE!"></preload-image>
+        
+          <!-- <div class="avatar-wrapper"> -->
+              <!-- <img [src]="lastImage" alt="Avatar"> -->
+            <!-- </div> -->
+        
+        </ion-col>
+      </ion-row>
+      <ion-row no-padding class="user-image-row">
+        <ion-col no-padding width-60>
+          <button class="image-action-button" ion-button outline block small (click)="presentActionSheet()">CHANGE PROFILE PICTURE</button>
+        </ion-col>
+      </ion-row>
+    </div>
+  
+    <form [formGroup]="settingsForm" class="edit-profile-form">
+      <ion-list class="user-data-content">
+        <ion-item>
+          <ion-label stacked>FORENAME</ion-label>
+          <ion-input type="text" formControlName="forename"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>SURENAME</ion-label>
+          <ion-input type="text" formControlName="surename"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>DISPLAY NAME</ion-label>
+            <ion-input type="text" formControlName="displayName"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>DEPARTMENT</ion-label>
+            <ion-input type="text" formControlName="department"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>DESIGNATION</ion-label>
+            <ion-input type="text" formControlName="designation"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>ABOUT</ion-label>
+          <ion-textarea formControlName="description" rows="5" placeholder="Your description here..."></ion-textarea>
+        </ion-item>
+      </ion-list>
+  
+      
+    </form>
+    
+    <button class="alt-button" ion-button full (click)="onChangePassword()">CHANGE PASSWORD</button>
+
+    <button class="alt-button rate-app-button" ion-button full (click)="rateApp()">RATE APP</button>
+  
+    <button class="alt-button" ion-button full (click)="showPrivacyModal()">PRIVACY POLICY</button>
+  
+    <button class="alt-button" ion-button full (click)="showTermsModal()">TERMS OF USE</button>
+  
+    <button class="alt-button logout-button" ion-button full icon-start (click)="logout()">
+      <ion-icon name="log-out"></ion-icon>
+      LOG OUT
+    </button>
+  </ion-content>
+  

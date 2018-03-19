@@ -1,0 +1,46 @@
+page-join-activity {
+    ion-header {
+		@include header-styles(color($colors, header-alt, base), color($colors, header-alt, contrast));
+	}
+
+	ion-item-divider {
+		padding: 15px !important;
+		background-color: transparent !important;
+
+		.item-inner
+		{
+			min-height: 0px;
+
+			ion-label {
+				margin: 0px;
+				font-size: 1.2rem;
+				font-weight: 500;
+				letter-spacing: 0.9px;
+				color: $theme-color-3;
+			}
+		}
+    }
+    .radio-group
+	{
+		//padding-left: 15px;
+		background-color: $white;
+		//color: $theme-color-3;
+		@include element-shadow();
+
+		@include radio-item-styles($white-d, $white-a, $theme-color-2);
+		
+	}
+	.news-item
+		{
+			@include basic-card-styles($white-d);
+
+			.news-title
+			{
+				margin: 0px;
+				margin-bottom: 12px;
+				padding: 0px;
+				letter-spacing: 1.1px;
+				color: $theme-color-2;
+			}
+		}
+}

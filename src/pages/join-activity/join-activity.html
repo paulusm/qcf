@@ -1,0 +1,40 @@
+<ion-header class="signup-header auth-header">
+  <ion-navbar>
+    <ion-title>Join Activity</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="signup-content auth-content">
+    <div class="news-item">
+    <ion-card>
+      <form class="signup-form auth-form" [formGroup]="join_activity" (ngSubmit)="doJoin()">  
+        <preload-image [ratio]="{w:3, h:2}" [src]="item.url"></preload-image>
+        <ion-card-content>
+          <ion-card-title class="news-title">
+            {{item.title}}
+          </ion-card-title>
+          
+          <ion-item-divider>Participation Type</ion-item-divider>
+          <ion-list class="radio-group" radio-group formControlName="selected_option">
+            <ion-item class="radio-item">
+              <ion-label>Voluntering</ion-label>
+              <ion-radio item-left value="voluntering"></ion-radio>
+            </ion-item>
+            <ion-item class="radio-item">
+              <ion-label>Sponsorship</ion-label>
+              <ion-radio item-left value="sponsorship"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+        <ion-row no-padding class="actions-row">
+          <ion-col no-padding>
+              <button ion-button block class="auth-action-button signup-button" type="submit" [disabled]="!join_activity.valid">Join</button>
+          </ion-col>
+        </ion-row>
+        
+      </form>
+      </ion-card>
+    </div>   
+   
+       
+</ion-content>

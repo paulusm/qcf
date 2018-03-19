@@ -1,0 +1,61 @@
+ion-menu {
+	.menu-content
+	{
+		//background-color: color($colors, background-menu2, base);
+		background-image: url('../../assets/images/businessLogo.png');
+		background-repeat: no-repeat;
+		background-size: 60%;
+	}
+
+	.menu-list
+	{
+		margin: 20vh 0px 0px !important;
+
+		.item
+		{
+			background-color: color($colors, background-menu, base);
+			padding-right: 32px;
+
+			&:first-child
+			{
+				border-top: solid 1px rgba($white-d, 0.15);
+			}
+
+			&:last-child
+			{
+				border-bottom: solid 1px rgba($white-d, 0.15);
+			}
+
+			.item-inner
+			{
+				border-bottom: 1px solid rgba($white-d, 0.15);
+				font-size: 1.8rem;
+				font-weight: 300;
+				letter-spacing: 1px;
+				color: $theme-color-3;
+			}
+
+			.item-icon
+			{
+				color: $theme-color-2;
+				font-size: 3.4rem;
+			}
+
+			&.activated
+			{
+  			background-color: $theme-color-1;
+  			transition-duration: 0ms;
+
+				.item-inner
+				{
+					color: $white;
+				}
+
+				.item-icon
+				{
+					color: $white;
+				}
+			}
+		}
+	}
+}

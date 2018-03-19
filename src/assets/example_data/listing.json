@@ -1,0 +1,19 @@
+{
+    "banner_image": "./assets/images/businessLogo.png",
+    "banner_title": "",
+    "categories": [
+        {
+            "title": "Success Stories",
+            "image": "./assets/images/listing/200x200basquet.png"
+        },
+        {
+            "title": "Articles",
+            "image": "./assets/images/listing/200x200boxeo.png"
+        },
+        {
+            "title": "QCF Reports",
+            "image": "./assets/images/listing/200x200crossfit.png"
+        }
+
+    ]
+}

@@ -1,0 +1,118 @@
+profile-page {
+	.activities-title
+		{
+			font-size: 1.5rem;
+			font-weight: 400;
+			letter-spacing: 0.7px;
+			color: $white-d;
+			margin: 8px 16px 16px;
+		}
+	.profile-title
+		{
+			font-size: 1.5rem;
+			font-weight: 400;
+			letter-spacing: 0.7px;
+			color: $white-d;
+			//margin-left: 40px;
+			//margin: 8px 16px 16px 30px;
+		}	
+	.profile-content
+	{
+		background-color: color($colors, background, base);
+
+		.user-details
+		{
+			@include element-shadow();
+			padding-bottom: 4%;
+			background-color: $white;
+
+			.user-main-data-row
+			{
+				padding: 4% 4% 0px;
+				align-items: center;
+
+				.user-image
+				{
+					border-radius: 50%;
+				}
+
+				.profile-action-row
+				{
+					padding: 5px 0px 0px 10px;
+
+					.button
+					{
+						margin: 0px;
+						border-radius: 6px;
+						background-color: color($colors, button-alt, base);
+						color: color($colors, button-alt, contrast);
+						font-weight: 500;
+					}
+				}
+
+			}
+
+		}
+
+		.user-content
+		{
+			.list-view
+			{
+				.list-item
+				{
+					@include basic-card-styles($white-d);
+
+					padding: 12px 0px;
+
+					ion-card {
+						margin-top: 0px;
+						margin-bottom: 0px;
+					}
+
+					.item-date
+					{
+						font-size: 1.4rem;
+						font-weight: 500;
+						color: $white-d;
+						margin: 0px 18px 4px;
+						display: block;
+					}
+				}
+			}
+
+
+		}
+	}
+
+	.list .item.item-accordion {
+		margin-bottom: 3px;
+		border: 2px solid white;
+    	border-radius: 12px;
+
+		font-size: 1.5rem;
+		font-weight: 400;
+		letter-spacing: 0.7px;
+		color: $white-d;
+
+		}
+		.list .item.item-accordion-title {
+			margin-bottom: 1px;
+			border: 2px solid white;
+			border-radius: 12px;
+	
+			font-size: 1.5rem;
+			font-weight: 400;
+			letter-spacing: 0.7px;
+			color: white;
+			background-color: color($colors, button-alt, base);
+			
+			}
+
+	  .list .item.item-accordion.ng-hide {
+		line-height: 0px;
+	  }
+	  .list .item.item-accordion.ng-hide-add,
+	  .list .item.item-accordion.ng-hide-remove {
+		display: block !important;
+	  }
+}

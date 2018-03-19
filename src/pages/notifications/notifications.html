@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>OTHER PARTICIPANTS</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="notifications-content">
+    
+    
+    <ion-item-group>
+      <!-- <ion-item-divider class="notifications-divider">Other Participants</ion-item-divider> -->
+      <ion-item class="notification-item" *ngFor="let notification of notifications.users" (click)="goToUserDetail(notification)">
+        <ion-avatar item-left>
+          <preload-image class="user-image" [ratio]="{w:1, h:1}" [src]="notification.image"></preload-image>
+        </ion-avatar>
+        <h2 class="item-title">{{notification.name}}</h2>
+        <p class="item-description">{{notification.about}}</p>
+        <ion-note class="item-time" item-right>{{notification.designation}}</ion-note>
+      </ion-item>
+    </ion-item-group>
+  </ion-content>
+  <ion-footer>
+      <ion-toolbar>
+          <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+      </ion-toolbar>
+    </ion-footer>
+  

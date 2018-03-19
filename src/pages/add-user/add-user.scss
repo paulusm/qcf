@@ -1,0 +1,31 @@
+page-add-user {
+    ion-header {
+		@include header-styles(color($colors, header-alt, base), color($colors, header-alt, contrast));
+	}
+
+	ion-item-divider {
+		padding: 15px !important;
+		background-color: transparent !important;
+
+		.item-inner
+		{
+			min-height: 0px;
+
+			ion-label {
+				margin: 0px;
+				font-size: 1.2rem;
+				font-weight: 500;
+				letter-spacing: 0.9px;
+				color: $theme-color-3;
+			}
+		}
+    }
+    .radio-group
+	{
+		//padding-left: 15px;
+		background-color: $white;
+		@include element-shadow();
+
+		@include radio-item-styles($white-d, $white-a, $theme-color-1);
+	}
+}
