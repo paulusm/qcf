@@ -16,12 +16,16 @@ export class ProfileService {
   ) {}
 
   
-  getData(): Promise<UserModel> {
-    return this.storage.get('userModel').then((value) => {
+  async getData(): Promise<UserModel> {
+    return await this.storage.get('userModel').then((value) => {
+      //alert("UserModel" + value);
       return value;
     }).catch(this.handleError);
   };
 
+  async setData(userModel){
+    await this.storage.set('userModel', userModel);
+  }
 
 
   private handleError(error: any): Promise<any> {
@@ -31,12 +35,12 @@ export class ProfileService {
 
   
 
-  getUserImage(){
-    return this.storage.get('profileImage');
+  async getUserImage(){
+    return await this.storage.get('profileImage');
   }
 
-  setUserImage(newImage){
-    this.storage.set('profileImage', newImage);
+  async setUserImage(newImage){
+    await this.storage.set('profileImage', newImage);
   }
 
 }

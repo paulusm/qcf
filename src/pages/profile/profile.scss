@@ -6,7 +6,7 @@ profile-page {
 			letter-spacing: 0.7px;
 			color: $white-d;
 			margin: 8px 16px 16px;
-		}
+		} 
 	.profile-title
 		{
 			font-size: 1.5rem;
@@ -84,7 +84,7 @@ profile-page {
 		}
 	}
 
-	.list .item.item-accordion {
+	/* .list .item.item-accordion {
 		margin-bottom: 3px;
 		border: 2px solid white;
     	border-radius: 12px;
@@ -114,5 +114,5 @@ profile-page {
 	  .list .item.item-accordion.ng-hide-add,
 	  .list .item.item-accordion.ng-hide-remove {
 		display: block !important;
-	  }
+	  } */
 }

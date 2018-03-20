@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 import { ListingModel } from './listing.model';
 import { ListingService } from './listing.service';
 
+import { ThemeProvider } from '../../providers/theme/theme';
 
 @Component({
   selector: 'listing-page',
@@ -16,12 +17,36 @@ export class ListingPage {
   listing: ListingModel = new ListingModel();
   loading: any;
 
+  themes:any;
+
+  value:boolean;
+  groups:any;
+  shownGroup:any = null;
+
   constructor(
     public nav: NavController,
     public listingService: ListingService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public themeService:ThemeProvider
   ) {
     this.loading = this.loadingCtrl.create();
+
+    this.themeService.getThemes().then((res) => {
+      this.groups = JSON.parse(res['_body']); 
+        for(var i=0; i<this.groups.length;i++){
+             if(this.groups[i].name==="Fairness"){
+                    this.groups[i].status = true;
+             }else{
+                    this.groups[i].status = false;
+             } 
+
+        }
+        console.log("Right Here >>> "+this.groups);
+        }, (err) => {
+      
+            this.loading.dismiss();
+    });
+
   }
 
 
@@ -42,5 +67,31 @@ export class ListingPage {
     console.log("Clicked goToFeed", category);
     this.nav.push(FeedPage, { category: category });
   }
+
+    /*
+   * if given group is the selected group, deselect it
+   * else, select the given group
+   */
+  toggleGroup (group) {
+    if (this.isGroupShown(group)) {
+      this.shownGroup = null;
+    } else {
+      this.shownGroup = group;
+    }
+  }
+  isGroupShown(group) {
+    return this.shownGroup === group;
+  }
+
+  doLeaveTheme(){
+    alert("Are you sure you want to leave this theme ?");
+  }
+  doJoinTheme(){
+    alert("Are you sure you want to join this theme ?");
+  }
+
+
+
+
 
 }

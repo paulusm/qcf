@@ -80,6 +80,7 @@ import { AuthenticationProvider } from '../providers/authentication/authenticati
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { ThemeProvider } from '../providers/theme/theme';
+import { FilesProvider } from '../providers/files/files';
 
 @NgModule({
   declarations: [
@@ -194,6 +195,7 @@ import { ThemeProvider } from '../providers/theme/theme';
     FileTransferObject,
     File,
     ThemeProvider,
+    FilesProvider,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

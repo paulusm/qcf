@@ -1,44 +1,40 @@
-import { Component } from '@angular/core';
 import { NavController, ModalController, LoadingController, Platform ,ActionSheetController,ToastController} from 'ionic-angular';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { FormGroup, FormControl } from '@angular/forms';
+import { FilePath } from '@ionic-native/file-path';
+import { AppRate } from '@ionic-native/app-rate';
+import { Component } from '@angular/core';
+import { Camera } from '@ionic-native/camera';
+import { Storage } from '@ionic/storage';
+import { Http } from '@angular/http';
+
+import { AuthenticationProvider } from '../../providers/authentication/authentication';
+import { ProfileService } from '../profile/profile.service';
+import { FilesProvider } from '../../providers/files/files';
+import { UserModel } from '../profile/profile.model';
 
 import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy';
-
 import { ChangePasswordPage } from '../change-password/change-password';
-
-import { Camera } from '@ionic-native/camera';
-
-import { FilePath } from '@ionic-native/file-path';
-
 import { LoginPage } from '../login/login';
 
 import 'rxjs/Rx';
-
-import { UserModel } from '../profile/profile.model';
-import { ProfileService } from '../profile/profile.service';
-
-import { AppRate } from '@ionic-native/app-rate';
-//import { ImagePicker } from '@ionic-native/image-picker';
-//import { Crop } from '@ionic-native/crop';
-
-import { Storage } from '@ionic/storage';
-
-import { AuthenticationProvider } from '../../providers/authentication/authentication';
-
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
 @Component({
   selector: 'edit-profile-page',
   templateUrl: 'edit-profile.html'
 })
 export class EditProfilePage {
-  lastImage: any = null;
+  HAS_SEEN_WALKTHROUGH = 'hasSeenWalkthrough';
+  image: any = null;
   settingsForm: FormGroup;
   rootPage: any = LoginPage;
   loading: any;
-//  image: any;
+  imageUpload: boolean;
+
   profile: UserModel = new UserModel();
+  userModel:UserModel = new UserModel();
+  
   details:any;
   constructor(
     public nav: NavController,
@@ -47,18 +43,21 @@ export class EditProfilePage {
     public profileService: ProfileService,
     public appRate: AppRate,
     public actionSheetCtrl: ActionSheetController,
-    //public imagePicker: ImagePicker,
-    //public cropService: Crop,
     public platform: Platform,
     private camera: Camera,
     private filePath: FilePath,
     public toastCtrl: ToastController,
     public storage: Storage,
     public authService: AuthenticationProvider,
-    private transfer: FileTransfer
+    private transfer: FileTransfer,
+    public files: FilesProvider,
+    public http:Http
   ) {
-    this.loading = this.loadingCtrl.create();
+    this.imageUpload =false;
     
+    this.loading = this.loadingCtrl.create({
+      content: 'Loading profile...'
+    });
     
     this.settingsForm = new FormGroup({
       forename: new FormControl(),
@@ -71,20 +70,22 @@ export class EditProfilePage {
   }
 
   ionViewDidLoad() {
+    
     this.loading.present();
-    this.lastImage = "../../assets/images/profile/emp1.png";
-    this.storage.get('profileImage').then((value) => {
-      if(value){  
-        this.lastImage = value;
+     
+    this.image = "../../assets/images/profile/emp1.png";
+   
+    this.profileService.getUserImage().then((profileImg)=>{
+      if(profileImg){
+        this.image = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+profileImg;
       }
-      return value;
-    }).catch(this.handleError);
+    });
+    
 
     this.profileService.getData().then(data => {
-      this.profile = data;
+  
       // setValue: With setValue, you assign every form control value at once by passing in a data object whose properties exactly match the form model behind the FormGroup.
       // patchValue: With patchValue, you can assign values to specific controls in a FormGroup by supplying an object of key/value pairs for just the controls of interest.
-
 
       this.settingsForm.patchValue({
         forename: data.forename,
@@ -96,13 +97,19 @@ export class EditProfilePage {
       });
 
       this.loading.dismiss();
-
       
     });
   }
 
   logout() {
     // navigate to the new page if it is not the current page
+    this.storage.set(this.HAS_SEEN_WALKTHROUGH, false);
+    this.storage.set('token', '');
+    this.storage.remove('token');
+    this.storage.set('userModel','');
+    this.storage.remove('userModel');
+    this.storage.set('profileImage', null);
+    this.storage.remove('profileImage');
     this.nav.setRoot(this.rootPage);
   }
 
@@ -119,8 +126,6 @@ export class EditProfilePage {
     this.nav.push(ChangePasswordPage); 
 
   }
-
-
 
   rateApp(){
     if(this.platform.is('cordova')){
@@ -161,10 +166,12 @@ export class EditProfilePage {
     });
     actionSheet.present();
   }
+  
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); 
     return Promise.reject(error.message || error);
   }
+  
   public takePicture(sourceType) {
     // Create options for the Camera Dialog
     var options = {
@@ -182,39 +189,25 @@ export class EditProfilePage {
     this.camera.getPicture(options).then((imagePath) => {
       // Special handling for Android library
       
-
       if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
-        this.filePath.resolveNativePath(imagePath)
-          .then(filePath => {
-            //alert("filePath ......"+filePath);
-            this.storage.set('profileImage', filePath);
-            this.lastImage=filePath;
-            this.uploadFile(filePath);
-            //this.settingsForm. = true;
-            /* this.storage.get('profileImage').then((value) => {
-              this.lastImage=value;
-              return value;
-            }).catch(this.handleError); */
-            //let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-            //let currentName = filePath.substring(filePath.lastIndexOf('/') + 1, filePath.lastIndexOf('?'));
-            //this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-          });
+            this.filePath.resolveNativePath(imagePath)
+              .then(filePath => {
+                this.image=filePath;
+                this.uploadFile(filePath);
+                //this.saveChanges();
+                //this.imageUpload=true;
+              });
       } else {
-        //var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-        //var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-        //alert("imagePath"+imagePath);
-        this.storage.set('profileImage', imagePath);
-        this.lastImage= imagePath;
+        this.image= imagePath;
         this.uploadFile(imagePath);
-        /* this.storage.get('profileImage').then((value) => {
-                  this.lastImage= value;     
-                    return value;
-                       }).catch(this.handleError); */
-        }
+        //this.saveChanges();
+        //this.imageUpload=true;
+      }
     }, (err) => {
       this.presentToast('Error while selecting image.');
     });
   }
+  
   private presentToast(text) {
     let toast = this.toastCtrl.create({
       message: text,
@@ -224,82 +217,86 @@ export class EditProfilePage {
     toast.present();
   }
 
-  saveChanges(){
+  async uploadFile(imageURI) {
+    return await new Promise((resolve, reject) => {
+                let loader = this.loadingCtrl.create({
+                  content: "Uploading..."
+                });
+                loader.present();
+                const fileTransfer: FileTransferObject = this.transfer.create();
+                
+                let headers = new Headers();
+                    headers.append('Authorization', this.authService.token);
 
+                let options: FileUploadOptions = {
+                  fileKey: 'file',
+                  chunkedMode: false,
+                  mimeType: "image/jpeg",
+                  headers: headers
+                }
+  
+                fileTransfer.upload(imageURI, encodeURI('https://ionic2-qcf-auth.herokuapp.com/api/files/upload'), options,true)
+                  .then((data) => {
+                    let imageName = JSON.parse(data.response);
+                    this.profileService.setUserImage(imageName.filename);
+                    loader.dismiss();
+                    this.presentToast("Image uploaded successfully");
+                    this.saveChanges(); 
+
+                }, (err) => {
+                  console.log(err);
+                  loader.dismiss();
+                  this.presentToast(err);
+                });
+    });
+  } 
+
+  saveChanges(){
+    
     this.profileService.getData()
     .then(data => {
       this.profile = data;
-      alert(this.profile.email+" "+this.profile.department+" "+this.profile.displayname);
       
       this.profile.forename = this.settingsForm.get('forename').value;
       this.profile.surename = this.settingsForm.get('surename').value;
       this.profile.displayname = this.settingsForm.get('displayName').value;
       this.profile.department = this.settingsForm.get('department').value;
-      //this.profile.imagepath = 
-      //let details;
-      this.storage.get('profileImage').then((value) => {
-        this.profile.imagepath = value;
-            return value;
-      }).catch(this.handleError);
-      this.details = {
-        email: this.profile.email,
-        role: this.profile.role,
-        forename:this.profile.forename,
-        surname:this.profile.surename,
-        department:this.profile.department,
-        companyid:this.profile.companyid,
-        displayname:this.profile.displayname,
-      //isfirstlogin:this.profile.isfirstlogin,
-         imagepath: this.profile.imagepath
-      };
       
-      this.authService.updateAccount(this.details).then((result) => {
-        //this.loading.dismiss();
-        console.log("doAddUser-->"+result);
-  
-        //this.firstLogin=false;
-  
-        this.nav.pop();      
-          //this.nav.setRoot(this.main_page.component);
+      this.profileService.getUserImage().then((value) => {
+        this.profile.imagepath = value;
         
-      }, (err: any) => {
-        //this.loading.dismiss();
-            alert(`status: ${err.status}, ${err.statusText}`);
-      });
+        this.details = {
+          email: this.profile.email,
+          role: this.profile.role,
+          forename: this.profile.forename,
+          surname: this.profile.surename,
+          department: this.profile.department,
+          companyid: this.profile.companyid,
+          displayname: this.profile.displayname,
+          isfirstlogin: this.profile.isfirstlogin,
+          imagepath: this.profile.imagepath
+        };
+        
+        this.authService.updateAccount(this.details).then((result) => {
+          //this.loading.dismiss();
+          this.userModel.setUser(result['user']);  
+
+          this.profileService.setData(this.userModel);  
+    
+          this.nav.pop();      
+          //this.nav.setRoot(this.main_page.component);
+          
+        }, (err: any) => {
+              this.loading.dismiss();
+              alert(`status: ${err.status}, ${err.statusText}`);
+        });
+
+        return value;
+      }).catch(this.handleError);
+      
       
       this.loading.dismiss();
     });
 
   }
-
-  uploadFile(imageURI) {
-    let loader = this.loadingCtrl.create({
-      content: "Uploading..."
-    });
-    loader.present();
-    const fileTransfer: FileTransferObject = this.transfer.create();
-    
-    let headers = new Headers();
-        headers.append('Authorization', this.authService.token);
-
-    let options: FileUploadOptions = {
-      fileKey: 'file',
-      chunkedMode: false,
-      mimeType: "image/jpeg",
-      headers: headers
-    }
-  
-    fileTransfer.upload(imageURI, encodeURI('https://ionic2-qcf-auth.herokuapp.com/api/files/upload'), options,true)
-      .then((data) => {
-      console.log(data.response+" Uploaded Successfully");
-      loader.dismiss();
-      //alert(data);
-      this.presentToast("Image uploaded successfully");
-    }, (err) => {
-      console.log(err);
-      loader.dismiss();
-      this.presentToast(err);
-    });
-  }
-
 }

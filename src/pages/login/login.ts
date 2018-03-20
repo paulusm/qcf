@@ -10,6 +10,8 @@ import { Storage } from '@ionic/storage';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 
 import { UserModel } from '../../pages/profile/profile.model';
+import { ProfileService } from '../profile/profile.service';
+
 
 @Component({
   selector: 'login-page',
@@ -26,20 +28,21 @@ export class LoginPage {
     public nav: NavController,
     public storage:Storage,
     public loadingCtrl: LoadingController,
-    public authService: AuthenticationProvider
+    public authService: AuthenticationProvider,
+    public profileService: ProfileService
   ) {
     
     this.main_page = { component: TabsNavigationPage };
 
     this.login = new FormGroup({
       email: new FormControl('', Validators.compose([
-        Validators.required//,
-        //Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
       password: new FormControl('', Validators.compose([
-        //Validators.minLength(5),
+        Validators.minLength(5),
         Validators.required,
-        //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ]))
     });
   }
@@ -98,9 +101,17 @@ export class LoginPage {
            
             this.userModel.setUser(result['user']);
 
-            this.storage.set('token', this.token);
-            this.storage.set('userModel', this.userModel);
             
+
+            console.log(JSON.stringify(result['token']));
+            console.log(JSON.stringify(result['user']));
+
+            this.storage.set('token', this.token);
+            this.profileService.setData(this.userModel);  
+            this.profileService.setUserImage(this.userModel.imagepath);
+            ///this.storage.set('userModel', this.userModel);
+            
+
             /* if(result['user'].isfirstlogin==='true'){
                 this.nav.setRoot(ChangePasswordPage);    
             }else{

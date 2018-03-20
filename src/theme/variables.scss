@@ -74,15 +74,15 @@ $colors: (
     contrast: $black-b
   ),
   background-menu:(
-    base: #c5f442,
+    base:$theme-color-1,
     contrast: $black-b
   ),
   background-menu2:(
-    base: #f2863e,
+    base:$theme-color-2,
     contrast: $black-b
   ),
   tabs-navigation:(
-    base: #f2863e,//$white,
+    base:$theme-color-2,//$white,
     contrast: $white-d
   ),
   facebook:(
@@ -96,7 +96,7 @@ $colors: (
   twitter:(
     base: #00aced,
     contrast: $white
-  ),
+  )
  
 );
 

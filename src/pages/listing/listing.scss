@@ -10,6 +10,15 @@
 }
 
 listing-page {
+	.activities-title
+	{
+			font-size: 1.5rem;
+			font-weight: 400;
+			letter-spacing: 0.7px;
+			color: $white-d;
+			margin: 8px 16px 16px;
+	}
+	
 	$categories-heading-image-height: 150px;
 	$categories-grid-padding: 10px;
 	$categories-horizontal-list-padding: 10px;
@@ -144,4 +153,36 @@ listing-page {
 			}
 		}
 	}
+
+	.list .item.item-accordion {
+		margin-bottom: 3px;
+		border: 2px solid white;
+    	border-radius: 12px;
+
+		font-size: 1.5rem;
+		font-weight: 400;
+		letter-spacing: 0.7px;
+		color: $white-d;
+
+		}
+		.list .item.item-accordion-title {
+			margin-bottom: 1px;
+			border: 2px solid white;
+			border-radius: 12px;
+	
+			font-size: 1.5rem;
+			font-weight: 400;
+			letter-spacing: 0.7px;
+			color: white;
+			background-color: color($colors, button-alt, base);
+			
+			}
+
+	  .list .item.item-accordion.ng-hide {
+		line-height: 0px;
+	  }
+	  .list .item.item-accordion.ng-hide-add,
+	  .list .item.item-accordion.ng-hide-remove {
+		display: block !important;
+	  }
 }

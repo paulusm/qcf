@@ -29,7 +29,7 @@ export class ThemeProvider {
 
           this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/themes/', {headers: headers})
               .subscribe(res => {
-                  let data = res.json();
+                  //let data = res.json();
                   //console.log(data.length);
                   resolve(res);
               }, (err) => {
