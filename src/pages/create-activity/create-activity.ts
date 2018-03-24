@@ -21,6 +21,9 @@ export class CreateActivityPage {
   main_page: { component: any };
   loading: any;
 
+  cucumber:boolean;
+  carret:boolean;
+  
   constructor(
     public nav: NavController,
     public modal: ModalController,
@@ -28,6 +31,8 @@ export class CreateActivityPage {
     public authService: AuthenticationProvider,
     public storage: Storage
   ) {
+    this.cucumber = false;
+    this.carret = false;
     this.main_page = { component: TabsNavigationPage };
 
     this.new_activity = new FormGroup({
@@ -44,13 +49,18 @@ export class CreateActivityPage {
       sponsorship: new FormControl(false)
     });
   }
-  
+  updateCucumber(){
+      this.cucumber = !this.cucumber;
+  }
+  updateCarret(){
+      this.carret = !this.carret;
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddUserPage');
   }
 
   doCreateActivity(){
-
+    alert(this.cucumber+"  "+this.carret);
   }
   presentActionSheet(){
     alert("Coming soon...");

@@ -9,7 +9,7 @@
       </ion-navbar>
 </ion-header>
 
-<ion-content class="list-big-content">
+<ion-content class="auth-content list-big-content">
   <div class="list-big">
     <ion-list>
       <button class="list-item" ion-item *ngFor="let item of news.items" (click)="goToNewsDetail(item)">
@@ -23,7 +23,7 @@
             <p class="item-description" rows="3">{{item.title}}</p>
             <!-- You can change the rows quantity by using rows="X", where X can be any number for example: rows="4" -->
           </ion-col>
-          <ion-col no-padding width-10 class="item-icon">
+          <ion-col width-10 class="item-icon">
             <ion-icon name="arrow-forward"></ion-icon>
           </ion-col>
         <!-- </button> -->

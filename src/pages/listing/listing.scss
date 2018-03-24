@@ -5,65 +5,31 @@
 	font-size: 8vw;
 	font-weight: 900;
 	letter-spacing: 0.4px;
-	color: $color;
+//	color: $color;
 	margin: 0px;
 }
-
-listing-page {
-	.activities-title
-	{
-			font-size: 1.5rem;
-			font-weight: 400;
-			letter-spacing: 0.7px;
-			color: $white-d;
-			margin: 8px 16px 16px;
-	}
+ion-avatar {
+	flex: 0 0 16%;
+	max-width: 16%;
+	margin: 0px;
+	align-self: flex-start;
+	margin: 0 16px 0 0!important;
 	
+	.user-image
+	{
+		border-radius: 50%;
+	}
+}
+listing-page {
 	$categories-heading-image-height: 150px;
 	$categories-grid-padding: 10px;
 	$categories-horizontal-list-padding: 10px;
-
-	.listing-header
-	{
-		.header-logo
-		{
-			width: 34vw;
-		}
-	}
-
 	.listing-content
 	{
-		.image-heading
+		 .image-heading
 		{
 			height: $categories-heading-image-height;
-
-			.bg-overlay
-			{
-				z-index: 1;
-				background-color: rgba($black-c, .6);
-			}
-
-			ion-spinner {
-				z-index: 2;
-			}
-
-			@include spinner-color($white);
-
-			.heading-row
-			{
-				height: 100%;
-				width: 100%;
-				z-index: 3;
-  			position: absolute;
-				align-items: center;
-
-				.main-title
-				{
-					@include categories-title-style($white);
-					font-size: 10vw;
-				}
-			}
-		}
+		} 
 
 		.categories-title
 		{
@@ -73,46 +39,9 @@ listing-page {
 			color: $white-d;
 			margin: 8px 16px 16px;
 		}
-
-		.horizontal-categories
-		{
-			border-bottom: 10px solid $white-a;
-			@include element-shadow();
-			padding-bottom: 16px;
-
-			.scroll-content
-			{
-				position: relative;
-				contain: style layout;
-			}
-
-			preload-image {
-				border-radius: 50%;
-
-				img	{
-					border-radius: 50%;
-				}
-			}
-
-			.categories-row
-			{
-				flex-wrap: nowrap;
-
-				&::after{
-					content: '';
-					flex: 0 0 $categories-horizontal-list-padding;
-			    max-width: $categories-horizontal-list-padding;
-				}
-			}
-
-			.horizontal-item
-			{
-				padding: 0px 0px 0px $categories-horizontal-list-padding;
-			}
-		}
-
 		.grid-categories
 		{
+			background: none;
 			padding: 0px ($categories-grid-padding/2);
 			flex-wrap: wrap;
 
@@ -162,7 +91,7 @@ listing-page {
 		font-size: 1.5rem;
 		font-weight: 400;
 		letter-spacing: 0.7px;
-		color: $white-d;
+		color: $white;
 
 		}
 		.list .item.item-accordion-title {
@@ -174,9 +103,9 @@ listing-page {
 			font-weight: 400;
 			letter-spacing: 0.7px;
 			color: white;
-			background-color: color($colors, button-alt, base);
+			//background-color: color($colors, button-alt, base);
 			
-			}
+		}
 
 	  .list .item.item-accordion.ng-hide {
 		line-height: 0px;

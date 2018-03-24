@@ -36,11 +36,18 @@ $theme-color-3: #383544;
 
 $colors: (
   primary:    #387ef5,
+  light-blue:   #82a2db,
   secondary:  #32db64,
   danger:     #f4344f,
   light:      #f4f4f4,
   dark:       #222,
   favorite:   #69BB7B,
+  whit:    #ffffff,
+  $white: #FFFFFF,  
+  $white-a: darken($white, 3%),
+  $white-b: darken($white, 6%),
+  $white-c: darken($white, 12%),
+  $white-d: darken($white, 24%),
   walkthrough:(
     base: $theme-color-1,
     contrast: $white
@@ -85,7 +92,7 @@ $colors: (
     base:$theme-color-2,//$white,
     contrast: $white-d
   ),
-  facebook:(
+  /* facebook:(
     base: #3b5998,
     contrast: $white
   ),
@@ -96,7 +103,7 @@ $colors: (
   twitter:(
     base: #00aced,
     contrast: $white
-  )
+  ) */
  
 );
 

@@ -23,12 +23,15 @@ page-join-activity {
     .radio-group
 	{
 		//padding-left: 15px;
-		background-color: $white;
+		background-color: none;
 		//color: $theme-color-3;
 		@include element-shadow();
 
 		@include radio-item-styles($white-d, $white-a, $theme-color-2);
-		
+		.radio-item{
+			background-color: none;
+		}
+
 	}
 	.news-item
 		{

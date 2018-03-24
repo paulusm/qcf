@@ -1,8 +1,41 @@
-tabs-navigation {
+@import "../../theme/common/auth/auth";
+//tabs-navigation {
+/* .tabs-nav1{	
+	
 	.tabbar
 	{
 		background: color($colors, tabs-navigation, base) !important;
-		border-top-color: darken(color($colors, tabs-navigation, base), 6%) !important;
+		//border-top-color: darken(color($colors, tabs-navigation, base), 6%) !important;
+
+		.tab-button
+		{
+			color: color($colors, tabs-navigation, contrast);
+			font-family: 'Times New Roman';
+
+			.tab-button-icon
+			{
+				color: color($colors, tabs-navigation, contrast);
+				
+			}
+		}
+
+		.tab-button:hover:not(.disable-hover),
+		.tab-button[aria-selected=true]
+		{
+		  color: $theme-color-1;
+		  font-family: 'Times New Roman';		
+			.tab-button-icon
+			{
+				color: $theme-color-1;
+			}
+		}
+	}
+}
+.tabs-nav2{	
+	.tabbar
+	{
+		background: color($colors, tabs-navigation, base) !important;
+		//border-top-color: darken(color($colors, tabs-navigation, base), 6%) !important;
 
 		.tab-button
 		{
@@ -17,12 +50,13 @@ tabs-navigation {
 		.tab-button:hover:not(.disable-hover),
 		.tab-button[aria-selected=true]
 		{
-		  color: $theme-color-1;
+		  color: $white;
 
 			.tab-button-icon
 			{
-				color: $theme-color-1;
+				color: $white;
 			}
 		}
 	}
-}
+} */	
+//}

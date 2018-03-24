@@ -1,13 +1,13 @@
 edit-profile-page {
         .edit-profile-content
         {
-            background-color: color($colors, background, base);
+            //background-color: color($colors, background, base);
     
             .user-image-content
             {
                 padding: 16px;
                 margin-bottom: 20px;
-                background-color: $white;
+                //background-color: $white;
                 @include element-shadow();
     
                 .user-image-row
@@ -22,12 +22,12 @@ edit-profile-page {
     
                 .image-action-button
                 {
-                    margin: 10px 0px 0px;
+                    //margin: 10px 0px 0px;
                     border-radius: 6px;
-                    background-color: color($colors, button-alt, contrast);
-                    color: color($colors, button-alt, base);
-                    border-color: color($colors, button-alt, base);
-                    font-weight: 500;
+                    //background-color: color($colors, button-alt, contrast);
+                    //color: color($colors, button-alt, base);
+                    //border-color: color($colors, button-alt, base);
+                    //font-weight: 500;
                 }
             }
     
@@ -163,17 +163,19 @@ edit-profile-page {
     
             .alt-button
             {
+                border-radius: 6px;
                 margin: 0px;
-                background-color: $white;
+                //background-color: $white;
                 font-size: 1.4rem;
                 letter-spacing: 0.2px;
-                color: $white-d;
+                //color: $white-d;
     
                 @include element-shadow();
             }
     
             .logout-button
             {
+                border-radius: 6px;
                 margin: 14px 0px 20px;
                 padding: 0px 20px;
     
@@ -189,6 +191,7 @@ edit-profile-page {
     
             .rate-app-button
             {
+                border-radius: 6px;
                 margin: 14px 0px 20px;
                 padding: 0px 20px;
             }

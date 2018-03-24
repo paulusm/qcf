@@ -128,7 +128,7 @@ export class AuthenticationProvider {
         this.token = value;
 
         let headers = new Headers();
-        //headers.append('Authorization', this.token);
+        headers.append('Authorization', this.token);
         headers.append('Content-Type', 'application/json');
         //alert("credentials in login "+credentials.email+" "+credentials.password);
         this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/auth/login', JSON.stringify(credentials), {headers: headers})
@@ -160,13 +160,13 @@ export class AuthenticationProvider {
            this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/auth/changepassword', JSON.stringify(credentials),{headers:headers})
              .subscribe(res => {
     
-               let data = res.json();
-               this.token = data.token;
-               this.role = data.user["role"];
-               console.log("Role - " + this.role)
-               this.storage.set('token', data.token);
-               this.storage.set('role', data.user["role"]);
-               resolve(data);
+               //let data = res.json();
+               //this.token = data.token;
+               //this.role = data.user["role"];
+               //console.log("Role - " + this.role)
+               //this.storage.set('token', data.token);
+               //this.storage.set('role', data.user["role"]);
+               //resolve(data);
     
                resolve(res.json());
              }, (err) => {
@@ -238,7 +238,6 @@ export class AuthenticationProvider {
          });
   }
   logout(){
-    //alert("Logout");
     this.storage.set(this.HAS_SEEN_WALKTHROUGH, false);
     this.storage.set('token', '');
     this.storage.remove('token');

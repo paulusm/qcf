@@ -28,17 +28,8 @@
             </ion-item>
           </ion-list>
         
-    <ion-item-divider>Activity Type</ion-item-divider>
-        <!-- <ion-list class="radio-group" radio-group formControlName="activity_type">
-          <ion-item class="">
-            <ion-label>Voluntering</ion-label>
-            <ion-radio item-left value="voluntering"></ion-radio>
-          </ion-item>
-          <ion-item class="">
-            <ion-label>Sponsorship</ion-label>
-            <ion-radio item-left value="sponsorship"></ion-radio>
-          </ion-item>
-        </ion-list> -->
+    <h3 class="role-title">Activity Type</h3>
+        
       
         <ion-list class="checkbox-tags rounded-tags">
             <ion-item class="checkbox-tag">
@@ -84,9 +75,6 @@
                 <ion-col no-padding>
                   <preload-image class="user-image" [ratio]="{w:3, h:2}" [src]="" alt="this is the image" title="IMAGE!"></preload-image>
                 
-                  <!-- <div class="avatar-wrapper"> -->
-                      <!-- <img [src]="lastImage" alt="Avatar"> -->
-                    <!-- </div> -->
                 
                 </ion-col>
               </ion-row>
@@ -99,6 +87,6 @@
 
 
 
-      <button ion-button block class="auth-action-button signup-button" type="submit" [disabled]="!new_activity.valid">ADD</button>
+      <button ion-button block ngClass="personal-btn" type="submit" [disabled]="!new_activity.valid">ADD</button>
     </form>
   </ion-content>

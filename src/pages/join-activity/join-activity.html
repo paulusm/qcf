@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="signup-content auth-content">
+<ion-content class="auth-content">
     <div class="news-item">
     <ion-card>
       <form class="signup-form auth-form" [formGroup]="join_activity" (ngSubmit)="doJoin()">  
@@ -28,7 +28,7 @@
         </ion-card-content>
         <ion-row no-padding class="actions-row">
           <ion-col no-padding>
-              <button ion-button block class="auth-action-button signup-button" type="submit" [disabled]="!join_activity.valid">Join</button>
+              <button ion-button block ngClass="personal-btn" type="submit" [disabled]="!join_activity.valid">Join</button>
           </ion-col>
         </ion-row>
         

@@ -9,8 +9,9 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="listing-content">
-  <preload-image [ratio]="{w:0, h:0}" class="image-heading" [src]="listing.banner_image"></preload-image>
+<ion-content class="auth-content">
+  <div class="listing-content">
+  <preload-image [ratio]="{w:0, h:0}" class="image-heading" [src]="companyLogo"></preload-image>
  
   <h4 class="categories-title">BROWSE CATEGORIES</h4>
   
@@ -26,7 +27,7 @@
     </ion-col>
   </ion-row>
 
-  <h3 class="activities-title">CHARITABLE THEMES</h3>
+  <h4 class="categories-title">CHARITABLE THEMES</h4>
   <ion-list>
     <div *ngFor="let group of groups">
       
@@ -61,5 +62,5 @@
     </div>
   </ion-list>
 
-
+</div>
 </ion-content>

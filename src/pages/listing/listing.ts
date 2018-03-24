@@ -9,6 +9,10 @@ import { ListingService } from './listing.service';
 
 import { ThemeProvider } from '../../providers/theme/theme';
 
+import { CompanyProvider } from '../../providers/company/company';
+
+import { CompanyModel } from '../../providers/company/company';
+
 @Component({
   selector: 'listing-page',
   templateUrl: 'listing.html',
@@ -17,7 +21,11 @@ export class ListingPage {
   listing: ListingModel = new ListingModel();
   loading: any;
 
+  companyLogo:any;
+
   themes:any;
+
+  company: CompanyModel = new CompanyModel();
 
   value:boolean;
   groups:any;
@@ -27,9 +35,16 @@ export class ListingPage {
     public nav: NavController,
     public listingService: ListingService,
     public loadingCtrl: LoadingController,
-    public themeService:ThemeProvider
+    public themeService:ThemeProvider,
+    public companyService: CompanyProvider
   ) {
     this.loading = this.loadingCtrl.create();
+
+    this.companyLogo = "./assets/images/businessLogo.png";
+    /* this.companyService.getCompany().then(data => {
+          this.company = data;
+          this.companyLogo = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/' + this.company.filename;
+    }); */
 
     this.themeService.getThemes().then((res) => {
       this.groups = JSON.parse(res['_body']); 
@@ -52,6 +67,7 @@ export class ListingPage {
 
   ionViewDidLoad() {
     this.loading.present();
+
     this.listingService
       .getData()
       .then(data => {

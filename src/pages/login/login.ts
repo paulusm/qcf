@@ -4,10 +4,12 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
-//import { ChangePasswordPage } from '../change-password/change-password';
+import { ChangePasswordPage } from '../change-password/change-password';
 import { Storage } from '@ionic/storage';
 
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
+import { CompanyProvider } from '../../providers/company/company';
+import { CompanyModel } from '../../providers/company/company';
 
 import { UserModel } from '../../pages/profile/profile.model';
 import { ProfileService } from '../profile/profile.service';
@@ -23,12 +25,15 @@ export class LoginPage {
   loading: any;
   firstLogin:any;
   userModel:UserModel = new UserModel();
+
+  company: CompanyModel = new CompanyModel();
   token: any;
   constructor(
     public nav: NavController,
     public storage:Storage,
     public loadingCtrl: LoadingController,
     public authService: AuthenticationProvider,
+    public companyService: CompanyProvider,
     public profileService: ProfileService
   ) {
     
@@ -41,8 +46,8 @@ export class LoginPage {
       ])),
       password: new FormControl('', Validators.compose([
         Validators.minLength(5),
-        Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+        Validators.required
+        //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ]))
     });
   }
@@ -53,8 +58,8 @@ export class LoginPage {
     ],
     'password': [
       { type: 'required', message: 'Password is required.' },
-      { type: 'minlength', message: 'Password must be at least 5 characters long.' },
-      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' }
+      /* { type: 'minlength', message: 'Password must be at least 5 characters long.' },
+      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' } */
     ]
   };
   ionViewDidLoad() {
@@ -101,23 +106,25 @@ export class LoginPage {
            
             this.userModel.setUser(result['user']);
 
-            
-
-            console.log(JSON.stringify(result['token']));
             console.log(JSON.stringify(result['user']));
 
             this.storage.set('token', this.token);
             this.profileService.setData(this.userModel);  
             this.profileService.setUserImage(this.userModel.imagepath);
-            ///this.storage.set('userModel', this.userModel);
             
+            /* this.companyService.getCompanyInfo(this.userModel.companyid).then(result =>{
+                      this.company.setCompanyInfo(result);
+                      this.companyService.setCompany(this.company);               
 
-            /* if(result['user'].isfirstlogin==='true'){
-                this.nav.setRoot(ChangePasswordPage);    
-            }else{
-                this.nav.setRoot(this.main_page.component);
-            } */    
-            this.nav.setRoot(this.main_page.component);
+            }); */
+            //alert(this.userModel.isfirstlogin);
+            if(this.userModel.isfirstlogin==="true"){
+              this.nav.setRoot(ChangePasswordPage);
+            }if(this.userModel.isfirstlogin==="false"){
+              this.nav.setRoot(this.main_page.component);
+            }
+            
+            //this.nav.setRoot(this.main_page.component);
 
         }, (err: any) => {
             this.loading.dismiss();

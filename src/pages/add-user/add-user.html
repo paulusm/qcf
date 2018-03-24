@@ -4,25 +4,34 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="signup-content auth-content">
-   <form class="signup-form auth-form" [formGroup]="new_user" (ngSubmit)="doAddUser()">
-    <ion-item>
-      <ion-label  floating>Email</ion-label>
-      <ion-input type="email" formControlName="email"></ion-input>
-    </ion-item>
+<ion-content class="auth-content">
+   <form class="auth-form" [formGroup]="new_user" (ngSubmit)="doAddUser()">
     
-    <ion-item-divider>Select Role</ion-item-divider>
+    <ion-item>
+        <ion-label  floating>Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.email">
+            <div class="error-message" *ngIf="new_user.get('email').hasError(validation.type) && (new_user.get('email').dirty || new_user.get('email').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+      </div>
+
+
+    <h3 class="role-title">ROLE</h3>
       <ion-list class="radio-group" radio-group formControlName="selected_option">
-        <ion-item class="">
+        <ion-item  class="radio-item" >
           <ion-label>Business Admin</ion-label>
           <ion-radio item-left value="BusinessAdmin"></ion-radio>
         </ion-item>
-        <ion-item class="">
+        <ion-item  class="radio-item">
           <ion-label>Employee</ion-label>
           <ion-radio item-left value="Employee"></ion-radio>
         </ion-item>
       </ion-list>
     
-    <button ion-button block class="auth-action-button signup-button" type="submit" [disabled]="!new_user.valid">ADD</button>
+    <button ion-button block ngClass="personal-btn" type="submit" [disabled]="!new_user.valid">ADD</button>
   </form>
 </ion-content>

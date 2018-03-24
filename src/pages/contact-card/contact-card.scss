@@ -96,7 +96,7 @@ contact-card-page {
 
 			& > .button
 			{
-				@include segment-text-styles(color($colors, button-alt, base));
+				//@include segment-text-styles(color($colors, button-alt, base));
 				background-color: color($colors, button-alt, contrast);
 				margin: 0px;
 				border-radius: 0px;

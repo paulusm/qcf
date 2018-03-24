@@ -5,7 +5,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Storage } from '@ionic/storage';
 
 import { TabsNavigationPage } from '../pages/tabs-navigation/tabs-navigation';
-import { FormsPage } from '../pages/forms/forms';
+//import { FormsPage } from '../pages/forms/forms';
 //import { NewsPage } from '../pages/news/news';
 import { WalkthroughPage } from '../pages/walkthrough/walkthrough';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
@@ -60,7 +60,7 @@ export class MyApp {
     //this.rootPage = TabsNavigationPage;
     this.pages = [
       { title: 'Home', icon: 'home', component: TabsNavigationPage },
-      { title: 'Forms', icon: 'create', component: FormsPage }
+      //{ title: 'Forms', icon: 'create', component: FormsPage }
     ];
 
     this.pushPages = [

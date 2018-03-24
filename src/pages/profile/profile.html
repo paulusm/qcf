@@ -9,7 +9,7 @@
       </ion-navbar>
 </ion-header>
 
-<ion-content class="profile-content">
+<ion-content class="auth-content profile-content">
   <div class="user-details">
     <ion-row class="user-main-data-row">
       <ion-col no-padding width-33>
@@ -20,15 +20,15 @@
       <ion-col no-padding>
         <ion-row class="profile-action-row">
           <ion-col no-padding>
-            <button ion-button block small (click)="goToEditProfile()">
+            <button ion-button block small ngClass="personal-btn" (click)="goToEditProfile()">
               EDIT PROFILE
             </button>
             <br>
-            <button ion-button block small (click)="goToAddUser()" [hidden]="!role">
+            <button ion-button block small ngClass="personal-btn" (click)="goToAddUser()" [hidden]="!role">
                 ADD USER
             </button>
             <br>
-            <button ion-button block small (click)="goToCreateActivity()">
+            <button ion-button block small ngClass="personal-btn" (click)="goToCreateActivity()">
                 CREATE ACTIVITY
             </button>
           </ion-col>

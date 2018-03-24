@@ -6,7 +6,6 @@ page-news {
 
 	.list-big-content
 	{
-		background-color: color($colors, background, base);
 
 		.list-big
 		{
@@ -15,7 +14,8 @@ page-news {
 			ion-list {
 				.list-item
 				{
-					
+					padding: 0px;
+					margin: 0px;	
 					.content-row
 					{
 						align-items: center;
@@ -24,13 +24,13 @@ page-news {
 					.item-content
 					{
 						align-content: stretch;
-					  display: flex;
-					  flex-wrap: wrap;
-					  align-self: stretch;
+						display: flex;
+					  	flex-wrap: wrap;
+					  	align-self: stretch;
 
 						.item-title
 						{
-							margin-bottom: 8px;
+							//margin-bottom: 1px;
 							overflow: hidden;
 							text-overflow: ellipsis;
 							white-space: nowrap;
@@ -38,7 +38,7 @@ page-news {
 
 						.item-description
 						{
-							@include multi-line-ellipsis($list-big-description-font-size);
+							//@include multi-line-ellipsis($list-big-description-font-size);
 						}
 					}
 				}

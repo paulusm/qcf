@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 //pages
 import { ListingPage } from '../pages/listing/listing';
 import { FeedPage } from '../pages/feed/feed';
-import { FormsPage } from '../pages/forms/forms';
+//import { FormsPage } from '../pages/forms/forms';
 import { LoginPage } from '../pages/login/login';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { ProfilePage } from '../pages/profile/profile';
@@ -21,11 +21,11 @@ import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 
 
-import { FormLayoutPage } from '../pages/form-layout/form-layout';
-import { FiltersPage } from '../pages/filters/filters';
+//import { FormLayoutPage } from '../pages/form-layout/form-layout';
+//import { FiltersPage } from '../pages/filters/filters';
 import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
-import { FormValidationsPage } from '../pages/form-validations/form-validations';
+//import { FormValidationsPage } from '../pages/form-validations/form-validations';
 
 import { ContactCardPage } from '../pages/contact-card/contact-card';
 import { ChangePasswordPage } from '../pages/change-password/change-password';
@@ -81,13 +81,14 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { ThemeProvider } from '../providers/theme/theme';
 import { FilesProvider } from '../providers/files/files';
+import { CompanyProvider } from '../providers/company/company';
 
 @NgModule({
   declarations: [
     MyApp,
     ListingPage,
     FeedPage,
-    FormsPage,
+  //  FormsPage,
     LoginPage,
     NotificationsPage,
     ProfilePage,
@@ -99,8 +100,8 @@ import { FilesProvider } from '../providers/files/files';
     ForgotPasswordPage,
     ResetPasswordPage,
 
-    FormLayoutPage,
-    FiltersPage,
+    //FormLayoutPage,
+    //FiltersPage,
     TermsOfServicePage,
     PrivacyPolicyPage,
     NewsPage,
@@ -113,7 +114,7 @@ import { FilesProvider } from '../providers/files/files';
 
     //functionalities
     ContactCardPage,
-		FormValidationsPage,
+		//FormValidationsPage,
 
     //custom components
     PreloadImage,
@@ -140,7 +141,7 @@ import { FilesProvider } from '../providers/files/files';
     MyApp,
     ListingPage,
     FeedPage,
-    FormsPage,
+    //FormsPage,
     LoginPage,
     NotificationsPage,
     ProfilePage,
@@ -152,12 +153,12 @@ import { FilesProvider } from '../providers/files/files';
     ChangePasswordPage,
     AddUserPage,
 
-    FormLayoutPage,
-    FiltersPage,
+    //FormLayoutPage,
+    //FiltersPage,
     TermsOfServicePage,
     PrivacyPolicyPage,
     ContactCardPage,
-    FormValidationsPage,
+    //FormValidationsPage,
     NewsPage,
     NewsDetailsPage,
     OtherUserDetailsPage,
@@ -196,6 +197,7 @@ import { FilesProvider } from '../providers/files/files';
     File,
     ThemeProvider,
     FilesProvider,
+    CompanyProvider,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

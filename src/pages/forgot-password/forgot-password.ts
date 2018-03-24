@@ -18,10 +18,19 @@ export class ForgotPasswordPage {
     this.main_page = { component: LoginPage };
 
     this.forgot_password = new FormGroup({
-      email: new FormControl('', Validators.required)
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ]))
     });
   }
 
+  validation_messages = {
+    email: [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'pattern', message: 'Enter a valid email.' }
+    ]
+  };
   recoverPassword(){
 
     console.log(this.forgot_password.get('email').value);

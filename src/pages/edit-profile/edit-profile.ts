@@ -13,6 +13,7 @@ import { ProfileService } from '../profile/profile.service';
 import { FilesProvider } from '../../providers/files/files';
 import { UserModel } from '../profile/profile.model';
 
+import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy';
 import { ChangePasswordPage } from '../change-password/change-password';
@@ -282,10 +283,11 @@ export class EditProfilePage {
           this.userModel.setUser(result['user']);  
 
           this.profileService.setData(this.userModel);  
-    
-          this.nav.pop();      
+          //this.nav.pop();      
           //this.nav.setRoot(this.main_page.component);
-          
+          this.nav.insert(0,TabsNavigationPage);
+          this.nav.popToRoot();
+
         }, (err: any) => {
               this.loading.dismiss();
               alert(`status: ${err.status}, ${err.statusText}`);

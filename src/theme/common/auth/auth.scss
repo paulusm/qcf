@@ -5,25 +5,51 @@
 
 .auth-content
 {
-	padding: 16px 6%;
-	background-color: color($colors, background, base);
+	padding: 10px;
+	background-color: color($colors,primary, base);
+	ion-input, ion-textarea,p,ion-card-content,ion-card,ion-radio {
+		//background-color : color($colors,light-blue, base); 
+		//font-family: 'Calibri';
+		font-family: 'Times New Roman';
+		color: $white;
+/* 		$label-md-text-color:$white;
+		$label-md-text-color-focused:$white;
+		$text-input-placeholder-color:$white; */
+	}
+	ion-list,ion-item-sliding,ion-item,ion-label{
+		background-color : color($colors,light-blue, base);
+		color: $white;
+		font-family: 'Times New Roman';
+/* 		$label-md-text-color:$white;
+		$label-md-text-color-focused:$white;
+		$text-input-placeholder-color:$white; */
+	}
+	.personal-btn
+	{
+						margin: 0px;
+						border-radius: 6px;
+						background-color: color($colors, button-alt, base);
+						color: color($colors, button-alt, contrast);
+						font-weight: 500;
+						font-family: 'Times New Roman';
+	}
 
 	.scroll-content
 	{
-		padding: 16px 6%;
+		padding: 10px;
 	}
 
-	.auth-title
+	/* .auth-title
 	{
-		color: $theme-color-2;
+		//color: $theme-color-2;
 		margin-top: 10px;
 		margin-bottom: 25px;
-	}
+	} */
 
-	.auth-form
+	/* .auth-form
 	{
 		ion-item {
-			@include basic-input-style(color($colors, background, base), $theme-color-3, $white-d);
+			//@include basic-input-style(color($colors,whit, base), $theme-color-3, $white);
 
 			&.item
 			{
@@ -39,14 +65,14 @@
 			margin: 0px;
 			margin-top: 20px;
 
-			@include call-to-action-button-styles(color($colors, button, base), color($colors, button, contrast));
+			//@include call-to-action-button-styles(color($colors, button, base), color($colors, button, contrast));
 		}
 
 		.show-hide-password
 		{
 			.type-toggle
 			{
-				color: $white-d;
+				//color: $white-d;
 				margin: 0px;
 				padding: 0px 6px;
 				text-align: right;
@@ -57,30 +83,132 @@
 	.auth-divider
 	{
 		font-size: 1.6rem;
-		color: $white-d;
+		//color: $white;
 		margin: 20px 0px;
 		text-align: center;
-	}
-
-	/* .facebook-auth-button
-	{
-		margin: 0px;
-		@include call-to-action-button-styles(color($colors, facebook, base), color($colors, facebook, contrast));
-	}
-
-	.google-auth-button
-	{
-		margin: 0px;
-		margin-top: 20px;
-		@include call-to-action-button-styles(color($colors, google, base), color($colors, google, contrast));
-	}
-
-	.twitter-auth-button
-	{
-		margin: 0px;
-		margin-top: 20px;
-		@include call-to-action-button-styles(color($colors, twitter, base), color($colors, twitter, contrast));
 	} */
+}
+
+.tabs-nav1{	
+	
+	.tabbar
+	{
+		background: color($colors, tabs-navigation, base) !important;
+		//border-top-color: darken(color($colors, tabs-navigation, base), 6%) !important;
+
+		.tab-button
+		{
+			color: color($colors, tabs-navigation, contrast);
+			font-family: 'Times New Roman';
+			
+			.tab-button-icon
+			{
+				color: color($colors, tabs-navigation, contrast);
+				
+			}
+		}
+
+		.tab-button:hover:not(.disable-hover),
+		.tab-button[aria-selected=true]
+		{
+		  color: $theme-color-1;
+		  font-family: 'Times New Roman';		
+			.tab-button-icon
+			{
+				color: $theme-color-1;
+			}
+		}
+	}
+}
+.tabs-nav2{	
+	.tabbar
+	{
+		background: color($colors, tabs-navigation, base) !important;
+		//border-top-color: darken(color($colors, tabs-navigation, base), 6%) !important;
+
+		.tab-button
+		{
+			color: color($colors, tabs-navigation, contrast);
+
+			.tab-button-icon
+			{
+				color: color($colors, tabs-navigation, contrast);
+			}
+		}
+
+		.tab-button:hover:not(.disable-hover),
+		.tab-button[aria-selected=true]
+		{
+		  color: $white;
+
+			.tab-button-icon
+			{
+				color: $white;
+			}
+		}
+	}
+}
+
+ion-menu {
+	.menu-content
+	{
+		//background-color: color($colors, background-menu2, base);
+		background-image: url('../../assets/images/businessLogo.png');
+		background-repeat: no-repeat;
+		background-size: 60%;
+	}
+
+	.menu-list
+	{
+		margin: 20vh 0px 0px !important;
+
+		.item
+		{
+			background-color: color($colors, background-menu, base);
+			padding-right: 32px;
+
+			&:first-child
+			{
+				border-top: solid 1px rgba($white-d, 0.15);
+			}
+
+			&:last-child
+			{
+				border-bottom: solid 1px rgba($white-d, 0.15);
+			}
+
+			.item-inner
+			{
+				border-bottom: 1px solid rgba($white-d, 0.15);
+				font-size: 1.8rem;
+				font-weight: 300;
+				letter-spacing: 1px;
+				color: $theme-color-3;
+			}
+
+			.item-icon
+			{
+				color: $theme-color-2;
+				font-size: 3.4rem;
+			}
+
+			&.activated
+			{
+  			background-color: $theme-color-1;
+  			transition-duration: 0ms;
+
+				.item-inner
+				{
+					color: $white;
+				}
+
+				.item-icon
+				{
+					color: $white;
+				}
+			}
+		}
+	}
 }
 
 @import "./auth.ios";

@@ -2,10 +2,18 @@ page-create-activity {
     ion-header {
 		@include header-styles(color($colors, header-alt, base), color($colors, header-alt, contrast));
 	}
-
+	.role-title
+		{
+			text-align: center;
+			font-size: 1.5rem;
+			font-weight: 400;
+			letter-spacing: 0.7px;
+			color: $white-d;
+			margin: 8px 16px 16px;
+		}
 	ion-item-divider {
 		padding: 15px !important;
-		background-color: transparent !important;
+		background-color: white !important;
 
 		.item-inner
 		{
@@ -16,7 +24,7 @@ page-create-activity {
 				font-size: 1.2rem;
 				font-weight: 500;
 				letter-spacing: 0.9px;
-				color: $theme-color-3;
+				color: $white-d;
 			}
 		}
     }
@@ -29,10 +37,10 @@ page-create-activity {
 		@include radio-item-styles($white-d, $white-a, $theme-color-1);
 	}
 
-	/* @include checkbox-tags-styles($white,$theme-color-2,$white-a, $white-d);
+	 @include checkbox-tags-styles($theme-color-1,$theme-color-2,$white-a, $white-d);
  	.rounded-tags
 	{
-		background-color: $white;
+		//background-color: $white;
 		padding: 15px;
 		@include element-shadow();
 
@@ -41,15 +49,15 @@ page-create-activity {
 			.item-inner
 			{
 				border-radius: 2.2rem;
-				background-color: $white-b;
+				background-color: $theme-color-2;
 				color: $white;
 			}
 		}
-	}  */
+	}  
 
 	.switchers-list
 	{
-		@include switcher-item-styles($white-d, $theme-color-1);
+		@include switcher-item-styles($white-d, $theme-color-2);
 
 		.switcher-item
 		{
@@ -103,7 +111,7 @@ page-create-activity {
 
 							.datetime-text
 							{
-								color: $theme-color-3;
+								color: $white-d;
 							}
 						}
 					}
