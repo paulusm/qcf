@@ -1,4 +1,4 @@
-.auth-content
+.app-color-theme-1
 {
 	padding: 10px;
 	background-color: color($colors,primary, base);
@@ -32,15 +32,15 @@
 	
 	.tabbar
 	{
-		background: color($colors, tabs-navigation, base) !important;
+		background: color($colors, tabs-navigation-1, base) !important;
 		.tab-button
 		{
-			color: color($colors, tabs-navigation, contrast);
+			color: color($colors, tabs-navigation-1, contrast);
 			font-family: 'Times New Roman';
 			
 			.tab-button-icon
 			{
-				color: color($colors, tabs-navigation, contrast);
+				color: color($colors, tabs-navigation-1, contrast);
 				
 			}
 		}
@@ -57,34 +57,10 @@
 		}
 	}
 }
-.tabs-nav2{	
-	.tabbar
-	{
-		background: color($colors, tabs-navigation, base) !important;
-		.tab-button
-		{
-			color: color($colors, tabs-navigation, contrast);
-
-			.tab-button-icon
-			{
-				color: color($colors, tabs-navigation, contrast);
-			}
-		}
-
-		.tab-button:hover:not(.disable-hover),
-		.tab-button[aria-selected=true]
-		{
-		  color: $white;
-
-			.tab-button-icon
-			{
-				color: $white;
-			}
-		}
-	}
-}
 
 
 
-@import "./auth.ios";
+
+/* @import "./auth.ios";
 @import "./auth.wp";
+ */

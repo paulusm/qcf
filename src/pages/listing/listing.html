@@ -1,4 +1,4 @@
-<ion-header class="listing-header">
+<ion-header [ngClass]="colorThemeHeader">
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -9,7 +9,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="auth-content">
+<ion-content [ngClass]="colorTheme">
   <div class="listing-content">
   <preload-image [ratio]="{w:0, h:0}" class="image-heading" [src]="companyLogo"></preload-image>
  

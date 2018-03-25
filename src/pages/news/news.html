@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header [ngClass]="colorThemeHeader">
     <ion-navbar>
         <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
@@ -9,7 +9,8 @@
       </ion-navbar>
 </ion-header>
 
-<ion-content class="auth-content list-big-content">
+<ion-content class="list-big-content">
+    <div [ngClass]="colorTheme">
   <div class="list-big">
     <ion-list>
       <button class="list-item" ion-item *ngFor="let item of news.items" (click)="goToNewsDetail(item)">
@@ -30,5 +31,6 @@
         </ion-row>
       </button>
     </ion-list>
+  </div>
   </div>
 </ion-content>

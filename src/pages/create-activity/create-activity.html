@@ -1,10 +1,10 @@
-<ion-header class="signup-header auth-header">
+<ion-header [ngClass]="colorThemeHeader">
     <ion-navbar>
       <ion-title>CREATE ACTIVITY</ion-title>
     </ion-navbar>
   </ion-header>
   
-  <ion-content class="signup-content auth-content">
+  <ion-content  [ngClass]="colorTheme">
      <form class="signup-form auth-form" [formGroup]="new_activity" (ngSubmit)="doCreateActivity()">
       <ion-item>
         <ion-label  floating>Title</ion-label>
@@ -80,7 +80,7 @@
               </ion-row>
               <ion-row no-padding class="user-image-row">
                 <ion-col no-padding width-60>
-                  <button class="image-action-button" ion-button outline block small (click)="presentActionSheet()">UPLOAD PICTURE</button>
+                  <button ngClass="personal-btn" ion-button outline block small (click)="presentActionSheet()">UPLOAD PICTURE</button>
                 </ion-col>
               </ion-row>
             </div>

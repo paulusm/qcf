@@ -1,11 +1,18 @@
-<ion-header>
+
+<ion-header [ngClass]="colorThemeHeader">
     <ion-navbar>
-      <ion-title>OTHER PARTICIPANTS</ion-title>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        OTHER PARTICIPANTS
+      </ion-title>
     </ion-navbar>
   </ion-header>
+
   
-  <ion-content class="auth-content notifications-content">
-    
+  <ion-content [ngClass]="colorTheme">
+    <div class="notifications-content">
     
     <ion-item-group>
       <!-- <ion-item-divider class="notifications-divider">Other Participants</ion-item-divider> -->
@@ -18,9 +25,11 @@
         <ion-note class="item-time" item-right>{{notification.designation}}</ion-note>
       </ion-item>
     </ion-item-group>
+  </div>
   </ion-content>
   <ion-footer>
-      <ion-toolbar>
+
+    <ion-toolbar>
           <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
       </ion-toolbar>
     </ion-footer>

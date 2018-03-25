@@ -10,6 +10,8 @@ import { UserModel } from '../../pages/profile/profile.model';
 
 import { Storage } from '@ionic/storage';
 
+import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
+
 @Component({
   selector: 'page-add-user',
   templateUrl: 'add-user.html',
@@ -20,14 +22,31 @@ export class AddUserPage {
   loading: any;
   userModel:UserModel = new UserModel();
   companyId:string;
+
+  colorTheme: any;
+  colorThemeHeader:any;
+
   constructor(
     public nav: NavController,
     public modal: ModalController,
     public loadingCtrl: LoadingController,
     public authService: AuthenticationProvider,
     public storage: Storage,
-    public profileService:ProfileService
+    public profileService:ProfileService,
+    public appThemeColorProvider:AppThemeColorProvider
   ) {
+    this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+      if(value===null){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-1'){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-2'){
+        this.colorTheme = 'app-color-theme-2';
+        this.colorThemeHeader = 'ion-header-2';
+      }
+    });
     this.profileService.getData()
       .then(data => {
         this.userModel = data;

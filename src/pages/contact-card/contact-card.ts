@@ -5,18 +5,36 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { ContactModel } from './contact.model';
 
+import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
+
 @Component({
   selector: 'contact-card-page',
   templateUrl: 'contact-card.html'
 })
 export class ContactCardPage {
   contact: ContactModel = new ContactModel();
+  colorTheme: any;
+  colorThemeHeader:any;
 
   constructor(
     public navCtrl: NavController,
     private emailComposer: EmailComposer,
-    public inAppBrowser: InAppBrowser
+    public inAppBrowser: InAppBrowser,
+    public appThemeColorProvider:AppThemeColorProvider
   ) {
+    this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+      if(value===null){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-1'){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-2'){
+        this.colorTheme = 'app-color-theme-2';
+        this.colorThemeHeader = 'ion-header-2';
+      }
+    });
+
   }
 
   // call(number: string){

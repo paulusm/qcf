@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header [ngClass]="colorThemeHeader">
     <ion-navbar>
         <button ion-button menuToggle>
           <ion-icon name="menu"></ion-icon>
@@ -9,7 +9,8 @@
       </ion-navbar>
 </ion-header>
 
-<ion-content class="auth-content profile-content">
+<ion-content class="profile-content">
+    <div [ngClass]="colorTheme">
   <div class="user-details">
     <ion-row class="user-main-data-row">
       <ion-col no-padding width-33>
@@ -37,5 +38,5 @@
     </ion-row>
   </div>
       <h3 class="activities-title">SIGNED UP ACTIVITIES</h3>
-
+</div>
 </ion-content>

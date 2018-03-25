@@ -7,6 +7,7 @@ import { NotificationsModel } from './notifications.model';
 import { NotificationsService } from './notifications.service';
 
 import { OtherUserDetailsPage } from '../other-user-details/other-user-details';
+import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
 
 
 
@@ -19,13 +20,28 @@ export class NotificationsPage {
   loading: any;
   items: any;
   searchTerm: string = '';
+  colorTheme: any;
+  colorThemeHeader:any;
 
   constructor(
     public nav: NavController,
     public notificationsService: NotificationsService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public appThemeColorProvider:AppThemeColorProvider
   ) {
     this.loading = this.loadingCtrl.create();
+    this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+      if(value===null){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-1'){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-2'){
+        this.colorTheme = 'app-color-theme-2';
+        this.colorThemeHeader = 'ion-header-2';
+      }
+    });
   }
 
   ionViewDidLoad() {

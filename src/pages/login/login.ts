@@ -14,6 +14,8 @@ import { CompanyModel } from '../../providers/company/company';
 import { UserModel } from '../../pages/profile/profile.model';
 import { ProfileService } from '../profile/profile.service';
 
+import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
+
 
 @Component({
   selector: 'login-page',
@@ -28,16 +30,34 @@ export class LoginPage {
 
   company: CompanyModel = new CompanyModel();
   token: any;
+
+  colorTheme: any;
+  colorThemeHeader:any;
+
   constructor(
     public nav: NavController,
     public storage:Storage,
     public loadingCtrl: LoadingController,
     public authService: AuthenticationProvider,
     public companyService: CompanyProvider,
-    public profileService: ProfileService
+    public profileService: ProfileService,
+    public appThemeColorProvider:AppThemeColorProvider
   ) {
     
     this.main_page = { component: TabsNavigationPage };
+
+    this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+      if(value===null){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-1'){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-2'){
+        this.colorTheme = 'app-color-theme-2';
+        this.colorThemeHeader = 'ion-header-2';
+      }
+    });
 
     this.login = new FormGroup({
       email: new FormControl('', Validators.compose([

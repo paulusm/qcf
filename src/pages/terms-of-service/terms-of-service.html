@@ -1,4 +1,4 @@
-<ion-header class="privacy-header legal-header">
+<ion-header [ngClass]="colorThemeHeader">
   <ion-toolbar>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
@@ -12,7 +12,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="privacy-content legal-content  auth-content">
+<ion-content class="privacy-content legal-content">
+  <div [ngClass]="colorTheme">
   <p>LAST MODIFIED: Nov 14, 2016</p>
   <h4 class="legal-title">WELCOME TO !!!</h4>
   
@@ -20,5 +21,5 @@
   
   
   <h4 class="legal-title">ABOUT THIS TERMS</h4>
-  
+  </div>
 </ion-content>

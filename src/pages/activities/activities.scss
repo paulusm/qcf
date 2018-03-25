@@ -1,12 +1,9 @@
 $list-big-description-font-size: 12px;
 page-activities {
-    ion-header {
+    /* ion-header {
 		@include header-styles(color($colors, header-alt, base), color($colors, header-alt, contrast));
-	}
-	/* ion-icon{
-		padding-top: 10px;
-		padding-bottom: 10px;
 	} */
+	
 
 	.button-details{
 		background-color:$theme-color-2;

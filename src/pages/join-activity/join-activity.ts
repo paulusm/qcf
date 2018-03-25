@@ -7,6 +7,8 @@ import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 
 import { Storage } from '@ionic/storage';
 
+import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
+
 
 @Component({
   selector: 'page-join-activity',
@@ -22,16 +24,31 @@ export class JoinActivityPage {
 
   }; */
   item:any
-  //newitem:any;
+  colorTheme: any;
+  colorThemeHeader:any;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
-    public storage: Storage
+    public storage: Storage,
+    public appThemeColorProvider:AppThemeColorProvider
   ) {
     this.item = navParams.get("newItem");
     this.main_page = { component: TabsNavigationPage };
+
+    this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+      if(value===null){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-1'){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-2'){
+        this.colorTheme = 'app-color-theme-2';
+        this.colorThemeHeader = 'ion-header-2';
+      }
+    });
 
     this.join_activity = new FormGroup({
        selected_option: new FormControl('voluntering')

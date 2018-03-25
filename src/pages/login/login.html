@@ -1,10 +1,10 @@
-<ion-header class="login-header auth-header">
+<ion-header [ngClass]="colorThemeHeader">
   <ion-navbar>
     <ion-title>SIGN IN</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="auth-content">
+<ion-content [ngClass]="colorTheme">
   <form class="auth-form" [formGroup]="login" (ngSubmit)="doLogin()">
     <ion-item>
         <ion-label  floating>Email</ion-label>

@@ -55,7 +55,7 @@ import { ActivitiesPage } from '../pages/activities/activities';
 import { ActivitiesService } from '../pages/activities/activities.service';
 import { CreateActivityPage } from '../pages/create-activity/create-activity';
 import { JoinActivityPage } from '../pages/join-activity/join-activity';
-
+import { AppColorThemePage } from '../pages/app-color-theme/app-color-theme';
 
 import { ActivitiesDetailsPage } from '../pages/activities-details/activities-details';
 
@@ -82,6 +82,7 @@ import { File } from '@ionic-native/file';
 import { ThemeProvider } from '../providers/theme/theme';
 import { FilesProvider } from '../providers/files/files';
 import { CompanyProvider } from '../providers/company/company';
+import { AppThemeColorProvider } from '../providers/app-theme-color/app-theme-color';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,7 @@ import { CompanyProvider } from '../providers/company/company';
     ChangePasswordPage,
     AddUserPage,
     ForgotPasswordPage,
-    ResetPasswordPage,
+    ResetPasswordPage,AppColorThemePage,
 
     //FormLayoutPage,
     //FiltersPage,
@@ -151,7 +152,7 @@ import { CompanyProvider } from '../providers/company/company';
     ForgotPasswordPage,
     ResetPasswordPage,
     ChangePasswordPage,
-    AddUserPage,
+    AddUserPage,AppColorThemePage,
 
     //FormLayoutPage,
     //FiltersPage,
@@ -198,6 +199,7 @@ import { CompanyProvider } from '../providers/company/company';
     ThemeProvider,
     FilesProvider,
     CompanyProvider,
+    AppThemeColorProvider,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

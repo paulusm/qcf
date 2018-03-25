@@ -1,10 +1,11 @@
-<ion-header class="signup-header auth-header">
+<ion-header [ngClass]="colorThemeHeader">
   <ion-navbar>
     <ion-title>ADD USER</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="auth-content">
+<ion-content>
+    <div [ngClass]="colorTheme">
    <form class="auth-form" [formGroup]="new_user" (ngSubmit)="doAddUser()">
     
     <ion-item>
@@ -34,4 +35,5 @@
     
     <button ion-button block ngClass="personal-btn" type="submit" [disabled]="!new_user.valid">ADD</button>
   </form>
+  </div>
 </ion-content>

@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header [ngClass]="colorThemeHeader">
 
   <ion-navbar>
     <ion-title>NEWS DETAILS</ion-title>
@@ -7,7 +7,8 @@
 </ion-header>
 
 
-<ion-content  class="auth-content news-content">
+<ion-content  class="news-content">
+    <div [ngClass]="colorTheme">
   <div class="news-item">
   <ion-card>
     <preload-image [ratio]="{w:3, h:2}" [src]="item.url"></preload-image>
@@ -40,5 +41,6 @@
       </ion-col>
     </ion-row>
   </ion-card>
+  </div>
   </div>
 </ion-content>

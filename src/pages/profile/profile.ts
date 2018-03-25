@@ -11,6 +11,8 @@ import { Storage } from '@ionic/storage';
 
 import { FilesProvider } from '../../providers/files/files';
 
+import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
+
 import 'rxjs/Rx';
 
 @Component({
@@ -23,6 +25,9 @@ export class ProfilePage {
   role: any;
   image: any;
 
+  colorTheme: any;
+  colorThemeHeader:any;
+
   constructor(
     public menu: MenuController,
     public app: App,
@@ -30,11 +35,27 @@ export class ProfilePage {
     public profileService: ProfileService,
     public loadingCtrl: LoadingController,
     public storage: Storage,
-    public files: FilesProvider
+    public files: FilesProvider,
+    public appThemeColorProvider:AppThemeColorProvider
   ) {
         this.loading = this.loadingCtrl.create({
           content: 'Loading profile...'
         });
+        this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+          if(value===null){
+            this.colorTheme = 'app-color-theme-1';
+            this.colorThemeHeader = 'ion-header-1';
+          }else if(value==='app-color-theme-1'){
+            this.colorTheme = 'app-color-theme-1';
+            this.colorThemeHeader = 'ion-header-1';
+          }else if(value==='app-color-theme-2'){
+            this.colorTheme = 'app-color-theme-2';
+            this.colorThemeHeader = 'ion-header-2';
+          }
+        });
+
+
+
   }
 
   ionViewDidLoad() {

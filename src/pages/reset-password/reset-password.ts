@@ -4,6 +4,8 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { LoginPage } from '../login/login';
 
+import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
+
 @Component({
   selector: 'page-reset-password',
   templateUrl: 'reset-password.html',
@@ -16,10 +18,29 @@ export class ResetPasswordPage {
   newpassword:string;
   contactemail:string;
   errortext:string;
+
+  colorTheme: any;
+  colorThemeHeader:any;
+
   constructor(public navCtrl: NavController, public authService: AuthenticationProvider, 
-    public loadingCtrl: LoadingController, public navParams:NavParams) {
+    public loadingCtrl: LoadingController, public navParams:NavParams,
+    public appThemeColorProvider:AppThemeColorProvider) {
         this.email = this.navParams.get('email');
-        
+       
+        this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+          if(value===null){
+            this.colorTheme = 'app-color-theme-1';
+            this.colorThemeHeader = 'ion-header-1';
+          }else if(value==='app-color-theme-1'){
+            this.colorTheme = 'app-color-theme-1';
+            this.colorThemeHeader = 'ion-header-1';
+          }else if(value==='app-color-theme-2'){
+            this.colorTheme = 'app-color-theme-2';
+            this.colorThemeHeader = 'ion-header-2';
+          }
+        });
+
+
         this.reset_password = new FormGroup({
           code: new FormControl('', Validators.required),
           newpassword: new FormControl('', Validators.required)

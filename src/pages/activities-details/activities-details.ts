@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { JoinActivityPage } from '../join-activity/join-activity';
+import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
 
 @Component({
   selector: 'page-activities-details',
@@ -9,8 +10,29 @@ import { JoinActivityPage } from '../join-activity/join-activity';
 })
 export class ActivitiesDetailsPage {
   item:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public socialSharing: SocialSharing) {
+  colorTheme: any;
+  colorThemeHeader:any;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public socialSharing: SocialSharing,
+    public appThemeColorProvider:AppThemeColorProvider
+  ) {
     this.item = navParams.get("newItem");
+    
+    this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+      if(value===null){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-1'){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-2'){
+        this.colorTheme = 'app-color-theme-2';
+        this.colorThemeHeader = 'ion-header-2';
+      }
+    });
   }
 
   ionViewDidLoad() {

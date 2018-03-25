@@ -15,6 +15,7 @@ import { UserModel } from '../profile/profile.model';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
 
+import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
 
 @Component({
   selector: 'change-password-page',
@@ -26,6 +27,8 @@ export class ChangePasswordPage {
   loading: any;
   profile: UserModel = new UserModel();
   FirstLoginWas:boolean;
+  colorTheme: any;
+  colorThemeHeader:any;
 
   validations_form: FormGroup;
   matching_passwords_group: FormGroup;
@@ -37,14 +40,23 @@ export class ChangePasswordPage {
     public authService: AuthenticationProvider,
     public profileService: ProfileService,
     public storage: Storage,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public appThemeColorProvider:AppThemeColorProvider
   ) {
      this.main_page = { component: TabsNavigationPage };
-    //
-    // this.changePassword = new FormGroup({
-    //   new_password: new FormControl('', Validators.required),
-    //   confirm_password: new FormControl('', Validators.required)
-    // });
+     
+     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+      if(value===null){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-1'){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-2'){
+        this.colorTheme = 'app-color-theme-2';
+        this.colorThemeHeader = 'ion-header-2';
+      }
+    });
   }
   ionViewWillLoad() {
     this.matching_passwords_group = new FormGroup({

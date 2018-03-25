@@ -1,0 +1,62 @@
+.app-color-theme-2
+{
+	padding: 10px;
+	background-color: color($colors,$white, base);
+	ion-input, ion-textarea,p,ion-card-content,ion-card,ion-radio {
+		font-family: 'Times New Roman';
+		color: $black;
+	}
+	ion-list,ion-item-sliding,ion-item,ion-label{
+		background-color : color($colors,$white-b, base);
+		color: $black;
+		font-family: 'Times New Roman';
+	}
+	.personal-btn
+	{
+						margin: 0px;
+						border-radius: 6px;
+						background-color: color($colors, button-2-alt, base);
+						color: color($colors, button-2-alt, contrast);
+						font-weight: 500;
+						font-family: 'Times New Roman';
+	}
+
+	.scroll-content
+	{
+		padding: 10px;
+	}
+
+}
+
+
+.tabs-nav2{	
+	.tabbar
+	{
+		background: color($colors, tabs-navigation-2, base) !important;
+		.tab-button
+		{
+			color: color($colors, tabs-navigation-2, contrast);
+
+			.tab-button-icon
+			{
+				color: color($colors, tabs-navigation-2, contrast);
+			}
+		}
+
+		.tab-button:hover:not(.disable-hover),
+		.tab-button[aria-selected=true]
+		{
+		  color: $theme-color-4;
+
+			.tab-button-icon
+			{
+				color: $theme-color-4;
+			}
+		}
+	}
+}
+
+
+
+//@import "./auth.ios";
+//@import "./auth.wp";

@@ -18,6 +18,10 @@ import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy';
 import { ChangePasswordPage } from '../change-password/change-password';
 import { LoginPage } from '../login/login';
+import { AppColorThemePage } from '../app-color-theme/app-color-theme';
+
+import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
+
 
 import 'rxjs/Rx';
 
@@ -32,6 +36,8 @@ export class EditProfilePage {
   rootPage: any = LoginPage;
   loading: any;
   imageUpload: boolean;
+  colorTheme: any;
+  colorThemeHeader:any;
 
   profile: UserModel = new UserModel();
   userModel:UserModel = new UserModel();
@@ -52,10 +58,26 @@ export class EditProfilePage {
     public authService: AuthenticationProvider,
     private transfer: FileTransfer,
     public files: FilesProvider,
-    public http:Http
+    public http:Http,
+    public appThemeColorProvider:AppThemeColorProvider
   ) {
     this.imageUpload =false;
     
+    //this.appThemeColorProvider.getAppThemeColor()
+
+    this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+      if(value===null){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-1'){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-2'){
+        this.colorTheme = 'app-color-theme-2';
+        this.colorThemeHeader = 'ion-header-2';
+      }
+    });
+
     this.loading = this.loadingCtrl.create({
       content: 'Loading profile...'
     });
@@ -251,6 +273,10 @@ export class EditProfilePage {
                 });
     });
   } 
+
+  onThemeChange(){
+    this.nav.push(AppColorThemePage); 
+  }
 
   saveChanges(){
     

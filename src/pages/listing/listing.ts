@@ -13,6 +13,8 @@ import { CompanyProvider } from '../../providers/company/company';
 
 import { CompanyModel } from '../../providers/company/company';
 
+import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
+
 @Component({
   selector: 'listing-page',
   templateUrl: 'listing.html',
@@ -30,15 +32,31 @@ export class ListingPage {
   value:boolean;
   groups:any;
   shownGroup:any = null;
+  colorTheme: any;
+  colorThemeHeader:any;
 
   constructor(
     public nav: NavController,
     public listingService: ListingService,
     public loadingCtrl: LoadingController,
     public themeService:ThemeProvider,
-    public companyService: CompanyProvider
+    public companyService: CompanyProvider,
+    public appThemeColorProvider:AppThemeColorProvider
   ) {
     this.loading = this.loadingCtrl.create();
+
+    this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+      if(value===null){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-1'){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-2'){
+        this.colorTheme = 'app-color-theme-2';
+        this.colorThemeHeader = 'ion-header-2';
+      }
+    });
 
     this.companyLogo = "./assets/images/businessLogo.png";
     /* this.companyService.getCompany().then(data => {

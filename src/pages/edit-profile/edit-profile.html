@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header [ngClass]="colorThemeHeader">
     <ion-navbar>
       <ion-title>EDIT PROFILE</ion-title>
       <ion-buttons end [hidden]="!settingsForm.dirty">
@@ -9,7 +9,8 @@
     </ion-navbar>
   </ion-header>
   
-  <ion-content class="auth-content  edit-profile-content">
+  <ion-content class="edit-profile-content">
+    <div [ngClass]="colorTheme">
     <div class="user-image-content">
       <ion-row no-padding class="user-image-row">
         <ion-col no-padding width-40>
@@ -19,7 +20,7 @@
       </ion-row>
       <ion-row no-padding class="user-image-row">
         <ion-col no-padding width-60>
-          <button class="image-action-button" ion-button outline block small (click)="presentActionSheet()">CHANGE PROFILE PICTURE</button>
+          <button ngClass="personal-btn" ion-button outline block small (click)="presentActionSheet()">CHANGE PROFILE PICTURE</button>
         </ion-col>
       </ion-row>
     </div>
@@ -55,17 +56,20 @@
       
     </form>
     
-    <button class="alt-button" ion-button full (click)="onChangePassword()">CHANGE PASSWORD</button>
-
-    <button class="alt-button rate-app-button" ion-button full (click)="rateApp()">RATE APP</button>
-  
-    <button class="alt-button" ion-button full (click)="showPrivacyModal()">PRIVACY POLICY</button>
-  
-    <button class="alt-button" ion-button full (click)="showTermsModal()">TERMS OF USE</button>
-  
-    <button class="alt-button logout-button" ion-button full icon-start (click)="logout()">
+    <button ngClass="personal-btn" ion-button full (click)="onChangePassword()">CHANGE PASSWORD</button>
+    <br>
+    <button ngClass="personal-btn" ion-button full (click)="onThemeChange()">CHANGE COLOR THEME</button>
+    <br>
+    <button ngClass="personal-btn" ion-button full (click)="rateApp()">RATE APP</button>
+    <br>
+    <button ngClass="personal-btn" ion-button full (click)="showPrivacyModal()">PRIVACY POLICY</button>
+    <br>
+    <button ngClass="personal-btn" ion-button full (click)="showTermsModal()">TERMS OF USE</button>
+    <br>
+    <button ngClass="personal-btn" ion-button full icon-start (click)="logout()">
       <ion-icon name="log-out"></ion-icon>
       LOG OUT
     </button>
+    </div>
   </ion-content>
   

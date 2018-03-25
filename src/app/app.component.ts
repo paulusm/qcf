@@ -17,6 +17,8 @@ import { AuthenticationProvider } from '../providers/authentication/authenticati
 
 import { UserData} from '../providers/user-data/user-data';
 
+import { AppThemeColorProvider } from '../providers/app-theme-color/app-theme-color';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.html'
@@ -28,7 +30,7 @@ export class MyApp {
   rootPage: any;
   textDir: string = "ltr";
   loading: any;
-  //role: any;
+  menuColor:any;
 
   pages: Array<{title: any, icon: string, component: any}>;
   pushPages: Array<{title: any, icon: string, component: any,logsOut?: boolean}>;
@@ -44,7 +46,8 @@ export class MyApp {
     public storage: Storage,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
-    public authService: AuthenticationProvider
+    public authService: AuthenticationProvider,
+    public appThemeColorProvider:AppThemeColorProvider
   ) {
     //this.role =  false;
     
@@ -57,6 +60,24 @@ export class MyApp {
         }
         this.platformReady()
       }); 
+    //this.menuColor  = 'ion-menu-2';
+    
+    this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+      //alert(value);
+      if(value===null){
+        this.menuColor = 'ion-menu-1';
+      }else if(value==='app-color-theme-1'){
+        this.menuColor = 'ion-menu-1';
+      }else if(value==='app-color-theme-2'){
+        this.menuColor = 'ion-menu-2';
+      }
+      //alert(this.menuColor);
+    });
+    
+
+
+
+
     //this.rootPage = TabsNavigationPage;
     this.pages = [
       { title: 'Home', icon: 'home', component: TabsNavigationPage },

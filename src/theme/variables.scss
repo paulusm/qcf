@@ -26,6 +26,10 @@ $theme-color-1: #b3dd40;
 $theme-color-2: #f2863e;
 $theme-color-3: #383544;
 
+$theme-color-4: #00e9d5;
+$theme-color-5: #ae75e7;
+
+
 // Named Color Variables
 // --------------------------------------------------
 // Named colors makes it easy to reuse colors on various components.
@@ -60,6 +64,7 @@ $colors: (
     base: transparent,
     contrast: $white
   ),
+  
   header:(
     base: $theme-color-1,
     contrast: $white
@@ -68,12 +73,30 @@ $colors: (
     base: $theme-color-2,
     contrast: $white
   ),
+
+  header-2:(
+    base: $theme-color-4,
+    contrast: $white
+  ),
+  
+  header-2-alt:(
+    base: $theme-color-5,
+    contrast: $white
+  ),
   button:(
     base: $theme-color-1,
     contrast: $white
   ),
   button-alt:(
     base: $theme-color-2,
+    contrast: $white
+  ),
+  button-2:(
+    base: $theme-color-4,
+    contrast: $white
+  ),
+  button-2-alt:(
+    base: $theme-color-5,
     contrast: $white
   ),
   background:(
@@ -88,29 +111,33 @@ $colors: (
     base:$theme-color-2,
     contrast: $black-b
   ),
+  background-menu4:(
+    base:$theme-color-4,
+    contrast: $black-b
+  ),
+  background-menu5:(
+    base:$theme-color-5,
+    contrast: $black-b
+  ),
   tabs-navigation:(
+    base:$theme-color-2,
+    contrast: $white-d
+  ),
+  tabs-navigation-1:(
     base:$theme-color-2,//$white,
     contrast: $white-d
   ),
-  /* facebook:(
-    base: #3b5998,
-    contrast: $white
-  ),
-  google:(
-    base: #cc181e,
-    contrast: $white
-  ),
-  twitter:(
-    base: #00aced,
-    contrast: $white
-  ) */
+  tabs-navigation-2:(
+    base:$theme-color-5,//$white,
+    contrast: $white-d
+  )
  
 );
 
 
 // App Theme
 // --------------------------------------------------
-// Ionic apps can have different themes applied, which can
+// Ionic apps can have different themes ,applied, which can
 // then be future customized. This import comes last
 // so that the above variables are used and Ionic's
 // default are overridden.
