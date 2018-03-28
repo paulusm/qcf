@@ -9,6 +9,7 @@ import { NotificationsService } from './notifications.service';
 import { OtherUserDetailsPage } from '../other-user-details/other-user-details';
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
 
+import { ProfilesModel } from '../profile/profile.model';
 
 
 @Component({
@@ -22,6 +23,8 @@ export class NotificationsPage {
   searchTerm: string = '';
   colorTheme: any;
   colorThemeHeader:any;
+
+  profilesModel: ProfilesModel = new ProfilesModel();
 
   constructor(
     public nav: NavController,
@@ -46,20 +49,59 @@ export class NotificationsPage {
 
   ionViewDidLoad() {
     this.loading.present();
-    this.notificationsService
+    /* this.notificationsService
       .getData()
       .then(data => {
         this.notifications.users = data.users;
         this.items = this.notifications.users;
 
         console.log(this.notifications.users);
+        //this.loading.dismiss();
+      },(err) => {
+        
+      }); */
+
+      this.notificationsService
+      .getUsers()
+      .then(data => {
+         
+              let activeUsers:any = [];
+              this.profilesModel.users = JSON.parse(data['_body']); 
+                for(let p of this.profilesModel.users){
+                      if(p.isfirstlogin==="false"){
+                        let image;
+                           if(p.imagepath!=null){
+                             image = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+p.imagepath;
+                           }else{
+                             image = '../../assets/images/profile/emp2.png';
+                           }
+                           let user = {
+                              displayname : p.displayname,
+                              email : p.email,
+                              department : p.department,
+                              imagepath : image 
+                            };
+                            activeUsers.push(user);
+                      }  
+                }
+                this.notifications.users = activeUsers;
+                this.items = activeUsers;
+                //alert(activeUsers);
         this.loading.dismiss();
+      },(err) => {
+        
       });
+
+
+
+
+
   }
   filterItems(searchTerm){
- 
+    console.log(this.items);
     return this.items.filter((item) => {
-        return item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+        return item.displayname.toLowerCase()
+        .indexOf(searchTerm.toLowerCase()) > -1;
     });    
 
   }

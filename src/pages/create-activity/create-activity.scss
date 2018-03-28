@@ -2,7 +2,7 @@ page-create-activity {
     /* ion-header {
 		@include header-styles(color($colors, header-alt, base), color($colors, header-alt, contrast));
 	} */
-	.role-title
+	/* .role-title
 		{
 			text-align: center;
 			font-size: 1.5rem;
@@ -11,11 +11,11 @@ page-create-activity {
 			color: $white-d;
 			margin: 8px 16px 16px;
 		}
-	ion-item-divider {
+ */	ion-item-divider {
 		padding: 15px !important;
 		background-color: white !important;
 
-		.item-inner
+		/* .item-inner
 		{
 			min-height: 0px;
 
@@ -26,18 +26,18 @@ page-create-activity {
 				letter-spacing: 0.9px;
 				color: $white-d;
 			}
-		}
+		} */
     }
-    .radio-group
+/*     .radio-group
 	{
 		//padding-left: 15px;
 		background-color: $white;
 		@include element-shadow();
 
 		@include radio-item-styles($white-d, $white-a, $theme-color-1);
-	}
+	} */
 
-	 @include checkbox-tags-styles($theme-color-1,$theme-color-2,$white-a, $white-d);
+	/*  @include checkbox-tags-styles($theme-color-1,$theme-color-2,$white-a, $white-d);
  	.rounded-tags
 	{
 		//background-color: $white;
@@ -46,18 +46,19 @@ page-create-activity {
 
 		.checkbox-tag
 		{
-			.item-inner
+			
+			/* .item-inner
 			{
 				border-radius: 2.2rem;
 				background-color: $theme-color-2;
 				color: $white;
-			}
+			}  
 		}
-	}  
+	}   */
 
 	.switchers-list
 	{
-		@include switcher-item-styles($white-d, $theme-color-2);
+		//@include switcher-item-styles($white-d, $theme-color-2);
 
 		.switcher-item
 		{
@@ -111,7 +112,7 @@ page-create-activity {
 
 							.datetime-text
 							{
-								color: $white-d;
+								//color: $white-d;
 							}
 						}
 					}

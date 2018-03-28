@@ -1,6 +1,6 @@
 contact-card-page {
 	$contact-card-slides-height: 45%;
-
+	
 	.contact-card-content
 	{
 		.contact-slides
@@ -27,7 +27,7 @@ contact-card-page {
 
 				.swiper-pagination-bullet-active
 				{
-					background: $theme-color-1;
+					background: $white-d;
 				}
 			}
 		}
@@ -97,7 +97,7 @@ contact-card-page {
 			& > .button
 			{
 				//@include segment-text-styles(color($colors, button-alt, base));
-				background-color: color($colors, button-alt, contrast);
+				background-color: color($colors, danger, contrast);
 				margin: 0px;
 				border-radius: 0px;
 				flex: 1;
@@ -165,7 +165,8 @@ contact-card-page {
 			}
 
 			.detail-item
-			{
+			{	
+				
 				.detail-text
 				{
 					color: $white-d;

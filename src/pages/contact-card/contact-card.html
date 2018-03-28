@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content class="contact-card-content">
-  <div [ngClass]="colorTheme">
+
   <ion-slides class="contact-slides" pager="true" autoplay="4000" loop="false">
     <ion-slide class="contact-slide" *ngFor="let image of contact.images">
       <background-image class="slide-image" [src]="image"></background-image>
@@ -66,5 +66,5 @@
         <button ion-fab color="primary"><ion-icon name="logo-linkedin"></ion-icon></button>
       </ion-fab-list>
     </ion-fab>
-  </div>  
+ 
 </ion-content>

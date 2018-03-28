@@ -31,14 +31,14 @@ listing-page {
 			height: $categories-heading-image-height;
 		} 
 
-		.categories-title
+/* 		.categories-title
 		{
 			font-size: 1.2rem;
 			font-weight: 400;
 			letter-spacing: 0.7px;
 			color: $white-d;
 			margin: 8px 16px 16px;
-		}
+		} */
 		.grid-categories
 		{
 			background: none;
@@ -70,7 +70,7 @@ listing-page {
 						height: 100%;
 						width: 100%;
 						z-index: 3;
-		  			position: absolute;
+		  				position: absolute;
 						align-items: center;
 
 						.category-title

@@ -10,6 +10,8 @@ import { ActivitiesDetailsPage } from '../activities-details/activities-details'
 import { JoinActivityPage } from '../join-activity/join-activity';
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
 
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
+
 @Component({
   selector: 'page-activities',
   templateUrl: 'activities.html',
@@ -20,13 +22,21 @@ export class ActivitiesPage {
   loading: any;
   colorTheme: any;
   colorThemeHeader:any;
+  start:any;
+  destination:any;
+  
 
   constructor(
     public nav: NavController,
     public activitiesService: ActivitiesService,
     public loadingCtrl: LoadingController,
-    public appThemeColorProvider:AppThemeColorProvider
+    public appThemeColorProvider:AppThemeColorProvider,
+    private launchNavigator: LaunchNavigator
   ) {
+  
+    this.start = "";
+    this.destination = "Westminster, London, UK";
+
     this.loading = this.loadingCtrl.create();
     
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
@@ -61,6 +71,18 @@ export class ActivitiesPage {
   goToJoinActivity(item:any){
     this.nav.push(JoinActivityPage, { newItem: item });
     //alert(item.url);
+  }
+  goToNavigateActivity(item){
+    let options: LaunchNavigatorOptions = {
+      start: this.start
+    };
+
+    this.launchNavigator.navigate(this.destination, options)
+        .then(
+            success => alert('Launched navigator'),
+            error => alert('Error launching navigator: ' + error)
+    ); 
+
   }
 
 }

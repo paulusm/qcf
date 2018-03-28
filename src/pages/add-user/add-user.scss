@@ -6,21 +6,21 @@ page-add-user {
 		{
 			text-align: center;
 			font-size: 1.5rem;
-			font-weight: 400;
+			font-weight: 500;
 			letter-spacing: 0.7px;
-			color: $white-d;
+			//color: $white;
 			margin: 8px 16px 16px;
 		}
-	.radio-group
+	/* .radio-group
 	{
 		//padding-left: 15px;
-		background-color: $white;
-		color: $theme-color-3;
+		//background-color: $white;
+		//color: $theme-color-3;
 		@include element-shadow();
 
-		@include radio-item-styles($white-d, $white-a, $theme-color-2);
+		//@include radio-item-styles($white-d, $white-a, $theme-color-2);
 		
-	}
+	} */
 	/* .radio-groupp
 		{
 		//padding-left: 15px;

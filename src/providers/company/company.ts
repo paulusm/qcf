@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
+import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import {AuthenticationProvider} from '../authentication/authentication';
 
 /*
   Generated class for the CompanyProvider provider.
@@ -15,6 +17,8 @@ export class CompanyModel{
   email : string;
   themes : string;
   _id : string;
+  
+
   constructor() {}
   setCompanyInfo(company){
     this.companyname = company.companyname;
@@ -28,7 +32,9 @@ export class CompanyModel{
 
 @Injectable()
 export class CompanyProvider {
-  constructor(public http: HttpClient,public storage: Storage) {
+  token: any;
+
+  constructor(public http: Http,public storage: Storage,public authService: AuthenticationProvider) {
     console.log('Hello CompanyProvider Provider');
   }
   
@@ -53,16 +59,51 @@ export class CompanyProvider {
     
       return await new Promise((resolve, reject) => {
 
-          this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/companies/getCompanyByCompanyId/'+ _id)
-              .subscribe(res => {
-                  //alert(">>>>> "+res.url);  
-                  //this.profileService.setUserImage(res.url);
-              resolve(res);
-              }, (err) => {
-                  reject(err);
-              });
-      });
+        this.storage.get('token').then((value) => {
+
+          this.token = value;
+
+          let headers = new Headers();
+          headers.append('Authorization', this.token);
+          //let headers = new Headers();
+          //headers.append('Authorization', this.authService.token);
+          this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/companies/getCompanyByCompanyId/'+ _id, {headers: headers})
+                  .map(res => res.json())
+                  .subscribe(data => {
+                          resolve(data);
+                  }, (err) => {
+                            reject(err);
+                  });
+
+          });
+        });    
+
 
   }
+
+  async updateCompany(company){
+    return await new Promise((resolve, reject) => {
+
+      this.storage.get('token').then((value) => {
+
+        this.token = value;
+
+        let headers = new Headers();
+        headers.append('Authorization', this.token);
+        headers.append('Content-Type', 'application/json');
+        
+       this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/companies/updateCompany', JSON.stringify(company), {headers: headers})
+          .subscribe(res => {
+            let data = res.json();
+            resolve(data);
+          }, (err) => {
+            reject(err);
+          });
+        });  
+    });
+
+  }
+
+
 
 }

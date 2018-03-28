@@ -1,19 +1,15 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
-
+import { NavController, LoadingController, AlertController  } from 'ionic-angular';
 import { FeedPage } from '../feed/feed';
-import 'rxjs/Rx';
-
 import { ListingModel } from './listing.model';
 import { ListingService } from './listing.service';
-
 import { ThemeProvider } from '../../providers/theme/theme';
-
-import { CompanyProvider } from '../../providers/company/company';
-
-import { CompanyModel } from '../../providers/company/company';
-
+import { CompanyModel,CompanyProvider } from '../../providers/company/company';
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
+import { ProfileService } from '../profile/profile.service';
+import { UserModel } from '../profile/profile.model';
+import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
+import 'rxjs/Rx';
 
 @Component({
   selector: 'listing-page',
@@ -21,19 +17,21 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
 })
 export class ListingPage {
   listing: ListingModel = new ListingModel();
+  companyModel: CompanyModel =new CompanyModel();
+  //company: CompanyModel = new CompanyModel();
+  profile: UserModel = new UserModel();
+
   loading: any;
-
   companyLogo:any;
-
   themes:any;
-
-  company: CompanyModel = new CompanyModel();
-
+  companyThemes:any;
+  
   value:boolean;
   groups:any;
   shownGroup:any = null;
   colorTheme: any;
   colorThemeHeader:any;
+  companyName:any;
 
   constructor(
     public nav: NavController,
@@ -41,10 +39,12 @@ export class ListingPage {
     public loadingCtrl: LoadingController,
     public themeService:ThemeProvider,
     public companyService: CompanyProvider,
-    public appThemeColorProvider:AppThemeColorProvider
+    public appThemeColorProvider:AppThemeColorProvider,
+    public profileService:ProfileService,
+    public alertCtrl: AlertController
   ) {
     this.loading = this.loadingCtrl.create();
-
+    
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-1';
@@ -58,30 +58,41 @@ export class ListingPage {
       }
     });
 
-    this.companyLogo = "./assets/images/businessLogo.png";
-    /* this.companyService.getCompany().then(data => {
-          this.company = data;
-          this.companyLogo = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/' + this.company.filename;
-    }); */
+    this.profileService.getData()
+    .then(data => {
+      this.profile = data;
+      this.companyService.getCompanyInfo(this.profile.companyid).then(data => {
+        this.companyModel = data['company'];
+        
+        this.companyService.setCompany(this.companyModel);
+        
+        console.log(JSON.stringify(data['company']));
+        this.companyLogo = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+this.companyModel.filename;
+        this.companyThemes = this.companyModel.themes;
+        this.companyName = this.companyModel.companyname;
+        this.themeService.getThemes().then((res) => {
+          this.groups = JSON.parse(res['_body']); 
+                for(var i=0; i<this.groups.length;i++){
+                  let found="false";
+                    for(let theme of this.companyThemes){
+                        if(this.groups[i].name === theme){
+                                found = "true";
+                        } 
+                    }
+                    if(found==="true"){
+                      this.groups[i].status = true;
+                    }else{
+                      this.groups[i].status = false;  
+                    }
+                }
+            }, (err) => {
+                this.loading.dismiss();
+        });
 
-    this.themeService.getThemes().then((res) => {
-      this.groups = JSON.parse(res['_body']); 
-        for(var i=0; i<this.groups.length;i++){
-             if(this.groups[i].name==="Fairness"){
-                    this.groups[i].status = true;
-             }else{
-                    this.groups[i].status = false;
-             } 
-
-        }
-        console.log("Right Here >>> "+this.groups);
-        }, (err) => {
-      
-            this.loading.dismiss();
+      });
     });
 
   }
-
 
   ionViewDidLoad() {
     this.loading.present();
@@ -95,7 +106,6 @@ export class ListingPage {
         this.loading.dismiss();
       });
   }
-
 
   goToFeed(category: any) {
     console.log("Clicked goToFeed", category);
@@ -117,15 +127,27 @@ export class ListingPage {
     return this.shownGroup === group;
   }
 
-  doLeaveTheme(){
-    alert("Are you sure you want to leave this theme ?");
+  doLeaveTheme(name){
+    if(confirm("Leave this theme ?")){
+        var index = this.companyThemes.indexOf(name);
+          if (index > -1) {
+            this.companyThemes.splice(index, 1);
+          }
+          this.companyModel.themes = this.companyThemes;
+          this.companyService.updateCompany(this.companyModel).then(data => {
+                this.nav.setRoot(TabsNavigationPage);
+                console.log(data);
+          });
+    }
   }
-  doJoinTheme(){
-    alert("Are you sure you want to join this theme ?");
+  doJoinTheme(name){
+      if(confirm("Join this theme ?")){
+          this.companyThemes.push(name);
+          this.companyModel.themes = this.companyThemes;
+          this.companyService.updateCompany(this.companyModel).then(data => {
+                console.log(data);
+                this.nav.setRoot(TabsNavigationPage);
+          });
+      }
   }
-
-
-
-
-
 }

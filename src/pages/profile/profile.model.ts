@@ -28,18 +28,18 @@ export class UserModel {
   }
 
 }
-export class ProfilePostModel {
+/* export class ProfilePostModel {
   date: Date;
 	image: string;
 	description: string;
 	likes: number = 0;
 	comments: number = 0;
 	liked: boolean = false;
-}
+} */
 
-export class ProfileModel {
-  user: UserModel = new UserModel();
-  following: Array<UserModel> = [];
-  followers: Array<UserModel> = [];
-  posts: Array<ProfilePostModel> = [];
+export class ProfilesModel {
+  //user: UserModel = new UserModel();
+  users: Array<UserModel> = [];
+  //followers: Array<UserModel> = [];
+  //posts: Array<ProfilePostModel> = [];
 }

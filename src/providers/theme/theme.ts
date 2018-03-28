@@ -16,8 +16,8 @@ export class ThemeProvider {
   constructor(public http: Http, public storage: Storage) {
     console.log('Hello ThemeProvider Provider');
   }
-  getThemes(){
-    return new Promise((resolve, reject) => {
+  async getThemes(){
+    return await new Promise((resolve, reject) => {
 
       //Load token if exists
       this.storage.get('token').then((value) => {
@@ -27,10 +27,8 @@ export class ThemeProvider {
           let headers = new Headers();
           headers.append('Authorization', this.token);
 
-          this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/themes/', {headers: headers})
+          this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/themes/getThemes/', {headers: headers})
               .subscribe(res => {
-                  //let data = res.json();
-                  //console.log(data.length);
                   resolve(res);
               }, (err) => {
                   reject(err);

@@ -1,15 +1,24 @@
 .app-color-theme-2
 {
+	color:$black;	
 	padding: 10px;
-	background-color: color($colors,$white, base);
-	ion-input, ion-textarea,p,ion-card-content,ion-card,ion-radio {
-		font-family: 'Times New Roman';
+	background-color: color($colors,$white-b, base);
+	ion-input, ion-textarea,p,ion-card-content,ion-card {
+		font-family: 'Comic Sans MS';
+		font-size: 1.8rem;
 		color: $black;
 	}
-	ion-list,ion-item-sliding,ion-item,ion-label{
-		background-color : color($colors,$white-b, base);
+	ion-item-sliding,ion-item,ion-label{
+		@include layout-list-styles($black-a, $black);
+		background-color : color($colors,$white, base);
 		color: $black;
-		font-family: 'Times New Roman';
+		font-size: 1.8rem;
+		font-family: 'Comic Sans MS';
+		
+	}
+
+	ion-note{
+		color:$white;
 	}
 	.personal-btn
 	{
@@ -18,7 +27,7 @@
 						background-color: color($colors, button-2-alt, base);
 						color: color($colors, button-2-alt, contrast);
 						font-weight: 500;
-						font-family: 'Times New Roman';
+						font-family: 'Comic Sans MS';
 	}
 
 	.scroll-content
@@ -30,16 +39,19 @@
 
 
 .tabs-nav2{	
+	
 	.tabbar
 	{
 		background: color($colors, tabs-navigation-2, base) !important;
 		.tab-button
 		{
 			color: color($colors, tabs-navigation-2, contrast);
-
+			font-family: 'Comic Sans MS';
+			font-size: 1.8rem;
 			.tab-button-icon
 			{
 				color: color($colors, tabs-navigation-2, contrast);
+				
 			}
 		}
 
@@ -47,7 +59,8 @@
 		.tab-button[aria-selected=true]
 		{
 		  color: $theme-color-4;
-
+		  font-family: 'Comic Sans MS';		
+		  font-size: 1.8rem;
 			.tab-button-icon
 			{
 				color: $theme-color-4;
@@ -57,6 +70,73 @@
 }
 
 
+		.h3-heading
+		{
+			font-size: 1.6rem;
+			font-weight: 500;
+			letter-spacing: 0.7px;
+			color: $white-d;
+			font-family: 'Comic Sans MS';
+			
+		}
 
-//@import "./auth.ios";
-//@import "./auth.wp";
+		.radio-group
+		{
+			padding-left: 15px;
+			background-color: $white;
+			color: $theme-color-3;
+			@include element-shadow();
+	
+			@include radio-item-styles($black-d, $black-d, $theme-color-5);
+			
+		}	
+
+	.list-big-content
+	{
+		//background-color: color($colors, background, base);
+
+		.list-big
+		{
+			@include layout-list-styles($black-a, $black);
+
+			ion-list {
+				.list-item
+				{
+					padding: 1px;
+					margin: 1px;
+					.content-row
+					{
+						align-items: center;
+					}
+
+					.item-content
+					{
+						align-content: stretch;
+			  		    display: flex;
+					    flex-wrap: wrap;
+					    align-self: stretch;
+
+						.item-title
+						{
+							margin-bottom: 8px;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+						}
+
+						.item-description
+						{
+							font-size: 1.6rem;
+							color: $black;
+							//@include multi-line-ellipsis($list-big-description-font-size);
+						}
+						.item-time{
+							
+						}
+
+					}
+					
+				}
+			}
+		}
+	}

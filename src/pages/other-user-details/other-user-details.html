@@ -13,14 +13,14 @@
     <div class="news-item">
     <ion-card>
       
-          <preload-image class="user-image" [ratio]="{w:3, h:2}" [src]="item.image"></preload-image>
+          <preload-image class="user-image" [ratio]="{w:3, h:2}" [src]="item.imagepath"></preload-image>
       
           <ion-card-content>
         <ion-card-title class="news-title">
-          {{item.name}}
+          {{item.displayname}}
         </ion-card-title>
-        <p class="item-text">{{item.about}}</p>
-        <ion-note class="item-time" item-right>{{item.designation}}</ion-note>
+        <p class="item-text">{{item.email}}</p>
+        <ion-note class="item-time" item-right>{{item.department}}</ion-note>
     
       </ion-card-content>
 

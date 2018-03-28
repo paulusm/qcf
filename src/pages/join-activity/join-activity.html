@@ -7,14 +7,14 @@
 <ion-content [ngClass]="colorTheme">
     <div class="news-item">
     <ion-card>
-      <form class="signup-form auth-form" [formGroup]="join_activity" (ngSubmit)="doJoin()">  
+      <form [formGroup]="join_activity" (ngSubmit)="doJoin()">  
         <preload-image [ratio]="{w:3, h:2}" [src]="item.url"></preload-image>
         <ion-card-content>
           <ion-card-title class="news-title">
             {{item.title}}
           </ion-card-title>
           
-          <h3>Participation Type</h3>
+          <h3 class="h3-heading">Participation Type</h3>
           <ion-list class="radio-group" radio-group formControlName="selected_option">
             <ion-item class="radio-item">
               <ion-label>Voluntering</ion-label>

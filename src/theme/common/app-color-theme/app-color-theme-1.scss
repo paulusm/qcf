@@ -1,15 +1,24 @@
 .app-color-theme-1
 {
+	color:$white;	
 	padding: 10px;
 	background-color: color($colors,primary, base);
-	ion-input, ion-textarea,p,ion-card-content,ion-card,ion-radio {
+	ion-input, ion-textarea,p,ion-card-content,ion-card {
 		font-family: 'Times New Roman';
+		font-size: 1.8rem;
 		color: $white;
 	}
-	ion-list,ion-item-sliding,ion-item,ion-label{
+	ion-item-sliding,ion-item,ion-label{
+		@include layout-list-styles($white-a, $white);
 		background-color : color($colors,light-blue, base);
 		color: $white;
+		font-size: 1.8rem;
 		font-family: 'Times New Roman';
+		
+	}
+
+	ion-note{
+		color:$white;
 	}
 	.personal-btn
 	{
@@ -28,6 +37,7 @@
 
 }
 
+
 .tabs-nav1{	
 	
 	.tabbar
@@ -37,7 +47,7 @@
 		{
 			color: color($colors, tabs-navigation-1, contrast);
 			font-family: 'Times New Roman';
-			
+			font-size: 1.8rem;
 			.tab-button-icon
 			{
 				color: color($colors, tabs-navigation-1, contrast);
@@ -50,6 +60,7 @@
 		{
 		  color: $theme-color-1;
 		  font-family: 'Times New Roman';		
+		  font-size: 1.8rem;
 			.tab-button-icon
 			{
 				color: $theme-color-1;
@@ -57,8 +68,76 @@
 		}
 	}
 }
+		.h3-heading
+		{
+			font-size: 1.6rem;
+			font-weight: 500;
+			letter-spacing: 0.7px;
+			color: rgb(75, 75, 230);
+			font-family: 'Times New Roman';
+			//margin-left: 40px;
+			//margin: 8px 16px 16px 30px;
+		}
 
+		.radio-group
+		{
+			padding-left: 15px;
+			background-color: $white;
+			color: $theme-color-3;
+			@include element-shadow();
+	
+			@include radio-item-styles($white, $white-a, $theme-color-2);
+			
+		}	
 
+	.list-big-content
+	{
+		//background-color: color($colors, background, base);
+
+		.list-big
+		{
+			@include layout-list-styles($white-a, $white);
+
+			ion-list {
+				.list-item
+				{
+					padding: 1px;
+					margin: 1px;
+					.content-row
+					{
+						align-items: center;
+					}
+
+					.item-content
+					{
+						align-content: stretch;
+			  		    display: flex;
+					    flex-wrap: wrap;
+					    align-self: stretch;
+
+						.item-title
+						{
+							margin-bottom: 8px;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+						}
+
+						.item-description
+						{
+							font-size: 1.6rem;
+							//@include multi-line-ellipsis($list-big-description-font-size);
+						}
+						.item-time{
+							
+						}
+
+					}
+					
+				}
+			}
+		}
+	}
 
 
 /* @import "./auth.ios";

@@ -20,7 +20,7 @@ page-join-activity {
 			}
 		}
     } */
-    .radio-group
+    /* .radio-group
 	{
 		//padding-left: 15px;
 		background-color: none;
@@ -32,10 +32,10 @@ page-join-activity {
 			background-color: none;
 		}
 
-	}
-	.news-item
+	} */
+ 	.news-item
 		{
-			@include basic-card-styles($white-d);
+			//@include basic-card-styles($white-d);
 
 			.news-title
 			{
@@ -43,7 +43,7 @@ page-join-activity {
 				margin-bottom: 12px;
 				padding: 0px;
 				letter-spacing: 1.1px;
-				color: $theme-color-2;
+				//color: $theme-color-2;
 			}
-		}
+		} 
 }

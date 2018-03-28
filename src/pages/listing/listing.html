@@ -5,7 +5,11 @@
     </button>
     <ion-title>
       QCF
+      
     </ion-title>
+    <ion-buttons end>
+      <button ion-button>{{companyName}}</button>
+    </ion-buttons>  
   </ion-navbar>
 </ion-header>
 
@@ -13,7 +17,7 @@
   <div class="listing-content">
   <preload-image [ratio]="{w:0, h:0}" class="image-heading" [src]="companyLogo"></preload-image>
  
-  <h4 class="categories-title">BROWSE CATEGORIES</h4>
+  <h3 class="h3-heading">BROWSE CATEGORIES</h3>
   
   <ion-row class="grid-categories">
     <ion-col width-50 class="category-item" *ngFor="let category of listing.categories">
@@ -27,7 +31,7 @@
     </ion-col>
   </ion-row>
 
-  <h4 class="categories-title">CHARITABLE THEMES</h4>
+  <h3 class="h3-heading">CHARITABLE THEMES</h3>
   <ion-list>
     <div *ngFor="let group of groups">
       
@@ -44,10 +48,10 @@
           </ion-col>
           <ion-col col-4>
             <ion-buttons end>      
-                <button ion-button clear small color="light" (click)="doJoinTheme()" [hidden]="group.status">
-                  <ion-icon name= "checkmark"></ion-icon>
+                <button ion-button clear small color="danger" (click)="doJoinTheme(group.name)" [hidden]="group.status">
+                  <ion-icon name= "add"></ion-icon>
                 </button>
-                <button ion-button clear small color="light" (click)="doLeaveTheme()" [hidden]="!group.status">
+                <button ion-button clear small color="danger" (click)="doLeaveTheme(group.name)" [hidden]="!group.status">
                   <ion-icon name= "close"></ion-icon>
                 </button>
           </ion-buttons>

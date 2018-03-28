@@ -5,6 +5,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 //pages
 import { ListingPage } from '../pages/listing/listing';
@@ -199,7 +200,7 @@ import { AppThemeColorProvider } from '../providers/app-theme-color/app-theme-co
     ThemeProvider,
     FilesProvider,
     CompanyProvider,
-    AppThemeColorProvider,
+    AppThemeColorProvider,LaunchNavigator
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
