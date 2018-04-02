@@ -10,23 +10,28 @@
       <ion-list> 
       <ion-item>
         <ion-label  floating>Title</ion-label>
-        <ion-input type="text" formControlName="title"></ion-input>
+        <ion-input type="text" formControlName="activityname"></ion-input>
       </ion-item>
       <ion-item>
           <ion-label  floating>Description</ion-label>
-          <ion-input type="text" formControlName="description"></ion-input>
+          <ion-input type="text" formControlName="activitydescription"></ion-input>
       </ion-item>
       <ion-item>
           <ion-label  floating>Location</ion-label>
           <ion-input type="text" formControlName="location"></ion-input>
           <ion-icon name="navigate" item-right></ion-icon>
       </ion-item>
+      <ion-item>
+        <ion-label  floating>Donation URL</ion-label>
+        <ion-input type="text" formControlName="mydonateurl"></ion-input>
+      </ion-item>
       </ion-list>
         
           <ion-list>
             <ion-item>
-              <ion-label>Donation Matching</ion-label>
-              <ion-toggle formControlName="donationmatching"></ion-toggle>
+              <ion-label floating>Donation Matching</ion-label>
+              <!-- <ion-toggle formControlName="donationmatch"></ion-toggle> -->
+              <ion-input type="number" formControlName="donationmatch"></ion-input>
             </ion-item>
           </ion-list>
         
@@ -49,30 +54,30 @@
             <ion-col width-60>
               <ion-item>
                 <ion-label>FROM</ion-label>
-                <ion-datetime placeholder="date" formControlName="from_date" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
+                <ion-datetime placeholder="date" formControlName="startdate" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
               </ion-item>
             </ion-col>
-            <ion-col width-40>
+            <!-- <ion-col width-40>
               <ion-item>
                 <ion-datetime placeholder="time" formControlName="from_time" displayFormat="h mm a" pickerFormat="h mm A"></ion-datetime>
               </ion-item>
-            </ion-col>
+            </ion-col> -->
           </ion-row>
           <ion-row>
             <ion-col width-60>
               <ion-item>
                 <ion-label>TO</ion-label>
-                <ion-datetime placeholder="date" formControlName="to_date" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
+                <ion-datetime placeholder="date" formControlName="enddate" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
               </ion-item>
             </ion-col>
-            <ion-col width-40>
+            <!-- <ion-col width-40>
               <ion-item>
                 <ion-datetime placeholder="time" formControlName="to_time" displayFormat="h mm a" pickerFormat="h mm A"></ion-datetime>
               </ion-item>
-            </ion-col>
+            </ion-col> -->
           </ion-row>    
 
-          <div>
+         <!--  <div>
               <ion-row>
                 <ion-col>
                   <preload-image style="border-radius: 15%;"  [ratio]="{w:3, h:2}" [src]="" alt="this is the image" title="IMAGE!"></preload-image>
@@ -85,7 +90,7 @@
                   <button ngClass="main-btn" ion-button outline block small (click)="presentActionSheet()" [disabled]="!new_activity.valid">UPLOAD PICTURE</button>
                 </ion-col>
               </ion-row>
-            </div>
+            </div> -->
 
 
 

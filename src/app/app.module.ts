@@ -9,7 +9,7 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 //pages
 import { ListingPage } from '../pages/listing/listing';
-import { FeedPage } from '../pages/feed/feed';
+//import { FeedPage } from '../pages/feed/feed';
 //import { FormsPage } from '../pages/forms/forms';
 import { LoginPage } from '../pages/login/login';
 import { NotificationsPage } from '../pages/notifications/notifications';
@@ -51,7 +51,7 @@ import { ColorRadio } from '../components/color-radio/color-radio';
 import { ValidatorsModule } from '../components/validators/validators.module';
 
 //services
-import { FeedService } from '../pages/feed/feed.service';
+//import { FeedService } from '../pages/feed/feed.service';
 import { ListingService } from '../pages/listing/listing.service';
 import { ProfileService } from '../pages/profile/profile.service';
 import { NotificationsService } from '../pages/notifications/notifications.service';
@@ -99,7 +99,7 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
   declarations: [
     MyApp,
     ListingPage,
-    FeedPage,
+  //  FeedPage,
   //  FormsPage,
     LoginPage,
     NotificationsPage,
@@ -152,7 +152,8 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
   entryComponents: [
     MyApp,
     ListingPage,
-    FeedPage,ArticlesPage,SuccessStoriesPage,
+    //FeedPage,
+    ArticlesPage,SuccessStoriesPage,
     //FormsPage,
     LoginPage,
     NotificationsPage,
@@ -184,7 +185,7 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
 
   ],
   providers: [
-    FeedService,
+    //FeedService,
     ListingService,
     ProfileService,
     NotificationsService,
@@ -214,7 +215,8 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
     ThemeProvider,
     FilesProvider,
     CompanyProvider,
-    AppThemeColorProvider,LaunchNavigator
+    AppThemeColorProvider,
+    LaunchNavigator
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

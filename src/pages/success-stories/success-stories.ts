@@ -47,19 +47,19 @@ export class SuccessStoriesPage {
   ionViewDidLoad() {
     this.loading.present();
       this.successStoriesService
-      .getArticles()
+      .getSuccessStory()
       .then(data => {
          
-              let activeArticles:any = [];
+              let activeStories:any = [];
               this.stories.items = JSON.parse(data['_body']);
               console.log(JSON.parse(data['_body'])); 
               for(let n of this.stories.items){
                   if(n.type==="Story"){
                     n.imagepath = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+n.imagepath;
-                    activeArticles.push(n);
+                    activeStories.push(n);
                   }
               }
-              this.stories.items = activeArticles;
+              this.stories.items = activeStories;
         this.loading.dismiss();
       },(err) => {
         

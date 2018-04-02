@@ -11,7 +11,7 @@ export class SuccessStoriesService {
   token: any;
   constructor(public http: Http,public storage:Storage) {}
 
-  async getArticles() {
+  async getSuccessStory() {
     
     return await new Promise((resolve, reject) => {
 

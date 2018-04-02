@@ -116,9 +116,9 @@ export class ChangePasswordPage {
                          // this.loading.dismiss();
                           console.log("Logged in after password change");
                           console.log(result);
-                          if(this.FirstLoginWas){
+                          /* if(this.FirstLoginWas){
                               alert("Password changed successfully\n Please go to Edit Profile under Profile page to complete your registration.");
-                          }
+                          } */
                           this.nav.insert(0,TabsNavigationPage);
                           this.nav.popToRoot();
     

@@ -10,7 +10,9 @@ export class NewsModel {
   type: string;
   updatedAt: string;
   _id: string;
+  displayImage:string;
   }
   export class NewssModel {
+    
     items: Array<NewsModel>;
   }

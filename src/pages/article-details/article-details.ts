@@ -16,6 +16,7 @@ export class ArticleDetailsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public socialSharing: SocialSharing,
     public appThemeColorProvider:AppThemeColorProvider) {
     this.item = navParams.get("newItem");
+    //alert(this.item.type);
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-3';

@@ -19,6 +19,7 @@ export class NewsPage {
   loading: any;
   colorTheme: any;
   colorThemeHeader:any;
+  image:any;
 
   constructor(
     public nav: NavController,
@@ -52,14 +53,15 @@ export class NewsPage {
          
               let activeNews:any = [];
               this.news.items = JSON.parse(data['_body']);
-              console.log(JSON.parse(data['_body'])); 
               for(let n of this.news.items){
-                  if(n.type==='News'){
-                    n.imagepath = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+n.imagepath;
+                if(n.type==='News'){
+                    
+                    n.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+n.imagepath;
                     activeNews.push(n);
                   }
               }
               this.news.items = activeNews;
+              console.log(this.news.items);
         this.loading.dismiss();
       },(err) => {
         

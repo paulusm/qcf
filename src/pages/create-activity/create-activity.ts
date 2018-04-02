@@ -1,21 +1,19 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ModalController, LoadingController,ActionSheetController,Platform,ToastController } from 'ionic-angular';
+import { NavController, ModalController, LoadingController,Platform,ToastController } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+//import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
-import { FilesProvider } from '../../providers/files/files';
+//import { FilesProvider } from '../../providers/files/files';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { ProfileService } from '../profile/profile.service';
 import { Storage } from '@ionic/storage';
 
-import { Camera } from '@ionic-native/camera';
-import { FilePath } from '@ionic-native/file-path';
+//import { Camera } from '@ionic-native/camera';
+//import { FilePath } from '@ionic-native/file-path';
 
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
 
 
-
-@IonicPage()
 @Component({
   selector: 'page-create-activity',
   templateUrl: 'create-activity.html',
@@ -25,32 +23,32 @@ export class CreateActivityPage {
   new_activity: FormGroup;
   main_page: { component: any };
   loading: any;
-  image: any = null;
+//  image: any = null;
 
-  cucumber:boolean;
-  carret:boolean;
+  /* cucumber:boolean;
+  carret:boolean; */
   
   colorTheme: any;
   colorThemeHeader:any;
   
   constructor(
     public nav: NavController,
-    private transfer: FileTransfer,
-    public files: FilesProvider,
+    //private transfer: FileTransfer,
+    //public files: FilesProvider,
     public modal: ModalController,
     public loadingCtrl: LoadingController,
     public profileService: ProfileService,
     public authService: AuthenticationProvider,
     public toastCtrl: ToastController,
     public storage: Storage,
-    public actionSheetCtrl:ActionSheetController,
+    //public actionSheetCtrl:ActionSheetController,
     public platform: Platform,
-    private filePath: FilePath,
-    private camera: Camera,
+    //private filePath: FilePath,
+    //private camera: Camera,
     public appThemeColorProvider:AppThemeColorProvider
   ) {
-    this.cucumber = false;
-    this.carret = false;
+    /* this.cucumber = false;
+    this.carret = false; */
     this.main_page = { component: TabsNavigationPage };
 
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
@@ -70,33 +68,44 @@ export class CreateActivityPage {
     });
 
     this.new_activity = new FormGroup({
-      title: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      donationmatching: new FormControl(false),
+      activityname: new FormControl('', Validators.required),
+      activitydescription: new FormControl('', Validators.required),
+      donationmatch: new FormControl(0),
       location: new FormControl(''),
+      mydonateurl: new FormControl(''),
       activity_type: new FormControl('sponsorship'),
-      from_date: new FormControl('', Validators.required),
-      from_time: new FormControl('', Validators.required),
-      to_date: new FormControl(''),
-      to_time: new FormControl(''),
+      startdate: new FormControl('', Validators.required),
+      //from_time: new FormControl('', Validators.required),
+      enddate: new FormControl(''),
+      //to_time: new FormControl(''),
       voluntering:new FormControl(false),
       sponsorship: new FormControl(false)
     });
   }
-  updateCucumber(){
+  /* updateCucumber(){
       this.cucumber = !this.cucumber;
   }
   updateCarret(){
       this.carret = !this.carret;
-  }
+  } */
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddUserPage');
   }
 
   doCreateActivity(){
-    alert(this.cucumber+"  "+this.carret);
+    alert("Name: " + this.new_activity.get('activityname').value +
+    "Description: " + this.new_activity.get('activitydescription').value +
+    "Donatiomatch: " + this.new_activity.get('donationmatch').value +
+    "Location: " + this.new_activity.get('location').value +
+    "URL: " + this.new_activity.get('mydonateurl').value +
+    "Type: " + this.new_activity.get('activity_type').value + 
+    "Start: " + this.new_activity.get('startdate').value +
+    "End: " + this.new_activity.get('enddate').value +
+    "Voluntering: " + this.new_activity.get('voluntering').value +
+    "Sponsorship: " + this.new_activity.get('sponsorship').value);
+    //alert(this.cucumber+"  "+this.carret);
   }
-  public presentActionSheet() {
+  /* public presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',
       buttons: [
@@ -119,9 +128,9 @@ export class CreateActivityPage {
       ]
     });
     actionSheet.present();
-  }
+  } */
 
-  public takePicture(sourceType) {
+  /* public takePicture(sourceType) {
     // Create options for the Camera Dialog
     var options = {
         quality: 100,
@@ -155,18 +164,18 @@ export class CreateActivityPage {
     }, (err) => {
       this.presentToast('Error while selecting image.');
     });
-  }
+  } */
 
-  private presentToast(text) {
+  /* private presentToast(text) {
     let toast = this.toastCtrl.create({
       message: text,
       duration: 3000,
       position: 'top'
     });
     toast.present();
-  }
+  } */
 
-  async uploadFile(imageURI) {
+  /* async uploadFile(imageURI) {
     return await new Promise((resolve, reject) => {
                 let loader = this.loadingCtrl.create({
                   content: "Uploading..."
@@ -198,7 +207,7 @@ export class CreateActivityPage {
                   this.presentToast(err);
                 });
     });
-  }
+  } */
 
   saveChanges(){
     
