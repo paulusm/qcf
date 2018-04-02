@@ -1,5 +1,32 @@
 //$list-big-description-font-size: 12px;
 page-news {
+	#title{
+		color: $black-d;
+	}
+	/* ion-content{
+		ion-list{
+			ion-item-sliding{
+					ion-item{
+						ion-row{
+							background-color: $white-a;
+							font-family: 'Times New Roman';
+	
+							ion-col{
+								
+								padding: 5px;
+								white-space: initial;
+							}
+						}
+					}
+			
+				}	
+		}
+	}	
+	.btn-details{
+		background-color:#32db64;
+		font-family: 'Times New Roman';
+
+	} */
     /* ion-header {
 		@include header-styles(color($colors, header-alt, base), color($colors, header-alt, contrast));
 	} */

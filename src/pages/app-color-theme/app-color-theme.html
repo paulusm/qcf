@@ -13,8 +13,12 @@
 </ion-header>
 
 
-<ion-content  [ngClass]="colorTheme">
-  <button ngClass="personal-btn" ion-button outline block small (click)="onChangeTheme1()">Color Theme 1</button>
+<ion-content [ngClass]="colorTheme">
+  <div ngClass="main-div"> 
+  <button ngClass="main-btn" ion-button outline block small (click)="onChangeTheme1()">Color Theme 1</button>
   <br>
-  <button ngClass="personal-btn" ion-button outline block small (click)="onChangeTheme2()">Color Theme 2</button>
+  <button ngClass="main-btn" ion-button outline block small (click)="onChangeTheme2()">Color Theme 2</button>
+  <br>
+  <button ngClass="main-btn" ion-button outline block small (click)="onChangeTheme3()">Color Theme 3</button>
+  </div>
 </ion-content>

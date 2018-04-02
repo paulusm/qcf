@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, AlertController  } from 'ionic-angular';
-import { FeedPage } from '../feed/feed';
+//import { FeedPage } from '../feed/feed';
+import { ArticlesPage } from '../articles/articles';
+import { SuccessStoriesPage } from '../success-stories/success-stories';
+
 import { ListingModel } from './listing.model';
 import { ListingService } from './listing.service';
 import { ThemeProvider } from '../../providers/theme/theme';
@@ -47,14 +50,17 @@ export class ListingPage {
     
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
-        this.colorTheme = 'app-color-theme-1';
-        this.colorThemeHeader = 'ion-header-1';
+        this.colorTheme = 'app-color-theme-3';
+        this.colorThemeHeader = 'ion-header-3';
       }else if(value==='app-color-theme-1'){
         this.colorTheme = 'app-color-theme-1';
         this.colorThemeHeader = 'ion-header-1';
       }else if(value==='app-color-theme-2'){
         this.colorTheme = 'app-color-theme-2';
         this.colorThemeHeader = 'ion-header-2';
+      }else if(value==='app-color-theme-3'){
+        this.colorTheme = 'app-color-theme-3';
+        this.colorThemeHeader = 'ion-header-3';
       }
     });
 
@@ -109,7 +115,11 @@ export class ListingPage {
 
   goToFeed(category: any) {
     console.log("Clicked goToFeed", category);
-    this.nav.push(FeedPage, { category: category });
+    if(category.title==="Articles"){
+      this.nav.push(ArticlesPage);
+    }else if(category.title==="Success Stories"){
+      this.nav.push(SuccessStoriesPage);
+    }  
   }
 
     /*

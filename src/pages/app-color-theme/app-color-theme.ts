@@ -24,14 +24,17 @@ export class AppColorThemePage {
 
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
-        this.colorTheme = 'app-color-theme-1';
-        this.colorThemeHeader = 'ion-header-1';
+        this.colorTheme = 'app-color-theme-3';
+        this.colorThemeHeader = 'ion-header-3';
       }else if(value==='app-color-theme-1'){
         this.colorTheme = 'app-color-theme-1';
         this.colorThemeHeader = 'ion-header-1';
       }else if(value==='app-color-theme-2'){
         this.colorTheme = 'app-color-theme-2';
         this.colorThemeHeader = 'ion-header-2';
+      }else if(value==='app-color-theme-3'){
+        this.colorTheme = 'app-color-theme-3';
+        this.colorThemeHeader = 'ion-header-3';
       }
     });
   }
@@ -47,6 +50,11 @@ export class AppColorThemePage {
   onChangeTheme2(){
 
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-2');
+    this.navCtrl.setRoot(TabsNavigationPage);
+  }
+  onChangeTheme3(){
+
+    this.appThemeColorProvider.setAppThemeColor('app-color-theme-3');
     this.navCtrl.setRoot(TabsNavigationPage);
   }
 }

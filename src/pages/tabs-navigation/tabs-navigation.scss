@@ -1,6 +1,98 @@
 //@import "../../theme/common/auth/auth";
 @import "../../theme/common/app-color-theme/app-color-theme-1";
 @import "../../theme/common/app-color-theme/app-color-theme-2";
+@import "../../theme/common/app-color-theme/app-color-theme-3";
+
+.tabs-nav1{	
+	
+	.tabbar
+	{
+		background: color($colors, tabs-navigation-1, base) !important;
+		.tab-button
+		{
+			color: color($colors, tabs-navigation-1, contrast);
+			font-family: 'Helvetica';
+			font-size: 1.8rem;
+			.tab-button-icon
+			{
+				color: color($colors, $white-b, contrast);
+				
+			}
+		}
+
+		.tab-button:hover:not(.disable-hover),
+		.tab-button[aria-selected=true]
+		{
+		  color: $black-c;
+		  font-family: 'Helvetica';		
+		  font-size: 1.8rem;
+			.tab-button-icon
+			{
+				color: $black-a;
+			}
+		}
+	}
+}
+.tabs-nav2{	
+	
+	.tabbar
+	{
+		background: color($colors, tabs-navigation-2, base) !important;
+		.tab-button
+		{
+			color: color($colors, tabs-navigation-2, contrast);
+			font-family: 'Verdana';
+			font-size: 1.8rem;
+			.tab-button-icon
+			{
+				color: color($colors, tabs-navigation-2, contrast);
+				
+			}
+		}
+
+		.tab-button:hover:not(.disable-hover),
+		.tab-button[aria-selected=true]
+		{
+			color: $black-c;
+		  font-family: 'Verdana';		
+		  font-size: 1.8rem;
+			.tab-button-icon
+			{
+				color: $black-a;
+			}
+		}
+	}
+}
+.tabs-nav3{	
+	
+	.tabbar
+	{
+		background: color($colors, tabs-navigation-3, base) !important;
+		.tab-button
+		{
+			color: color($colors, tabs-navigation-3, contrast);
+			font-family: 'Helvetica';
+			font-size: 1.8rem;
+			.tab-button-icon
+			{
+				color: color($colors, $white-b, contrast);
+				
+			}
+		}
+
+		.tab-button:hover:not(.disable-hover),
+		.tab-button[aria-selected=true]
+		{
+		  color: $black-c;
+		  font-family: 'Helvetica';		
+		  font-size: 1.8rem;
+			.tab-button-icon
+			{
+				color: $black-c;
+			}
+		}
+	}
+}
 //tabs-navigation {
 /* .tabs-nav1{	
 	

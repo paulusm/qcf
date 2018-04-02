@@ -8,35 +8,33 @@
         </ion-title>
       </ion-navbar>
 </ion-header>
-
-<ion-content class="profile-content">
-    <div [ngClass]="colorTheme">
-  <div class="user-details">
-    <ion-row class="user-main-data-row">
-      <ion-col no-padding width-33>
-        <preload-image class="user-image" [ratio]="{w:1, h:1}" [(src)]="image" alt="profile.displayname" title="profile.displayname"></preload-image>
-        <h3 class="h3-heading">{{profile.displayname}}</h3>
+<ion-content [ngClass]="colorTheme">
+   <div ngClass="main-div"> 
+    <ion-row>
+      <ion-col>
+        <preload-image style="border-radius: 50%;" [ratio]="{w:1, h:1}" [(src)]="image" alt="profile.displayname" title="profile.displayname"></preload-image>
+        <strong>{{profile.displayname}}</strong>
       </ion-col>
       
-      <ion-col no-padding>
-        <ion-row class="profile-action-row">
-          <ion-col no-padding>
-            <button ion-button block small ngClass="personal-btn" (click)="goToEditProfile()">
+      <ion-col >
+        <ion-row>
+          <ion-col>
+            <button ion-button block small ngClass="main-btn" (click)="goToEditProfile()">
               EDIT PROFILE
             </button>
             <br>
-            <button ion-button block small ngClass="personal-btn" (click)="goToAddUser()" [hidden]="!role">
+            <button ion-button block small ngClass="main-btn" (click)="goToAddUser()" [hidden]="!role">
                 ADD USER
             </button>
             <br>
-            <button ion-button block small ngClass="personal-btn" (click)="goToCreateActivity()">
+            <button ion-button block small ngClass="main-btn" (click)="goToCreateActivity()">
                 CREATE ACTIVITY
             </button>
           </ion-col>
         </ion-row>
       </ion-col>
     </ion-row>
-  </div>
-      <h3 class="h3-heading">SIGNED UP ACTIVITIES</h3>
-</div>
+  
+      <h3 ngClass="h3-heading">SIGNED UP ACTIVITIES</h3>
+    </div> 
 </ion-content>

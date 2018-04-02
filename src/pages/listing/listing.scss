@@ -1,4 +1,4 @@
-@mixin categories-title-style($color){
+/* @mixin categories-title-style($color){
 	display: inline-block;
 	width: 100%;
 	text-align: center;
@@ -19,17 +19,64 @@ ion-avatar {
 	{
 		border-radius: 50%;
 	}
-}
+} */
 listing-page {
-	$categories-heading-image-height: 150px;
+	
+	/* ion-content{
+		ion-list{
+			//background-color: $white-a;
+			ion-item{
+				font-family: 'Times New Roman';
+				//background-color: $white-a;
+				ion-row{
+					ion-col{
+						background-color: $white-a;	
+						font-family: 'Times New Roman';
+					}
+				}
+			}
+		}
+		div{
+			//background-color: $white-a;
+			
+		}
+
+	}
+	.image-heading
+	{
+		height: 200px;//$categories-heading-image-height;
+	}
+	.main-div{
+		padding: 10px;
+	}	
+	.h3-heading
+	{
+		text-align: center;
+		font-size: 1.6rem;
+		font-weight: 500;
+		letter-spacing: 0.7px;
+		color: $white-d;
+		font-family: 'Times New Roman';
+	}
+	.h2-heading
+	{
+		//display: inline-block;
+		//width: 100%;
+		text-align: center;
+		//font-size: 100%;
+		font-weight: 900;
+		letter-spacing: 0.4px;
+		color: $black;
+		margin: 0px;	
+		font-family: 'Times New Roman';
+	} */
+
+/* 	$categories-heading-image-height: 150px;
 	$categories-grid-padding: 10px;
 	$categories-horizontal-list-padding: 10px;
 	.listing-content
 	{
-		 .image-heading
-		{
-			height: $categories-heading-image-height;
-		} 
+		  
 
 /* 		.categories-title
 		{
@@ -38,7 +85,7 @@ listing-page {
 			letter-spacing: 0.7px;
 			color: $white-d;
 			margin: 8px 16px 16px;
-		} */
+		} 
 		.grid-categories
 		{
 			background: none;
@@ -63,7 +110,7 @@ listing-page {
 						z-index: 2;
 					}
 
-					@include spinner-color($white);
+		//			@include spinner-color($white);
 
 					.heading-row
 					{
@@ -81,9 +128,9 @@ listing-page {
 				}
 			}
 		}
-	}
+	} */
 
-	.list .item.item-accordion {
+	/* .list .item.item-accordion {
 		margin-bottom: 3px;
 		border: 2px solid white;
     	border-radius: 12px;
@@ -113,5 +160,5 @@ listing-page {
 	  .list .item.item-accordion.ng-hide-add,
 	  .list .item.item-accordion.ng-hide-remove {
 		display: block !important;
-	  }
+	  } */
 }

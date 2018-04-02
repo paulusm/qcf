@@ -33,6 +33,13 @@ import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { AddUserPage } from '../pages/add-user/add-user';
 import { NewsPage } from '../pages/news/news';
 import { NewsDetailsPage } from '../pages/news-details/news-details';
+
+import { ArticlesPage } from '../pages/articles/articles';
+import { ArticleDetailsPage } from '../pages/article-details/article-details';
+
+import { SuccessStoriesPage } from '../pages/success-stories/success-stories';
+import { SuccessStoriesDetailsPage } from '../pages/success-stories-details/success-stories-details';
+
 import { OtherUserDetailsPage } from '../pages/other-user-details/other-user-details';
 
 //custom components
@@ -51,6 +58,8 @@ import { NotificationsService } from '../pages/notifications/notifications.servi
 
 
 import { NewsService } from '../pages/news/news.service';
+import { ArticlesService } from '../pages/articles/articles.service';
+
 
 import { ActivitiesPage } from '../pages/activities/activities';
 import { ActivitiesService } from '../pages/activities/activities.service';
@@ -84,6 +93,7 @@ import { ThemeProvider } from '../providers/theme/theme';
 import { FilesProvider } from '../providers/files/files';
 import { CompanyProvider } from '../providers/company/company';
 import { AppThemeColorProvider } from '../providers/app-theme-color/app-theme-color';
+import { SuccessStoriesService } from '../pages/success-stories/success-stories.service';
 
 @NgModule({
   declarations: [
@@ -106,8 +116,8 @@ import { AppThemeColorProvider } from '../providers/app-theme-color/app-theme-co
     //FiltersPage,
     TermsOfServicePage,
     PrivacyPolicyPage,
-    NewsPage,
-    NewsDetailsPage,
+    NewsPage,ArticlesPage,SuccessStoriesPage,
+    NewsDetailsPage,ArticleDetailsPage,SuccessStoriesDetailsPage,
     OtherUserDetailsPage,
     ActivitiesPage,
     ActivitiesDetailsPage,
@@ -142,7 +152,7 @@ import { AppThemeColorProvider } from '../providers/app-theme-color/app-theme-co
   entryComponents: [
     MyApp,
     ListingPage,
-    FeedPage,
+    FeedPage,ArticlesPage,SuccessStoriesPage,
     //FormsPage,
     LoginPage,
     NotificationsPage,
@@ -154,7 +164,8 @@ import { AppThemeColorProvider } from '../providers/app-theme-color/app-theme-co
     ResetPasswordPage,
     ChangePasswordPage,
     AddUserPage,AppColorThemePage,
-
+    ArticleDetailsPage,
+    
     //FormLayoutPage,
     //FiltersPage,
     TermsOfServicePage,
@@ -163,6 +174,7 @@ import { AppThemeColorProvider } from '../providers/app-theme-color/app-theme-co
     //FormValidationsPage,
     NewsPage,
     NewsDetailsPage,
+    SuccessStoriesDetailsPage,
     OtherUserDetailsPage,
     ActivitiesPage,
     ActivitiesDetailsPage,
@@ -177,6 +189,8 @@ import { AppThemeColorProvider } from '../providers/app-theme-color/app-theme-co
     ProfileService,
     NotificationsService,
     NewsService,
+    ArticlesService,
+    SuccessStoriesService,
     ActivitiesService,
 
 	  SplashScreen,

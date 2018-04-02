@@ -17,7 +17,7 @@ ion-app.wp {
 		{
 			.switcher-item
 			{
-				@include switcher-item-wp-styles($white-b, $theme-color-2);
+				//@include switcher-item-wp-styles($white-b, $theme-color-2);
 			}
 		}
 	}

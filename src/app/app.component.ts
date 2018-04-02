@@ -70,6 +70,8 @@ export class MyApp {
         this.menuColor = 'ion-menu-1';
       }else if(value==='app-color-theme-2'){
         this.menuColor = 'ion-menu-2';
+      }else if(value==='app-color-theme-3'){
+        this.menuColor = 'ion-menu-3';
       }
       //alert(this.menuColor);
     });

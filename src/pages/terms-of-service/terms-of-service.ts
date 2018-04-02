@@ -17,14 +17,17 @@ export class TermsOfServicePage {
     public appThemeColorProvider:AppThemeColorProvider) {
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
-        this.colorTheme = 'app-color-theme-1';
-        this.colorThemeHeader = 'ion-header-1';
+        this.colorTheme = 'app-color-theme-3';
+        this.colorThemeHeader = 'ion-header-3';
       }else if(value==='app-color-theme-1'){
         this.colorTheme = 'app-color-theme-1';
         this.colorThemeHeader = 'ion-header-1';
       }else if(value==='app-color-theme-2'){
         this.colorTheme = 'app-color-theme-2';
         this.colorThemeHeader = 'ion-header-2';
+      }else if(value==='app-color-theme-3'){
+        this.colorTheme = 'app-color-theme-3';
+        this.colorThemeHeader = 'ion-header-3';
       }
     });
 

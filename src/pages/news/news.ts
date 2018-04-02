@@ -20,8 +20,6 @@ export class NewsPage {
   colorTheme: any;
   colorThemeHeader:any;
 
-
-
   constructor(
     public nav: NavController,
     public newsService: NewsService,
@@ -31,31 +29,43 @@ export class NewsPage {
     this.loading = this.loadingCtrl.create();
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
-        this.colorTheme = 'app-color-theme-1';
-        this.colorThemeHeader = 'ion-header-1';
+        this.colorTheme = 'app-color-theme-3';
+        this.colorThemeHeader = 'ion-header-3';
       }else if(value==='app-color-theme-1'){
         this.colorTheme = 'app-color-theme-1';
         this.colorThemeHeader = 'ion-header-1';
       }else if(value==='app-color-theme-2'){
         this.colorTheme = 'app-color-theme-2';
         this.colorThemeHeader = 'ion-header-2';
+      }else if(value==='app-color-theme-3'){
+        this.colorTheme = 'app-color-theme-3';
+        this.colorThemeHeader = 'ion-header-3';
       }
     });
   }
 
   ionViewDidLoad() {
     this.loading.present();
-    this.newsService
-      .getData()
+      this.newsService
+      .getNews()
       .then(data => {
-        this.news.items = data.items;
-        //console.log(data.items);
+         
+              let activeNews:any = [];
+              this.news.items = JSON.parse(data['_body']);
+              console.log(JSON.parse(data['_body'])); 
+              for(let n of this.news.items){
+                  if(n.type==='News'){
+                    n.imagepath = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+n.imagepath;
+                    activeNews.push(n);
+                  }
+              }
+              this.news.items = activeNews;
         this.loading.dismiss();
-      });
+      },(err) => {
+        
+      });  
   }
   goToNewsDetail(item:any){
-    //alert(item.title);
-    //console.log(">>>>>>>>>>>>>>>>>>>>>>>>"+item.title);
     this.nav.push(NewsDetailsPage, { newItem: item });
   }
 

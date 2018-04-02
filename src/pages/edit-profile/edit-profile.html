@@ -9,24 +9,23 @@
     </ion-navbar>
   </ion-header>
   
-  <ion-content class="edit-profile-content">
-    <div [ngClass]="colorTheme">
-    <div class="user-image-content">
-      <ion-row no-padding class="user-image-row">
-        <ion-col no-padding width-40>
-          <preload-image class="user-image" [ratio]="{w:1, h:1}" [src]="image" alt="this is the image" title="IMAGE!"></preload-image>
+  <ion-content [ngClass]="colorTheme">
+      <div ngClass="main-div"> 
+      <ion-row>
+        <ion-col width-40>
+          <preload-image style="border-radius: 15%;" [ratio]="{w:1, h:1}" [src]="image" alt="this is the image" title="IMAGE!"></preload-image>
           
         </ion-col>
       </ion-row>
-      <ion-row no-padding class="user-image-row">
+      <ion-row>
         <ion-col no-padding width-60>
-          <button ngClass="personal-btn" ion-button outline block small (click)="presentActionSheet()">CHANGE PROFILE PICTURE</button>
+          <button ngClass="main-btn" ion-button outline block small (click)="presentActionSheet()">CHANGE PROFILE PICTURE</button>
         </ion-col>
       </ion-row>
-    </div>
+
   
     <form [formGroup]="settingsForm">
-      <ion-list class="user-data-content">
+      <ion-list>
         <ion-item>
           <ion-label stacked>FORENAME</ion-label>
           <ion-input type="text" formControlName="forename"></ion-input>
@@ -56,20 +55,20 @@
       
     </form>
     
-    <button ngClass="personal-btn" ion-button full (click)="onChangePassword()">CHANGE PASSWORD</button>
+    <button ngClass="main-btn" ion-button full (click)="onChangePassword()">CHANGE PASSWORD</button>
     <br>
-    <button ngClass="personal-btn" ion-button full (click)="onThemeChange()">CHANGE COLOR THEME</button>
+    <button ngClass="main-btn" ion-button full (click)="onThemeChange()">CHANGE COLOR THEME</button>
     <br>
-    <button ngClass="personal-btn" ion-button full (click)="rateApp()">RATE APP</button>
+    <button ngClass="main-btn" ion-button full (click)="rateApp()">RATE APP</button>
     <br>
-    <button ngClass="personal-btn" ion-button full (click)="showPrivacyModal()">PRIVACY POLICY</button>
+    <button ngClass="main-btn" ion-button full (click)="showPrivacyModal()">PRIVACY POLICY</button>
     <br>
-    <button ngClass="personal-btn" ion-button full (click)="showTermsModal()">TERMS OF USE</button>
+    <button ngClass="main-btn" ion-button full (click)="showTermsModal()">TERMS OF USE</button>
     <br>
-    <button ngClass="personal-btn" ion-button full icon-start (click)="logout()">
+    <button ngClass="main-btn" ion-button full icon-start (click)="logout()">
       <ion-icon name="log-out"></ion-icon>
       LOG OUT
     </button>
-    </div>
+  </div>
   </ion-content>
   

@@ -1,7 +1,7 @@
 walkthrough-page {
 	 .walkthrough-header
 	{
-		@include header-styles(color($colors, walkthrough-header, base), color($colors, walkthrough-header, contrast));
+		//@include header-styles(color($colors, walkthrough-header, base), color($colors, walkthrough-header, contrast));
 	} 
 
 	.walkthrough-content
@@ -84,7 +84,7 @@ walkthrough-page {
 
 				& > .button
 				{
-					@include segment-text-styles(color($colors, button-alt, base));
+					//@include segment-text-styles(color($colors, button-alt, base));
 					background-color: color($colors, button-alt, contrast);
 					margin: 0px;
 					border-radius: 0px;

@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Http, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import { NotificationsModel } from './notifications.model';
+//import { NotificationsModel } from './notifications.model';
 
 //import { ProfilesModel } from '../profile/profile.model';
 
@@ -14,12 +14,12 @@ export class NotificationsService {
   token: any;
   constructor(public http: Http,public storage:Storage) {}
 
-  getData(): Promise<NotificationsModel> {
+  /* getData(): Promise<NotificationsModel> {
     return this.http.get('./assets/example_data/notifications.json')
      .toPromise()
      .then(response => response.json() as NotificationsModel)
      .catch(this.handleError);
-  }
+  } */
 
   async getUsers() {
     
@@ -50,9 +50,9 @@ export class NotificationsService {
 
 }
 
-  private handleError(error: any): Promise<any> {
+  /* private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
-  }
+  } */
 
 }

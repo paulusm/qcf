@@ -1,8 +1,41 @@
 page-add-user {
+	/* .main-div{
+		padding: 10px;
+	} */
+	/* ion-content{
+		/* ion-row{
+			ion-col{
+				text-align: center;
+			}
+        }
+        ion-list{
+            ion-item,ion-input,ion-textarea{
+            font-family: 'Times New Roman';
+            }
+        } 
+	} */
+	/* .main-btn
+	{
+						margin: 0px;
+						border-radius: 6px;
+						background-color: color($colors, primary, base);
+						color: color($colors, button-alt, contrast);
+						font-weight: 500;
+						font-family: 'Times New Roman';
+	}
+	.h3-heading
+	{
+		text-align: center;
+		font-size: 1.6rem;
+		font-weight: 500;
+		letter-spacing: 0.7px;
+		color: $white-d;
+		font-family: 'Times New Roman';
+	} */
     /* ion-header {
 		//@include header-styles(color($colors, header-alt, base), color($colors, header-alt, contrast));
 	} */
-	.role-title
+/* 	.role-title
 		{
 			text-align: center;
 			font-size: 1.5rem;
@@ -10,7 +43,7 @@ page-add-user {
 			letter-spacing: 0.7px;
 			//color: $white;
 			margin: 8px 16px 16px;
-		}
+		} */
 	/* .radio-group
 	{
 		//padding-left: 15px;
@@ -56,7 +89,7 @@ page-add-user {
 
 		@include radio-item-styles($white-d, $white-a, $theme-color-1);
 	} */
-	.validation-errors
+	/* .validation-errors
 	{
 	  .error-message
 	  {
@@ -86,5 +119,5 @@ page-add-user {
 				left: 0px;
 			}
 	  }
-	}
+	} */
 }

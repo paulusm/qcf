@@ -29,13 +29,25 @@ export class TabsNavigationPage {
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       //alert(value);
       if(value===null){
-        this.tabColorTheme = 'tabs-nav1';
+        this.tabColorTheme = 'tabs-nav3';
       }else if(value==='app-color-theme-1'){
         this.tabColorTheme = 'tabs-nav1';
       }else if(value==='app-color-theme-2'){
         this.tabColorTheme = 'tabs-nav2';
+      }else if(value==='app-color-theme-3'){
+        this.tabColorTheme = 'tabs-nav3';
       }
+
       //alert(this.tabColorTheme);
     });
+
+    
+
+
+
+
+
+
+
   }
 }

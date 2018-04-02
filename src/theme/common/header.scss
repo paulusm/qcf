@@ -1,4 +1,4 @@
-@mixin header-styles($background, $color){
+@mixin header-styles($background, $color,$Font){
 	
 	.toolbar-background
 	{
@@ -11,15 +11,18 @@
 	.back-button,
 	.bar-button
 	{
-		
+		font-family: $Font;
 		color: $color;
 	}
 }
 
- .ion-header-1 {
-	@include header-styles(color($colors, header, base), color($colors, header-alt, contrast));
+.ion-header-1 {
+	@include header-styles(color($colors, header, base), color($colors, header-alt, contrast),'Trebuchet MS');
 	
 } 
 .ion-header-2 {
-	@include header-styles(color($colors, header-2, base), color($colors, header-2-alt, contrast));
+	@include header-styles(color($colors, header-2, base), color($colors, header-2-alt, contrast),'Verdana');
+}
+.ion-header-3 {
+	@include header-styles(color($colors, header-3, base), color($colors, header-3-alt, contrast),'Helvetica');
 } 

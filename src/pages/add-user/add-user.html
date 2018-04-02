@@ -4,10 +4,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-    <div [ngClass]="colorTheme">
-   <form class="auth-form" [formGroup]="new_user" (ngSubmit)="doAddUser()">
-    
+<ion-content [ngClass]="colorTheme">
+  <div ngClass="main-div">
+   <form [formGroup]="new_user" (ngSubmit)="doAddUser()">
+    <ion-list>
     <ion-item>
         <ion-label  floating>Email</ion-label>
         <ion-input type="email" formControlName="email"></ion-input>
@@ -19,21 +19,22 @@
             </div>
           </ng-container>
       </div>
+      </ion-list>
 
 
-    <h3 class="h3-heading">ROLE</h3>
-      <ion-list class="radio-group" radio-group formControlName="selected_option">
-        <ion-item  class="radio-item" >
+    <h3 ngClass="h3-heading">ROLE</h3>
+      <ion-list radio-group formControlName="selected_option">
+        <ion-item>
           <ion-label>Business Admin</ion-label>
           <ion-radio item-left value="BusinessAdmin"></ion-radio>
         </ion-item>
-        <ion-item  class="radio-item">
+        <ion-item>
           <ion-label>Employee</ion-label>
           <ion-radio item-left value="Employee"></ion-radio>
         </ion-item>
       </ion-list>
     
-    <button ion-button block ngClass="personal-btn" type="submit" [disabled]="!new_user.valid">ADD</button>
+    <button ion-button block ngClass="main-btn" type="submit" [disabled]="!new_user.valid">ADD</button>
   </form>
   </div>
 </ion-content>

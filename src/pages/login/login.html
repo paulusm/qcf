@@ -5,7 +5,9 @@
 </ion-header>
 
 <ion-content [ngClass]="colorTheme">
-  <form class="auth-form" [formGroup]="login" (ngSubmit)="doLogin()">
+  <div ngClass="main-div">
+  <form [formGroup]="login" (ngSubmit)="doLogin()">
+    <ion-list>
     <ion-item>
         <ion-label  floating>Email</ion-label>
       <ion-input type="email" formControlName="email"></ion-input>
@@ -17,6 +19,7 @@
         </div>
       </ng-container>
     </div>
+    
 
     <show-hide-container>
       <ion-item>
@@ -31,7 +34,8 @@
         </ng-container>
       </div>
     </show-hide-container>
-    <button ion-button block ngClass="personal-btn" type="submit" [disabled]="!login.valid">LOG IN</button>
+  </ion-list>
+    <button ion-button block ngClass="main-btn" type="submit" [disabled]="!login.valid">LOG IN</button>
   </form>
   <ion-row class="alt-options">
     <ion-col no-padding width-50>
@@ -41,4 +45,5 @@
     
   </ion-row>
   <span (click)="goToForgotPassword()">FORGOT PASSWORD?</span>
+  </div>
 </ion-content>

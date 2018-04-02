@@ -1,8 +1,15 @@
 export class NewsModel {
-    title: string;
-    published: string;
-    details: string;
-    url: string;
+  approved: boolean;
+  createdAt: string;
+  imagepath: string;
+  likes:  string[];
+  publisheddate: string;
+  story: string;
+  storyauthor: string;
+  storytitle: string;
+  type: string;
+  updatedAt: string;
+  _id: string;
   }
   export class NewssModel {
     items: Array<NewsModel>;

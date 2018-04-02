@@ -1,5 +1,45 @@
 edit-profile-page {
-        .edit-profile-content
+    /* .main-div{
+		padding: 10px;
+	}
+	ion-content{
+		
+
+		ion-row{
+			background-color: $white-a;
+			ion-col{
+				text-align: center;
+			}
+        }
+        form{
+            background-color: $white-a;
+        }
+        ion-list{
+            ion-item,ion-input,ion-textarea{
+                background-color: $white-a;
+                font-family: 'Times New Roman';
+            }
+        }
+	}
+	.main-btn
+	{
+						margin: 0px;
+						border-radius: 6px;
+						background-color: color($colors, primary, base);
+						color: color($colors, button-alt, contrast);
+						font-weight: 500;
+						font-family: 'Times New Roman';
+	}
+	.h3-heading
+	{
+		text-align: center;
+		font-size: 1.6rem;
+		font-weight: 500;
+		letter-spacing: 0.7px;
+		color: $white-d;
+		font-family: 'Times New Roman';
+	} */
+        /* .edit-profile-content
         {
             //background-color: color($colors, background, base);
     
@@ -65,7 +105,7 @@ edit-profile-page {
                             font-size: 1.6rem;
                             line-height: 1.4;
                             //color: $theme-color-3;
-                        } */
+                        } 
                     }
     
                     &.item-select
@@ -78,10 +118,10 @@ edit-profile-page {
                                 margin: 0px;
                               line-height: initial;
                             }
-                        } */
+                        } 
                     }
                 }
-            }
+            } */
     
 /*             .user-preferences-row
             {
@@ -171,7 +211,7 @@ edit-profile-page {
                 //color: $white-d;
     
                 @include element-shadow();
-            } */
+            } 
     
             .logout-button
             {
@@ -186,16 +226,15 @@ edit-profile-page {
     
                 ion-icon {
                   font-size: 1.8em;
-                } */
-            }
+                } 
     
             /* .rate-app-button
             {
                 border-radius: 6px;
                 margin: 14px 0px 20px;
                 padding: 0px 20px;
-            } */
+            } 
     
-        }
+        }*/
     }
     

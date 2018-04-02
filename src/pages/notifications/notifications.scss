@@ -1,9 +1,33 @@
 notifications-page {
-	.notifications-content
+	/* ion-content{
+		ion-list{
+			ion-item-sliding{
+					ion-item{
+						ion-row{
+							background-color: $white-a;
+							font-family: 'Times New Roman';
+							ion-col{
+								text-align: center;
+								padding: 5px;
+								white-space: initial;
+							}
+						}
+					}
+			
+				}	
+		}
+	}
+	.btn-details{
+		background-color:#32db64;
+		font-family: 'Times New Roman';
+
+	} */
+
+	/* .notifications-content
 	{
 		.notifications-divider
 		{
-			font-size: 1.2rem;
+			/* font-size: 1.2rem;
 			font-weight: 500;
 			letter-spacing: 0.9px;
 			color: $theme-color-3;
@@ -11,12 +35,12 @@ notifications-page {
 			&:not(:first-child)
 			{
 				padding-top: 30px;
-			}
+			} */
 		}
 
 		.notification-item
 		{
-			padding: 12px;
+			/* padding: 12px;
 			border: none;
 			box-shadow: inset 0 -0.5px 0 0 $black-d;
 			align-items: flex-start;
@@ -44,7 +68,7 @@ notifications-page {
 				ion-label {
 					margin: 0px;
 				}
-			}
+			} */
 
 			/* .item-title
 			{
@@ -73,7 +97,7 @@ notifications-page {
 				margin: 0px;
 				padding-left: 8px;
 				align-self: flex-start;
-			} */
+			} 
 		}
-	}
+	} */
 }

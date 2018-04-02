@@ -14,30 +14,30 @@
 </ion-header>
 
 <ion-content [ngClass]="colorTheme">
-  <div class="listing-content">
-  <preload-image [ratio]="{w:0, h:0}" class="image-heading" [src]="companyLogo"></preload-image>
+  <div ngClass="main-div">
+  <preload-image style="border-radius: 5%;" [ratio]="{w:0, h:0}" class="image-heading" [src]="companyLogo"></preload-image>
  
-  <h3 class="h3-heading">BROWSE CATEGORIES</h3>
+  <h3 ngClass="h3-heading">BROWSE CATEGORIES</h3>
   
-  <ion-row class="grid-categories">
-    <ion-col width-50 class="category-item" *ngFor="let category of listing.categories">
-      <background-image tappable class="category-heading" [src]="category.image" (click)="goToFeed(category)">
-        <ion-row class="heading-row">
-          <ion-col no-padding width-100>
-            <h2 class="category-title">{{category.title}}</h2>
-          </ion-col>
-        </ion-row>
+  <ion-row>
+    <ion-col *ngFor="let category of listing.categories">
+      <background-image tappable style="height:150px; width:150px;" [src]="category.image" (click)="goToFeed(category)">
+        <!-- <ion-row >
+          <ion-col> -->
+            <h2 ngClass="h2-heading">{{category.title}}</h2>
+          <!-- </ion-col>
+        </ion-row> -->
       </background-image>
     </ion-col>
   </ion-row>
 
-  <h3 class="h3-heading">CHARITABLE THEMES</h3>
+  <h3 ngClass="h3-heading">CHARITABLE THEMES</h3>
   <ion-list>
     <div *ngFor="let group of groups">
       
-      <ion-item class="item-accordion-title">
+      <ion-item>
         <ion-row>
-          <ion-col col-8>  
+          <ion-col col-8 style="text-align: left;">  
               <span (click)="toggleGroup(group)">
                   
                     <ion-icon name= "{{isGroupShown(group) ? 'arrow-up' : 'arrow-down'}}"></ion-icon>
@@ -58,7 +58,7 @@
           </ion-col>
       </ion-row>
       </ion-item>
-      <ion-item class="item-accordion"
+      <ion-item
             *ngFor="let item of group.areas"
             [hidden] ="!isGroupShown(group)">
         Area {{item}}

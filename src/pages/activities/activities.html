@@ -9,42 +9,36 @@
       </ion-navbar>
 </ion-header>
 
-<ion-content class="list-big-content">
-  <div [ngClass]="colorTheme"> 
-  <div class="list-big">
+<ion-content [ngClass]="colorTheme">
   <ion-list>
     
-      <ion-item-sliding class="list-item" *ngFor="let item of activities.items">
+      <ion-item-sliding *ngFor="let item of activities.items">
         <ion-item >
-            <ion-row no-padding class="content-row">
-                <ion-col no-padding width-33 class="item-avatar">
-                  <preload-image class="avatar-image" [ratio]="{w:1, h:1}" [src]="item.url"></preload-image>
+            <ion-row>
+                <ion-col>
+                  <preload-image style="border-radius: 5%" [ratio]="{w:1, h:1}" [src]="item.url"></preload-image>
                 </ion-col>
-                <ion-col no-padding width-57 class="item-content">
-                  <h3 class="item-title">{{item.published}}</h3>
-                  <p class="item-description" rows="3">{{item.title}}</p>
+                <ion-col padding="3">
+                  <p>{{item.published}}</p>
+                  <p id="title" rows="3">{{item.title}}</p>
                 </ion-col>
-
               </ion-row>
         </ion-item>
+
         <ion-item-options side="right">
-          <button ion-button class="button-details" (click)="goToActivitiesDetail(item)">
+          <button ion-button class="btn-details" (click)="goToActivitiesDetail(item)">
             <ion-icon name="arrow-forward"></ion-icon>
             Details
           </button>
-          <button ion-button class="button-join"  (click)="goToJoinActivity(item)">
+          <button ion-button (click)="goToJoinActivity(item)">
             <ion-icon name="add"></ion-icon>
             Join
           </button>
-          <button ion-button class="button-nav"  (click)="goToNavigateActivity(item)">
+          <button ion-button (click)="goToNavigateActivity(item)">
             <ion-icon name="navigate"></ion-icon>
             Navigate
           </button>
         </ion-item-options>
-        
       </ion-item-sliding>
-    
     </ion-list>
-  </div>
-</div>
 </ion-content>
