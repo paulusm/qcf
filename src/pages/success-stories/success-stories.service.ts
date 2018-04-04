@@ -39,6 +39,34 @@ export class SuccessStoriesService {
     });
 
 }
+async updateLikes(item) {
+    
+  return await new Promise((resolve, reject) => {
+
+    this.storage.get('token').then((value) => {
+
+      this.token = value;
+
+      let headers = new Headers();
+      headers.append('Authorization', this.token);
+      headers.append('Content-Type', 'application/json');
+      
+      this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/stories/updateStory', JSON.stringify(item), {headers: headers})
+        .subscribe(res => {
+              
+          resolve(res);
+
+        }, (err) => {
+          reject(err);
+        }); 
+      }, (err) => {
+        
+      });    
+
+      
+  });
+
+}
 
   /* private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only

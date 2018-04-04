@@ -2,6 +2,7 @@
 @import "../../theme/common/app-color-theme/app-color-theme-1";
 @import "../../theme/common/app-color-theme/app-color-theme-2";
 @import "../../theme/common/app-color-theme/app-color-theme-3";
+@import "../../theme/common/app-color-theme/app-color-theme-4";
 
 .tabs-nav1{	
 	
@@ -23,7 +24,7 @@
 		.tab-button:hover:not(.disable-hover),
 		.tab-button[aria-selected=true]
 		{
-		  color: $black-c;
+		  color: $black-a;
 		  font-family: 'Helvetica';		
 		  font-size: 1.8rem;
 			.tab-button-icon
@@ -93,22 +94,19 @@
 		}
 	}
 }
-//tabs-navigation {
-/* .tabs-nav1{	
+.tabs-nav4{	
 	
 	.tabbar
 	{
-		background: color($colors, tabs-navigation, base) !important;
-		//border-top-color: darken(color($colors, tabs-navigation, base), 6%) !important;
-
+		background: color($colors, tabs-navigation-4, base) !important;
 		.tab-button
 		{
-			color: color($colors, tabs-navigation, contrast);
-			font-family: 'Times New Roman';
-
+			color: color($colors, tabs-navigation-4, contrast);
+			font-family: 'Calibri';
+			font-size: 1.8rem;
 			.tab-button-icon
 			{
-				color: color($colors, tabs-navigation, contrast);
+				color: color($colors, $white-b, contrast);
 				
 			}
 		}
@@ -116,41 +114,14 @@
 		.tab-button:hover:not(.disable-hover),
 		.tab-button[aria-selected=true]
 		{
-		  color: $theme-color-1;
-		  font-family: 'Times New Roman';		
+		  color: $theme-color-7;
+		  font-family: 'Calibri';		
+		  font-size: 1.8rem;
 			.tab-button-icon
 			{
-				color: $theme-color-1;
+				color: $theme-color-7;
 			}
 		}
 	}
 }
-.tabs-nav2{	
-	.tabbar
-	{
-		background: color($colors, tabs-navigation, base) !important;
-		//border-top-color: darken(color($colors, tabs-navigation, base), 6%) !important;
 
-		.tab-button
-		{
-			color: color($colors, tabs-navigation, contrast);
-
-			.tab-button-icon
-			{
-				color: color($colors, tabs-navigation, contrast);
-			}
-		}
-
-		.tab-button:hover:not(.disable-hover),
-		.tab-button[aria-selected=true]
-		{
-		  color: $white;
-
-			.tab-button-icon
-			{
-				color: $white;
-			}
-		}
-	}
-} */	
-//}

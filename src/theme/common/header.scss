@@ -25,4 +25,7 @@
 }
 .ion-header-3 {
 	@include header-styles(color($colors, header-3, base), color($colors, header-3-alt, contrast),'Helvetica');
+}
+.ion-header-4 {
+	@include header-styles(color($colors, header-4, base), color($colors, header-4-alt, contrast),'Calibri');
 } 

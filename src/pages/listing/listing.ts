@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, AlertController  } from 'ionic-angular';
-//import { FeedPage } from '../feed/feed';
+
 import { ArticlesPage } from '../articles/articles';
 import { SuccessStoriesPage } from '../success-stories/success-stories';
 
@@ -21,7 +21,6 @@ import 'rxjs/Rx';
 export class ListingPage {
   listing: ListingModel = new ListingModel();
   companyModel: CompanyModel =new CompanyModel();
-  //company: CompanyModel = new CompanyModel();
   profile: UserModel = new UserModel();
 
   loading: any;
@@ -50,8 +49,8 @@ export class ListingPage {
     
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
-        this.colorTheme = 'app-color-theme-3';
-        this.colorThemeHeader = 'ion-header-3';
+        this.colorTheme = 'app-color-theme-4';
+        this.colorThemeHeader = 'ion-header-4';
       }else if(value==='app-color-theme-1'){
         this.colorTheme = 'app-color-theme-1';
         this.colorThemeHeader = 'ion-header-1';
@@ -61,6 +60,9 @@ export class ListingPage {
       }else if(value==='app-color-theme-3'){
         this.colorTheme = 'app-color-theme-3';
         this.colorThemeHeader = 'ion-header-3';
+      }else if(value==='app-color-theme-4'){
+        this.colorTheme = 'app-color-theme-4';
+        this.colorThemeHeader = 'ion-header-4';
       }
     });
 

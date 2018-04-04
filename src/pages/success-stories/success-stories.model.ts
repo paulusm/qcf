@@ -10,6 +10,7 @@ export class SuccessStoryModel {
     type: string;
     updatedAt: string;
     _id: string;
+    displayImage:string;
     }
     export class SuccessStoriesModel {
       items: Array<SuccessStoryModel>;

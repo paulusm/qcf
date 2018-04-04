@@ -47,8 +47,8 @@ export class ChangePasswordPage {
      
      this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
-        this.colorTheme = 'app-color-theme-3';
-        this.colorThemeHeader = 'ion-header-3';
+        this.colorTheme = 'app-color-theme-4';
+        this.colorThemeHeader = 'ion-header-4';
       }else if(value==='app-color-theme-1'){
         this.colorTheme = 'app-color-theme-1';
         this.colorThemeHeader = 'ion-header-1';
@@ -58,6 +58,9 @@ export class ChangePasswordPage {
       }else if(value==='app-color-theme-3'){
         this.colorTheme = 'app-color-theme-3';
         this.colorThemeHeader = 'ion-header-3';
+      }else if(value==='app-color-theme-4'){
+        this.colorTheme = 'app-color-theme-4';
+        this.colorThemeHeader = 'ion-header-4';
       }
     });
   }
