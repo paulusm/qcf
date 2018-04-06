@@ -8,10 +8,10 @@
 
     <ion-card>
       <form [formGroup]="join_activity" (ngSubmit)="doJoin()">  
-        <preload-image style="border-radius: 5%;" [ratio]="{w:3, h:2}" [src]="item.url"></preload-image>
+        <!-- <preload-image style="border-radius: 5%;" [ratio]="{w:3, h:2}" [src]="item.url"></preload-image> -->
         <ion-card-content>
           <ion-card-title>
-            {{item.title}}
+            {{item.activityname}}
           </ion-card-title>
           
           <h3 class="h3-heading">Participation Type</h3>

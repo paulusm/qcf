@@ -1,8 +1,8 @@
 export class ActivityModel {
-    title: string;
+   /*  title: string;
     published: string;
     details: string;
-    url: string;
+    url: string; */
 
 
     _id: string;
@@ -21,6 +21,7 @@ export class ActivityModel {
     approved: boolean;
     donationmatch: number;
     activitytype: string;
+    address:string;
 
   }
   export class ActivitiessModel {

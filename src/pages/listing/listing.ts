@@ -69,15 +69,19 @@ export class ListingPage {
     this.profileService.getData()
     .then(data => {
       this.profile = data;
-      this.companyService.getCompanyInfo(this.profile.companyid).then(data => {
-        this.companyModel = data['company'];
+      //this.companyService.getCompanyInfo(this.profile.companyid).then(data => {
+        this.companyService.getCompany().then((value) => {
+
+        //});
+        this.companyModel = value;//data['company'];
         
-        this.companyService.setCompany(this.companyModel);
+        //this.companyService.setCompany(this.companyModel);
         
-        console.log(JSON.stringify(data['company']));
+        //console.log(JSON.stringify(data['company']));
         this.companyLogo = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+this.companyModel.filename;
         this.companyThemes = this.companyModel.themes;
         this.companyName = this.companyModel.companyname;
+
         this.themeService.getThemes().then((res) => {
           this.groups = JSON.parse(res['_body']); 
                 for(var i=0; i<this.groups.length;i++){

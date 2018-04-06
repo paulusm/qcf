@@ -12,7 +12,7 @@
 		.tab-button
 		{
 			color: color($colors, tabs-navigation-1, contrast);
-			font-family: 'Helvetica';
+			font-family: 'Trebuchet MS';
 			font-size: 1.8rem;
 			.tab-button-icon
 			{
@@ -24,12 +24,12 @@
 		.tab-button:hover:not(.disable-hover),
 		.tab-button[aria-selected=true]
 		{
-		  color: $black-a;
-		  font-family: 'Helvetica';		
+		  color: $theme-color-11;//$black-d;
+		  font-family: 'Trebuchet MS';		
 		  font-size: 1.8rem;
 			.tab-button-icon
 			{
-				color: $black-a;
+				color: $theme-color-11;//$black-d;
 			}
 		}
 	}
@@ -41,12 +41,12 @@
 		background: color($colors, tabs-navigation-2, base) !important;
 		.tab-button
 		{
-			color: color($colors, tabs-navigation-2, contrast);
+			color: $white;//color($colors, tabs-navigation-2, contrast);
 			font-family: 'Verdana';
 			font-size: 1.8rem;
 			.tab-button-icon
 			{
-				color: color($colors, tabs-navigation-2, contrast);
+				color: $white;//color($colors, tabs-navigation-2, contrast);
 				
 			}
 		}
@@ -54,12 +54,12 @@
 		.tab-button:hover:not(.disable-hover),
 		.tab-button[aria-selected=true]
 		{
-			color: $black-c;
-		  font-family: 'Verdana';		
-		  font-size: 1.8rem;
+			color: $theme-color-44;//$black;
+		  	font-family: 'Verdana';		
+		  	font-size: 1.8rem;
 			.tab-button-icon
 			{
-				color: $black-a;
+				color: $theme-color-44;//$black;
 			}
 		}
 	}
@@ -71,12 +71,12 @@
 		background: color($colors, tabs-navigation-3, base) !important;
 		.tab-button
 		{
-			color: color($colors, tabs-navigation-3, contrast);
+			color: $white; //color($colors, tabs-navigation-3, contrast);
 			font-family: 'Helvetica';
 			font-size: 1.8rem;
 			.tab-button-icon
 			{
-				color: color($colors, $white-b, contrast);
+				color: $white;//color($colors, $white-b, contrast);
 				
 			}
 		}
@@ -84,12 +84,12 @@
 		.tab-button:hover:not(.disable-hover),
 		.tab-button[aria-selected=true]
 		{
-		  color: $black-c;
+		  color: color($colors, primary2, base);//$black-c;
 		  font-family: 'Helvetica';		
 		  font-size: 1.8rem;
 			.tab-button-icon
 			{
-				color: $black-c;
+				color: color($colors, primary2, base);//$black-c;
 			}
 		}
 	}
@@ -101,12 +101,12 @@
 		background: color($colors, tabs-navigation-4, base) !important;
 		.tab-button
 		{
-			color: color($colors, tabs-navigation-4, contrast);
+			color: $white;//color($colors, tabs-navigation-4, contrast);
 			font-family: 'Calibri';
 			font-size: 1.8rem;
 			.tab-button-icon
 			{
-				color: color($colors, $white-b, contrast);
+				color: $white;//color($colors, $white-b, contrast);
 				
 			}
 		}

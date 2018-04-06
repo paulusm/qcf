@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, MenuController, Nav, App, ToastController,LoadingController } from 'ionic-angular';
+import { Events, Platform, MenuController, Nav, App, ToastController,LoadingController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Storage } from '@ionic/storage';
@@ -30,13 +30,15 @@ export class MyApp {
   rootPage: any;
   textDir: string = "ltr";
   loading: any;
-  menuColor:any;
+  menuColor: any;
+  menuImage: any;
 
   pages: Array<{title: any, icon: string, component: any}>;
   pushPages: Array<{title: any, icon: string, component: any,logsOut?: boolean}>;
   pushPages2: Array<{title: any, icon: string, component: any,logsOut?: boolean}>;
 
   constructor(
+    public events: Events,
     public platform: Platform,
     public userData: UserData,
     public menu: MenuController,
@@ -50,7 +52,7 @@ export class MyApp {
     public appThemeColorProvider:AppThemeColorProvider
   ) {
     //this.role =  false;
-    
+    //this.menuImage = "../assets/images/maps/charity4.jpg";//'../assets/images/maps/charity4.jpg';//"https://ionic2-qcf-auth.herokuapp.com/api/files/file/file-1521413562258.jpg";
      this.storage.get('hasSeenWalkthrough')
       .then((hasSeenWalkthrough) => {
         if (hasSeenWalkthrough) {
@@ -75,14 +77,7 @@ export class MyApp {
       }else if(value==='app-color-theme-4'){
         this.menuColor = 'ion-menu-4';
       }
-      //alert(this.menuColor);
     });
-    
-
-
-
-
-    //this.rootPage = TabsNavigationPage;
     this.pages = [
       { title: 'Home', icon: 'home', component: TabsNavigationPage },
       //{ title: 'Forms', icon: 'create', component: FormsPage }
@@ -101,6 +96,8 @@ export class MyApp {
       { title: 'FAQ', icon: 'help', component: LoginPage, logsOut: false },
       { title: 'Logout', icon: 'log-out', component: LoginPage, logsOut: true }
     ]; */
+
+    this.listenToLoginEvents();
     
   }
 
@@ -139,4 +136,28 @@ export class MyApp {
       this.splashScreen.hide();
     });
   }
+  listenToLoginEvents() {
+    this.events.subscribe('app-color-theme-1', () => {
+      this.menuColor = 'ion-menu-1';
+    });
+    this.events.subscribe('app-color-theme-2', () => {
+      this.menuColor = 'ion-menu-2';
+    });
+    this.events.subscribe('app-color-theme-3', () => {
+      this.menuColor = 'ion-menu-3';
+    });
+    this.events.subscribe('app-color-theme-4', () => {
+      this.menuColor = 'ion-menu-4';
+    });
+    /* this.events.subscribe('menuImage', (imageUrl) => {
+      
+      //this.menuImage = imageUrl;
+      //alert("_>_>_>" + this.menuImage);
+    }); */
+  }
+
+ /*  enableMenu(loggedIn: boolean) {
+    this.menu.enable(loggedIn, 'loggedInMenu');
+    this.menu.enable(!loggedIn, 'loggedOutMenu');
+  } */
 }

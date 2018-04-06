@@ -1,6 +1,5 @@
 .app-color-theme-1
 {
-	
 	ion-list{
 		ion-item-sliding{
 			ion-item{
@@ -48,7 +47,7 @@
 	{
 		margin: 0px;
 		border-radius: 6px;
-		background-color: $theme-color-1;///color($colors, redish, base);
+		background-color: $theme-color-11;//$theme-color-1;///color($colors, redish, base);
 		color: color($colors, button-alt, contrast);
 		font-weight: 500;
 		font-family: 'Trebuchet MS';
@@ -94,6 +93,14 @@
 		font-family: 'Trebuchet MS';
 	}
 
+ 	ion-footer{
+		ion-toolbar{
+			ion-searchbar{
+				background-color:$white-a;
+				font-family: 'Trebuchet MS';
+			}	
+		}
+	} 
 	.validation-errors
 	{
 	  .error-message

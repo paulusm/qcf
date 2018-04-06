@@ -21,6 +21,10 @@ export class NewsPage {
   colorThemeHeader:any;
   image:any;
 
+  items: any;
+  searchTerm: string = '';
+
+
   constructor(
     public nav: NavController,
     public newsService: NewsService,
@@ -64,6 +68,7 @@ export class NewsPage {
                   }
               }
               this.news.items = activeNews;
+              this.items = activeNews;
               console.log(this.news.items);
         this.loading.dismiss();
       },(err) => {
@@ -72,6 +77,20 @@ export class NewsPage {
   }
   goToNewsDetail(item:any){
     this.nav.push(NewsDetailsPage, { newItem: item });
+  }
+
+  filterItems(searchTerm){
+    console.log(this.items);
+    return this.items.filter((item) => {
+        return item.storytitle.toLowerCase()
+        .indexOf(searchTerm.toLowerCase()) > -1;
+    });    
+
+  }
+  setFilteredItems() {
+ 
+    this.news.items = this.filterItems(this.searchTerm);
+
   }
 
 }

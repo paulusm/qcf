@@ -20,6 +20,9 @@ export class SuccessStoriesPage {
   colorTheme: any;
   colorThemeHeader:any;
 
+  items: any;
+  searchTerm: string = '';
+
   constructor(
     public nav: NavController,
     public successStoriesService: SuccessStoriesService,
@@ -63,6 +66,7 @@ export class SuccessStoriesPage {
                   }
               }
               this.stories.items = activeStories;
+              this.items = activeStories;
               console.log(this.stories.items);
         this.loading.dismiss();
       },(err) => {
@@ -73,4 +77,17 @@ export class SuccessStoriesPage {
     this.nav.push(SuccessStoriesDetailsPage, { newItem: item });
   }
 
+  filterItems(searchTerm){
+    console.log(this.items);
+    return this.items.filter((item) => {
+        return item.storytitle.toLowerCase()
+        .indexOf(searchTerm.toLowerCase()) > -1;
+    });    
+
+  }
+  setFilteredItems() {
+ 
+    this.stories.items = this.filterItems(this.searchTerm);
+
+  }
 }

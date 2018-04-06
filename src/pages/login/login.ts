@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { Events, NavController, LoadingController } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
@@ -10,6 +10,7 @@ import { Storage } from '@ionic/storage';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { CompanyProvider } from '../../providers/company/company';
 import { CompanyModel } from '../../providers/company/company';
+
 
 import { UserModel } from '../../pages/profile/profile.model';
 import { ProfileService } from '../profile/profile.service';
@@ -35,6 +36,7 @@ export class LoginPage {
   colorThemeHeader:any;
 
   constructor(
+    public events: Events,
     public nav: NavController,
     public storage:Storage,
     public loadingCtrl: LoadingController,
@@ -137,7 +139,18 @@ export class LoginPage {
             this.storage.set('token', this.token);
             this.profileService.setData(this.userModel);  
             this.profileService.setUserImage(this.userModel.imagepath);
+            //alert(this.userModel.companyid);
             
+            this.companyService.getCompanyInfo(this.userModel.companyid,this.token).then(data => {
+              this.company = data['company'];
+              this.companyService.setCompany(this.company);
+              let companyLogo = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+this.company.filename;
+              //alert(">>>>"+companyLogo);
+              this.events.publish('menuImage',companyLogo);
+            });  
+
+
+
             /* this.companyService.getCompanyInfo(this.userModel.companyid).then(result =>{
                       this.company.setCompanyInfo(result);
                       this.companyService.setCompany(this.company);               

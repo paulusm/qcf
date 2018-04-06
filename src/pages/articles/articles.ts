@@ -20,6 +20,9 @@ export class ArticlesPage {
   colorTheme: any;
   colorThemeHeader:any;
 
+  items: any;
+  searchTerm: string = '';  
+
   constructor(
     public nav: NavController,
     public articlesService: ArticlesService,
@@ -63,6 +66,7 @@ export class ArticlesPage {
                   }
               }
               this.articles.items = activeArticles;
+              this.items = activeArticles;
               console.log(this.articles.items);
         this.loading.dismiss();
       },(err) => {
@@ -73,4 +77,17 @@ export class ArticlesPage {
     this.nav.push(ArticleDetailsPage, { newItem: item });
   }
 
+  filterItems(searchTerm){
+    console.log(this.items);
+    return this.items.filter((item) => {
+        return item.storytitle.toLowerCase()
+        .indexOf(searchTerm.toLowerCase()) > -1;
+    });    
+
+  }
+  setFilteredItems() {
+ 
+    this.articles.items = this.filterItems(this.searchTerm);
+
+  }
 }

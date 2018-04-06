@@ -5,6 +5,7 @@ import 'rxjs/Rx';
 
 import { NotificationsModel } from './notifications.model';
 import { NotificationsService } from './notifications.service';
+import { ProfileService } from '../profile/profile.service';
 
 import { OtherUserDetailsPage } from '../other-user-details/other-user-details';
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
@@ -30,7 +31,8 @@ export class NotificationsPage {
     public nav: NavController,
     public notificationsService: NotificationsService,
     public loadingCtrl: LoadingController,
-    public appThemeColorProvider:AppThemeColorProvider
+    public appThemeColorProvider:AppThemeColorProvider,
+    public profileService: ProfileService
   ) {
     this.loading = this.loadingCtrl.create();
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
@@ -55,53 +57,44 @@ export class NotificationsPage {
 
   ionViewDidLoad() {
     this.loading.present();
-    /* this.notificationsService
-      .getData()
-      .then(data => {
-        this.notifications.users = data.users;
-        this.items = this.notifications.users;
+    
+    
+      this.profileService.getData().then(user => {
+        //console.log("->->-> "+user.companyid);
 
-        console.log(this.notifications.users);
-        //this.loading.dismiss();
-      },(err) => {
-        
-      }); */
-
-      this.notificationsService
-      .getUsers()
-      .then(data => {
-         
-              let activeUsers:any = [];
-              this.profilesModel.users = JSON.parse(data['_body']); 
-                for(let p of this.profilesModel.users){
-                      if(p.isfirstlogin==="false"){
-                        let image;
-                           if(p.imagepath!=null){
-                             image = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+p.imagepath;
-                           }else{
-                             image = '../../assets/images/profile/emp2.png';
-                           }
-                           let user = {
-                              displayname : p.displayname,
-                              email : p.email,
-                              department : p.department,
-                              imagepath : image 
-                            };
-                            activeUsers.push(user);
-                      }  
-                }
-                this.notifications.users = activeUsers;
-                this.items = activeUsers;
-                //alert(activeUsers);
-        this.loading.dismiss();
-      },(err) => {
-        
+        this.notificationsService
+        .getUsers()
+        .then(data => {
+           
+                let activeUsers:any = [];
+                this.profilesModel.users = JSON.parse(data['_body']); 
+                  for(let p of this.profilesModel.users){
+                        if(p.isfirstlogin==="false" && p.companyid===user.companyid){
+                          //console.log("+>+>+> "+p.companyid);
+                          let image;
+                             if(p.imagepath!=null){
+                               image = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+p.imagepath;
+                             }else{
+                               image = '../../assets/images/profile/emp2.png';
+                             }
+                             let user = {
+                                displayname : p.displayname,
+                                email : p.email,
+                                department : p.department,
+                                imagepath : image 
+                              };
+                              activeUsers.push(user);
+                        }  
+                  }
+                  this.notifications.users = activeUsers;
+                  this.items = activeUsers;
+                  //alert(activeUsers);
+          this.loading.dismiss();
+        },(err) => {
+          
+        });
+    
       });
-
-
-
-
-
   }
   filterItems(searchTerm){
     console.log(this.items);

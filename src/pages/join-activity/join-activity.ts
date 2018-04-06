@@ -4,10 +4,13 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 
+import { ProfileService } from '../profile/profile.service';
 
 import { Storage } from '@ionic/storage';
 
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
+
+import { ActivitiesService } from '../activities/activities.service';
 
 
 @Component({
@@ -32,7 +35,9 @@ export class JoinActivityPage {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public storage: Storage,
-    public appThemeColorProvider:AppThemeColorProvider
+    public appThemeColorProvider:AppThemeColorProvider,
+    public activitiesService:ActivitiesService,
+    public profileService:ProfileService
   ) {
     this.item = navParams.get("newItem");
     this.main_page = { component: TabsNavigationPage };
@@ -67,7 +72,34 @@ export class JoinActivityPage {
   }
 
   doJoin(){
-    //alert("Activity Joined "+this.join_activity.get('selected_option').value,);
-    this.navCtrl.pop();
+    //alert("Activity Joined "+this.join_activity.get('selected_option').value);
+    this.profileService.getData().then((data)=>{
+      if(this.join_activity.get('selected_option').value==="voluntering"){
+                this.item.volunteers.push(data.email);
+      }else if(this.join_activity.get('selected_option').value==="sponsorship"){
+                this.item.sponsors.push(data.email);
+      }
+      console.log(this.item);
+      
+      this.activitiesService.updateActivity(this.item).then((result) => {
+        console.log(">>>>> "+JSON.stringify(result));  
+         this.navCtrl.pop(); 
+        //this.nav.push(ProfilePage);
+        //this.nav.insert(0,EditProfilePage);
+        //this.nav.popToRoot();
+        
+      }, (err: any) => {
+            //this.loading.dismiss();
+            alert(`status: ${err.status}, ${err.statusText}`);
+      });
+
+      //this.navCtrl.pop();
+
+    });
+
+
+
+
+    
   }
 }

@@ -3,7 +3,9 @@ import { NavController, ModalController, LoadingController,Platform,ToastControl
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 //import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
-//import { FilesProvider } from '../../providers/files/files';
+
+import { ProfilePage } from '../profile/profile';
+
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { ProfileService } from '../profile/profile.service';
 import { Storage } from '@ionic/storage';
@@ -12,6 +14,8 @@ import { Storage } from '@ionic/storage';
 //import { FilePath } from '@ionic-native/file-path';
 
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
+
+import { ActivitiesService } from '../activities/activities.service';
 
 
 @Component({
@@ -30,6 +34,8 @@ export class CreateActivityPage {
   
   colorTheme: any;
   colorThemeHeader:any;
+
+  activity: any;
   
   constructor(
     public nav: NavController,
@@ -45,7 +51,8 @@ export class CreateActivityPage {
     public platform: Platform,
     //private filePath: FilePath,
     //private camera: Camera,
-    public appThemeColorProvider:AppThemeColorProvider
+    public appThemeColorProvider:AppThemeColorProvider,
+    public activitiesService:ActivitiesService
   ) {
     /* this.cucumber = false;
     this.carret = false; */
@@ -76,7 +83,7 @@ export class CreateActivityPage {
       donationmatch: new FormControl(0),
       location: new FormControl(''),
       mydonateurl: new FormControl(''),
-      activity_type: new FormControl('sponsorship'),
+                        activity_type: new FormControl('sponsorship'),
       startdate: new FormControl('', Validators.required),
       //from_time: new FormControl('', Validators.required),
       enddate: new FormControl(''),
@@ -85,28 +92,67 @@ export class CreateActivityPage {
       sponsorship: new FormControl(false)
     });
   }
-  /* updateCucumber(){
-      this.cucumber = !this.cucumber;
-  }
-  updateCarret(){
-      this.carret = !this.carret;
-  } */
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddUserPage');
   }
 
   doCreateActivity(){
-    alert("Name: " + this.new_activity.get('activityname').value +
+    /* alert("Name: " + this.new_activity.get('activityname').value +
     "Description: " + this.new_activity.get('activitydescription').value +
-    "Donatiomatch: " + this.new_activity.get('donationmatch').value +
     "Location: " + this.new_activity.get('location').value +
+    "Donatiomatch: " + this.new_activity.get('donationmatch').value +
     "URL: " + this.new_activity.get('mydonateurl').value +
-    "Type: " + this.new_activity.get('activity_type').value + 
+              "Type: " + this.new_activity.get('activity_type').value + 
     "Start: " + this.new_activity.get('startdate').value +
     "End: " + this.new_activity.get('enddate').value +
     "Voluntering: " + this.new_activity.get('voluntering').value +
-    "Sponsorship: " + this.new_activity.get('sponsorship').value);
-    //alert(this.cucumber+"  "+this.carret);
+    "Sponsorship: " + this.new_activity.get('sponsorship').value); */
+    
+    let temp = "";
+    if(this.new_activity.get('voluntering').value===true){
+            temp = 'Volunteering';
+    }
+    if(this.new_activity.get('sponsorship').value===true){
+            temp = 'Sponsorship';
+    }
+
+    this.profileService.getData().then((data)=>{
+  
+      this.activity = {
+        activityname: this.new_activity.get('activityname').value,
+        activitydescription: this.new_activity.get('activitydescription').value,
+        activityowner: data._id,
+        companyid: data.companyid,
+        enddate: this.new_activity.get('enddate').value,
+        startdate: this.new_activity.get('startdate').value,
+        mydonateurl: this.new_activity.get('mydonateurl').value,
+        donationmatch: this.new_activity.get('donationmatch').value,
+        activitytype: temp,
+        approved: false,
+        address: this.new_activity.get('location').value
+      };
+      
+      this.activitiesService.createActivity(this.activity).then((result) => {
+        console.log(">>>>> "+JSON.stringify(result));  
+         this.nav.pop(); 
+        //this.nav.push(ProfilePage);
+        //this.nav.insert(0,EditProfilePage);
+        //this.nav.popToRoot();
+        
+      }, (err: any) => {
+            //this.loading.dismiss();
+            alert(`status: ${err.status}, ${err.statusText}`);
+      });
+
+
+
+
+    });
+
+
+    
+     
   }
   /* public presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({

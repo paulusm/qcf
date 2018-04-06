@@ -26,7 +26,7 @@ $black-d: lighten($black, 60%);
 
 
 $theme-color-1: #76323f;
-//$theme-color-1-1: hsl(349, 10%, 60%);
+$theme-color-11: #9e737c;
 
 //$theme-color-1: #b3dd40;
 $theme-color-2: #f2863e;
@@ -34,6 +34,7 @@ $theme-color-3: #383544;
 
 //$theme-color-4: #00e9d5;
 $theme-color-4: #37b6a3;
+$theme-color-44: #96ebde;
 
 $theme-color-5: #ae75e7;
 
@@ -53,6 +54,7 @@ $theme-color-8: #756404;
 
 $colors: (
   primary:    #6d9ff5,
+  primary2:    #9dbef8,  
   light-blue: #020202,
   secondary:  #32db64,
   danger:     #f4344f,

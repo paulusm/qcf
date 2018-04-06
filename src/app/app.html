@@ -1,18 +1,21 @@
 <ion-menu [content]="content" [swipeEnabled]="false" [ngClass]="menuColor">
     
   <ion-content class="menu-content">
-    <ion-list class="menu-list">
-      <button ion-item detail-none *ngFor="let page of pages" (click)="openPage(page)">
+      <!-- <preload-image style="border-radius: 15%;" [ratio]="{w:1, h:1}" [src]="menuImage" alt="this is the image" title="IMAGE!"></preload-image> -->
+      <!-- <background-image [src]="menuImage">
+      </background-image> -->
+
+
+      <ion-list class="menu-list">
+        <!-- <ion-img width="80" height="80" [src]="menuImage"></ion-img> -->
+        <button ion-item detail-none *ngFor="let page of pages" (click)="openPage(page)">
         <ion-icon *ngIf="page.icon" name="{{page.icon}}" item-left></ion-icon>
         {{page.title}}
       </button>
-       <div>
         <button ion-item detail-none *ngFor="let page of pushPages" (click)="pushPage(page)">
           <ion-icon *ngIf="page.icon" name="{{page.icon}}" item-left></ion-icon>
           {{page.title}}
         </button>
-      </div>
-
     </ion-list>
   </ion-content>
 </ion-menu>

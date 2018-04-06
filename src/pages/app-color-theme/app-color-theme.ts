@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Events, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
 
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
+
+//import { MyApp } from '../../app/app.component';
+
+//import { LoginPage } from '../login/login';
 /**
  * Generated class for the AppColorThemePage page.
  *
@@ -20,7 +24,7 @@ export class AppColorThemePage {
   colorTheme: any;
   colorThemeHeader:any;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams,public appThemeColorProvider:AppThemeColorProvider) {
+  constructor(public events: Events, public navCtrl: NavController, public navParams: NavParams,public appThemeColorProvider:AppThemeColorProvider) {
 
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
@@ -46,23 +50,27 @@ export class AppColorThemePage {
     console.log('ionViewDidLoad AppColorThemePage');
   }
   onChangeTheme1(){
-
+    this.events.publish('app-color-theme-1');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-1');
+    //this.navCtrl.setRoot(TabsNavigationPage);
     this.navCtrl.setRoot(TabsNavigationPage);
   }
   onChangeTheme2(){
-
+    this.events.publish('app-color-theme-2');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-2');
     this.navCtrl.setRoot(TabsNavigationPage);
+    //this.navCtrl.setRoot(TabsNavigationPage);
   }
   onChangeTheme3(){
-
+    this.events.publish('app-color-theme-3');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-3');
     this.navCtrl.setRoot(TabsNavigationPage);
+    //this.navCtrl.setRoot(TabsNavigationPage);
   }
   onChangeTheme4(){
-
+    this.events.publish('app-color-theme-4');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-4');
     this.navCtrl.setRoot(TabsNavigationPage);
+    //this.navCtrl.setRoot(TabsNavigationPage);
   }
 }

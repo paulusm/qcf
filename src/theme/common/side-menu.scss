@@ -33,13 +33,13 @@
 				font-size: 1.8rem;
 				font-weight: 300;
 				letter-spacing: 1px;
-				color: $white-a;
+				color:  $theme-color-11;//$white-a;
 			}
 
 			.item-icon
 			{
 				
-				color: $white-a;
+				color:  $theme-color-11;//$white-a;
 				font-size: 3.4rem;
 			}
 
@@ -50,13 +50,15 @@
 
 				.item-inner
 				{
+					//background-color: $white;
 					font-family: 'Trebuchet MS';
-					color: $white;
+					color: $black-d;
 				}
 
 				.item-icon
 				{
-					color: $white;
+					//background-color: $white;
+					color: $black-d;
 				}
 			}
 		}
@@ -98,13 +100,13 @@
 				font-size: 1.8rem;
 				font-weight: 300;
 				letter-spacing: 1px;
-				color: $theme-color-3;
+				color:  $theme-color-44;//$white;
 			}
 
 			.item-icon
 			{
 				//font-family: 'Helvetica';
-				color: $white-b;
+				color:  $theme-color-44;//$white;
 				font-size: 3.4rem;
 			}
 
@@ -116,12 +118,12 @@
 				.item-inner
 				{
 					font-family: 'Verdana';
-					color: $white;
+					color: $black;
 				}
 
 				.item-icon
 				{
-					color: $white;
+					color: $black;
 				}
 			}
 		}
@@ -163,13 +165,13 @@
 				font-size: 1.8rem;
 				font-weight: 300;
 				letter-spacing: 1px;
-				color: $black-c;
+				color: color($colors, primary2, base);//$white;
 			}
 
 			.item-icon
 			{
 				//font-family: 'Helvetica';
-				color: $white;
+				color: color($colors, primary2, base);//$white;
 				font-size: 3.4rem;
 			}
 
@@ -181,12 +183,12 @@
 				.item-inner
 				{
 					font-family: 'Helvetica';
-					color: $white;
+					color: $black-c;
 				}
 
 				.item-icon
 				{
-					color: $white;
+					color: $black-c;
 				}
 			}
 		}
@@ -228,13 +230,13 @@
 				font-size: 1.8rem;
 				font-weight: 300;
 				letter-spacing: 1px;
-				color: $theme-color-7;
+				color: $white;
 			}
 
 			.item-icon
 			{
 				//font-family: 'Helvetica';
-				color: $theme-color-7;
+				color: $white;
 				font-size: 3.4rem;
 			}
 
@@ -246,12 +248,12 @@
 				.item-inner
 				{
 					font-family: 'Calibri';
-					color: $white;
+					color: $theme-color-7;
 				}
 
 				.item-icon
 				{
-					color: $white;
+					color: $theme-color-7;
 				}
 			}
 		}

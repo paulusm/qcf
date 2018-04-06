@@ -61,14 +61,16 @@ export class ActivitiesPage {
   }
 
   ionViewDidLoad() {
-    this.loading.present();
+     this.loading.present();
     this.activitiesService
-      .getData()
+      .getActivities()
       .then(data => {
-        this.activities.items = data.items;
-        //console.log(data.items);
+          //console.log(data['_body']);
+        this.activities.items = JSON.parse(data['_body']);
+        console.log(this.activities.items);
+        //console.log(this.activities.items[1]);
         this.loading.dismiss();
-      });
+      }); 
   }
   goToActivitiesDetail(item:any){
     //alert(item.title);

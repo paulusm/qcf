@@ -48,8 +48,8 @@
 	{
 		margin: 0px;
 		border-radius: 6px;
-		background-color: color($colors, primary, base);
-		color: color($colors, button-alt, contrast);
+		background-color: color($colors, primary2, base);
+		color: $black;//color($colors, button-alt, contrast);
 		font-weight: 500;
 		font-family: 'Helvetica';
 	}
