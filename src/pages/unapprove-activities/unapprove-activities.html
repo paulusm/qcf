@@ -1,0 +1,45 @@
+<ion-header [ngClass]="colorThemeHeader">
+  <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        UNAPPROVE ACTIVITIES
+      </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content [ngClass]="colorTheme">
+<ion-list>
+  
+    <ion-item-sliding *ngFor="let item of activities.items">
+      <ion-item >
+          <ion-row>
+              <ion-col>
+                <preload-image style="border-radius: 5%" [ratio]="{w:1, h:1}" [src]="item.displayImage"></preload-image>
+              </ion-col>
+              <ion-col padding="3">
+                <p>{{item.startdate}}</p>
+                <p id="title" rows="3">{{item.activityname}}</p>
+              </ion-col>
+            </ion-row>
+      </ion-item>
+
+      <ion-item-options side="right">
+        <button ion-button class="btn-details" (click)="goToUnapprovedActivitiesDetail(item)">
+          <ion-icon name="arrow-forward"></ion-icon>
+          Approve
+        </button>
+        
+        <!-- <button ion-button class="btn-details-join" (click)="goToJoinActivity(item)" [disabled]="item.status">
+          <ion-icon name="add"></ion-icon>
+          Join
+        </button>
+        <button ion-button (click)="goToNavigateActivity(item)">
+          <ion-icon name="navigate"></ion-icon>
+          Navigate
+        </button> -->
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

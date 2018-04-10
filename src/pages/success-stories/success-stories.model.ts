@@ -11,6 +11,7 @@ export class SuccessStoryModel {
     updatedAt: string;
     _id: string;
     displayImage:string;
+    themeid: string;
     }
     export class SuccessStoriesModel {
       items: Array<SuccessStoryModel>;

@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, LoadingController,Platform,ToastController,ActionSheetController } from 'ionic-angular';
-import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { NavController, ModalController, LoadingController,Platform,ToastController,ActionSheetController, NavParams } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
+//import { JoinActivityPage } from '../join-activity/join-activity';
+//import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
+import { FormGroup, FormControl } from '@angular/forms';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
-
-import { ProfilePage } from '../profile/profile';
 
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { ProfileService } from '../profile/profile.service';
+import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { Storage } from '@ionic/storage';
 
 import { Camera } from '@ionic-native/camera';
@@ -18,25 +19,22 @@ import { ActivitiesService } from '../activities/activities.service';
 
 import { FilesProvider } from '../../providers/files/files';
 
-
 @Component({
-  selector: 'page-create-activity',
-  templateUrl: 'create-activity.html',
+  selector: 'page-edit-activity-detail',
+  templateUrl: 'edit-activity-detail.html',
 })
-
-export class CreateActivityPage {
-  new_activity: FormGroup;
-  main_page: { component: any };
-  loading: any;
-  image: any = null;
-
+export class EditActivityDetailPage {
+  item:any;
   colorTheme: any;
   colorThemeHeader:any;
-
+  new_activity:any;
+  image: any;
+  vol: boolean=false;
+  spon: boolean=false;
   activity: any;
-  
+
   constructor(
-    public nav: NavController,
+    public navCtrl: NavController, 
     private transfer: FileTransfer,
     public files: FilesProvider,
     public modal: ModalController,
@@ -50,12 +48,13 @@ export class CreateActivityPage {
     private filePath: FilePath,
     private camera: Camera,
     public appThemeColorProvider:AppThemeColorProvider,
-    public activitiesService:ActivitiesService
+    public activitiesService:ActivitiesService,
+    public navParams: NavParams,
+    public socialSharing: SocialSharing
   ) {
-    /* this.cucumber = false;
-    this.carret = false; */
-    this.main_page = { component: TabsNavigationPage };
-
+    //this.item = navParams.get("newItem");
+    this.item = navParams.get("newItem");
+      
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';
@@ -74,39 +73,62 @@ export class CreateActivityPage {
         this.colorThemeHeader = 'ion-header-4';
       }
     });
+      
+      if(this.item.activitytype.indexOf("Volunteering")!=-1){
+                    this.vol = true;
+      }
+      if(this.item.activitytype.indexOf("Sponsorship")!=-1){
+                    this.spon = true;
+      }
+      this.activitiesService.setActivityImage(this.item.filename);
 
     this.new_activity = new FormGroup({
-      activityname: new FormControl('', Validators.required),
-      activitydescription: new FormControl('', Validators.required),
+      activityname: new FormControl(''),
+      activitydescription: new FormControl(''),
       donationmatch: new FormControl(0),
       location: new FormControl(''),
       mydonateurl: new FormControl(''),
-                        activity_type: new FormControl('sponsorship'),
-      startdate: new FormControl('', Validators.required),
+      activity_type: new FormControl('sponsorship'),
+      startdate: new FormControl(''),
       //from_time: new FormControl('', Validators.required),
       enddate: new FormControl(''),
       //to_time: new FormControl(''),
       voluntering:new FormControl(false),
       sponsorship: new FormControl(false)
     });
+    console.log("*******"+JSON.stringify(this.item));
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddUserPage');
+     this.new_activity.patchValue({
+      activityname: this.item.activityname,
+      activitydescription: this.item.activitydescription,
+      donationmatch: this.item.donationmatch,
+      location: this.item.address,
+      mydonateurl: this.item.mydonateurl,
+      activity_type: this.item.activity_type,
+      startdate: this.item.startdate,
+      //from_time: new FormControl('', Validators.required),
+      enddate: this.item.enddate,
+      //to_time: new FormControl(''),
+      voluntering: this.vol,
+      sponsorship: this.spon
+      });
+      this.image = this.item.displayImage;
   }
-
-  doCreateActivity(){
-    /* alert("Name: " + this.new_activity.get('activityname').value +
-    "Description: " + this.new_activity.get('activitydescription').value +
-    "Location: " + this.new_activity.get('location').value +
-    "Donatiomatch: " + this.new_activity.get('donationmatch').value +
-    "URL: " + this.new_activity.get('mydonateurl').value +
-              "Type: " + this.new_activity.get('activity_type').value + 
-    "Start: " + this.new_activity.get('startdate').value +
-    "End: " + this.new_activity.get('enddate').value +
-    "Voluntering: " + this.new_activity.get('voluntering').value +
-    "Sponsorship: " + this.new_activity.get('sponsorship').value); */
-    
+    //    displayImage
+  /* sharePost(post) {
+    //this code is to use the social sharing plugin
+    // message, subject, file, url
+    this.socialSharing.share(post.details, post.title, post.url, null)
+    .then(() => {
+      console.log('Success!');
+    })
+    .catch(() => {
+       console.log('Error - Sharing');
+    }); 
+   } */
+   doUpdateActivity(){
     let temp = [];
     if(this.new_activity.get('voluntering').value===true){
             temp.push('Volunteering');
@@ -119,6 +141,7 @@ export class CreateActivityPage {
       this.activitiesService.getActivityImage().then((img) => {
           console.log("-------->>>>>>>>--------->>>>>>>>>>>--------- "+img);  
           this.activity = {
+            _id: this.item._id,
             activityname: this.new_activity.get('activityname').value,
             activitydescription: this.new_activity.get('activitydescription').value,
             activityowner: data._id,
@@ -133,13 +156,12 @@ export class CreateActivityPage {
             filename: img
           };
           
-          this.activitiesService.createActivity(this.activity).then((result) => {
-            console.log(">>>>> "+JSON.stringify(result));  
-            //this.nav.pop(); 
-            this.nav.setRoot(ProfilePage);
-            //this.nav.push(ProfilePage);
-            //this.nav.insert(0,EditProfilePage);
-            //this.nav.popToRoot();
+          this.activitiesService.updateActivity(this.activity).then((result) => {
+            console.log(">>>>*** "+JSON.stringify(result));  
+
+            this.navCtrl.insert(0,TabsNavigationPage);
+            this.navCtrl.popToRoot();
+
             
           }, (err: any) => {
                 //this.loading.dismiss();
@@ -150,8 +172,9 @@ export class CreateActivityPage {
 
 
     
-     
-  }
+
+   }
+   
    public presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',
@@ -253,53 +276,6 @@ export class CreateActivityPage {
                   this.presentToast(err);
                 });
     });
-  } 
-
-  saveChanges(){
-    
-    /* this.profileService.getData()
-    .then(data => {
-      this.profile = data;
-      
-      this.profile.forename = this.settingsForm.get('forename').value;
-      this.profile.surename = this.settingsForm.get('surename').value;
-      this.profile.displayname = this.settingsForm.get('displayName').value;
-      this.profile.department = this.settingsForm.get('department').value;
-      
-      this.profileService.getUserImage().then((value) => {
-        this.profile.imagepath = value;
-        
-        this.details = {
-          email: this.profile.email,
-          role: this.profile.role,
-          forename: this.profile.forename,
-          surname: this.profile.surename,
-          department: this.profile.department,
-          companyid: this.profile.companyid,
-          displayname: this.profile.displayname,
-          isfirstlogin: this.profile.isfirstlogin,
-          imagepath: this.profile.imagepath
-        };
-        
-        this.authService.updateAccount(this.details).then((result) => {
-          //this.loading.dismiss();
-          this.userModel.setUser(result['user']);  
-          this.profileService.setData(this.userModel);  
-          //this.nav.pop();      
-          //this.nav.setRoot(this.main_page.component);
-          this.nav.insert(0,TabsNavigationPage);
-          this.nav.popToRoot();
-        }, (err: any) => {
-              this.loading.dismiss();
-              alert(`status: ${err.status}, ${err.statusText}`);
-        });
-        return value;
-      }).catch(this.handleError);
-      
-      
-      this.loading.dismiss();
-    }); */
-
   }
-
+   
 }

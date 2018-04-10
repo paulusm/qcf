@@ -22,7 +22,8 @@ export class ActivityModel {
     donationmatch: number;
     activitytype: string;
     address:string;
-
+    filename:string;
+    displayImage:string;
   }
   export class ActivitiessModel {
     items: Array<ActivityModel>;

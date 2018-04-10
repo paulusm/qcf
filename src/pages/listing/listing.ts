@@ -29,7 +29,7 @@ export class ListingPage {
   companyThemes:any;
   
   value:boolean;
-  groups:any;
+  groups:any=[];
   shownGroup:any = null;
   colorTheme: any;
   colorThemeHeader:any;
@@ -84,6 +84,7 @@ export class ListingPage {
 
         this.themeService.getThemes().then((res) => {
           this.groups = JSON.parse(res['_body']); 
+          //console.log(this.groups.length);
                 for(var i=0; i<this.groups.length;i++){
                   let found="false";
                     for(let theme of this.companyThemes){
@@ -103,7 +104,7 @@ export class ListingPage {
 
       });
     });
-
+    
   }
 
   ionViewDidLoad() {
@@ -144,6 +145,7 @@ export class ListingPage {
   }
 
   doLeaveTheme(name){
+    console.log("Before "+this.companyModel.themes);
     if(confirm("Leave this theme ?")){
         var index = this.companyThemes.indexOf(name);
           if (index > -1) {
@@ -151,17 +153,24 @@ export class ListingPage {
           }
           this.companyModel.themes = this.companyThemes;
           this.companyService.updateCompany(this.companyModel).then(data => {
-                this.nav.setRoot(TabsNavigationPage);
-                console.log(data);
+               //console.log(data);
+               this.companyModel = data['company'];
+               this.companyService.setCompany(this.companyModel); 
+               this.nav.setRoot(TabsNavigationPage);
+                
           });
     }
+    console.log("After "+this.companyModel.themes);
   }
   doJoinTheme(name){
       if(confirm("Join this theme ?")){
           this.companyThemes.push(name);
           this.companyModel.themes = this.companyThemes;
           this.companyService.updateCompany(this.companyModel).then(data => {
-                console.log(data);
+                //console.log(data);
+                this.companyModel = data['company'];
+                this.companyService.setCompany(this.companyModel);
+                
                 this.nav.setRoot(TabsNavigationPage);
           });
       }

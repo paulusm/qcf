@@ -1,0 +1,94 @@
+<ion-header [ngClass]="colorThemeHeader"> 
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+   <ion-title>EDIT ACTIVITY</ion-title>
+ </ion-navbar>
+
+</ion-header>
+
+<ion-content [ngClass]="colorTheme">
+  <div ngClass="main-div">
+ <form  [formGroup]="new_activity" (ngSubmit)="doUpdateActivity()">
+  <ion-list> 
+  <ion-item>
+    <ion-label  floating>Title</ion-label>
+    <ion-input type="text" formControlName="activityname"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-label  floating>Description</ion-label>
+      <ion-input type="text" formControlName="activitydescription"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-label  floating>Location</ion-label>
+      <ion-input type="text" formControlName="location"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label  floating>Donation URL</ion-label>
+    <ion-input type="text" formControlName="mydonateurl"></ion-input>
+  </ion-item>
+  </ion-list>
+    
+      <ion-list>
+        <ion-item>
+          <ion-label floating>Donation Matching</ion-label>
+          <ion-input type="number" formControlName="donationmatch"></ion-input>
+        </ion-item>
+      </ion-list>
+    
+<h3 class="h3-heading">Activity Type</h3>
+    
+  
+    <ion-list >
+        <ion-item >
+          <ion-label clear>Voluntering</ion-label>
+          <ion-checkbox formControlName="voluntering"></ion-checkbox>
+        </ion-item>
+        <ion-item >
+          <ion-label  clear>Sponsorship</ion-label>
+          <ion-checkbox formControlName="sponsorship"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+
+
+    <ion-row>
+        <ion-col width-60>
+          <ion-item>
+            <ion-label>FROM</ion-label>
+            <ion-datetime placeholder="date" formControlName="startdate" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>
+      <ion-row>
+        <ion-col width-60>
+          <ion-item>
+            <ion-label>TO</ion-label>
+            <ion-datetime placeholder="date" formControlName="enddate" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
+          </ion-item>
+        </ion-col>
+
+      </ion-row>    
+
+     <div>
+          <ion-row>
+            <ion-col>
+              <preload-image style="border-radius: 15%;"  [ratio]="{w:3, h:2}" [src]="image" alt="this is the image" title="IMAGE!"></preload-image>
+            
+            
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col width-60>
+              <button ngClass="main-btn" ion-button outline block small (click)="presentActionSheet()">CHANGE PICTURE</button>
+            </ion-col>
+          </ion-row>
+        </div>
+
+
+
+  <button ion-button block ngClass="main-btn" type="submit">UPDATE</button>
+</form>
+</div>
+</ion-content>

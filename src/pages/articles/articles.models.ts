@@ -11,6 +11,7 @@ export class ArticleModel {
   updatedAt: string;
   _id: string;
   displayImage:string;
+  themeid: string;
     }
     export class ArticlesModel {
       items: Array<ArticleModel>;

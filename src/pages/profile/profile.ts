@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { MenuController, App, NavParams, LoadingController } from 'ionic-angular';
+import { MenuController, App, NavParams, LoadingController, NavController } from 'ionic-angular';
 import { EditProfilePage } from '../edit-profile/edit-profile';
 import { AddUserPage } from '../add-user/add-user';
 import { CreateActivityPage } from '../create-activity/create-activity';
+
+import { EditActivityListPage } from '../edit-activity-list/edit-activity-list';
+import { UnapproveActivitiesPage } from '../unapprove-activities/unapprove-activities';
+
 
 import { UserModel } from './profile.model';
 import { ProfileService } from './profile.service';
@@ -36,7 +40,8 @@ export class ProfilePage {
     public loadingCtrl: LoadingController,
     public storage: Storage,
     public files: FilesProvider,
-    public appThemeColorProvider:AppThemeColorProvider
+    public appThemeColorProvider:AppThemeColorProvider,
+    public nav:NavController
   ) {
         this.loading = this.loadingCtrl.create({
           content: 'Loading profile...'
@@ -91,15 +96,22 @@ export class ProfilePage {
     console.error('An error occurred', error); 
     return Promise.reject(error.message || error);
   } */
-
+  goToEditActivity(){
+    this.app.getRootNav().push(EditActivityListPage);
+  }
+  goToApproveActivity(){
+    this.app.getRootNav().push(UnapproveActivitiesPage);
+  }
 
   goToAddUser(){
     this.app.getRootNav().push(AddUserPage);
   }
 
   goToCreateActivity(){
-    this.app.getRootNav().push(CreateActivityPage);
-
+    //this.app.getRootNav().setRoot(CreateActivityPage);
+    this.app.getRootNav().insert(0,CreateActivityPage);
+    this.app.getRootNav().popToRoot();
+    //this.nav.setRoot(CreateActivityPage);
   }
 
   goToEditProfile() {

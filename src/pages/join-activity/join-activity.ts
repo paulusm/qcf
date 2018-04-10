@@ -30,6 +30,9 @@ export class JoinActivityPage {
   colorTheme: any;
   colorThemeHeader:any;
 
+  v:boolean = false;
+  s:boolean = false;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -40,6 +43,13 @@ export class JoinActivityPage {
     public profileService:ProfileService
   ) {
     this.item = navParams.get("newItem");
+    //alert(this.item._id);
+    if(this.item.activitytype.indexOf("Volunteering")!=-1){
+          this.v = true;
+    }
+    if(this.item.activitytype.indexOf("Sponsorship")!=-1){
+          this.s = true;
+    }
     this.main_page = { component: TabsNavigationPage };
 
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
@@ -62,7 +72,7 @@ export class JoinActivityPage {
     });
 
     this.join_activity = new FormGroup({
-       selected_option: new FormControl('voluntering')
+       selected_option: new FormControl()
     });
   
   }

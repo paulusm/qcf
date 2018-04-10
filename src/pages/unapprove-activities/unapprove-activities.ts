@@ -3,29 +3,31 @@ import { NavController, LoadingController } from 'ionic-angular';
 
 import 'rxjs/Rx';
 
-import { ActivitiessModel } from './activities.model';
-import { ActivitiesService } from './activities.service';
+import { ActivitiessModel } from '../activities/activities.model';
+import { ActivitiesService } from '../activities/activities.service';
 
-import { ActivitiesDetailsPage } from '../activities-details/activities-details';
-import { JoinActivityPage } from '../join-activity/join-activity';
+//import { ActivitiesDetailsPage } from '../activities-details/activities-details';
+//import { JoinActivityPage } from '../join-activity/join-activity';
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
 
-import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
+//import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
 import { ProfileService } from '../profile/profile.service';
 
+import { UnapproveActivitiesDetailsPage } from '../unapprove-activities-details/unapprove-activities-details';
+
 @Component({
-  selector: 'page-activities',
-  templateUrl: 'activities.html',
+  selector: 'page-unapprove-activities',
+  templateUrl: 'unapprove-activities.html',
 })
-export class ActivitiesPage {
+export class UnapproveActivitiesPage {
 
   activities: ActivitiessModel = new ActivitiessModel();
   loading: any;
   colorTheme: any;
   colorThemeHeader:any;
-  //start:any;
-  //destination:any;
+  /* start:any;
+  destination:any; */
   
 
   constructor(
@@ -33,7 +35,7 @@ export class ActivitiesPage {
     public activitiesService: ActivitiesService,
     public loadingCtrl: LoadingController,
     public appThemeColorProvider:AppThemeColorProvider,
-    private launchNavigator: LaunchNavigator,
+    //private launchNavigator: LaunchNavigator,
     public profileService:ProfileService
   ) {
   
@@ -68,23 +70,22 @@ export class ActivitiesPage {
     this.profileService.getData().then((user)=>{ 
           console.log(user);  
           this.activitiesService
-            .getActivities()
+            .getUnapprovedActivities()
             .then(data => {
                 //console.log(data['_body']);
               let  tempArray1 = JSON.parse(data['_body']);
-              console.log("Company's Activities after -->> "+JSON.stringify(tempArray1));
               let tempArray2=[];
               for(let t of tempArray1){
-                console.log(t.sponsors);
-                console.log(t.volunteers);
+                //console.log(t.sponsors);
+                //console.log(t.volunteers);
                       //console.log((t.sponsors.indexOf(user.email)) + " - " + (t.volunteers.indexOf(user.email)));  
-                      if(t.sponsors.indexOf(user.email)!= -1 || t.volunteers.indexOf(user.email)!= -1){
+                      /* if(t.sponsors.indexOf(user.email)!= -1 || t.volunteers.indexOf(user.email)!= -1){
                           
                           t.status = true;
 
                       }else{
                           t.status = false;
-                      }
+                      } */
                       t.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+t.filename;
                       tempArray2.push(t);
               }  
@@ -92,31 +93,31 @@ export class ActivitiesPage {
 
               this.activities.items = tempArray2;//JSON.parse(data['_body']);
               //console.log(data['_body']);
-              console.log("Company's Activities after -->> "+JSON.stringify(this.activities.items));
+              console.log(this.activities.items);
               this.loading.dismiss();
           }); 
     });
   }
-  goToActivitiesDetail(item:any){
+  goToUnapprovedActivitiesDetail(item:any){
     //alert(item.title);
-    //console.log(">>>>>>>>>>>>>>>>>>>>>>>>"+item.title);
-    this.nav.push(ActivitiesDetailsPage, { newItem: item });
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>"+JSON.stringify(item));
+    this.nav.push(UnapproveActivitiesDetailsPage, { newItem: item });
   }
-  goToJoinActivity(item:any){
+  /* goToJoinActivity(item:any){
     this.nav.push(JoinActivityPage, { newItem: item });
     //alert(item.url);
   }
   goToNavigateActivity(item){
     let options: LaunchNavigatorOptions = {
-      start: ""
+      start: this.start
     };
 
-    this.launchNavigator.navigate(item.address, options)
+    this.launchNavigator.navigate(this.destination, options)
         .then(
             success => alert('Launched navigator'),
             error => alert('Error launching navigator: ' + error)
     ); 
 
-  }
+  } */
 
 }

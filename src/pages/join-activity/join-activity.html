@@ -13,17 +13,17 @@
           <ion-card-title>
             {{item.activityname}}
           </ion-card-title>
-          
+            {{item.activitydescription}}
           <h3 class="h3-heading">Participation Type</h3>
 
           <ion-list radio-group formControlName="selected_option">
             <ion-item>
               <ion-label>Voluntering</ion-label>
-              <ion-radio item-left value="voluntering"></ion-radio>
+              <ion-radio item-left value="voluntering" [disabled]="!v"></ion-radio>
             </ion-item>
             <ion-item >
               <ion-label>Sponsorship</ion-label>
-              <ion-radio item-left value="sponsorship"></ion-radio>
+              <ion-radio item-left value="sponsorship" [disabled]="!s"></ion-radio>
             </ion-item>
           </ion-list>
         </ion-card-content>

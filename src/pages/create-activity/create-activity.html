@@ -1,8 +1,19 @@
 <ion-header [ngClass]="colorThemeHeader">
+  <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        CREATE ACTIVITY
+      </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<!-- <ion-header [ngClass]="colorThemeHeader">
     <ion-navbar>
       <ion-title>CREATE ACTIVITY</ion-title>
     </ion-navbar>
-  </ion-header>
+  </ion-header> -->
   
   <ion-content [ngClass]="colorTheme">
       <div ngClass="main-div">
@@ -77,10 +88,10 @@
             </ion-col> -->
           </ion-row>    
 
-         <!--  <div>
+         <div>
               <ion-row>
                 <ion-col>
-                  <preload-image style="border-radius: 15%;"  [ratio]="{w:3, h:2}" [src]="" alt="this is the image" title="IMAGE!"></preload-image>
+                  <preload-image style="border-radius: 15%;"  [ratio]="{w:3, h:2}" [src]="image" alt="this is the image" title="IMAGE!"></preload-image>
                 
                 
                 </ion-col>
@@ -90,7 +101,7 @@
                   <button ngClass="main-btn" ion-button outline block small (click)="presentActionSheet()" [disabled]="!new_activity.valid">UPLOAD PICTURE</button>
                 </ion-col>
               </ion-row>
-            </div> -->
+            </div>
 
 
 

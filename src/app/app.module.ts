@@ -69,6 +69,12 @@ import { AppColorThemePage } from '../pages/app-color-theme/app-color-theme';
 
 import { ActivitiesDetailsPage } from '../pages/activities-details/activities-details';
 
+import { EditActivityListPage } from '../pages/edit-activity-list/edit-activity-list';
+import { EditActivityDetailPage } from '../pages/edit-activity-detail/edit-activity-detail';
+
+import { UnapproveActivitiesPage } from '../pages/unapprove-activities/unapprove-activities';
+import { UnapproveActivitiesDetailsPage } from '../pages/unapprove-activities-details/unapprove-activities-details';
+
 // Ionic Native Plugins
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -123,6 +129,12 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
     ActivitiesDetailsPage,
     CreateActivityPage,
     JoinActivityPage,
+
+    EditActivityListPage,
+    EditActivityDetailPage,
+
+    UnapproveActivitiesPage,
+    UnapproveActivitiesDetailsPage,
 
     //functionalities
     ContactCardPage,
@@ -180,7 +192,12 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
     ActivitiesPage,
     ActivitiesDetailsPage,
     CreateActivityPage,
-    JoinActivityPage
+    JoinActivityPage,
+    EditActivityListPage,
+    EditActivityDetailPage,
+    
+    UnapproveActivitiesPage,
+    UnapproveActivitiesDetailsPage,
     
 
   ],
