@@ -1,11 +1,15 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page provides Services for activities such as Http 
+ * calls to API which includes get and post request. Also get and 
+ * set values in local storage
+ * **************************************************************/
 import { Injectable } from "@angular/core";
 import { Http, Headers } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import { ProfileService } from '../profile/profile.service';
 
 import 'rxjs/add/operator/toPromise';
-
-//import { ActivitiessModel } from './activities.model';
 
 @Injectable()
 export class ActivitiesService {
@@ -25,9 +29,6 @@ export class ActivitiesService {
             let headers = new Headers();
             headers.append('Authorization', this.token);
             
-            //headers.append('Content-Type', 'application/json');
-            //let companyid = '5ab7dbc0bc24e300543c';
-            console.log("ownerid -> "+data._id);
             this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/activities/getActivityByOwnerID/'+data._id, {headers: headers})
               .subscribe(res => {
                     
@@ -60,9 +61,6 @@ export class ActivitiesService {
             let headers = new Headers();
             headers.append('Authorization', this.token);
             
-            //headers.append('Content-Type', 'application/json');
-            //let companyid = '5ab7dbc0bc24e300543c';
-            console.log("companyid -> "+data.companyid);
             this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/activities/getFutureActivitiesApprovedByCompanyID/'+data.companyid, {headers: headers})
               .subscribe(res => {
                     
@@ -95,9 +93,6 @@ export class ActivitiesService {
             let headers = new Headers();
             headers.append('Authorization', this.token);
             
-            //headers.append('Content-Type', 'application/json');
-            //let companyid = '5ab7dbc0bc24e300543c';
-            console.log("companyid -> "+data.companyid);
             this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/activities/getActivitiesUnapproved/'+data.companyid, {headers: headers})
               .subscribe(res => {
                     
@@ -119,7 +114,6 @@ export class ActivitiesService {
   
 async createActivity(activity){
 
-  //console.log("Running updateAccount");
   return await new Promise((resolve, reject) => {
 
     this.storage.get('token').then((value) => {
@@ -129,14 +123,9 @@ async createActivity(activity){
       let headers = new Headers();
       headers.append('Authorization', this.token);
       headers.append('Content-Type', 'application/json');
-      //alert(details.email);
      this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/activities/createActivity', JSON.stringify(activity), {headers: headers})
         .subscribe(res => {
 
-          /* let data = res.json();
-          this.token = data.token;
-          this.role = data.user["displayname"];
-          console.log("Update ->>>>> Role - " + this.role) */
           resolve(res);
 
         }, (err) => {
@@ -149,7 +138,6 @@ async createActivity(activity){
 
 async updateActivity(activity){
 
-  //console.log("Running updateAccount");
   return await new Promise((resolve, reject) => {
 
     this.storage.get('token').then((value) => {
@@ -159,14 +147,9 @@ async updateActivity(activity){
       let headers = new Headers();
       headers.append('Authorization', this.token);
       headers.append('Content-Type', 'application/json');
-      //alert(details.email);
      this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/activities/updateActivity', JSON.stringify(activity), {headers: headers})
         .subscribe(res => {
 
-          /* let data = res.json();
-          this.token = data.token;
-          this.role = data.user["displayname"];
-          console.log("Update ->>>>> Role - " + this.role) */
           resolve(res);
 
         }, (err) => {
@@ -178,7 +161,6 @@ async updateActivity(activity){
 }
 async approveActivity(activity){
 
-  //console.log("Running updateAccount");
   return await new Promise((resolve, reject) => {
 
     this.storage.get('token').then((value) => {
@@ -188,14 +170,9 @@ async approveActivity(activity){
       let headers = new Headers();
       headers.append('Authorization', this.token);
       headers.append('Content-Type', 'application/json');
-      //alert(details.email);
      this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/activities/approveActivity', JSON.stringify(activity), {headers: headers})
         .subscribe(res => {
 
-          /* let data = res.json();
-          this.token = data.token;
-          this.role = data.user["displayname"];
-          console.log("Update ->>>>> Role - " + this.role) */
           resolve(res);
 
         }, (err) => {
@@ -208,7 +185,6 @@ async approveActivity(activity){
 
 async updateActivityAsEmployee(activity){
 
-  //console.log("Running updateAccount");
   return await new Promise((resolve, reject) => {
 
     this.storage.get('token').then((value) => {
@@ -219,16 +195,10 @@ async updateActivityAsEmployee(activity){
       headers.append('Authorization', this.token);
       headers.append('Content-Type', 'application/json');
 
-      console.log(this.token);
-      console.log(">>>>>id "+activity._id +" "+ JSON.stringify(activity));
      
       this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/activities/updateActivityAsEmployee', JSON.stringify(activity), {headers: headers})
         .subscribe(res => {
 
-          /* let data = res.json();
-          this.token = data.token;
-          this.role = data.user["displayname"];
-          console.log("Update ->>>>> Role - " + this.role) */
           resolve(res);
 
         }, (err) => {
@@ -246,16 +216,5 @@ async getActivityImage(){
 async setActivityImage(newImage){
   await this.storage.set('activityImage', newImage);
 }
-  /* getData(): Promise<ActivitiessModel> {
-    return this.http.get('./assets/data/news.json')
-     .toPromise()
-     .then(response => response.json() as ActivitiessModel)
-     .catch(this.handleError);
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
-  } */
-
+  
 }

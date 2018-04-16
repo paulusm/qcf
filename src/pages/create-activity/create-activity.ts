@@ -1,3 +1,15 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible for give user functionality of 
+ * creating new charitble activity which need to be approved by Bussiness Admin.
+ * doCreateActivity() function call activities service to create new activity. 
+ * User can upload their images using mobile camera or choose from galary
+ * These functions perform these tasks:
+ * uploadFile()
+ * takePicture()
+ * presentActionSheet() 
+ * **************************************************************/
+
 import { Component } from '@angular/core';
 import { NavController, ModalController, LoadingController,Platform,ToastController,ActionSheetController } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
@@ -52,8 +64,6 @@ export class CreateActivityPage {
     public appThemeColorProvider:AppThemeColorProvider,
     public activitiesService:ActivitiesService
   ) {
-    /* this.cucumber = false;
-    this.carret = false; */
     this.main_page = { component: TabsNavigationPage };
 
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
@@ -81,11 +91,9 @@ export class CreateActivityPage {
       donationmatch: new FormControl(0),
       location: new FormControl(''),
       mydonateurl: new FormControl(''),
-                        activity_type: new FormControl('sponsorship'),
+      activity_type: new FormControl('sponsorship'),
       startdate: new FormControl('', Validators.required),
-      //from_time: new FormControl('', Validators.required),
       enddate: new FormControl(''),
-      //to_time: new FormControl(''),
       voluntering:new FormControl(false),
       sponsorship: new FormControl(false)
     });
@@ -95,64 +103,7 @@ export class CreateActivityPage {
     console.log('ionViewDidLoad AddUserPage');
   }
 
-  doCreateActivity(){
-    /* alert("Name: " + this.new_activity.get('activityname').value +
-    "Description: " + this.new_activity.get('activitydescription').value +
-    "Location: " + this.new_activity.get('location').value +
-    "Donatiomatch: " + this.new_activity.get('donationmatch').value +
-    "URL: " + this.new_activity.get('mydonateurl').value +
-              "Type: " + this.new_activity.get('activity_type').value + 
-    "Start: " + this.new_activity.get('startdate').value +
-    "End: " + this.new_activity.get('enddate').value +
-    "Voluntering: " + this.new_activity.get('voluntering').value +
-    "Sponsorship: " + this.new_activity.get('sponsorship').value); */
-    
-    let temp = [];
-    if(this.new_activity.get('voluntering').value===true){
-            temp.push('Volunteering');
-    }
-    if(this.new_activity.get('sponsorship').value===true){
-            temp.push('Sponsorship');
-    }
-
-    this.profileService.getData().then((data)=>{
-      this.activitiesService.getActivityImage().then((img) => {
-          console.log("-------->>>>>>>>--------->>>>>>>>>>>--------- "+img);  
-          this.activity = {
-            activityname: this.new_activity.get('activityname').value,
-            activitydescription: this.new_activity.get('activitydescription').value,
-            activityowner: data._id,
-            companyid: data.companyid,
-            enddate: this.new_activity.get('enddate').value,
-            startdate: this.new_activity.get('startdate').value,
-            mydonateurl: this.new_activity.get('mydonateurl').value,
-            donationmatch: this.new_activity.get('donationmatch').value,
-            activitytype: temp,
-            approved: false,
-            address: this.new_activity.get('location').value,
-            filename: img
-          };
-          
-          this.activitiesService.createActivity(this.activity).then((result) => {
-            console.log(">>>>> "+JSON.stringify(result));  
-            //this.nav.pop(); 
-            this.nav.setRoot(ProfilePage);
-            //this.nav.push(ProfilePage);
-            //this.nav.insert(0,EditProfilePage);
-            //this.nav.popToRoot();
-            
-          }, (err: any) => {
-                //this.loading.dismiss();
-                alert(`status: ${err.status}, ${err.statusText}`);
-          });
-      });  
-    });
-
-
-    
-     
-  }
-   public presentActionSheet() {
+  public presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',
       buttons: [
@@ -175,7 +126,6 @@ export class CreateActivityPage {
       ]
     });
     actionSheet.present(); 
-    //this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
   } 
 
   public takePicture(sourceType) {
@@ -199,14 +149,10 @@ export class CreateActivityPage {
               .then(filePath => {
                 this.image=filePath;
                 this.uploadFile(filePath);
-                //this.saveChanges();
-                //this.imageUpload=true;
               });
       } else {
         this.image= imagePath;
         this.uploadFile(imagePath);
-        //this.saveChanges();
-        //this.imageUpload=true;
       }
     }, (err) => {
       this.presentToast('Error while selecting image.');
@@ -242,11 +188,9 @@ export class CreateActivityPage {
                 fileTransfer.upload(imageURI, encodeURI('https://ionic2-qcf-auth.herokuapp.com/api/files/upload'), options,true)
                   .then((data) => {
                     let imageName = JSON.parse(data.response);
-                    //this.profileService.setUserImage(imageName.filename);
                     this.activitiesService.setActivityImage(imageName.filename);
                     loader.dismiss();
                     this.presentToast("Image uploaded successfully");
-                    //this.saveChanges(); 
                 }, (err) => {
                   console.log(err);
                   loader.dismiss();
@@ -255,51 +199,49 @@ export class CreateActivityPage {
     });
   } 
 
-  saveChanges(){
-    
-    /* this.profileService.getData()
-    .then(data => {
-      this.profile = data;
-      
-      this.profile.forename = this.settingsForm.get('forename').value;
-      this.profile.surename = this.settingsForm.get('surename').value;
-      this.profile.displayname = this.settingsForm.get('displayName').value;
-      this.profile.department = this.settingsForm.get('department').value;
-      
-      this.profileService.getUserImage().then((value) => {
-        this.profile.imagepath = value;
-        
-        this.details = {
-          email: this.profile.email,
-          role: this.profile.role,
-          forename: this.profile.forename,
-          surname: this.profile.surename,
-          department: this.profile.department,
-          companyid: this.profile.companyid,
-          displayname: this.profile.displayname,
-          isfirstlogin: this.profile.isfirstlogin,
-          imagepath: this.profile.imagepath
-        };
-        
-        this.authService.updateAccount(this.details).then((result) => {
-          //this.loading.dismiss();
-          this.userModel.setUser(result['user']);  
-          this.profileService.setData(this.userModel);  
-          //this.nav.pop();      
-          //this.nav.setRoot(this.main_page.component);
-          this.nav.insert(0,TabsNavigationPage);
-          this.nav.popToRoot();
-        }, (err: any) => {
-              this.loading.dismiss();
-              alert(`status: ${err.status}, ${err.statusText}`);
-        });
-        return value;
-      }).catch(this.handleError);
-      
-      
-      this.loading.dismiss();
-    }); */
+  doCreateActivity(){
 
+      let temp = [];
+    if(this.new_activity.get('voluntering').value===true){
+            temp.push('Volunteering');
+    }
+    if(this.new_activity.get('sponsorship').value===true){
+            temp.push('Sponsorship');
+    }
+
+    this.profileService.getData().then((data)=>{
+      this.activitiesService.getActivityImage().then((img) => {
+          let start_date = this.new_activity.get('startdate').value;
+          let end_date = this.new_activity.get('enddate').value;
+          if(this.new_activity.get('enddate').value===""){
+            end_date = this.new_activity.get('startdate').value;
+          }
+          if(this.new_activity.get('startdate').value===""){
+            start_date = this.new_activity.get('enddate').value;
+          }
+          this.activity = {
+              
+            activityname: this.new_activity.get('activityname').value,
+            activitydescription: this.new_activity.get('activitydescription').value,
+            activityowner: data._id,
+            companyid: data.companyid,
+            enddate: end_date,
+            startdate: start_date,
+            mydonateurl: this.new_activity.get('mydonateurl').value,
+            donationmatch: this.new_activity.get('donationmatch').value,
+            activitytype: temp,
+            approved: false,
+            address: this.new_activity.get('location').value,
+            filename: img
+          };
+          
+          this.activitiesService.createActivity(this.activity).then((result) => {
+            this.nav.setRoot(ProfilePage);
+            
+          }, (err: any) => {
+                alert(`status: ${err.status}, ${err.statusText}`);
+          });
+      });  
+    });  
   }
-
 }

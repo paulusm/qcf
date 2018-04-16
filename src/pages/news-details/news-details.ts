@@ -1,3 +1,13 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible for displaying details of selected News
+ * News get render on page initiation.
+ * User been given options to like this activity or share this News. 
+ * These function have been used for these task:
+ * likeNews()
+ * sharePost()
+ * **************************************************************/
+
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
@@ -31,21 +41,16 @@ export class NewsDetailsPage {
     public newsService:NewsService,
     public appThemeColorProvider:AppThemeColorProvider) {
       this.item = navParams.get("newItem");
-      console.log("...............>>>>...."+JSON.stringify(this.item));
       this.profileService.getData()
       .then(data => {
         this.userModel = data;
         
-        console.log("Likes ->> "+this.item.likes.indexOf(this.userModel.email));
         if(this.item.likes.indexOf(this.userModel.email) !== -1){
             this.isLiked = true;
         }
-        //console.log(JSON.stringify(this.item));
-
       });
       
           
-    // alert(this.item.type);
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';
@@ -67,7 +72,6 @@ export class NewsDetailsPage {
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad NewsDetailsPage');
   }
 
   sharePost(post) {
@@ -86,7 +90,6 @@ export class NewsDetailsPage {
 
    likeNews(){
     this.image = this.item.displayImage;
-     //alert(this.isLiked);
      if(this.isLiked){
       var index = this.item.likes.indexOf(this.userModel.email);    // <-- Not supported in <IE9
       if (index !== -1) {
@@ -94,25 +97,7 @@ export class NewsDetailsPage {
       }
 
       this.newsService.updateLikes(this.item).then((result) => {
-        let a = result['_body'];  
-          console.log(a);
-
-        //this.newsModel = result['_body'].story;
-        /* this.newsModel._id = result['_body'].story._id;
-        this.newsModel.approved = result['_body'].story.approved;
-        this.newsModel.createdAt = result['_body'].story.createdAt;
-        this.newsModel.imagepath = result['_body'].story.imagepath;
-        this.newsModel.likes = result['_body'].story.likes;
-        this.newsModel.publisheddate = result['_body'].story.publisheddate;
-        this.newsModel.story = result['_body'].story.story;
-        this.newsModel.storyauthor = result['_body'].story.storyauthor;
-        this.newsModel.storytitle = result['_body'].story.storytitle;
-        this.newsModel.type = result['_body'].story.type;
-        this.newsModel.updatedAt = result['_body'].story.updatedAt;
-        this.newsModel.displayImage = this.image; */
-
-        //this.item = this.newsModel;
-        //console.log(this.item);
+      
       }, (err: any) => {
             alert(`status: ${err.status}, ${err.statusText}`);
       });
@@ -123,28 +108,10 @@ export class NewsDetailsPage {
      }else{
         this.item.likes.push(this.userModel.email);
         this.newsService.updateLikes(this.item).then((result) => {
-        let a = result['_body'];  
-        console.log(a);
-        /* this.newsModel._id = result['_body'].story._id;
-        this.newsModel.approved = result['_body'].story.approved;
-        this.newsModel.createdAt = result['_body'].story.createdAt;
-        this.newsModel.imagepath = result['_body'].story.imagepath;
-        this.newsModel.likes = result['_body'].story.likes;
-        this.newsModel.publisheddate = result['_body'].story.publisheddate;
-        this.newsModel.story = result['_body'].story.story;
-        this.newsModel.storyauthor = result['_body'].story.storyauthor;
-        this.newsModel.storytitle = result['_body'].story.storytitle;
-        this.newsModel.type = result['_body'].story.type;
-        this.newsModel.updatedAt = result['_body'].story.updatedAt;
-        this.newsModel.displayImage = this.image;
-      
-        this.item = this.newsModel;
-        console.log(this.item); */
         }, (err: any) => {
               alert(`status: ${err.status}, ${err.statusText}`);
         });
      }
-     //alert(this.item.likes);
      this.isLiked= !this.isLiked;
 
    }

@@ -1,3 +1,9 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible for give Business Admin functionality of 
+ * adding new user with role either BusinessAdmin/Employee.
+ * doAddUser() function call authentication service to create new user. 
+ * **************************************************************/
 import { Component } from '@angular/core';
 import { NavController, ModalController, LoadingController } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
@@ -61,7 +67,6 @@ export class AddUserPage {
     this.main_page = { component: TabsNavigationPage };
 
     this.new_user = new FormGroup({
-      //email: new FormControl('', Validators.required),
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
@@ -78,16 +83,10 @@ export class AddUserPage {
   };
   
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddUserPage');
+    
   }
 
   doAddUser(){
-    /* let image:any; 
-    //this.nav.setRoot(this.main_page.component);
-    this.storage.get('profileImage').then((value) => {
-      image = value;
-      return value;
-    }) */
     let details = {
       email: this.new_user.get('email').value,
       role: this.new_user.get('selected_option').value,
@@ -100,18 +99,11 @@ export class AddUserPage {
       isfirstlogin:"true",
       imagepath: ""
     };
-    alert(details.role+" "+details.email+" "+details.password);
     this.authService.createAccount(details).then((result) => {
-      //this.loading.dismiss();
-      console.log("doAddUser-->"+result);
-
-      //this.firstLogin=false;
 
       this.nav.pop();      
-        //this.nav.setRoot(this.main_page.component);
       
     }, (err: any) => {
-      //this.loading.dismiss();
           alert(`status: ${err.status}, ${err.statusText}`);
     });
   }

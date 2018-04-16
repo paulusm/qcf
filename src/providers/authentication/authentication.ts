@@ -1,3 +1,10 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page provides Services for authentication such as Http 
+ * calls to API which includes get and post request. Also get and 
+ * set values in local storage
+ * **************************************************************/
+
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Storage } from '@ionic/storage';

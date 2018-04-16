@@ -1,11 +1,10 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page provides class object model for single Activity
+ * and collection of Activities as an array.
+ * **************************************************************/
 export class ActivityModel {
-   /*  title: string;
-    published: string;
-    details: string;
-    url: string; */
-
-
-    _id: string;
+     _id: string;
     updatedAt: string;
     createdAt: string;
     activityname: string;

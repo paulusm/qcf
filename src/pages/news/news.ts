@@ -1,3 +1,13 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible for displaying all News published by QCF.
+ * News get render on page initiation in form of ionic list.
+ * By sliding left to each List item user can go to details of particular  
+ * News. User can also filter News by using given search bar .
+ * These function have been used for these task:
+ * goToNewsDetail()
+ * setFilteredItems()
+ * **************************************************************/
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 
@@ -69,7 +79,7 @@ export class NewsPage {
               }
               this.news.items = activeNews;
               this.items = activeNews;
-              console.log(this.news.items);
+              
         this.loading.dismiss();
       },(err) => {
         

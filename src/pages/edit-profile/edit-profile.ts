@@ -1,3 +1,24 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible for displaying details of logged-in
+ * User details get render on page initiation.
+ * User can replace or fill in new information and update them. 
+ * This function have been used for this task:
+ * saveChanges()
+ * User can replace their images using mobile camera or choose from galary
+ * These functions perform these tasks:
+ * uploadFile()
+ * takePicture()
+ * presentActionSheet()
+ * This page also provide more functionalities using these functions
+ * Change password = onChangePassword()
+ * Change Color Theme = onThemeChange()
+ * Rate App = rateApp()
+ * Privacy Policy = showPrivacyModal()
+ * Terms of use = showTermsModal()
+ * Log out = logout()
+ ***************************************************************/
+
 import { NavController, ModalController, LoadingController, Platform ,ActionSheetController,ToastController} from 'ionic-angular';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -63,8 +84,6 @@ export class EditProfilePage {
   ) {
     this.imageUpload =false;
     
-    //this.appThemeColorProvider.getAppThemeColor()
-
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';
@@ -93,8 +112,8 @@ export class EditProfilePage {
       surename: new FormControl(),
       displayName: new FormControl(),
       department: new FormControl(),
-      designation: new FormControl(),
-      description: new FormControl()
+      jobtitle: new FormControl(),
+      about: new FormControl()
     });
   }
 
@@ -120,9 +139,9 @@ export class EditProfilePage {
         forename: data.forename,
         surename: data.surename,
         displayName: data.displayname,
-        department: data.department//,
-        //designation: data.designation,
-        //description: data.description
+        department: data.department,
+        jobtitle: data.jobtitle,
+        about: data.about
       });
 
       this.loading.dismiss();
@@ -223,14 +242,10 @@ export class EditProfilePage {
               .then(filePath => {
                 this.image=filePath;
                 this.uploadFile(filePath);
-                //this.saveChanges();
-                //this.imageUpload=true;
               });
       } else {
         this.image= imagePath;
         this.uploadFile(imagePath);
-        //this.saveChanges();
-        //this.imageUpload=true;
       }
     }, (err) => {
       this.presentToast('Error while selecting image.');
@@ -299,6 +314,7 @@ export class EditProfilePage {
         this.profile.imagepath = value;
         
         this.details = {
+          _id: this.profile._id,
           email: this.profile.email,
           role: this.profile.role,
           forename: this.profile.forename,
@@ -307,16 +323,15 @@ export class EditProfilePage {
           companyid: this.profile.companyid,
           displayname: this.profile.displayname,
           isfirstlogin: this.profile.isfirstlogin,
-          imagepath: this.profile.imagepath
+          imagepath: this.profile.imagepath,
+          jobtitle:this.profile.jobtitle,
+          about: this.profile.about
         };
         
         this.authService.updateAccount(this.details).then((result) => {
-          //this.loading.dismiss();
           this.userModel.setUser(result['user']);  
 
           this.profileService.setData(this.userModel);  
-          //this.nav.pop();      
-          //this.nav.setRoot(this.main_page.component);
           this.nav.insert(0,TabsNavigationPage);
           this.nav.popToRoot();
 

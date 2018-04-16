@@ -1,3 +1,15 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible for displaying all articles published by QCF
+ * particular to those charity themes chosen by user's company.
+ * Articles get render on page initiation in form of ionic list.
+ * By sliding left to each List item user can go to details of particular  
+ * article. User can also filter articles by using given search bar .
+ * These function have been used for these task:
+ * goToArticlesDetail()
+ * setFilteredItems()
+ * **************************************************************/
+
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 
@@ -61,21 +73,18 @@ export class ArticlesPage {
     this.themeService.getThemes().then((data)=>{
       let allThemes = JSON.parse(data['_body']);
        this.companyService.getCompany().then((value)=>{
-        this.companyModel = value;//data['company']; 
+        this.companyModel = value;
         let companyThemes = this.companyModel.themes;
             let count=0;
             for(let ct of companyThemes){    
                 for(let t of allThemes){
                   if(ct===t.name){
-                    //console.log(t._id);
-                    //this.themeIds[count]=t._id;
                     this.themeIds.push(t._id);
                     
                   }
                 }
                 count++;
             } 
-            console.log("<<<<<<<<<<<<<<<<<<<< "+this.themeIds);
       this.loading.present();
       this.articlesService
       .getArticles()
@@ -86,7 +95,6 @@ export class ArticlesPage {
               console.log(JSON.parse(data['_body'])); 
               for(let n of this.articles.items){
                   if(n.type==="Article"){
-                    //n.themeid
                     for(let ts of this.themeIds){
                         if(ts===n.themeid){
                           n.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+n.imagepath;
@@ -111,40 +119,13 @@ export class ArticlesPage {
   }
 
   ionViewDidLoad() {
-    /* this.loading.present();
-      this.articlesService
-      .getArticles()
-      .then(data => {
-         
-              let activeArticles:any = [];
-              this.articles.items = JSON.parse(data['_body']);
-              console.log(JSON.parse(data['_body'])); 
-              for(let n of this.articles.items){
-                  if(n.type==="Article"){
-                    //n.themeid
-                    for(let ts of this.themeIds){
-                        if(ts===n.themeid){
-                          n.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+n.imagepath;
-                          activeArticles.push(n);      
-                        }
-                    }
-                    
-                  }
-              }
-              this.articles.items = activeArticles;
-              this.items = activeArticles;
-              console.log(this.articles.items);
-        this.loading.dismiss();
-      },(err) => {
-        
-      }); */  
+  
   }
   goToArticlesDetail(item:any){
     this.nav.push(ArticleDetailsPage, { newItem: item });
   }
 
   filterItems(searchTerm){
-    console.log(this.items);
     return this.items.filter((item) => {
         return item.storytitle.toLowerCase()
         .indexOf(searchTerm.toLowerCase()) > -1;

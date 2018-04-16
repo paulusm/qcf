@@ -1,4 +1,9 @@
-//import { HttpClient } from '@angular/common/http';
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page provides Services for files(images) such as Http 
+ * calls to API which includes upload request. Also get and 
+ * set values in local storage
+ * **************************************************************/
 import { Injectable } from '@angular/core';
 import { ProfileService } from '../../pages/profile/profile.service';
 import { Http, Headers } from '@angular/http';

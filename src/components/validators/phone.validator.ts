@@ -14,31 +14,7 @@ export class PhoneValidator {
         });
       }
 
-      /* if(phoneControl.value !== ""){
-        try{
-          const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
-          let phoneNumber = "" + phoneControl.value + "",
-              region = countryControl.value.iso,
-              number = phoneUtil.parse(phoneNumber, region),
-              isValidNumber = phoneUtil.isValidNumber(number);
-
-          if(isValidNumber){
-            return null;
-          }
-        }catch(e){
-          // console.log(e);
-          return {
-            validCountryPhone: true
-          };
-        }
-
-        return {
-          validCountryPhone: true
-        };
-      }
-      else{
-        return null;
-      } */
+     
       return null;
     };
   };

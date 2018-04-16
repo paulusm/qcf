@@ -1,3 +1,9 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible to give functionality of 
+ * reset forgetton password by providing given code in email. 
+ * submitreset() function call authentication service to reset password. 
+ * **************************************************************/
 import { Component } from '@angular/core';
 import { NavController,LoadingController, NavParams } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
@@ -69,7 +75,7 @@ export class ResetPasswordPage {
 
   submitreset(){
 
-        //var credentials
+        
         this.showLoader();
         this.authService.resetpassword(this.reset_password.get('newpassword').value, this.reset_password.get('code').value).then((result) => {
             this.loading.dismiss();

@@ -1,3 +1,8 @@
+/********************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic scss page provides CSS classes which applies globally
+ * to whole app.It makes up app-color-theme-1
+ * ******************************************************************/
 .app-color-theme-1
 {
 	ion-list{
@@ -14,12 +19,7 @@
 			}
 		}	
 	}
-	/* ion-row{
-		background-color: $white-a;
-		ion-col{
-			text-align: center;
-		}
-	} */
+
 	.btn-details{
 		background-color:#32db64;
 		font-family: 'Trebuchet MS';
@@ -47,7 +47,7 @@
 	{
 		margin: 0px;
 		border-radius: 6px;
-		background-color: $theme-color-11;//$theme-color-1;///color($colors, redish, base);
+		background-color: $theme-color-11;
 		color: color($colors, button-alt, contrast);
 		font-weight: 500;
 		font-family: 'Trebuchet MS';
@@ -78,14 +78,11 @@
 	}
 	.image-heading
 	{
-		height: 200px;//$categories-heading-image-height;
+		height: 200px;
 	}
 	.h2-heading
 	{
-		//display: inline-block;
-		//width: 100%;
 		text-align: center;
-		//font-size: 100%;
 		font-weight: 900;
 		letter-spacing: 0.4px;
 		color: $black;
@@ -105,7 +102,6 @@
 	{
 	  .error-message
 	  {
-		//background-color: color($colors,whit, base);
 		color: color($colors, danger);
 		font-size: 12px;
 		font-weight: 500;

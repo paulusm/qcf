@@ -1,3 +1,10 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible to give user functionality of 
+ * retrieve forgotten password by providing their email.
+ * recoverPassword() function call authentication service for forgotten password. 
+ * **************************************************************/
+
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
@@ -58,19 +65,15 @@ export class ForgotPasswordPage {
   };
   recoverPassword(){
 
-    console.log(this.forgot_password.get('email').value);
     let lcoontactemail = {
       email:this.forgot_password.get('email').value
     }
     this.authService.forgot(lcoontactemail).then((result) => {
-      //this.loading.dismiss();
-      console.log('Result from server' + result);
       this.email = this.forgot_password.get('email').value;
       alert("Please follow instructions in email !!!");
       this.nav.push(ResetPasswordPage,this.email);
       
     }, (err) => {
-      //this.loading.dismiss();
       console.log(err);
     });
     

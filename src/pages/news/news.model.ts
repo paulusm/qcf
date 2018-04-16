@@ -1,3 +1,8 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page provides class object model for single News
+ * and collection of News as an array.
+ * **************************************************************/
 export class NewsModel {
   approved: boolean;
   createdAt: string;

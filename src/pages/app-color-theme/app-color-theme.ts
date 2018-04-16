@@ -1,20 +1,20 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible to give Business Admin options to choose 
+ * pre-fixed app color theme. 
+ * These function call AppThemeColorProvider service to achieve required tasks:
+ * onChangeTheme1()
+ * onChangeTheme2()
+ * onChangeTheme3()
+ * onChangeTheme4()
+ * **************************************************************/
+
 import { Component } from '@angular/core';
-import { Events, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Events,  NavController, NavParams } from 'ionic-angular';
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
 
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 
-//import { MyApp } from '../../app/app.component';
-
-//import { LoginPage } from '../login/login';
-/**
- * Generated class for the AppColorThemePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-app-color-theme',
   templateUrl: 'app-color-theme.html',
@@ -47,30 +47,25 @@ export class AppColorThemePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AppColorThemePage');
   }
   onChangeTheme1(){
     this.events.publish('app-color-theme-1');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-1');
-    //this.navCtrl.setRoot(TabsNavigationPage);
     this.navCtrl.setRoot(TabsNavigationPage);
   }
   onChangeTheme2(){
     this.events.publish('app-color-theme-2');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-2');
     this.navCtrl.setRoot(TabsNavigationPage);
-    //this.navCtrl.setRoot(TabsNavigationPage);
   }
   onChangeTheme3(){
     this.events.publish('app-color-theme-3');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-3');
     this.navCtrl.setRoot(TabsNavigationPage);
-    //this.navCtrl.setRoot(TabsNavigationPage);
   }
   onChangeTheme4(){
     this.events.publish('app-color-theme-4');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-4');
     this.navCtrl.setRoot(TabsNavigationPage);
-    //this.navCtrl.setRoot(TabsNavigationPage);
   }
 }

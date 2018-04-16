@@ -1,8 +1,20 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible for displaying details of selected edit-activity
+ * Activity get render on page initiation.
+ * User can replace or fill in new information and update them. 
+ * This function have been used for this task:
+ * doUpdateActivity()
+ * User can replace their images using mobile camera or choose from galary
+ * These functions perform these tasks:
+ * uploadFile()
+ * takePicture()
+ * presentActionSheet()  
+ ***************************************************************/
+
 import { Component } from '@angular/core';
 import { NavController, ModalController, LoadingController,Platform,ToastController,ActionSheetController, NavParams } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
-//import { JoinActivityPage } from '../join-activity/join-activity';
-//import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 
@@ -52,7 +64,6 @@ export class EditActivityDetailPage {
     public navParams: NavParams,
     public socialSharing: SocialSharing
   ) {
-    //this.item = navParams.get("newItem");
     this.item = navParams.get("newItem");
       
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
@@ -90,13 +101,10 @@ export class EditActivityDetailPage {
       mydonateurl: new FormControl(''),
       activity_type: new FormControl('sponsorship'),
       startdate: new FormControl(''),
-      //from_time: new FormControl('', Validators.required),
       enddate: new FormControl(''),
-      //to_time: new FormControl(''),
       voluntering:new FormControl(false),
       sponsorship: new FormControl(false)
     });
-    console.log("*******"+JSON.stringify(this.item));
   }
 
   ionViewDidLoad() {
@@ -108,26 +116,12 @@ export class EditActivityDetailPage {
       mydonateurl: this.item.mydonateurl,
       activity_type: this.item.activity_type,
       startdate: this.item.startdate,
-      //from_time: new FormControl('', Validators.required),
       enddate: this.item.enddate,
-      //to_time: new FormControl(''),
       voluntering: this.vol,
       sponsorship: this.spon
       });
       this.image = this.item.displayImage;
   }
-    //    displayImage
-  /* sharePost(post) {
-    //this code is to use the social sharing plugin
-    // message, subject, file, url
-    this.socialSharing.share(post.details, post.title, post.url, null)
-    .then(() => {
-      console.log('Success!');
-    })
-    .catch(() => {
-       console.log('Error - Sharing');
-    }); 
-   } */
    doUpdateActivity(){
     let temp = [];
     if(this.new_activity.get('voluntering').value===true){
@@ -139,7 +133,6 @@ export class EditActivityDetailPage {
 
     this.profileService.getData().then((data)=>{
       this.activitiesService.getActivityImage().then((img) => {
-          console.log("-------->>>>>>>>--------->>>>>>>>>>>--------- "+img);  
           this.activity = {
             _id: this.item._id,
             activityname: this.new_activity.get('activityname').value,
@@ -157,14 +150,12 @@ export class EditActivityDetailPage {
           };
           
           this.activitiesService.updateActivity(this.activity).then((result) => {
-            console.log(">>>>*** "+JSON.stringify(result));  
-
+ 
             this.navCtrl.insert(0,TabsNavigationPage);
             this.navCtrl.popToRoot();
 
             
           }, (err: any) => {
-                //this.loading.dismiss();
                 alert(`status: ${err.status}, ${err.statusText}`);
           });
       });  
@@ -198,7 +189,7 @@ export class EditActivityDetailPage {
       ]
     });
     actionSheet.present(); 
-    //this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+    
   } 
 
   public takePicture(sourceType) {
@@ -222,14 +213,10 @@ export class EditActivityDetailPage {
               .then(filePath => {
                 this.image=filePath;
                 this.uploadFile(filePath);
-                //this.saveChanges();
-                //this.imageUpload=true;
               });
       } else {
         this.image= imagePath;
         this.uploadFile(imagePath);
-        //this.saveChanges();
-        //this.imageUpload=true;
       }
     }, (err) => {
       this.presentToast('Error while selecting image.');
@@ -265,11 +252,10 @@ export class EditActivityDetailPage {
                 fileTransfer.upload(imageURI, encodeURI('https://ionic2-qcf-auth.herokuapp.com/api/files/upload'), options,true)
                   .then((data) => {
                     let imageName = JSON.parse(data.response);
-                    //this.profileService.setUserImage(imageName.filename);
                     this.activitiesService.setActivityImage(imageName.filename);
+                    this.image ='https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+ imageName.filename;
                     loader.dismiss();
                     this.presentToast("Image uploaded successfully");
-                    //this.saveChanges(); 
                 }, (err) => {
                   console.log(err);
                   loader.dismiss();

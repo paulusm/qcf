@@ -1,3 +1,12 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible to give functionality of 
+ * login to user.
+ * doLogin() function call authentication service to login.
+ * user have given option to navigate to forgot password where they can 
+ * recover their password. 
+ * **************************************************************/
+
 import { Component } from '@angular/core';
 import { Events, NavController, LoadingController } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
@@ -75,7 +84,6 @@ export class LoginPage {
       password: new FormControl('', Validators.compose([
         Validators.minLength(5),
         Validators.required
-        //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ]))
     });
   }
@@ -86,8 +94,6 @@ export class LoginPage {
     ],
     'password': [
       { type: 'required', message: 'Password is required.' },
-      /* { type: 'minlength', message: 'Password must be at least 5 characters long.' },
-      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number.' } */
     ]
   };
   ionViewDidLoad() {
@@ -102,9 +108,8 @@ export class LoginPage {
          console.log("Already authorized");
          this.loading.dismiss();
          this.nav.setRoot(this.main_page.component);
-         //this.navCtrl.setRoot(TabsPage);
      }, (err) => {
-         console.log("Not already authorized");
+         console.log("Not authorized");
          this.loading.dismiss();
      });  
   }
@@ -134,36 +139,25 @@ export class LoginPage {
            
             this.userModel.setUser(result['user']);
 
-            console.log(JSON.stringify(result['user']));
-
             this.storage.set('token', this.token);
             this.profileService.setData(this.userModel);  
             this.profileService.setUserImage(this.userModel.imagepath);
-            //alert(this.userModel.companyid);
             
             this.companyService.getCompanyInfo(this.userModel.companyid,this.token).then(data => {
               this.company = data['company'];
               this.companyService.setCompany(this.company);
               let companyLogo = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+this.company.filename;
-              //alert(">>>>"+companyLogo);
               this.events.publish('menuImage',companyLogo);
             });  
 
 
 
-            /* this.companyService.getCompanyInfo(this.userModel.companyid).then(result =>{
-                      this.company.setCompanyInfo(result);
-                      this.companyService.setCompany(this.company);               
-
-            }); */
-            //alert(this.userModel.isfirstlogin);
             if(this.userModel.isfirstlogin==="true"){
               this.nav.setRoot(ChangePasswordPage);
             }if(this.userModel.isfirstlogin==="false"){
               this.nav.setRoot(this.main_page.component);
             }
             
-            //this.nav.setRoot(this.main_page.component);
 
         }, (err: any) => {
             this.loading.dismiss();

@@ -9,10 +9,8 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 //pages
 import { ListingPage } from '../pages/listing/listing';
-//import { FeedPage } from '../pages/feed/feed';
-//import { FormsPage } from '../pages/forms/forms';
 import { LoginPage } from '../pages/login/login';
-import { NotificationsPage } from '../pages/notifications/notifications';
+import { OtherUsersPage } from '../pages/other-users/other-users';
 import { ProfilePage } from '../pages/profile/profile';
 import { TabsNavigationPage } from '../pages/tabs-navigation/tabs-navigation';
 import { WalkthroughPage } from '../pages/walkthrough/walkthrough';
@@ -21,12 +19,8 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 
-
-//import { FormLayoutPage } from '../pages/form-layout/form-layout';
-//import { FiltersPage } from '../pages/filters/filters';
 import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
-//import { FormValidationsPage } from '../pages/form-validations/form-validations';
 
 import { ContactCardPage } from '../pages/contact-card/contact-card';
 import { ChangePasswordPage } from '../pages/change-password/change-password';
@@ -42,6 +36,8 @@ import { SuccessStoriesDetailsPage } from '../pages/success-stories-details/succ
 
 import { OtherUserDetailsPage } from '../pages/other-user-details/other-user-details';
 
+import { ImageModelPage } from '../pages/image-model/image-model';
+
 //custom components
 import { PreloadImage } from '../components/preload-image/preload-image';
 import { BackgroundImage } from '../components/background-image/background-image';
@@ -51,10 +47,8 @@ import { ColorRadio } from '../components/color-radio/color-radio';
 import { ValidatorsModule } from '../components/validators/validators.module';
 
 //services
-//import { FeedService } from '../pages/feed/feed.service';
-import { ListingService } from '../pages/listing/listing.service';
 import { ProfileService } from '../pages/profile/profile.service';
-import { NotificationsService } from '../pages/notifications/notifications.service';
+import { NotificationsService } from '../pages/other-users/other-users.service';
 
 
 import { NewsService } from '../pages/news/news.service';
@@ -81,16 +75,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-//import { Keyboard } from '@ionic-native/keyboard';
 import { AppRate } from '@ionic-native/app-rate';
-//import { ImagePicker } from '@ionic-native/image-picker';
 import { Crop } from '@ionic-native/crop';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
 
-
-import { UserData} from '../providers/user-data/user-data';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
 
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
@@ -105,10 +95,8 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
   declarations: [
     MyApp,
     ListingPage,
-  //  FeedPage,
-  //  FormsPage,
     LoginPage,
-    NotificationsPage,
+    OtherUsersPage,
     ProfilePage,
     TabsNavigationPage,
     WalkthroughPage,
@@ -118,8 +106,6 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
     ForgotPasswordPage,
     ResetPasswordPage,AppColorThemePage,
 
-    //FormLayoutPage,
-    //FiltersPage,
     TermsOfServicePage,
     PrivacyPolicyPage,
     NewsPage,ArticlesPage,SuccessStoriesPage,
@@ -135,10 +121,8 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
 
     UnapproveActivitiesPage,
     UnapproveActivitiesDetailsPage,
-
-    //functionalities
     ContactCardPage,
-		//FormValidationsPage,
+    ImageModelPage,
 
     //custom components
     PreloadImage,
@@ -164,11 +148,9 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
   entryComponents: [
     MyApp,
     ListingPage,
-    //FeedPage,
     ArticlesPage,SuccessStoriesPage,
-    //FormsPage,
     LoginPage,
-    NotificationsPage,
+    OtherUsersPage,
     ProfilePage,
     TabsNavigationPage,
     WalkthroughPage,
@@ -179,12 +161,9 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
     AddUserPage,AppColorThemePage,
     ArticleDetailsPage,
     
-    //FormLayoutPage,
-    //FiltersPage,
     TermsOfServicePage,
     PrivacyPolicyPage,
     ContactCardPage,
-    //FormValidationsPage,
     NewsPage,
     NewsDetailsPage,
     SuccessStoriesDetailsPage,
@@ -198,12 +177,10 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
     
     UnapproveActivitiesPage,
     UnapproveActivitiesDetailsPage,
-    
+    ImageModelPage
 
   ],
   providers: [
-    //FeedService,
-    ListingService,
     ProfileService,
     NotificationsService,
     NewsService,
@@ -216,17 +193,13 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
     SocialSharing,
     NativeStorage,
     InAppBrowser,
-    //Keyboard,
 		AppRate,
-		//ImagePicker,
 		Crop,
     EmailComposer,
-    UserData,
     AuthenticationProvider,
     Camera,
     FilePath,
     FileTransfer,
-    //FileUploadOptions,
     FileTransferObject,
     File,
     ThemeProvider,

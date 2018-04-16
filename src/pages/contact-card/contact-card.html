@@ -1,3 +1,10 @@
+<!--********************************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic contact-card.html page  creates "View" for its corresponding 
+ * controller (contact-card.ts) and angular 4 providing values of variables by two 
+ * way data binding. This page contains ionic html components supported by angular 
+ ************************************************************************************-->
+
 <ion-header [ngClass]="colorThemeHeader">
     <ion-navbar>
         <button ion-button menuToggle>
@@ -24,10 +31,10 @@
   </ion-row>
   <div class="button-bar">
     
-    <button ion-button primary (click)="sendMail(contact.email)">
+    <button ion-button (click)="sendMail(contact.email)">
       <ion-icon name="mail"></ion-icon>
     </button>
-    <button ion-button primary (click)="openInAppBrowser(contact.website)">
+    <button ion-button (click)="openInAppBrowser(contact.website)">
       <ion-icon name="globe"></ion-icon>
     </button>
   </div>
@@ -59,11 +66,11 @@
     </ion-item>
   </ion-list>
   <ion-fab right bottom>
-      <button ion-fab color="danger"><ion-icon name="arrow-dropleft"></ion-icon></button>
+      <button ion-fab><ion-icon name="arrow-dropleft"></ion-icon></button>
       <ion-fab-list side="left">
-        <button ion-fab color="primary"><ion-icon name="logo-facebook"></ion-icon></button>
-        <button ion-fab color="primary"><ion-icon name="logo-twitter"></ion-icon></button>
-        <button ion-fab color="primary"><ion-icon name="logo-linkedin"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-linkedin"></ion-icon></button>
       </ion-fab-list>
     </ion-fab>
  

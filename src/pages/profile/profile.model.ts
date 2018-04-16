@@ -1,3 +1,8 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page provides class object model for single User profile
+ * and collection of Users profiles as an array.
+ * **************************************************************/
 export class UserModel {
   imagepath: string;
   _id: string;
@@ -11,6 +16,8 @@ export class UserModel {
   isfirstlogin: string;
   description: string;
   designation:string;
+  about:string;
+  jobtitle:string;
   
   constructor() {}
   
@@ -25,21 +32,11 @@ export class UserModel {
     this.displayname = user.displayname;
     this.isfirstlogin = user.isfirstlogin;
     this.imagepath = user.imagepath;
+    this.about =  user.about;
+    this.jobtitle =  user.jobtitle;
   }
 
 }
-/* export class ProfilePostModel {
-  date: Date;
-	image: string;
-	description: string;
-	likes: number = 0;
-	comments: number = 0;
-	liked: boolean = false;
-} */
-
 export class ProfilesModel {
-  //user: UserModel = new UserModel();
   users: Array<UserModel> = [];
-  //followers: Array<UserModel> = [];
-  //posts: Array<ProfilePostModel> = [];
 }

@@ -1,3 +1,10 @@
+<!--********************************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic profile.html page  creates "View" for its corresponding 
+ * controller (profile.ts) and angular 4 providing values of variables by two 
+ * way data binding. This page contains ionic html components supported by angular 
+ ************************************************************************************-->
+
 <ion-header [ngClass]="colorThemeHeader">
     <ion-navbar>
         <button ion-button menuToggle>
@@ -12,7 +19,7 @@
    <div ngClass="main-div"> 
     <ion-row>
       <ion-col>
-        <preload-image style="border-radius: 50%;" [ratio]="{w:1, h:1}" [(src)]="image" alt="profile.displayname" title="profile.displayname"></preload-image>
+        <preload-image style="border-radius: 50%;" [ratio]="{w:1, h:1}" [(src)]="image" alt="profile.displayname" title="profile.displayname" (click)="goToEditProfile()"></preload-image>
         <strong>{{profile.displayname}}</strong>
       </ion-col>
       
@@ -23,26 +30,41 @@
               EDIT PROFILE
             </button>
             <br>
-            <button ion-button block small ngClass="main-btn" (click)="goToAddUser()" [hidden]="!role">
-                ADD USER
+            <button ion-button block small ngClass="main-btn" (click)="goToCreateActivity()">
+              CREATE ACTIVITY
             </button>
             <br>
-            <button ion-button block small ngClass="main-btn" (click)="goToCreateActivity()">
-                CREATE ACTIVITY
+            <button ion-button block small ngClass="main-btn" (click)="goToEditActivity()">
+                EDIT ACTIVITY
             </button>
           </ion-col>
         </ion-row>
       </ion-col>
     </ion-row>
-    <div class="button-bar">
-      <button ion-button primary (click)="goToEditActivity()">
-        <!-- <ion-icon name="mail"></ion-icon> -->EDIT ACTIVITY
+    <div class="button-bar" [hidden]="roleStatus">
+      <button ion-button  (click)="goToAddUser()">ADD USER
       </button>
-      <button ion-button primary (click)="goToApproveActivity()">
-        <!-- <ion-icon name="globe"></ion-icon> -->APPROVE ACTIVITY
+      <button ion-button  (click)="goToApproveActivity()">APPROVE ACTIVITIES
       </button>
     </div>
   
       <h3 ngClass="h3-heading">SIGNED UP ACTIVITIES</h3>
     </div> 
+    <div [hidden]="!noActivities"><h5 style="color:red;">   No signed up activities.</h5></div>
+    <ion-list>
+    
+      <ion-item *ngFor="let item of activities.items">
+            <ion-row>
+                <ion-col>
+                  <preload-image style="border-radius: 5%" [ratio]="{w:1, h:1}" [src]="item.displayImage"></preload-image>
+                </ion-col>
+                <ion-col padding="3">
+                  <p id="title">{{item.activityname}}</p>
+                  <p>Start: {{item.startdate | date:'dd/MM/yyyy'}}</p>
+                  <p>End: {{item.enddate | date:'dd/MM/yyyy'}}</p>
+                </ion-col>
+              </ion-row>
+      </ion-item>
+    </ion-list>
+
 </ion-content>

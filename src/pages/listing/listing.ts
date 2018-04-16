@@ -1,11 +1,21 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This is main(home) page where user land after logging-in,
+ * Gives options to navigate to Success stories and Articles. 
+ * It also display Charity themes and differentiate chosen themes by company with different colors.
+ * Business Admin can choose or leave charity theme.
+ * These function have been used for these task:
+ * goToStoryOrArticle()
+ * doLeaveTheme()
+ * doJoinTheme()
+ * **************************************************************/
+
 import { Component } from '@angular/core';
 import { NavController, LoadingController, AlertController  } from 'ionic-angular';
 
 import { ArticlesPage } from '../articles/articles';
 import { SuccessStoriesPage } from '../success-stories/success-stories';
 
-import { ListingModel } from './listing.model';
-import { ListingService } from './listing.service';
 import { ThemeProvider } from '../../providers/theme/theme';
 import { CompanyModel,CompanyProvider } from '../../providers/company/company';
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
@@ -19,9 +29,10 @@ import 'rxjs/Rx';
   templateUrl: 'listing.html',
 })
 export class ListingPage {
-  listing: ListingModel = new ListingModel();
   companyModel: CompanyModel =new CompanyModel();
   profile: UserModel = new UserModel();
+  roleStatus:boolean = false;
+  categories: any;
 
   loading: any;
   companyLogo:any;
@@ -37,7 +48,6 @@ export class ListingPage {
 
   constructor(
     public nav: NavController,
-    public listingService: ListingService,
     public loadingCtrl: LoadingController,
     public themeService:ThemeProvider,
     public companyService: CompanyProvider,
@@ -66,25 +76,29 @@ export class ListingPage {
       }
     });
 
+    
+    
+  }
+
+  ionViewWillLoad() {
+    this.loading.present();
+
     this.profileService.getData()
     .then(data => {
       this.profile = data;
-      //this.companyService.getCompanyInfo(this.profile.companyid).then(data => {
+      if(this.profile.role==="Employee"){
+            this.roleStatus=true;
+      }
         this.companyService.getCompany().then((value) => {
 
-        //});
-        this.companyModel = value;//data['company'];
+        this.companyModel = value;
         
-        //this.companyService.setCompany(this.companyModel);
-        
-        //console.log(JSON.stringify(data['company']));
         this.companyLogo = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+this.companyModel.filename;
         this.companyThemes = this.companyModel.themes;
         this.companyName = this.companyModel.companyname;
 
         this.themeService.getThemes().then((res) => {
           this.groups = JSON.parse(res['_body']); 
-          //console.log(this.groups.length);
                 for(var i=0; i<this.groups.length;i++){
                   let found="false";
                     for(let theme of this.companyThemes){
@@ -104,27 +118,26 @@ export class ListingPage {
 
       });
     });
-    
+    this.categories =[
+      {
+          "title": "Stories",
+          "image": "./assets/images/listing/200x200basquet.png"
+      },
+      {
+          "title": "Articles",
+          "image": "./assets/images/listing/200x200boxeo.png"
+      }
+    ];
+    this.loading.dismiss();
+  
   }
 
-  ionViewDidLoad() {
-    this.loading.present();
+  goToStoryOrArticle(category: any) {
 
-    this.listingService
-      .getData()
-      .then(data => {
-        this.listing.banner_image = data.banner_image;
-        this.listing.banner_title = data.banner_title;
-        this.listing.categories = data.categories;
-        this.loading.dismiss();
-      });
-  }
-
-  goToFeed(category: any) {
     console.log("Clicked goToFeed", category);
     if(category.title==="Articles"){
       this.nav.push(ArticlesPage);
-    }else if(category.title==="Success Stories"){
+    }else if(category.title==="Stories"){
       this.nav.push(SuccessStoriesPage);
     }  
   }
@@ -153,7 +166,6 @@ export class ListingPage {
           }
           this.companyModel.themes = this.companyThemes;
           this.companyService.updateCompany(this.companyModel).then(data => {
-               //console.log(data);
                this.companyModel = data['company'];
                this.companyService.setCompany(this.companyModel); 
                this.nav.setRoot(TabsNavigationPage);
@@ -167,7 +179,6 @@ export class ListingPage {
           this.companyThemes.push(name);
           this.companyModel.themes = this.companyThemes;
           this.companyService.updateCompany(this.companyModel).then(data => {
-                //console.log(data);
                 this.companyModel = data['company'];
                 this.companyService.setCompany(this.companyModel);
                 

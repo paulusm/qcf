@@ -15,7 +15,7 @@ export class ColorRadio
   }
 
   ngOnInit() {
-    console.log(this.color);
+    //console.log(this.color);
     this.setColor(this.color);
   }
 }

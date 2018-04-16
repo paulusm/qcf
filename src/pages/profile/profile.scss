@@ -3,12 +3,11 @@ profile-page {
 		{
 			display: flex;
 			margin: 6px 0px;
-            background-color: $white-c;
+            background-color: $white-a;
 
 			& > .button
 			{
-				//@include segment-text-styles(color($colors, button-alt, base));
-				background-color: color($colors, $white, contrast);
+				background-color: color($colors, $white-a, contrast);
 				margin: 0px;
 				border-radius: 0px;
                 flex: 1;
@@ -17,7 +16,6 @@ profile-page {
 				&::after
 				{
 					content: '';
-					//background-color: $white-c;
 					width: 2px;
 					height: calc(100% - 20px);
 					margin: 10px 0px;

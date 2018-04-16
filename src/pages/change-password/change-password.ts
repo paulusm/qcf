@@ -1,6 +1,11 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible for give functionality of 
+ * changing password to user.
+ * doConfirm() function call authentication service to change password. 
+ * **************************************************************/
 import { Component } from '@angular/core';
 import { NavController, ModalController, LoadingController } from 'ionic-angular';
-//import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 
@@ -22,7 +27,6 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
   templateUrl: 'change-password.html'
 })
 export class ChangePasswordPage {
-  //changePassword: FormGroup;
   main_page: { component: any };
   loading: any;
   profile: UserModel = new UserModel();
@@ -116,28 +120,18 @@ export class ChangePasswordPage {
     
                       this.authService.changePassword(credentialsnew).then((result) => {
     
-                         // this.loading.dismiss();
                           console.log("Logged in after password change");
                           console.log(result);
-                          /* if(this.FirstLoginWas){
-                              alert("Password changed successfully\n Please go to Edit Profile under Profile page to complete your registration.");
-                          } */
                           this.nav.insert(0,TabsNavigationPage);
                           this.nav.popToRoot();
     
                       }, (err) => {
-    
-                          //this.loading.dismiss();
-    
                           console.log("Error in change password response");
                           console.log(err);
                           alert("Password change failed.\n Please Login again, and try again.");
                           this.nav.insert(0,LoginPage);
                           this.nav.popToRoot();
-    
-    
                       });
       });
-
   }
 }

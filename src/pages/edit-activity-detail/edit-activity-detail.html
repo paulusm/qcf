@@ -1,3 +1,9 @@
+<!--********************************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic edit-activity-detail.html page  creates "View" for its corresponding 
+ * controller (edit-activity-detail.ts) and angular 4 providing values of variables by two 
+ * way data binding. This page contains ionic html components supported by angular 
+ ************************************************************************************-->
 <ion-header [ngClass]="colorThemeHeader"> 
   <ion-navbar>
       <button ion-button menuToggle>
@@ -9,7 +15,22 @@
 </ion-header>
 
 <ion-content [ngClass]="colorTheme">
+
   <div ngClass="main-div">
+      <div>
+          <ion-row>
+            <ion-col>
+              <preload-image style="border-radius: 15%;"  [ratio]="{w:3, h:2}" [src]="image" alt="this is the image" title="IMAGE!"></preload-image>
+            
+            
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col width-60>
+              <button ngClass="main-btn" ion-button outline block small (click)="presentActionSheet()">CHANGE PICTURE</button>
+            </ion-col>
+          </ion-row>
+        </div>
  <form  [formGroup]="new_activity" (ngSubmit)="doUpdateActivity()">
   <ion-list> 
   <ion-item>
@@ -18,7 +39,8 @@
   </ion-item>
   <ion-item>
       <ion-label  floating>Description</ion-label>
-      <ion-input type="text" formControlName="activitydescription"></ion-input>
+      <ion-textarea formControlName="activitydescription" rows="5"></ion-textarea>
+      
   </ion-item>
   <ion-item>
       <ion-label  floating>Location</ion-label>
@@ -71,20 +93,7 @@
 
       </ion-row>    
 
-     <div>
-          <ion-row>
-            <ion-col>
-              <preload-image style="border-radius: 15%;"  [ratio]="{w:3, h:2}" [src]="image" alt="this is the image" title="IMAGE!"></preload-image>
-            
-            
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col width-60>
-              <button ngClass="main-btn" ion-button outline block small (click)="presentActionSheet()">CHANGE PICTURE</button>
-            </ion-col>
-          </ion-row>
-        </div>
+     
 
 
 

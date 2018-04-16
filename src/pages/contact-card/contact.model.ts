@@ -1,3 +1,8 @@
+
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page provides class object model for Contact.
+ * **************************************************************/
 export class ContactModel {
 	images: Array<string> = [];
 	name: string;

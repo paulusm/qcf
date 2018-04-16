@@ -1,3 +1,9 @@
+<!--********************************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic success-stories.html page  creates "View" for its corresponding 
+ * controller (success-stories.ts) and angular 4 providing values of variables by two 
+ * way data binding. This page contains ionic html components supported by angular 
+ ************************************************************************************-->
 <ion-header [ngClass]="colorThemeHeader">
   <ion-navbar>
       <button ion-button menuToggle>
@@ -20,8 +26,8 @@
                 <preload-image style="border-radius: 5%" [ratio]="{w:1, h:1}" [src]="item.displayImage"></preload-image>
               </ion-col>
               <ion-col padding="3" width-65 >
-                <p>{{item.publisheddate}}</p>
-                <p id="title" rows="3">{{item.storytitle}}</p>
+                <p>Published: {{item.publisheddate | date:'dd/MM/yyyy'}}</p>
+                <p id="title">{{item.storytitle}}</p>
               </ion-col>
             </ion-row>
       </ion-item>
@@ -37,6 +43,6 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-        <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+        <ion-searchbar [(ngModel)]="searchTerm"  placeholder="Search by Title" (ionInput)="setFilteredItems()"></ion-searchbar>
     </ion-toolbar>
 </ion-footer>

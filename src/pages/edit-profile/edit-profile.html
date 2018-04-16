@@ -1,3 +1,9 @@
+<!--********************************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic edit-profile.html page  creates "View" for its corresponding 
+ * controller (edit-profile.ts) and angular 4 providing values of variables by two 
+ * way data binding. This page contains ionic html components supported by angular 
+ ************************************************************************************-->
 <ion-header [ngClass]="colorThemeHeader">
     <ion-navbar>
       <ion-title>EDIT PROFILE</ion-title>
@@ -43,12 +49,12 @@
             <ion-input type="text" formControlName="department"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label stacked>DESIGNATION</ion-label>
-            <ion-input type="text" formControlName="designation"></ion-input>
+            <ion-label stacked>JOB TITLE</ion-label>
+            <ion-input type="text" formControlName="jobtitle"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label stacked>ABOUT</ion-label>
-          <ion-textarea formControlName="description" rows="5"></ion-textarea>
+          <ion-textarea formControlName="about" rows="5"></ion-textarea>
         </ion-item>
       </ion-list>
   

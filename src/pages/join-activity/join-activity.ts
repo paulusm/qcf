@@ -1,6 +1,18 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible for displaying details of selected activity
+ * Activity get render on page initiation.
+ * User been given options to join this activity by choosing two of one ways.
+ * Either Email to Owner's for voluntering or go to Owner's donation page for sponsorship.
+ * These function have been used for these task:
+ * doJoin()
+ * openInAppBrowser()
+ * sendMail()
+ * **************************************************************/
+
 import { Component } from '@angular/core';
+
 import { NavController,  LoadingController,NavParams } from 'ionic-angular';
-import { FormGroup, FormControl } from '@angular/forms';
 
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 
@@ -12,26 +24,23 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
 
 import { ActivitiesService } from '../activities/activities.service';
 
+import { EmailComposer } from '@ionic-native/email-composer';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @Component({
   selector: 'page-join-activity',
   templateUrl: 'join-activity.html',
 })
 export class JoinActivityPage {
-  join_activity: FormGroup;
   main_page: { component: any };
   loading: any;
-  /* item = {
-      url:"../assets/images/1212.jpg",
-      title:"Hello World!!"
-
-  }; */
   item:any
   colorTheme: any;
   colorThemeHeader:any;
 
   v:boolean = false;
   s:boolean = false;
+  owersEmail:any = "as_baig@yahoo.com";
 
   constructor(
     public navCtrl: NavController, 
@@ -40,10 +49,21 @@ export class JoinActivityPage {
     public storage: Storage,
     public appThemeColorProvider:AppThemeColorProvider,
     public activitiesService:ActivitiesService,
-    public profileService:ProfileService
+    public profileService:ProfileService,
+    private emailComposer: EmailComposer,
+    public inAppBrowser: InAppBrowser,    
   ) {
     this.item = navParams.get("newItem");
-    //alert(this.item._id);
+    this.profileService.getUsers().then((data)=>{
+      let users = JSON.parse(data['_body']); 
+      for(let p of users){
+            if(p._id===this.item.activityowner){
+                this.owersEmail = p.email;
+            }  
+      }
+
+    });
+    
     if(this.item.activitytype.indexOf("Volunteering")!=-1){
           this.v = true;
     }
@@ -70,10 +90,6 @@ export class JoinActivityPage {
         this.colorThemeHeader = 'ion-header-4';
       }
     });
-
-    this.join_activity = new FormGroup({
-       selected_option: new FormControl()
-    });
   
   }
 
@@ -82,34 +98,38 @@ export class JoinActivityPage {
   }
 
   doJoin(){
-    //alert("Activity Joined "+this.join_activity.get('selected_option').value);
+
+  }
+  openInAppBrowser(website: string){
     this.profileService.getData().then((data)=>{
-      if(this.join_activity.get('selected_option').value==="voluntering"){
-                this.item.volunteers.push(data.email);
-      }else if(this.join_activity.get('selected_option').value==="sponsorship"){
-                this.item.sponsors.push(data.email);
-      }
-      console.log(this.item);
+      this.item.sponsors.push(data.email);
       
-      this.activitiesService.updateActivity(this.item).then((result) => {
-        console.log(">>>>> "+JSON.stringify(result));  
-         this.navCtrl.pop(); 
-        //this.nav.push(ProfilePage);
-        //this.nav.insert(0,EditProfilePage);
-        //this.nav.popToRoot();
-        
+      this.activitiesService.updateActivityAsEmployee(this.item).then((result) => {
+        this.inAppBrowser.create(website, '_blank', "location=yes");
+        this.navCtrl.setRoot(TabsNavigationPage); 
       }, (err: any) => {
-            //this.loading.dismiss();
             alert(`status: ${err.status}, ${err.statusText}`);
       });
-
-      //this.navCtrl.pop();
-
     });
-
-
-
-
-    
   }
+
+  sendMail(){
+    this.profileService.getData().then((data)=>{
+      this.item.volunteers.push(data.email);
+      
+      this.activitiesService.updateActivityAsEmployee(this.item).then((result) => {
+        let email = {
+          to: this.owersEmail,
+          subject: 'Voluntering for : ' + this.item.activityname,
+          body: "Hello, I am writing this email to show my availability for this activity, Please contact me at this email address for futher communications."
+        };
+        // Send a text message using default options
+        this.emailComposer.open(email);
+        this.navCtrl.setRoot(TabsNavigationPage);
+      }, (err: any) => {
+            alert(`status: ${err.status}, ${err.statusText}`);
+      });
+    });
+ }  
+
 }

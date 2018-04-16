@@ -1,3 +1,9 @@
+<!--********************************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic activities.html page  creates "View" for its corresponding controller 
+ * (activities.ts) and angular 4 providing values of variables by two way data binding. 
+ *  This page contains ionic html components supported by angular
+ ************************************************************************************-->
 <ion-header [ngClass]="colorThemeHeader">
     <ion-navbar>
         <button ion-button menuToggle>
@@ -11,7 +17,7 @@
 
 <ion-content [ngClass]="colorTheme">
   <ion-list>
-    
+    <div [hidden]="!noActivities"><h3 style="color:red;">   No activities to display.</h3></div>
       <ion-item-sliding *ngFor="let item of activities.items">
         <ion-item >
             <ion-row>
@@ -19,8 +25,9 @@
                   <preload-image style="border-radius: 5%" [ratio]="{w:1, h:1}" [src]="item.displayImage"></preload-image>
                 </ion-col>
                 <ion-col padding="3">
-                  <p>{{item.startdate}}</p>
-                  <p id="title" rows="3">{{item.activityname}}</p>
+                  <p id="title">{{item.activityname}}</p>
+                  <p>Start: {{item.startdate | date:'dd/MM/yyyy'}}</p>
+                  <p>End: {{item.enddate | date:'dd/MM/yyyy' }}</p>
                 </ion-col>
               </ion-row>
         </ion-item>

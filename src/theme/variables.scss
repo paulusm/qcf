@@ -70,15 +70,15 @@ $colors: (
   $white-c: darken($white, 12%),
   $white-d: darken($white, 24%),
   walkthrough:(
-    base: $theme-color-1,
+    base: $white-a,//$theme-color-1,
     contrast: $white
   ),
   walkthrough-alt:(
-    base: $theme-color-2,
+    base: $white-a,//$theme-color-2,
     contrast: $white
   ),
   walkthrough-header:(
-    base: transparent,
+    base: $white-a,
     contrast: $white
   ),
   
@@ -116,6 +116,15 @@ $colors: (
   
   header-4-alt:(
     base: $theme-color-8,
+    contrast: $white
+  ),
+  header-5:(
+    base: $white-a,
+    contrast: $white
+  ),
+  
+  header-5-alt:(
+    base: $white-a,
     contrast: $white
   ),  
   button:(

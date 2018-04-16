@@ -1,3 +1,14 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible for displaying all activities
+ * introduced by logged-in user.
+ * Activities get render on page initiation in form of ionic list.
+ * By sliding left to each List item user can edit that particular  
+ * activity.
+ * These function have been used for these task:
+ * goToUsersActivitiesDetail()
+ * **************************************************************/
+
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 
@@ -6,11 +17,8 @@ import 'rxjs/Rx';
 import { ActivitiessModel } from '../activities/activities.model';
 import { ActivitiesService } from '../activities/activities.service';
 
-//import { ActivitiesDetailsPage } from '../activities-details/activities-details';
-//import { JoinActivityPage } from '../join-activity/join-activity';
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
 
-//import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
 import { ProfileService } from '../profile/profile.service';
 
@@ -26,8 +34,7 @@ export class EditActivityListPage {
   loading: any;
   colorTheme: any;
   colorThemeHeader:any;
-  //start:any;
-  //destination:any;
+  noActivities:boolean = false;
   
 
   constructor(
@@ -35,13 +42,9 @@ export class EditActivityListPage {
     public activitiesService: ActivitiesService,
     public loadingCtrl: LoadingController,
     public appThemeColorProvider:AppThemeColorProvider,
-    //private launchNavigator: LaunchNavigator,
     public profileService:ProfileService
   ) {
   
-    //this.start = "";
-    //this.destination = "Westminster, London, UK";
-
     this.loading = this.loadingCtrl.create();
     
      this.appThemeColorProvider.getAppThemeColor().then((value)=>{
@@ -61,66 +64,35 @@ export class EditActivityListPage {
         this.colorTheme = 'app-color-theme-4';
         this.colorThemeHeader = 'ion-header-4';
       }
-      //alert(this.colorThemeHeader);
     }); 
   }
 
   ionViewDidLoad() {
     this.loading.present();
     this.profileService.getData().then((user)=>{ 
-          console.log(user);  
           this.activitiesService
             .getOwnersActivities()
             .then(data => {
-                //console.log(data['_body']);
+                if(JSON.parse(data['_body']).length===0){
+                  this.noActivities=true;
+                }
               let  tempArray1 = JSON.parse(data['_body']);
               let tempArray2=[];
               for(let t of tempArray1){
-                //console.log(t.sponsors);
-                //console.log(t.volunteers);
-                      //console.log((t.sponsors.indexOf(user.email)) + " - " + (t.volunteers.indexOf(user.email)));  
-                      /* if(t.sponsors.indexOf(user.email)!= -1 || t.volunteers.indexOf(user.email)!= -1){
-                          
-                          t.status = true;
-
-                      }else{
-                          t.status = false;
-                      } */
                       t.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+t.filename;
+                      t.startdate = new Date(t.startdate);
+                      t.enddate = new Date(t.enddate);
                       tempArray2.push(t);
               }  
 
 
-              this.activities.items = tempArray2;//JSON.parse(data['_body']);
-              //console.log(data['_body']);
-              console.log(this.activities.items);
+              this.activities.items = tempArray2;
               this.loading.dismiss();
           }); 
     });
   }
   goToUsersActivitiesDetail(item:any){
-    //alert(item.title);
-    //console.log(">>>>>>>>>>>>>>>>>>>>>>>>"+item.title);
-    //this.nav.push(EditActivityDetailPage, { newItem: item });
-    //this.nav.setRoot(EditActivityDetailPage, { newItem: item });
-    this.nav.insert(0,EditActivityDetailPage,{ newItem: item });
-    this.nav.popToRoot();
+    this.nav.push(EditActivityDetailPage, { newItem: item });
   }
-  /* goToJoinActivity(item:any){
-    this.nav.push(JoinActivityPage, { newItem: item });
-    //alert(item.url);
-  }
-  goToNavigateActivity(item){
-    let options: LaunchNavigatorOptions = {
-      start: this.start
-    };
-
-    this.launchNavigator.navigate(this.destination, options)
-        .then(
-            success => alert('Launched navigator'),
-            error => alert('Error launching navigator: ' + error)
-    ); 
-
-  } */
 
 }

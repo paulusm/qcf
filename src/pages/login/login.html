@@ -1,3 +1,9 @@
+<!--********************************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic login.html page  creates "View" for its corresponding 
+ * controller (login.ts) and angular 4 providing values of variables by two 
+ * way data binding. This page contains ionic html components supported by angular 
+ ************************************************************************************-->
 <ion-header [ngClass]="colorThemeHeader">
   <ion-navbar>
     <ion-title>SIGN IN</ion-title>
@@ -37,13 +43,18 @@
   </ion-list>
     <button ion-button block ngClass="main-btn" type="submit" [disabled]="!login.valid">LOG IN</button>
   </form>
-  <ion-row class="alt-options">
+<!--   <ion-row class="alt-options">
     <ion-col no-padding width-50>
-      <!-- <button ion-button block clear class="forgot-button" (click)="goToForgotPassword()">FORGOT PASSWORD?</button> -->
+      
       
     </ion-col>
     
-  </ion-row>
-  <span (click)="goToForgotPassword()">FORGOT PASSWORD?</span>
+  </ion-row> -->
+  <ion-row>
+      <ion-col center>
+          <span style="color: rgb(114, 114, 236);" (click)="goToForgotPassword()">FORGOT PASSWORD?</span>
+     </ion-col>
+    </ion-row>
+  
   </div>
 </ion-content>

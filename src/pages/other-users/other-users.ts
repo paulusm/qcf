@@ -1,10 +1,22 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible to displaying all Users
+ * particularly those who belong to logged-in user company.
+ * Users get render on page initiation in form of ionic list.
+ * By sliding left to each List item user can go to details of particular  
+ * User. User can also filter Other-users by using given search bar .
+ * These function have been used for these task:
+ * goToUserDetail()
+ * setFilteredItems()
+ * **************************************************************/
+
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 
 import 'rxjs/Rx';
 
-import { NotificationsModel } from './notifications.model';
-import { NotificationsService } from './notifications.service';
+import { NotificationsModel} from './other-users.model';
+import { NotificationsService } from './other-users.service';
 import { ProfileService } from '../profile/profile.service';
 
 import { OtherUserDetailsPage } from '../other-user-details/other-user-details';
@@ -14,13 +26,13 @@ import { ProfilesModel } from '../profile/profile.model';
 
 
 @Component({
-  selector: 'notifications-page',
-  templateUrl: 'notifications.html'
+  selector: 'other-users-page',
+  templateUrl: 'other-users.html'
 })
-export class NotificationsPage {
+export class OtherUsersPage {
   notifications: NotificationsModel = new NotificationsModel();
   loading: any;
-  items: any;
+  items: any=[];
   searchTerm: string = '';
   colorTheme: any;
   colorThemeHeader:any;
@@ -55,22 +67,16 @@ export class NotificationsPage {
     });
   }
 
-  ionViewDidLoad() {
+  ionViewWillLoad() {
     this.loading.present();
-    
-    
       this.profileService.getData().then(user => {
-        //console.log("->->-> "+user.companyid);
-
         this.notificationsService
         .getUsers()
         .then(data => {
            
-                let activeUsers:any = [];
                 this.profilesModel.users = JSON.parse(data['_body']); 
                   for(let p of this.profilesModel.users){
                         if(p.isfirstlogin==="false" && p.companyid===user.companyid){
-                          //console.log("+>+>+> "+p.companyid);
                           let image;
                              if(p.imagepath!=null){
                                image = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+p.imagepath;
@@ -81,14 +87,20 @@ export class NotificationsPage {
                                 displayname : p.displayname,
                                 email : p.email,
                                 department : p.department,
-                                imagepath : image 
+                                imagepath : p.imagepath,
+                                jobtitle: p.jobtitle,
+                                about : p.about,
+                                role : p.role,
+                                companyid: p.companyid,
+                                forename: p.forename,
+                                surname: p.surename,
+                                displayImage: image
+
                               };
-                              activeUsers.push(user);
+                              this.notifications.users.push(user);
+                              this.items.push(user);
                         }  
                   }
-                  this.notifications.users = activeUsers;
-                  this.items = activeUsers;
-                  //alert(activeUsers);
           this.loading.dismiss();
         },(err) => {
           
@@ -105,14 +117,10 @@ export class NotificationsPage {
 
   }
   setFilteredItems() {
- 
-    this.notifications.users = this.filterItems(this.searchTerm);
-
+     this.notifications.users = this.filterItems(this.searchTerm);
   }
 
   goToUserDetail(notification){
     this.nav.push(OtherUserDetailsPage, { newItem: notification });
-      //alert(notification);
-
   }
 }

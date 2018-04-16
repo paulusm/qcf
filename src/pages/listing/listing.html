@@ -1,10 +1,16 @@
+<!--********************************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic listing.html page  creates "View" for its corresponding 
+ * controller (listing.ts) and angular 4 providing values of variables by two 
+ * way data binding. This page contains ionic html components supported by angular 
+ ************************************************************************************-->
 <ion-header [ngClass]="colorThemeHeader">
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      QCF
+     CIVITAZ
     </ion-title>
     <ion-buttons end>
       <button ion-button>{{companyName}}</button>
@@ -19,14 +25,13 @@
   <h3 ngClass="h3-heading">BROWSE CATEGORIES</h3>
   
   <ion-row>
-    <ion-col *ngFor="let category of listing.categories">
-      <background-image tappable style="height:150px; width:150px;" [src]="category.image" (click)="goToFeed(category)">
-        <!-- <ion-row >
-          <ion-col> -->
-            <h2 ngClass="h2-heading">{{category.title}}</h2>
-          <!-- </ion-col>
-        </ion-row> -->
+    <ion-col *ngFor="let category of categories">
+      <div>
+      <background-image tappable style="height:150px; width:150px;" [src]="category.image" (click)="goToStoryOrArticle(category)">
+       
       </background-image>
+      <h2 ngClass="h2-heading">{{category.title}}</h2>
+      </div>
     </ion-col>
   </ion-row>
 
@@ -42,15 +47,16 @@
                     <ion-icon name= "{{isGroupShown(group) ? 'arrow-up' : 'arrow-down'}}"></ion-icon>
                 </span>
               &nbsp;
-              <p class="wrapp">{{group.name}}</p>
+              <p style="color:#f4344f;" class="wrapp" [hidden]="group.status">{{group.name}}</p>
+              <p style="color:#32db64;" class="wrapp" [hidden]="!group.status">{{group.name}}</p>
               
           </ion-col>
           <ion-col col-4>
-            <ion-buttons end>      
+            <ion-buttons end [hidden]="roleStatus">      
                 <button ion-button clear small color="danger" (click)="doJoinTheme(group.name)" [hidden]="group.status">
                   <ion-icon name= "add"></ion-icon>
                 </button>
-                <button ion-button clear small color="danger" (click)="doLeaveTheme(group.name)" [hidden]="!group.status">
+                <button ion-button clear small color="secondary" (click)="doLeaveTheme(group.name)" [hidden]="!group.status">
                   <ion-icon name= "close"></ion-icon>
                 </button>
           </ion-buttons>

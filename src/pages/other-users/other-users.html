@@ -1,3 +1,9 @@
+<!--********************************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic other-users.html page  creates "View" for its corresponding 
+ * controller (other-users.ts) and angular 4 providing values of variables by two 
+ * way data binding. This page contains ionic html components supported by angular 
+ ************************************************************************************-->
 <ion-header [ngClass]="colorThemeHeader">
     <ion-navbar>
       <button ion-button menuToggle>
@@ -15,15 +21,17 @@
    <ion-list>
     
       <ion-item-sliding *ngFor="let notification of notifications.users">
-        <ion-item >
+        <ion-item>
             <ion-row>
                 <ion-col width-25>
-                  <preload-image style="border-radius: 50%" [ratio]="{w:1, h:1}" [src]="notification.imagepath"></preload-image>
+                  <preload-image style="border-radius: 50%" [ratio]="{w:1, h:1}" [src]="notification.displayImage"></preload-image>
                   <p>{{notification.displayname}}</p>
                 </ion-col>
                 <ion-col width-50>
                   
-                  <p  rows="3">{{notification.email}}</p>
+                  <p>{{notification.email}}</p>
+                  <p>{{notification.jobtitle}}</p>
+
                 </ion-col>
                 <ion-col width-25>
                   <ion-note item-right>{{notification.department}}</ion-note>
@@ -43,7 +51,7 @@
   
   <ion-footer>
     <ion-toolbar>
-          <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+          <ion-searchbar [(ngModel)]="searchTerm"  placeholder="Search by Name" (ionInput)="setFilteredItems()"></ion-searchbar>
       </ion-toolbar>
   </ion-footer>
   

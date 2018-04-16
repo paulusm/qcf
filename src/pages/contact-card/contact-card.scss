@@ -54,7 +54,7 @@ contact-card-page {
 
 			.contact-rating
 			{
-				//@include rating-item-styles($white-d, $theme-color-1);
+				
 
 				.rating-item
 				{
@@ -96,8 +96,7 @@ contact-card-page {
 
 			& > .button
 			{
-				//@include segment-text-styles(color($colors, button-alt, base));
-				background-color: color($colors, danger, contrast);
+				background-color: color($colors, primary, contrast);
 				margin: 0px;
 				border-radius: 0px;
 				flex: 1;

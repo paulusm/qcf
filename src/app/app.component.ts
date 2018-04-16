@@ -1,3 +1,10 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is entry point for this app any variables set
+ * at this page will be global for whole app.
+ * This page set values for side menu,set initial color theme for app
+ * and set event handlers which would be globally available
+ * **************************************************************/
 import { Component, ViewChild } from '@angular/core';
 import { Events, Platform, MenuController, Nav, App, ToastController,LoadingController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -5,8 +12,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Storage } from '@ionic/storage';
 
 import { TabsNavigationPage } from '../pages/tabs-navigation/tabs-navigation';
-//import { FormsPage } from '../pages/forms/forms';
-//import { NewsPage } from '../pages/news/news';
 import { WalkthroughPage } from '../pages/walkthrough/walkthrough';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 
@@ -15,7 +20,7 @@ import { LoginPage } from '../pages/login/login';
 
 import { AuthenticationProvider } from '../providers/authentication/authentication';
 
-import { UserData} from '../providers/user-data/user-data';
+//import { UserData} from '../providers/user-data/user-data';
 
 import { AppThemeColorProvider } from '../providers/app-theme-color/app-theme-color';
 
@@ -40,7 +45,7 @@ export class MyApp {
   constructor(
     public events: Events,
     public platform: Platform,
-    public userData: UserData,
+  //  public userData: UserData,
     public menu: MenuController,
     public app: App,
     public splashScreen: SplashScreen,
@@ -51,8 +56,6 @@ export class MyApp {
     public authService: AuthenticationProvider,
     public appThemeColorProvider:AppThemeColorProvider
   ) {
-    //this.role =  false;
-    //this.menuImage = "../assets/images/maps/charity4.jpg";//'../assets/images/maps/charity4.jpg';//"https://ionic2-qcf-auth.herokuapp.com/api/files/file/file-1521413562258.jpg";
      this.storage.get('hasSeenWalkthrough')
       .then((hasSeenWalkthrough) => {
         if (hasSeenWalkthrough) {
@@ -62,12 +65,10 @@ export class MyApp {
         }
         this.platformReady()
       }); 
-    //this.menuColor  = 'ion-menu-2';
     
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
-      //alert(value);
       if(value===null){
-        this.menuColor = 'ion-menu-1';
+        this.menuColor = 'ion-menu-4';
       }else if(value==='app-color-theme-1'){
         this.menuColor = 'ion-menu-1';
       }else if(value==='app-color-theme-2'){
@@ -80,7 +81,6 @@ export class MyApp {
     });
     this.pages = [
       { title: 'Home', icon: 'home', component: TabsNavigationPage },
-      //{ title: 'Forms', icon: 'create', component: FormsPage }
     ];
 
     this.pushPages = [
@@ -89,13 +89,6 @@ export class MyApp {
       { title: 'FAQ', icon: 'help', component: LoginPage, logsOut: false },
       { title: 'Logout', icon: 'log-out', component: LoginPage, logsOut: true }
     ];
-
-    /* this.pushPages2 = [
-      { title: 'Edit Admin Profile', icon: 'settings', component: EditProfilePage , logsOut: false},
-      { title: 'Contact', icon: 'md-call',component: ContactCardPage , logsOut: false},
-      { title: 'FAQ', icon: 'help', component: LoginPage, logsOut: false },
-      { title: 'Logout', icon: 'log-out', component: LoginPage, logsOut: true }
-    ]; */
 
     this.listenToLoginEvents();
     
@@ -128,7 +121,7 @@ export class MyApp {
     }
     // close the menu when clicking a link from the menu
     this.menu.close();
-    this.app.getRootNav().push(page.component);
+    this.nav.push(page.component);
   }
   platformReady() {
     // Call any initial plugins when ready
@@ -149,15 +142,5 @@ export class MyApp {
     this.events.subscribe('app-color-theme-4', () => {
       this.menuColor = 'ion-menu-4';
     });
-    /* this.events.subscribe('menuImage', (imageUrl) => {
-      
-      //this.menuImage = imageUrl;
-      //alert("_>_>_>" + this.menuImage);
-    }); */
   }
-
- /*  enableMenu(loggedIn: boolean) {
-    this.menu.enable(loggedIn, 'loggedInMenu');
-    this.menu.enable(!loggedIn, 'loggedOutMenu');
-  } */
 }

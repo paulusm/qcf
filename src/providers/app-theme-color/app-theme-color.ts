@@ -1,3 +1,10 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page provides Services for app-theme-color such as Http 
+ * calls to API which includes get and post request. Also get and 
+ * set values in local storage
+ * **************************************************************/
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';

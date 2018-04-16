@@ -1,4 +1,14 @@
-//@import "../../theme/common/auth/auth";
+/********************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic scss page provides CSS classes which applies to navigational
+ * tab at bottom of main display.
+ * It contains these for classes
+ * tabs-nav1
+ * tabs-nav2
+ * tabs-nav3
+ * tabs-nav4
+ * ******************************************************************/
+
 @import "../../theme/common/app-color-theme/app-color-theme-1";
 @import "../../theme/common/app-color-theme/app-color-theme-2";
 @import "../../theme/common/app-color-theme/app-color-theme-3";
@@ -41,12 +51,12 @@
 		background: color($colors, tabs-navigation-2, base) !important;
 		.tab-button
 		{
-			color: $white;//color($colors, tabs-navigation-2, contrast);
+			color: $white;
 			font-family: 'Verdana';
 			font-size: 1.8rem;
 			.tab-button-icon
 			{
-				color: $white;//color($colors, tabs-navigation-2, contrast);
+				color: $white;
 				
 			}
 		}
@@ -71,12 +81,12 @@
 		background: color($colors, tabs-navigation-3, base) !important;
 		.tab-button
 		{
-			color: $white; //color($colors, tabs-navigation-3, contrast);
+			color: $white; 
 			font-family: 'Helvetica';
 			font-size: 1.8rem;
 			.tab-button-icon
 			{
-				color: $white;//color($colors, $white-b, contrast);
+				color: $white;
 				
 			}
 		}
@@ -101,12 +111,12 @@
 		background: color($colors, tabs-navigation-4, base) !important;
 		.tab-button
 		{
-			color: $white;//color($colors, tabs-navigation-4, contrast);
+			color: $white;
 			font-family: 'Calibri';
 			font-size: 1.8rem;
 			.tab-button-icon
 			{
-				color: $white;//color($colors, $white-b, contrast);
+				color: $white;
 				
 			}
 		}

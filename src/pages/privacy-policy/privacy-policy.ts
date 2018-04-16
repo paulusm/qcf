@@ -1,3 +1,7 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible to give users privacy policy of this app.
+ * **************************************************************/
 import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 

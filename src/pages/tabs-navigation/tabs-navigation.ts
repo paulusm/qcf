@@ -1,8 +1,16 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible to display options in tab navigation 
+ * bar in main display screen(at bottom)
+ * Values get set as this page renders
+ * **************************************************************/
+
+
 import { Component } from '@angular/core';
 
 import { ListingPage } from '../listing/listing';
 import { ProfilePage } from '../profile/profile';
-import { NotificationsPage } from '../notifications/notifications';
+import { OtherUsersPage } from '../other-users/other-users';
 import { NewsPage } from '../news/news';
 import { ActivitiesPage } from '../activities/activities';
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
@@ -23,11 +31,11 @@ export class TabsNavigationPage {
     this.tab1Root = ListingPage;
     this.tab2Root = ProfilePage;
     this.tab3Root = NewsPage;
-    this.tab4Root = NotificationsPage;
+    this.tab4Root = OtherUsersPage;
     this.tab5Root = ActivitiesPage;
 
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
-      //alert(value);
+      
       if(value===null){
         this.tabColorTheme = 'tabs-nav4';
       }else if(value==='app-color-theme-1'){
@@ -39,8 +47,6 @@ export class TabsNavigationPage {
       }else if(value==='app-color-theme-4'){
         this.tabColorTheme = 'tabs-nav4';
       }
-
-      //alert(this.tabColorTheme);
     });
 
     

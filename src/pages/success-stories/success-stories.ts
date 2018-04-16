@@ -1,3 +1,14 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible for displaying all Success Stories published by QCF.
+ * Success Stories  get render on page initiation in form of ionic list.
+ * By sliding left to each List item user can go to details of particular  
+ * Success Story. User can also filter Success Stories by using given search bar .
+ * These function have been used for these task:
+ * goToSuccessStoriesDetail()
+ * setFilteredItems()
+ * **************************************************************/
+
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 
@@ -66,8 +77,6 @@ export class SuccessStoriesPage {
             for(let ct of companyThemes){    
                 for(let t of allThemes){
                   if(ct===t.name){
-                    //console.log(t._id);
-                    //this.themeIds[count]=t._id;
                     this.themeIds.push(t._id);
                   }
                 }
@@ -80,12 +89,12 @@ export class SuccessStoriesPage {
          
               let activeStories:any = [];
               this.stories.items = JSON.parse(data['_body']);
-              //console.log(JSON.parse(data['_body'])); 
               for(let n of this.stories.items){
                   if(n.type==="Story"){
                     for(let ts of this.themeIds){
                       if(ts===n.themeid){
                         n.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+n.imagepath;
+                        
                         activeStories.push(n);      
                       }
                     }
@@ -105,31 +114,6 @@ export class SuccessStoriesPage {
   }
 
   ionViewDidLoad() {
-    /* this.loading.present();
-      this.successStoriesService
-      .getSuccessStory()
-      .then(data => {
-         
-              let activeStories:any = [];
-              this.stories.items = JSON.parse(data['_body']);
-              //console.log(JSON.parse(data['_body'])); 
-              for(let n of this.stories.items){
-                  if(n.type==="Story"){
-                    for(let ts of this.themeIds){
-                      if(ts===n.themeid){
-                        n.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+n.imagepath;
-                        activeStories.push(n);      
-                      }
-                    }
-                  }
-              }
-              this.stories.items = activeStories;
-              this.items = activeStories;
-              console.log(this.stories.items);
-        this.loading.dismiss();
-      },(err) => {
-        
-      }); */  
   }
   goToSuccessStoriesDetail(item:any){
     this.nav.push(SuccessStoriesDetailsPage, { newItem: item });

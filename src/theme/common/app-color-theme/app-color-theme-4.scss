@@ -1,3 +1,8 @@
+/********************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic scss page provides CSS classes which applies globally
+ * to whole app.It makes up app-color-theme-4
+ * ******************************************************************/
 .app-color-theme-4
 {
 	ion-list{
@@ -14,12 +19,7 @@
 			}
 		}	
 	}
-	/* ion-row{
-		background-color: $white-a;
-		ion-col{
-			text-align: center;
-		}
-	} */
+	
 	.btn-details{
 		background-color:#32db64;
 		font-family: 'Calibri';

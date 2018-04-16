@@ -1,3 +1,9 @@
+<!--********************************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic join-activity.html page  creates "View" for its corresponding 
+ * controller (join-activity.ts) and angular 4 providing values of variables by two 
+ * way data binding. This page contains ionic html components supported by angular 
+ ************************************************************************************-->
 <ion-header [ngClass]="colorThemeHeader">
   <ion-navbar>
     <ion-title>Join Activity</ion-title>
@@ -7,29 +13,42 @@
 <ion-content [ngClass]="colorTheme">
 
     <ion-card>
-      <form [formGroup]="join_activity" (ngSubmit)="doJoin()">  
-        <!-- <preload-image style="border-radius: 5%;" [ratio]="{w:3, h:2}" [src]="item.url"></preload-image> -->
+      <form>  
+        <preload-image style="border-radius: 5%;" [ratio]="{w:3, h:2}" [src]="item.displayImage"></preload-image>
         <ion-card-content>
           <ion-card-title>
             {{item.activityname}}
           </ion-card-title>
             {{item.activitydescription}}
+
+            <p>Start: {{item.startdate | date:'dd/MM/yyyy'}}</p>
+                  <p>End: {{item.enddate | date:'dd/MM/yyyy' }}</p>
           <h3 class="h3-heading">Participation Type</h3>
 
-          <ion-list radio-group formControlName="selected_option">
-            <ion-item>
-              <ion-label>Voluntering</ion-label>
-              <ion-radio item-left value="voluntering" [disabled]="!v"></ion-radio>
+          <ion-list class="details-list">
+            <ion-item class="detail-item">
+              <ion-avatar item-left>
+                <ion-icon name="mail"></ion-icon>
+              </ion-avatar>
+              <button ion-button clear  (click)="sendMail()" [disabled]="!v">
+                Email for voluntering
+              </button>
             </ion-item>
-            <ion-item >
-              <ion-label>Sponsorship</ion-label>
-              <ion-radio item-left value="sponsorship" [disabled]="!s"></ion-radio>
+
+            <ion-item class="detail-item">
+              <ion-avatar item-left>
+                <ion-icon name="globe"></ion-icon>
+              </ion-avatar>
+              <button ion-button clear (click)="openInAppBrowser(item.mydonateurl)" [disabled]="!s">
+                Go to donor's website
+              </button>
             </ion-item>
-          </ion-list>
+           </ion-list> 
+
+
         </ion-card-content>
         <ion-row>
           <ion-col >
-              <button ion-button block ngClass="main-btn" type="submit" [disabled]="!join_activity.valid">Join</button>
           </ion-col>
         </ion-row>
         

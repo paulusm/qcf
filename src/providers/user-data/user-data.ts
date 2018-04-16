@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/* import { Injectable } from '@angular/core';
 
 import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
@@ -32,7 +32,7 @@ export class UserData {
     this.storage.set('token', '');
     this.storage.remove('token');
     this.storage.set('userModel','');
-    this.storage.remove('userModel'); */
+    this.storage.remove('userModel'); 
     //this.storage.remove(this.HAS_LOGGED_IN);
 
     //this.storage.remove(this.HAS_SEEN_WALKTHROUGH);
@@ -65,3 +65,4 @@ export class UserData {
     });
   };
 }
+ */

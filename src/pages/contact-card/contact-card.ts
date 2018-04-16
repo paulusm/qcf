@@ -1,3 +1,11 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page contact information of QCF.
+ * Help to navigate to their website,
+ * provide email and phone numbers
+ * and locate this address on map.
+ * **************************************************************/
+
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { EmailComposer } from '@ionic-native/email-composer';
@@ -43,19 +51,12 @@ export class ContactCardPage {
 
   }
 
-  // call(number: string){
-  //   this.callNumber.callNumber(number, true)
-  //   .then(() => console.log('Launched dialer!'))
-  //   .catch(() => console.log('Error launching dialer'));
-  // }
-
   sendMail(){
      let email = {
       to: 'as_baig@yahoo.com',
       subject: 'This app is the best!',
       body: "Hello, I'm trying this fantastic app that will save me hours of development"
     };
-    // Send a text message using default options
     this.emailComposer.open(email);
   }
 
