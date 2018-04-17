@@ -12,6 +12,7 @@ import { ProfileService } from '../profile/profile.service';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
+
 export class ActivitiesService {
   token: any;
   constructor(public http: Http,public storage:Storage,public profileService: ProfileService) {}

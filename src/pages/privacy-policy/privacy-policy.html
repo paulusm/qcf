@@ -4,7 +4,7 @@
  * controller (privacy-policy.ts) and angular 4 providing values of variables by two 
  * way data binding. This page contains ionic html components supported by angular 
  ************************************************************************************-->
-<ion-header>
+<ion-header [ngClass]="colorThemeHeader">
   <ion-toolbar>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
@@ -19,13 +19,46 @@
 </ion-header>
 
 <ion-content [ngClass]="colorTheme">
-<div>
-  <p>LAST MODIFIED: Nov 14, 2016</p>
-  <h3 class="h3-heading">WELCOME TO !!!</h3>
+  <div ngClass="main-div">
+  <p>LAST MODIFIED: Apr 17, 2018 </p>
+  <h3 class="h3-heading">WELCOME TO CIVITAZ!!!</h3>
   
-  <h3 class="h3-heading">USING OUR SERVICES</h3>
+  <h3 class="h3-heading">Disclaimer</h3>
+  
+  <div style="padding: 15px; background-color: rgb(226, 219, 219);">
+    <p>
+      By downloading, accessing or using CIVITAZ or any page of the Applications or Website here in referred to as “Applications”, 
+      you signify your assent to this disclaimer. The contents of the Applications, including, without limitation, all data, information, 
+      text, graphics, links and other materials are provided as a convenience and are meant to be used for informational purposes only. 
+      \n\n
+      CIVITAZ does not take responsibility for decisions taken by the user or reader based solely on the information provided by the
+      Applications.
+      \n\n
+      CIVITAZ does not warrant or assume any legal liability or responsibility for the completeness, or usefulness of any information 
+      provided by the Applications.
+      \n\n
+      All data and information displayed or distributed by the Applications comes from sources believed to be accurate, but may contain 
+      inaccuracies, typographical errors or omissions. 
+      \n\n
+      CIVITAZ does not warrant the accuracy, completeness, suitability, or validity of the data and information or the reliability of any 
+      advices, opinions, statements or other information as displayed or distributed through the Applications and will not be liable for 
+      any errors, omissions, or delays in this information or any losses, injuries, or damages arising from its display or use of the same.
+      \n\n
+      CIVITAZ expressly disclaims all warranties of any kind whether express or implied and makes no warranty that the Applications will meet 
+      or satisfy your requirements. 
+      \n\n
+      CIVITAZ shall have no responsibility for any damage or loss of function to your device or any loss of data that results from your use 
+      of the Applications.
+      \n\n
+      By assenting to this disclaimer you agree to hold harmless CIVITAZ and each of its members and agents from and against all claims, 
+      actions, demands, liabilities, judgments and settlements including, without limitation, from any direct, indirect, incidental, 
+      consequential, special, exemplary, punitive or any other claim you may incur in connection with your use of the Applications including, 
+      without limitation, any economic harm, lost profits, damages to business data or phone systems or any damages results damages resulting 
+      from reliance on any content or resulting from any interruptions, work stoppages, device failures, loss of files, errors, omissions, 
+      inaccuracies, defects, viruses, delays or mistakes of any kind
+    </p>
+    </div>
   
   
-  <h3 class="h3-heading">ABOUT THIS TERMS</h3>
 </div>  
 </ion-content>
