@@ -59,6 +59,7 @@ export class EditProfilePage {
   imageUpload: boolean;
   colorTheme: any;
   colorThemeHeader:any;
+  roleStatus:boolean=false;
 
   profile: UserModel = new UserModel();
   userModel:UserModel = new UserModel();
@@ -117,7 +118,7 @@ export class EditProfilePage {
     });
   }
 
-  ionViewDidLoad() {
+  ionViewWillLoad() {
     
     this.loading.present();
      
@@ -134,7 +135,11 @@ export class EditProfilePage {
   
       // setValue: With setValue, you assign every form control value at once by passing in a data object whose properties exactly match the form model behind the FormGroup.
       // patchValue: With patchValue, you can assign values to specific controls in a FormGroup by supplying an object of key/value pairs for just the controls of interest.
-
+      
+      if(data.role==="Employee"){
+        this.roleStatus=true;
+      }
+      console.log("roleStatus: "+this.roleStatus);
       this.settingsForm.patchValue({
         forename: data.forename,
         surename: data.surename,
@@ -154,11 +159,17 @@ export class EditProfilePage {
     this.storage.set(this.HAS_SEEN_WALKTHROUGH, false);
     this.storage.set('token', '');
     this.storage.remove('token');
-    this.storage.set('userModel','');
+    this.storage.set('userModel',null);
     this.storage.remove('userModel');
-    this.storage.set('profileImage', null);
+    this.storage.set('profileImage', '');
     this.storage.remove('profileImage');
-    this.nav.setRoot(this.rootPage);
+    this.storage.set('company', null);
+    this.storage.remove('company');
+    this.storage.set('app-theme-color', null);
+    this.storage.remove('app-theme-color');
+    this.nav.insert(0,LoginPage);
+    this.nav.popAll();
+    //this.nav.setRoot(this.rootPage);
   }
 
   showTermsModal() {
@@ -309,6 +320,8 @@ export class EditProfilePage {
       this.profile.surename = this.settingsForm.get('surename').value;
       this.profile.displayname = this.settingsForm.get('displayName').value;
       this.profile.department = this.settingsForm.get('department').value;
+      this.profile.about = this.settingsForm.get('about').value;
+      this.profile.jobtitle = this.settingsForm.get('jobtitle').value;
       
       this.profileService.getUserImage().then((value) => {
         this.profile.imagepath = value;

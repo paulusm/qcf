@@ -79,7 +79,6 @@ export class ResetPasswordPage {
         this.showLoader();
         this.authService.resetpassword(this.reset_password.get('newpassword').value, this.reset_password.get('code').value).then((result) => {
             this.loading.dismiss();
-            console.log('Result from server: ' + result);
             if(JSON.stringify(result).indexOf('Password reset token is invalid or has expired') !== -1)
             {
                   this.errortext = JSON.stringify(result);

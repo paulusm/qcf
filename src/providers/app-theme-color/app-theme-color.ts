@@ -8,6 +8,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { CompanyModel,CompanyProvider } from '../../providers/company/company';
 
 /*
   Generated class for the AppThemeColorProvider provider.
@@ -17,18 +18,37 @@ import { Storage } from '@ionic/storage';
 */
 @Injectable()
 export class AppThemeColorProvider {
+  companyModel: CompanyModel =new CompanyModel();
+  constructor(
+    public http: HttpClient,
+    public storage: Storage,
+    public companyService: CompanyProvider
+  ) {
+    this.companyService.getCompany().then((value) => {
 
-  constructor(public http: HttpClient,public storage: Storage) {
-    console.log('Hello AppThemeColorProvider Provider');
+      this.companyModel = value;
+      
+    });
+    
   }
   setAppThemeColor(themeColor: string): void {
     this.storage.set('app-theme-color', themeColor);
-  };
+    this.companyModel.colourtheme = themeColor;
+    this.companyService.updateCompany(this.companyModel).then(data => {
+          this.companyModel = data['company'];
+          this.companyService.setCompany(this.companyModel);
+    });
+    
+  }
+
+  setAppThemeColorLocally(themeColor: string): void {
+    this.storage.set('app-theme-color', themeColor);
+  }
 
   async getAppThemeColor(): Promise<string> {
     return await this.storage.get('app-theme-color').then((value) => {
       return value;
     });
-  };
+  }
 
 }

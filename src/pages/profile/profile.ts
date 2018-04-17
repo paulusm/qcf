@@ -18,6 +18,7 @@ import { MenuController, App, NavParams, LoadingController, NavController } from
 import { EditProfilePage } from '../edit-profile/edit-profile';
 import { AddUserPage } from '../add-user/add-user';
 import { CreateActivityPage } from '../create-activity/create-activity';
+import { CreateFaqPage } from '../create-faq/create-faq';
 
 import { EditActivityListPage } from '../edit-activity-list/edit-activity-list';
 import { UnapproveActivitiesPage } from '../unapprove-activities/unapprove-activities';
@@ -158,6 +159,9 @@ export class ProfilePage {
 
   goToEditProfile() {
     this.nav.push(EditProfilePage);
+  }
+  goToFAQ(){
+    this.nav.push(CreateFaqPage);
   }
   
 }

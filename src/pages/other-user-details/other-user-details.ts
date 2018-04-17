@@ -37,7 +37,6 @@ export class OtherUserDetailsPage {
 
     this.profileService.getData().then((user)=>{ 
       this.profile = user;
-      console.log("User role: "+this.profile.role);
       if(this.profile.role==="BusinessAdmin"){
         this.roleStatus=false;
         

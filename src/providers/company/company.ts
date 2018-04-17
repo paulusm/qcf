@@ -22,6 +22,7 @@ export class CompanyModel{
   email : string;
   themes : string;
   _id : string;
+  colourtheme:string;
   
 
   constructor() {}
@@ -65,14 +66,10 @@ export class CompanyProvider {
       return await new Promise((resolve, reject) => {
 
         this.storage.get('token').then((value) => {
-          //alert(tkn);
           this.token = value;
-          //alert(this.token);
           let headers = new Headers();
           headers.append('Authorization', tkn);
-          //let headers = new Headers();
-          //headers.append('Authorization', this.authService.token);
-          //alert("gettingCompany");
+          
           this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/companies/getCompanyByCompanyId/'+ _id, {headers: headers})
                   .map(res => res.json())
                   .subscribe(data => {

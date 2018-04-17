@@ -62,8 +62,8 @@
     </form>
     
     <button ngClass="main-btn" ion-button full (click)="onChangePassword()">CHANGE PASSWORD</button>
-    <br>
-    <button ngClass="main-btn" ion-button full (click)="onThemeChange()">CHANGE COLOR THEME</button>
+    <br [hidden]="roleStatus">
+    <button ngClass="main-btn" ion-button full (click)="onThemeChange()" [hidden]="roleStatus">CHANGE COLOR THEME</button>
     <br>
     <button ngClass="main-btn" ion-button full (click)="rateApp()">RATE APP</button>
     <br>

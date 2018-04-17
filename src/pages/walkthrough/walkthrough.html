@@ -29,46 +29,49 @@
       </p>
       <br><br><br><br>
       <br><br><br><br>
-      <br><br><br><br>
+      <br><br>
       <p class="intro-text">
           In next few slides you can find usability details or skip to login. 
       </p>
     </ion-slide>
 
     <ion-slide class="slide-2">
-      <ion-row style="margin-top:60px; margin-left:10px;">
+      <ion-row style="margin-top:40px; margin-left:10px;">
           <ion-col *ngFor="let item of items1">
             <div style="color:black;">
-            <background-image tappable style="height:230px; width:150px;" [src]="item.image" (click)="openScreen(item)">
-             
+                <p>{{item.title}}</p>
+            <background-image tappable style="height:210px; width:150px;" [src]="item.image" (click)="openScreen(item)">
+                
             </background-image>
-             <p>{{item.title}}</p>
+             
             </div>
           </ion-col>
         </ion-row>
     </ion-slide>
 
     <ion-slide class="slide-3">
-      <ion-row style="margin-top:60px; margin-left:10px;">
+      <ion-row style="margin-top:40px; margin-left:10px;">
           <ion-col *ngFor="let item of items2">
             <div style="color:black;">
-            <background-image tappable style="height:230px; width:150px;" [src]="item.image" (click)="openScreen(item)">
-             
+                <p>{{item.title}}</p>
+            <background-image tappable style="height:210px; width:150px;" [src]="item.image" (click)="openScreen(item)">
+                
             </background-image>
-             <p>{{item.title}}</p>
+             
             </div>
           </ion-col>
         </ion-row>
     </ion-slide>
 
     <ion-slide class="slide-3">
-        <ion-row style="margin-top:60px; margin-left:10px;">
+        <ion-row style="margin-top:40px; margin-left:10px;">
             <ion-col *ngFor="let item of items3">
               <div style="color:black;">
-              <background-image tappable style="height:230px; width:150px;" [src]="item.image" (click)="openScreen(item)">
-               
+                  <p>{{item.title}}</p>
+              <background-image tappable style="height:210px; width:150px;" [src]="item.image" (click)="openScreen(item)">
+                  
               </background-image>
-               <p>{{item.title}}</p>
+               
               </div>
             </ion-col>
           </ion-row>
@@ -77,7 +80,7 @@
     <ion-slide class="slide-4">
       <ion-row class="intro-image-row">
         <ion-col center no-padding>
-            <preload-image style="border-radius: 15%;" [ratio]="{w:1, h:1}" src="../../assets/images/main_logo.jpg" alt="Civitaz" title="IMAGE!"></preload-image>
+            <preload-image style="border-radius: 15%;" [ratio]="{w:1, h:1}" [src]="logoImage" alt="Civitaz" title="IMAGE!"></preload-image>
         </ion-col>
       </ion-row>
       <ion-row>

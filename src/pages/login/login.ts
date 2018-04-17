@@ -54,7 +54,6 @@ export class LoginPage {
     public profileService: ProfileService,
     public appThemeColorProvider:AppThemeColorProvider
   ) {
-    
     this.main_page = { component: TabsNavigationPage };
 
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
@@ -146,6 +145,7 @@ export class LoginPage {
             this.companyService.getCompanyInfo(this.userModel.companyid,this.token).then(data => {
               this.company = data['company'];
               this.companyService.setCompany(this.company);
+              this.appThemeColorProvider.setAppThemeColorLocally(this.company.colourtheme);
               let companyLogo = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+this.company.filename;
               this.events.publish('menuImage',companyLogo);
             });  

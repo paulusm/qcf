@@ -102,7 +102,7 @@ export class SuccessStoriesPage {
               }
               this.stories.items = activeStories;
               this.items = activeStories;
-              console.log(this.stories.items);
+              
         this.loading.dismiss();
       },(err) => {
         
@@ -110,7 +110,6 @@ export class SuccessStoriesPage {
 
        });
     });
-    console.log(this.themeIds);
   }
 
   ionViewDidLoad() {
@@ -120,7 +119,6 @@ export class SuccessStoriesPage {
   }
 
   filterItems(searchTerm){
-    console.log(this.items);
     return this.items.filter((item) => {
         return item.storytitle.toLowerCase()
         .indexOf(searchTerm.toLowerCase()) > -1;

@@ -1,0 +1,35 @@
+<!--********************************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic create-faq.html page  creates "View" for its corresponding 
+ * controller (create-faq.ts) and angular 4 providing values of variables by two 
+ * way data binding. This page contains ionic html components supported by angular 
+ ************************************************************************************-->
+ <ion-header [ngClass]="colorThemeHeader">
+  <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        CREATE FAQ
+      </ion-title>
+    </ion-navbar>
+</ion-header>
+
+  
+  <ion-content [ngClass]="colorTheme">
+    <div ngClass="main-div">  
+      <form  [formGroup]="new_faq" (ngSubmit)="doCreateFAQ()">
+        <ion-list> 
+          <ion-item>
+            <ion-label  floating>FAQ Title</ion-label>
+            <ion-input type="text" formControlName="faqtitle"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label  floating>FAQ</ion-label>
+              <ion-textarea formControlName="faq" rows="5"></ion-textarea>
+          </ion-item>
+        </ion-list>
+        <button ion-button block ngClass="main-btn" type="submit" [disabled]="!new_faq.valid">ADD</button>
+      </form>
+    </div>
+  </ion-content>

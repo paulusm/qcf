@@ -134,7 +134,6 @@ export class ListingPage {
 
   goToStoryOrArticle(category: any) {
 
-    console.log("Clicked goToFeed", category);
     if(category.title==="Articles"){
       this.nav.push(ArticlesPage);
     }else if(category.title==="Stories"){
@@ -158,7 +157,6 @@ export class ListingPage {
   }
 
   doLeaveTheme(name){
-    console.log("Before "+this.companyModel.themes);
     if(confirm("Leave this theme ?")){
         var index = this.companyThemes.indexOf(name);
           if (index > -1) {
@@ -172,7 +170,7 @@ export class ListingPage {
                 
           });
     }
-    console.log("After "+this.companyModel.themes);
+    
   }
   doJoinTheme(name){
       if(confirm("Join this theme ?")){

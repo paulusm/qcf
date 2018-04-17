@@ -26,6 +26,7 @@ export class ActivitiesDetailsPage {
   colorThemeHeader:any;
   isLiked:boolean = false;
   userModel:UserModel = new UserModel();
+  countLike:number=0;
 
   constructor(
     public navCtrl: NavController, 
@@ -36,7 +37,7 @@ export class ActivitiesDetailsPage {
     public activitiesService:ActivitiesService
   ) {
     this.item = navParams.get("newItem");
-    
+    this.countLike = this.item.likes.length;
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';
@@ -77,7 +78,7 @@ export class ActivitiesDetailsPage {
   }
 
   likeActivities(){
-
+    
      if(this.isLiked){
       var index = this.item.likes.indexOf(this.userModel.email);    // <-- Not supported in <IE9
       if (index !== -1) {
@@ -85,6 +86,7 @@ export class ActivitiesDetailsPage {
       }
 
       this.activitiesService.updateActivityAsEmployee(this.item).then((result) => {
+        this.countLike--;
       }, (err: any) => {
             alert(`status: ${err.status}, ${err.statusText}`);
       });
@@ -92,6 +94,7 @@ export class ActivitiesDetailsPage {
      }else{
         this.item.likes.push(this.userModel.email);
         this.activitiesService.updateActivityAsEmployee(this.item).then((result) => {
+          this.countLike++;
         }, (err: any) => {
               alert(`status: ${err.status}, ${err.statusText}`);
         });

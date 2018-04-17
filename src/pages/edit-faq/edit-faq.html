@@ -1,0 +1,33 @@
+<!--********************************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic edit-faq.html page  creates "View" for its corresponding 
+ * controller (edit-faq.ts) and angular 4 providing values of variables by two 
+ * way data binding. This page contains ionic html components supported by angular 
+ ************************************************************************************-->
+ <ion-header [ngClass]="colorThemeHeader">
+  <ion-navbar>
+    <ion-title>EDIT FAQ</ion-title>
+    <ion-buttons end [hidden]="!editForm.dirty">
+      <button ion-button (click)="saveChanges()">
+        SAVE
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content [ngClass]="colorTheme">
+<div ngClass="main-div"> 
+  <form [formGroup]="editForm">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Title</ion-label>
+        <ion-input type="text" formControlName="faqtitle"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>FAQ</ion-label>
+        <ion-textarea formControlName="faq" rows="5"></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </form>
+</div>
+</ion-content>

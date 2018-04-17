@@ -81,7 +81,7 @@ export class OtherUsersPage {
                              if(p.imagepath!=null){
                                image = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+p.imagepath;
                              }else{
-                               image = '../../assets/images/profile/emp2.png';
+                               image = './assets/images/profile/emp2.png';
                              }
                              let user = {
                                 displayname : p.displayname,
@@ -109,7 +109,6 @@ export class OtherUsersPage {
       });
   }
   filterItems(searchTerm){
-    console.log(this.items);
     return this.items.filter((item) => {
         return item.displayname.toLowerCase()
         .indexOf(searchTerm.toLowerCase()) > -1;

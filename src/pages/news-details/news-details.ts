@@ -32,6 +32,7 @@ export class NewsDetailsPage {
   newsModel:NewsModel = new NewsModel();
   
   image:any;
+  countLike:number=0;
 
   constructor(
     public navCtrl: NavController, 
@@ -41,6 +42,7 @@ export class NewsDetailsPage {
     public newsService:NewsService,
     public appThemeColorProvider:AppThemeColorProvider) {
       this.item = navParams.get("newItem");
+      this.countLike = this.item.likes.length;
       this.profileService.getData()
       .then(data => {
         this.userModel = data;
@@ -97,7 +99,7 @@ export class NewsDetailsPage {
       }
 
       this.newsService.updateLikes(this.item).then((result) => {
-      
+        this.countLike--;
       }, (err: any) => {
             alert(`status: ${err.status}, ${err.statusText}`);
       });
@@ -108,6 +110,7 @@ export class NewsDetailsPage {
      }else{
         this.item.likes.push(this.userModel.email);
         this.newsService.updateLikes(this.item).then((result) => {
+          this.countLike++;
         }, (err: any) => {
               alert(`status: ${err.status}, ${err.statusText}`);
         });

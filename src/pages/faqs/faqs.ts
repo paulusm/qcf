@@ -13,31 +13,32 @@ import { NavController, LoadingController } from 'ionic-angular';
 
 import 'rxjs/Rx';
 
-import { NewssModel } from './news.model';
-import { NewsService } from './news.service';
+import { FAQsModel } from '../create-faq/faq.model';
+import { FAQService } from '../create-faq/faq.service';
 
-import { NewsDetailsPage } from '../news-details/news-details';
+import { ProfileService } from '../profile/profile.service';
+
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
 
-@Component({
-  selector: 'page-news',
-  templateUrl: 'news.html',
-})
-export class NewsPage {
+import { EditFaqPage } from '../edit-faq/edit-faq';
 
-  news: NewssModel = new NewssModel();
+
+@Component({
+  selector: 'page-faqs',
+  templateUrl: 'faqs.html',
+})
+export class FaqsPage {
+
+  faqs: FAQsModel = new FAQsModel();
   loading: any;
   colorTheme: any;
   colorThemeHeader:any;
-  image:any;
-
-  items: any;
-  searchTerm: string = '';
-
-
+  shownGroup:any = null;
+  roleStatus:boolean = false;
   constructor(
     public nav: NavController,
-    public newsService: NewsService,
+    public fAQService: FAQService,
+    public profileService:ProfileService,
     public loadingCtrl: LoadingController,
     public appThemeColorProvider:AppThemeColorProvider
   ) {
@@ -62,44 +63,38 @@ export class NewsPage {
     });
   }
 
-  ionViewDidLoad() {
+  ionViewWillLoad() {
     this.loading.present();
-      this.newsService
-      .getNews()
-      .then(data => {
-         
-              let activeNews:any = [];
-              this.news.items = JSON.parse(data['_body']);
-              for(let n of this.news.items){
-                if(n.type==='News'){
-                    
-                    n.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+n.imagepath;
-                    activeNews.push(n);
+    this.profileService.getData().then((user)=>{ 
+      if(user.role==="Employee"){
+        this.roleStatus = true;
+      }
+      this.fAQService.getFAQs().then(data => {
+              
+              let companyFAQs:any = [];
+              this.faqs.items = JSON.parse(data['_body']);
+              for(let n of this.faqs.items){
+                if(n.companyid===user.companyid){
+                    companyFAQs.push(n);
                   }
               }
-              this.news.items = activeNews;
-              this.items = activeNews;
-              
-        this.loading.dismiss();
+              this.faqs.items = companyFAQs;
+              this.loading.dismiss();
       },(err) => {
-        
-      });  
+      });
+    });  
   }
-  goToNewsDetail(item:any){
-    this.nav.push(NewsDetailsPage, { newItem: item });
+  toggleGroup (group) {
+    if (this.isGroupShown(group)) {
+      this.shownGroup = null;
+    } else {
+      this.shownGroup = group;
+    }
   }
-
-  filterItems(searchTerm){
-    return this.items.filter((item) => {
-        return item.storytitle.toLowerCase()
-        .indexOf(searchTerm.toLowerCase()) > -1;
-    });    
-
+  isGroupShown(group) {
+    return this.shownGroup === group;
   }
-  setFilteredItems() {
- 
-    this.news.items = this.filterItems(this.searchTerm);
-
+  doEditFAQ(fq){
+    this.nav.push(EditFaqPage, { faq: fq });
   }
-
 }

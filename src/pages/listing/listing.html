@@ -39,7 +39,7 @@
   <ion-list>
     <div *ngFor="let group of groups">
       
-      <ion-item>
+      <ion-item text-wrap>
         <ion-row>
           <ion-col col-8 style="text-align: left;">  
               <span (click)="toggleGroup(group)">
@@ -47,8 +47,8 @@
                     <ion-icon name= "{{isGroupShown(group) ? 'arrow-up' : 'arrow-down'}}"></ion-icon>
                 </span>
               &nbsp;
-              <p style="color:#f4344f;" class="wrapp" [hidden]="group.status">{{group.name}}</p>
-              <p style="color:#32db64;" class="wrapp" [hidden]="!group.status">{{group.name}}</p>
+              <p style="color:#f4344f;"  [hidden]="group.status">{{group.name}}</p>
+              <p style="color:#32db64;"  [hidden]="!group.status">{{group.name}}</p>
               
           </ion-col>
           <ion-col col-4>
@@ -65,7 +65,7 @@
       </ion-item>
       <ion-item
             *ngFor="let item of group.areas"
-            [hidden] ="!isGroupShown(group)">
+            [hidden] ="!isGroupShown(group)" text-wrap>
         Area {{item}}
       </ion-item>
     </div>

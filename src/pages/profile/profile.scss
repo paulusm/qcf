@@ -11,7 +11,7 @@ profile-page {
 				margin: 0px;
 				border-radius: 0px;
                 flex: 1;
-                color: $white-d;
+                color: $black;
 
 				&::after
 				{
@@ -23,7 +23,7 @@ profile-page {
 					top: 0px;
 					right: 0px;
                     opacity: 0.6;
-                    color: $white-d;
+                    color: $black;
 				}
 
 				&:last-child

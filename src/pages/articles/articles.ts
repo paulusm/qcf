@@ -92,7 +92,6 @@ export class ArticlesPage {
          
               let activeArticles:any = [];
               this.articles.items = JSON.parse(data['_body']);
-              console.log(JSON.parse(data['_body'])); 
               for(let n of this.articles.items){
                   if(n.type==="Article"){
                     for(let ts of this.themeIds){
@@ -106,7 +105,6 @@ export class ArticlesPage {
               }
               this.articles.items = activeArticles;
               this.items = activeArticles;
-              console.log(this.articles.items);
               this.loading.dismiss();
       },(err) => {
         

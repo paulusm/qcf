@@ -47,8 +47,13 @@
       <button ion-button  (click)="goToApproveActivity()">APPROVE ACTIVITIES
       </button>
     </div>
-  
-      <h3 ngClass="h3-heading">SIGNED UP ACTIVITIES</h3>
+    <div class="button-bar" [hidden]="roleStatus">
+      <button ion-button  (click)="goToFAQ()">CREATE FAQ
+      </button>
+    </div>
+
+
+    <h3 ngClass="h3-heading">SIGNED UP ACTIVITIES</h3>
     </div> 
     <div [hidden]="!noActivities"><h5 style="color:red;">   No signed up activities.</h5></div>
     <ion-list>

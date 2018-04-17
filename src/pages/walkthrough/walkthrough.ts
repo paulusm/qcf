@@ -27,13 +27,14 @@ export class WalkthroughPage {
   items1:any;
   items2:any;
   items3:any;
-
+  logoImage:any;
   @ViewChild('slider') slider: Slides;
 
   constructor(
     public nav: NavController,
     public storage: Storage,
     public modalCtrl: ModalController) {
+    this.logoImage = "./assets/images/main_logo.jpg";  
     this.items1 =[
       {
           "title": "Home",

@@ -1,0 +1,48 @@
+<!--********************************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic faqs.html page  creates "View" for its corresponding controller 
+ * (faqs.ts) and angular 4 providing values of variables by two way data binding. 
+ *  This page contains ionic html components supported by angular
+ ************************************************************************************-->
+ <ion-header [ngClass]="colorThemeHeader">
+  <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        FAQs
+      </ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content [ngClass]="colorTheme">
+  <ion-list>
+    <div *ngFor="let f of faqs.items">
+      
+      <ion-item text-wrap>
+        <ion-row>
+          <ion-col col-10 style="text-align: left;">  
+              <span (click)="toggleGroup(f)">
+                    <ion-icon name= "{{isGroupShown(f) ? 'arrow-up' : 'arrow-down'}}"></ion-icon>
+              </span>
+              &nbsp;
+              <p style="color:#f4344f;">{{f.faqtitle}}</p>
+          </ion-col>
+          <ion-col col-2>
+            <ion-buttons end [hidden]="roleStatus">      
+                <button ion-button clear small color="primary" (click)="doEditFAQ(f)">
+                  <ion-icon name= "create"></ion-icon>
+                </button>
+          </ion-buttons>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+      <ion-item [hidden] ="!isGroupShown(f)" text-wrap>
+            {{f.faq}}
+      </ion-item>
+    </div>  
+    
+  </ion-list>
+</ion-content>
+

@@ -17,10 +17,9 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 
 import { ContactCardPage } from '../pages/contact-card/contact-card';
 import { LoginPage } from '../pages/login/login';
+import { FaqsPage } from '../pages/faqs/faqs';
 
 import { AuthenticationProvider } from '../providers/authentication/authentication';
-
-//import { UserData} from '../providers/user-data/user-data';
 
 import { AppThemeColorProvider } from '../providers/app-theme-color/app-theme-color';
 
@@ -36,7 +35,8 @@ export class MyApp {
   textDir: string = "ltr";
   loading: any;
   menuColor: any;
-  menuImage: any;
+  hithere:any = "Hello";
+  //menuImage: any;
 
   pages: Array<{title: any, icon: string, component: any}>;
   pushPages: Array<{title: any, icon: string, component: any,logsOut?: boolean}>;
@@ -45,7 +45,6 @@ export class MyApp {
   constructor(
     public events: Events,
     public platform: Platform,
-  //  public userData: UserData,
     public menu: MenuController,
     public app: App,
     public splashScreen: SplashScreen,
@@ -86,7 +85,8 @@ export class MyApp {
     this.pushPages = [
       { title: 'Edit Profile', icon: 'settings', component: EditProfilePage , logsOut: false},
       { title: 'Contact', icon: 'md-call',component: ContactCardPage , logsOut: false},
-      { title: 'FAQ', icon: 'help', component: LoginPage, logsOut: false },
+      { title: 'FAQ', icon: 'help', component: FaqsPage, logsOut: false },
+      { title: 'User Guide', icon: 'clipboard', component: WalkthroughPage, logsOut: false },
       { title: 'Logout', icon: 'log-out', component: LoginPage, logsOut: true }
     ];
 

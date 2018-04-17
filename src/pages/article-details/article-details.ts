@@ -32,6 +32,7 @@ export class ArticleDetailsPage {
   articleModel:ArticleModel = new ArticleModel();
   
   image:any;
+  countLike:number=0;
 
   constructor(
     public navCtrl: NavController, 
@@ -41,6 +42,7 @@ export class ArticleDetailsPage {
     public articlesService:ArticlesService,
     public appThemeColorProvider:AppThemeColorProvider) {
       this.item = navParams.get("newItem");
+      this.countLike = this.item.likes.length;
       this.profileService.getData()
       .then(data => {
         this.userModel = data;
@@ -95,14 +97,14 @@ export class ArticleDetailsPage {
       }
 
       this.articlesService.updateLikes(this.item).then((result) => {
-          
+        this.countLike--;         
       }, (err: any) => {
             alert(`status: ${err.status}, ${err.statusText}`);
       });
      }else{
         this.item.likes.push(this.userModel.email);
         this.articlesService.updateLikes(this.item).then((result) => {
-        
+          this.countLike++; 
         }, (err: any) => {
               alert(`status: ${err.status}, ${err.statusText}`);
         });

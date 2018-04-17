@@ -61,6 +61,12 @@ import { CreateActivityPage } from '../pages/create-activity/create-activity';
 import { JoinActivityPage } from '../pages/join-activity/join-activity';
 import { AppColorThemePage } from '../pages/app-color-theme/app-color-theme';
 
+import { CreateFaqPage } from '../pages/create-faq/create-faq';
+import { FAQService } from '../pages/create-faq/faq.service';
+import { FaqsPage } from '../pages/faqs/faqs';
+import { EditFaqPage } from '../pages/edit-faq/edit-faq';
+
+
 import { ActivitiesDetailsPage } from '../pages/activities-details/activities-details';
 
 import { EditActivityListPage } from '../pages/edit-activity-list/edit-activity-list';
@@ -124,6 +130,10 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
     ContactCardPage,
     ImageModelPage,
 
+    CreateFaqPage,
+    FaqsPage,
+    EditFaqPage,
+
     //custom components
     PreloadImage,
     BackgroundImage,
@@ -175,6 +185,10 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
     EditActivityListPage,
     EditActivityDetailPage,
     
+    CreateFaqPage,
+    FaqsPage,
+    EditFaqPage,
+    
     UnapproveActivitiesPage,
     UnapproveActivitiesDetailsPage,
     ImageModelPage
@@ -187,7 +201,8 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
     ArticlesService,
     SuccessStoriesService,
     ActivitiesService,
-
+    FAQService,
+    
 	  SplashScreen,
 	  StatusBar,
     SocialSharing,
