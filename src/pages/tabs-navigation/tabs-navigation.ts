@@ -19,6 +19,9 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
   selector: 'tabs-navigation',
   templateUrl: 'tabs-navigation.html'
 })
+/**
+ * Class representing Tabs Navigatio nPage
+ */
 export class TabsNavigationPage {
   tab1Root: any;
   tab2Root: any;
@@ -48,14 +51,5 @@ export class TabsNavigationPage {
         this.tabColorTheme = 'tabs-nav4';
       }
     });
-
-    
-
-
-
-
-
-
-
   }
 }

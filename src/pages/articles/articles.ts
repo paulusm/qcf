@@ -29,6 +29,9 @@ import { ThemeProvider } from '../../providers/theme/theme';
   selector: 'page-articles',
   templateUrl: 'articles.html',
 })
+/**
+ * Class representing Articles Page
+ */
 export class ArticlesPage {
 
   articles: ArticlesModel = new ArticlesModel();
@@ -52,6 +55,7 @@ export class ArticlesPage {
     public themeService : ThemeProvider
   ) {
     this.loading = this.loadingCtrl.create();
+    
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';
@@ -119,10 +123,15 @@ export class ArticlesPage {
   ionViewDidLoad() {
   
   }
+  /**
+   * Method to navigate to Article Details Page with current Article
+   */
   goToArticlesDetail(item:any){
     this.nav.push(ArticleDetailsPage, { newItem: item });
   }
-
+  /**
+   *  Method to filter article based on article title
+   */
   filterItems(searchTerm){
     return this.items.filter((item) => {
         return item.storytitle.toLowerCase()
@@ -130,6 +139,9 @@ export class ArticlesPage {
     });    
 
   }
+  /**
+   * Method to set filtered articles based on article title
+   */
   setFilteredItems() {
  
     this.articles.items = this.filterItems(this.searchTerm);

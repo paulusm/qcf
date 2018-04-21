@@ -15,7 +15,9 @@ import 'rxjs/add/operator/map';
 
 
 @Injectable()
-    
+/*
+ * Class for the AuthenticationProvider provider.
+ */    
 export class AuthenticationProvider {
   token:any;
   role:any;
@@ -27,7 +29,9 @@ export class AuthenticationProvider {
     public storage: Storage
   ) {
   }
-  
+  /**
+   * Method for authentication from database
+   */
   checkAuthentication(){
 
     return new Promise((resolve, reject) => {
@@ -39,7 +43,7 @@ export class AuthenticationProvider {
 
             let headers = new Headers();
             headers.append('Authorization', this.token);
-
+            //Http get request to API app to autenticate user
             this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/auth/protected', {headers: headers})
                 .subscribe(res => {
                     resolve(res);
@@ -52,7 +56,9 @@ export class AuthenticationProvider {
     });
 
   }
-
+  /**
+   * Method for role based authentication from database
+   */
   checkRole(){
 
        return new Promise((resolve, reject) => {
@@ -69,7 +75,10 @@ export class AuthenticationProvider {
        });
 
   }
-
+  /**
+   * Method to create new user with given details
+   * @param details 
+   */
   createAccount(details){
 
     return new Promise((resolve, reject) => {
@@ -81,7 +90,7 @@ export class AuthenticationProvider {
         let headers = new Headers();
         headers.append('Authorization', this.token);
         headers.append('Content-Type', 'application/json');
-
+        //Http post request to API app to register new user
        this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/auth/register', JSON.stringify(details), {headers: headers})
           .subscribe(res => {
 
@@ -95,7 +104,10 @@ export class AuthenticationProvider {
     });
 
   }
-
+  /**
+   * Method to update current user with given details
+   * @param details
+   */
   updateAccount(details){
 
     return new Promise((resolve, reject) => {
@@ -107,7 +119,7 @@ export class AuthenticationProvider {
         let headers = new Headers();
         headers.append('Authorization', this.token);
         headers.append('Content-Type', 'application/json');
-        
+        //Http post request to API app to update profile
        this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/users/updateprofile', JSON.stringify(details), {headers: headers})
           .subscribe(res => {
             resolve(res.json());
@@ -118,7 +130,10 @@ export class AuthenticationProvider {
     });
 
   }
-
+  /**
+   * Method to login into app with given credentials
+   * @param credentials
+   */
   login(credentials){
 
     return new Promise((resolve, reject) => {
@@ -130,6 +145,7 @@ export class AuthenticationProvider {
         let headers = new Headers();
         headers.append('Authorization', this.token);
         headers.append('Content-Type', 'application/json');
+        //Http post request to API app to login
         this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/auth/login', JSON.stringify(credentials), {headers: headers})
           .subscribe(res => {
 
@@ -145,13 +161,17 @@ export class AuthenticationProvider {
     });
 
   }
-
+  /**
+   * Method to chnage password with given credentials
+   * @param credentials  
+   */
   changePassword(credentials){
 
        return new Promise((resolve, reject) => {
     
             let headers = new Headers();
            headers.append('Content-Type', 'application/json');
+           //Http post request to API app to chage password
            this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/auth/changepassword', JSON.stringify(credentials),{headers:headers})
              .subscribe(res => {
     
@@ -164,7 +184,10 @@ export class AuthenticationProvider {
        });
 
   }
-
+  /**
+   * Method to recover forgotten password by given email
+   * @param email 
+   */
   forgot(email){
     return new Promise((resolve, reject) => {
       
@@ -176,7 +199,7 @@ export class AuthenticationProvider {
         headers.append('Authorization', this.token);
              headers.append('Content-Type', 'application/json');
 
-           
+            //Http post request to API app to recover password
              this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/auth/forgot', JSON.stringify(email), {headers: headers})
                .subscribe(res => {
       
@@ -189,7 +212,11 @@ export class AuthenticationProvider {
           });    
          });
   } 
-
+  /**
+   * Method to reeset forgotten password by given new password and authentication token
+   * @param newpassword 
+   * @param token 
+   */
   resetpassword(newpassword, token){
 
     let credentials = {
@@ -207,7 +234,7 @@ export class AuthenticationProvider {
         headers.append('Authorization', this.token);
              headers.append('Content-Type', 'application/json');
 
-
+            //Http post request to API app to reset password
              this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/auth/resetchg', JSON.stringify(credentials), {headers: headers})
                .subscribe(res => {
       
@@ -220,6 +247,9 @@ export class AuthenticationProvider {
               });      
          });
   }
+  /**
+   * Method to logout from app removing all variables from local storage
+   */
   logout(){
     this.storage.set(this.HAS_SEEN_WALKTHROUGH, false);
     this.storage.set('token', '');
@@ -230,10 +260,7 @@ export class AuthenticationProvider {
     this.storage.remove('profileImage');
     this.storage.set('company', null);
     this.storage.remove('company');
-    this.storage.set('app-theme-color', null);
-    this.storage.remove('app-theme-color');
-
-    
+    //this.storage.set('app-theme-color', null);
+    //this.storage.remove('app-theme-color');
   }
-
 }

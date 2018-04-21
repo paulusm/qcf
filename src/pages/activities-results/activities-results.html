@@ -1,0 +1,53 @@
+<!--********************************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic activities-results.html page  creates "View" for its corresponding controller 
+ * (activities-results.ts) and angular 4 providing values of variables by two way data binding. 
+ *  This page contains ionic html components supported by angular
+ ************************************************************************************-->
+ <ion-header [ngClass]="colorThemeHeader">
+  <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        ACTIVITIES RESULTS
+      </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content [ngClass]="colorTheme">
+<ion-list>
+  <div [hidden]="!noActivities"><h3 style="color:red;">   No activities to display.</h3></div>
+    <ion-item-sliding *ngFor="let item of activities.items">
+      <ion-item (click)="goToActivitiesResultDetail(item)">
+          <ion-row>
+              <ion-col>
+                <preload-image style="border-radius: 5%" [ratio]="{w:1, h:1}" [src]="item.displayImage"></preload-image>
+              </ion-col>
+              <ion-col padding="3">
+                <p id="title">{{item.activityname}}</p>
+                <p>Start: {{item.startdate | date:'dd/MM/yyyy'}}</p>
+                <p>End: {{item.enddate | date:'dd/MM/yyyy' }}</p>
+                <!-- <p>Target Hours: {{item.targethours}}</p>
+                <p>Target Amount: {{item.targetamount}}</p> -->
+              </ion-col>
+            </ion-row>
+      </ion-item>
+
+      <!-- <ion-item-options side="right">
+      <button ion-button class="btn-details" (click)="goToActivitiesResultDetail(item)">
+          <ion-icon name="arrow-forward"></ion-icon>
+          Details
+        </button>
+        <button ion-button class="btn-details-join" (click)="goToJoinActivity(item)" [disabled]="item.status">
+          <ion-icon name="add"></ion-icon>
+          Join
+        </button>
+        <button ion-button (click)="goToNavigateActivity(item)">
+          <ion-icon name="navigate"></ion-icon>
+          Navigate
+        </button>
+      </ion-item-options> -->
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

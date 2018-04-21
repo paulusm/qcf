@@ -28,6 +28,9 @@ import { EditActivityDetailPage } from '../edit-activity-detail/edit-activity-de
   selector: 'page-edit-activity-list',
   templateUrl: 'edit-activity-list.html',
 })
+/**
+ * Class representing Edit Activity List Page
+ */
 export class EditActivityListPage {
 
   activities: ActivitiessModel = new ActivitiessModel();
@@ -66,7 +69,9 @@ export class EditActivityListPage {
       }
     }); 
   }
-
+  /**
+   * Default method tigger just after this page load
+   */
   ionViewDidLoad() {
     this.loading.present();
     this.profileService.getData().then((user)=>{ 
@@ -82,6 +87,12 @@ export class EditActivityListPage {
                       t.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+t.filename;
                       t.startdate = new Date(t.startdate);
                       t.enddate = new Date(t.enddate);
+                      if(t.targethours===undefined){
+                        t.targethours = 0;
+                      }
+                      if(t.targetamount===undefined){
+                         t.targetamount=0; 
+                      }
                       tempArray2.push(t);
               }  
 
@@ -91,6 +102,9 @@ export class EditActivityListPage {
           }); 
     });
   }
+  /**
+   * Method to navigate EditActivityDetailPage with current activity
+   */
   goToUsersActivitiesDetail(item:any){
     this.nav.push(EditActivityDetailPage, { newItem: item });
   }

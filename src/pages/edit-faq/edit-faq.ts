@@ -23,6 +23,9 @@ import 'rxjs/Rx';
   selector: 'page-edit-faq',
   templateUrl: 'edit-faq.html',
 })
+/**
+ * Class representing Edit Faq Page
+ */
 export class EditFaqPage {
   editForm: FormGroup;
   rootPage: any = TabsNavigationPage;
@@ -74,7 +77,9 @@ export class EditFaqPage {
       faq: new FormControl()
     });
   }
-
+/**
+ * Method tigger just before this page load
+ */
   ionViewWillLoad() {
     
     this.loading.present();
@@ -84,6 +89,9 @@ export class EditFaqPage {
     });
     this.loading.dismiss();
   }
+  /**
+   * Method to saving changes in current FAQ using FAQ Service
+   */
   saveChanges(){
     this.faqModel._id = this.item._id;
     this.faqModel.companyid = this.item.companyid;

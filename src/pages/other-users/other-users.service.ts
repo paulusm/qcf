@@ -12,10 +12,15 @@ import 'rxjs/add/operator/toPromise';
 import { Storage } from '@ionic/storage';
 
 @Injectable()
+/**
+ * Class representing Other Users service
+ */
 export class NotificationsService {
   token: any;
   constructor(public http: Http,public storage:Storage) {}
-
+/**
+ * Method to get all users for same company
+ */
   async getUsers() {
     
     return await new Promise((resolve, reject) => {
@@ -26,6 +31,7 @@ export class NotificationsService {
 
         let headers = new Headers();
         headers.append('Authorization', this.token);
+        //Http get request to API app to get users
          this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/users/', {headers: headers})
           .subscribe(res => {
                 
@@ -37,9 +43,6 @@ export class NotificationsService {
         }, (err) => {
           
         });    
-
-        
     });
-
-}
+  }
 }

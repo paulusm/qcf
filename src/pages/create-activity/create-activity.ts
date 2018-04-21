@@ -35,12 +35,14 @@ import { FilesProvider } from '../../providers/files/files';
   selector: 'page-create-activity',
   templateUrl: 'create-activity.html',
 })
-
+/**
+ * Class representing Create Activity Page
+ */
 export class CreateActivityPage {
   new_activity: FormGroup;
   main_page: { component: any };
   loading: any;
-  image: any = null;
+  image = "./assets/images/noimage.jpeg";
 
   colorTheme: any;
   colorThemeHeader:any;
@@ -95,14 +97,18 @@ export class CreateActivityPage {
       startdate: new FormControl('', Validators.required),
       enddate: new FormControl(''),
       voluntering:new FormControl(false),
-      sponsorship: new FormControl(false)
+      sponsorship: new FormControl(false),
+      targethours:new FormControl(),
+      targetamount: new FormControl()
     });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddUserPage');
+    
   }
-
+  /**
+   * Method to present Action Sheet to choose camera or library to choose image 
+   */
   public presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',
@@ -127,7 +133,9 @@ export class CreateActivityPage {
     });
     actionSheet.present(); 
   } 
-
+  /**
+   *  Method to either choose image from library or took from camera 
+   */
   public takePicture(sourceType) {
     // Create options for the Camera Dialog
     var options = {
@@ -158,7 +166,9 @@ export class CreateActivityPage {
       this.presentToast('Error while selecting image.');
     });
   } 
-
+  /**
+   *  Method to present toast to display message in mobile device
+   */
   private presentToast(text) {
     let toast = this.toastCtrl.create({
       message: text,
@@ -167,7 +177,9 @@ export class CreateActivityPage {
     });
     toast.present();
   } 
-
+  /**
+   * Method to upload chosen image in database using file Transfer service provider
+   */
   async uploadFile(imageURI) {
     return await new Promise((resolve, reject) => {
                 let loader = this.loadingCtrl.create({
@@ -198,7 +210,9 @@ export class CreateActivityPage {
                 });
     });
   } 
-
+  /**
+   * Method to create new activity and save in database using activities Service
+   */
   doCreateActivity(){
 
       let temp = [];
@@ -232,7 +246,9 @@ export class CreateActivityPage {
             activitytype: temp,
             approved: false,
             address: this.new_activity.get('location').value,
-            filename: img
+            filename: img,
+            targethours:this.new_activity.get('targethours').value,
+            targetamount:this.new_activity.get('targetamount').value
           };
           
           this.activitiesService.createActivity(this.activity).then((result) => {

@@ -28,6 +28,8 @@
                   <p id="title">{{item.activityname}}</p>
                   <p>Start: {{item.startdate | date:'dd/MM/yyyy'}}</p>
                   <p>End: {{item.enddate | date:'dd/MM/yyyy' }}</p>
+                  <p>Target Hours: {{item.targethours}}</p>
+                  <p>Target Amount: {{item.targetamount}}</p>
                 </ion-col>
               </ion-row>
         </ion-item>
@@ -50,3 +52,8 @@
       </ion-item-sliding>
     </ion-list>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+        <ion-searchbar [(ngModel)]="searchTerm" placeholder="Search by Title" (ionInput)="setFilteredItems()"></ion-searchbar>
+    </ion-toolbar>
+</ion-footer>

@@ -50,6 +50,9 @@ import 'rxjs/Rx';
   selector: 'edit-profile-page',
   templateUrl: 'edit-profile.html'
 })
+/**
+ * Class representing Edit profile Page
+ */
 export class EditProfilePage {
   HAS_SEEN_WALKTHROUGH = 'hasSeenWalkthrough';
   image: any = null;
@@ -117,12 +120,14 @@ export class EditProfilePage {
       about: new FormControl()
     });
   }
-
+/**
+ * Default method tigger just after this page load in device 
+ */
   ionViewWillLoad() {
     
     this.loading.present();
      
-    this.image = "../../assets/images/profile/emp1.png";
+    this.image = "./assets/images/emp.png";
    
     this.profileService.getUserImage().then((profileImg)=>{
       if(profileImg){
@@ -153,7 +158,9 @@ export class EditProfilePage {
       
     });
   }
-
+  /**
+   * Method use to logout current user by removing authencation details from local memory
+   */
   logout() {
     // navigate to the new page if it is not the current page
     this.storage.set(this.HAS_SEEN_WALKTHROUGH, false);
@@ -165,27 +172,36 @@ export class EditProfilePage {
     this.storage.remove('profileImage');
     this.storage.set('company', null);
     this.storage.remove('company');
-    this.storage.set('app-theme-color', null);
-    this.storage.remove('app-theme-color');
+    //this.storage.set('app-theme-color', null);
+    //this.storage.remove('app-theme-color');
     this.nav.insert(0,LoginPage);
     this.nav.popAll();
     //this.nav.setRoot(this.rootPage);
   }
-
+  /**
+   * Method present Terms Of Service Page
+   */
   showTermsModal() {
     let modal = this.modal.create(TermsOfServicePage);
     modal.present();
   }
-
+  /**
+   * Method present Privacy policy Page
+   */
   showPrivacyModal() {
     let modal = this.modal.create(PrivacyPolicyPage);
     modal.present();
   }
+  /**
+   * Method to navigate to change password page
+   */
   onChangePassword(){
     this.nav.push(ChangePasswordPage); 
 
   }
-
+  /**
+   * Method to launch Rate this app 
+   */
   rateApp(){
     if(this.platform.is('cordova')){
       this.appRate.preferences.storeAppURL = {
@@ -200,7 +216,9 @@ export class EditProfilePage {
       console.log("You are not in a cordova environment. You should test this feature in a real device or an emulator");
     }
   }
-
+  /**
+   * Method to present Action Sheet with camera and library  options
+   */
   public presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',
@@ -225,12 +243,17 @@ export class EditProfilePage {
     });
     actionSheet.present();
   }
-  
+  /**
+   * Method to handle errors
+   */
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); 
     return Promise.reject(error.message || error);
   }
-  
+  /**
+   * Method to take picture by camera or chosen from library
+   * 
+   */
   public takePicture(sourceType) {
     // Create options for the Camera Dialog
     var options = {
@@ -262,7 +285,9 @@ export class EditProfilePage {
       this.presentToast('Error while selecting image.');
     });
   }
-  
+/**
+ * Method to presend toast to display message on device
+ */
   private presentToast(text) {
     let toast = this.toastCtrl.create({
       message: text,
@@ -271,7 +296,9 @@ export class EditProfilePage {
     });
     toast.present();
   }
-
+  /**
+   * Method to upload image to database by using file transfer service
+   */
   async uploadFile(imageURI) {
     return await new Promise((resolve, reject) => {
                 let loader = this.loadingCtrl.create({
@@ -305,11 +332,15 @@ export class EditProfilePage {
                 });
     });
   } 
-
+  /**
+   * Method to navigate to App Color-Theme Page
+   */
   onThemeChange(){
     this.nav.push(AppColorThemePage); 
   }
-
+  /**
+   * Method to save changes in profile to database by using authService
+   */
   saveChanges(){
     
     this.profileService.getData()

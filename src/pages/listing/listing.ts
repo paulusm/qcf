@@ -28,6 +28,9 @@ import 'rxjs/Rx';
   selector: 'listing-page',
   templateUrl: 'listing.html',
 })
+/**
+ * Class representing Listing Page
+ */
 export class ListingPage {
   companyModel: CompanyModel =new CompanyModel();
   profile: UserModel = new UserModel();
@@ -45,7 +48,9 @@ export class ListingPage {
   colorTheme: any;
   colorThemeHeader:any;
   companyName:any;
+  companyImage:any;
 
+  joinedThemes:any =[];
   constructor(
     public nav: NavController,
     public loadingCtrl: LoadingController,
@@ -75,11 +80,10 @@ export class ListingPage {
         this.colorThemeHeader = 'ion-header-4';
       }
     });
-
-    
-    
   }
-
+/**
+ * Method tigger just after this page load
+ */
   ionViewWillLoad() {
     this.loading.present();
 
@@ -96,6 +100,7 @@ export class ListingPage {
         this.companyLogo = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+this.companyModel.filename;
         this.companyThemes = this.companyModel.themes;
         this.companyName = this.companyModel.companyname;
+        this.companyImage = this.companyModel.filename;
 
         this.themeService.getThemes().then((res) => {
           this.groups = JSON.parse(res['_body']); 
@@ -108,9 +113,13 @@ export class ListingPage {
                     }
                     if(found==="true"){
                       this.groups[i].status = true;
+                      this.joinedThemes.push(this.groups[i]);
                     }else{
                       this.groups[i].status = false;  
                     }
+                }
+                if(this.roleStatus===true){
+                  this.groups = this.joinedThemes;
                 }
             }, (err) => {
                 this.loading.dismiss();
@@ -131,7 +140,9 @@ export class ListingPage {
     this.loading.dismiss();
   
   }
-
+/**
+ * Method to navigate to articles and stories
+ */
   goToStoryOrArticle(category: any) {
 
     if(category.title==="Articles"){
@@ -141,7 +152,7 @@ export class ListingPage {
     }  
   }
 
-    /*
+ /**
    * if given group is the selected group, deselect it
    * else, select the given group
    */
@@ -152,10 +163,15 @@ export class ListingPage {
       this.shownGroup = group;
     }
   }
+/**
+ * Method to show hidden group of themmes
+ */
   isGroupShown(group) {
     return this.shownGroup === group;
   }
-
+/**
+ * Method to Leave currently theme
+ */
   doLeaveTheme(name){
     if(confirm("Leave this theme ?")){
         var index = this.companyThemes.indexOf(name);
@@ -172,6 +188,9 @@ export class ListingPage {
     }
     
   }
+/**
+ * Method to Join current theme
+ */
   doJoinTheme(name){
       if(confirm("Join this theme ?")){
           this.companyThemes.push(name);

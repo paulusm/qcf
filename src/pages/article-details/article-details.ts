@@ -22,6 +22,9 @@ import { ArticleModel } from '../articles/articles.models';
   selector: 'page-article-details',
   templateUrl: 'article-details.html',
 })
+/**
+ * Class representing Article Details Page
+ */
 export class ArticleDetailsPage {
   item:any;
   colorTheme: any;
@@ -52,7 +55,9 @@ export class ArticleDetailsPage {
         }
       
       });
-      
+    /**
+    * 
+    */  
           
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
@@ -76,7 +81,9 @@ export class ArticleDetailsPage {
 
   ionViewDidLoad() {
   }
-
+  /**
+   * Method to Launch social media app to share this article
+   */
   sharePost(post) {
     //this code is to use the social sharing plugin
     // message, subject, file, url
@@ -88,6 +95,9 @@ export class ArticleDetailsPage {
        console.log('Error - Sharing');
     }); 
    }
+   /**
+    * Method to handle like for this article
+    */
    likeArticle(){
     this.image = this.item.displayImage;
      if(this.isLiked){

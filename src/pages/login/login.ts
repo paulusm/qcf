@@ -31,6 +31,9 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
   selector: 'login-page',
   templateUrl: 'login.html'
 })
+/**
+ * Class representing Login Page
+ */
 export class LoginPage {
   login: FormGroup;
   main_page: { component: any };
@@ -95,10 +98,9 @@ export class LoginPage {
       { type: 'required', message: 'Password is required.' },
     ]
   };
-  ionViewDidLoad() {
-
-  }
-
+  /** 
+   * Default method tigger just after this page load 
+   */
   ionViewWillLoad() {
       this.showLoader();
 
@@ -112,7 +114,9 @@ export class LoginPage {
          this.loading.dismiss();
      });  
   }
-
+/**
+ * Method to show loading model
+ */
   showLoader(){
 
     this.loading = this.loadingCtrl.create({
@@ -122,6 +126,9 @@ export class LoginPage {
     this.loading.present();
 
   }
+/**
+ * Method to do login in app
+ */
   doLogin() {
 
       this.showLoader();
@@ -164,7 +171,9 @@ export class LoginPage {
                 alert(`status: ${err.status}, ${err.statusText}`);
           });   
   }
-
+/**
+ * Method to navigate to ForgotPasswordPage
+ */
   goToForgotPassword() {
     this.nav.push(ForgotPasswordPage);
   }

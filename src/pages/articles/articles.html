@@ -20,7 +20,7 @@
   <ion-list>
   
     <ion-item-sliding *ngFor="let item of articles.items">
-      <ion-item >
+      <ion-item (click)="goToArticlesDetail(item)">
           <ion-row>
               <ion-col width-35>
                 <preload-image style="border-radius: 5%" [ratio]="{w:1, h:1}" [src]="item.displayImage"></preload-image>
@@ -32,12 +32,12 @@
             </ion-row>
       </ion-item>
 
-      <ion-item-options side="right">
+      <!-- <ion-item-options side="right">
         <button ion-button class="btn-details" (click)="goToArticlesDetail(item)">
           <ion-icon name="arrow-forward"></ion-icon>
           Details
         </button>
-      </ion-item-options>
+      </ion-item-options> -->
     </ion-item-sliding>
   </ion-list>
 </ion-content>

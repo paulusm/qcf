@@ -27,6 +27,9 @@ import { UnapproveActivitiesDetailsPage } from '../unapprove-activities-details/
   selector: 'page-unapprove-activities',
   templateUrl: 'unapprove-activities.html',
 })
+/**
+ * Class representing Unapprove Activities Page
+ */
 export class UnapproveActivitiesPage {
 
   activities: ActivitiessModel = new ActivitiessModel();
@@ -66,7 +69,9 @@ export class UnapproveActivitiesPage {
       }
     }); 
   }
-
+/**
+ * Method tigger just before this page load 
+ */
   ionViewDidLoad() {
     this.loading.present();
     this.profileService.getData().then((user)=>{ 
@@ -82,6 +87,12 @@ export class UnapproveActivitiesPage {
                       t.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+t.filename;
                       t.startdate = new Date(t.startdate);
                       t.enddate = new Date(t.enddate);
+                      if(t.targethours===undefined){
+                        t.targethours = 0;
+                      }
+                      if(t.targetamount===undefined){
+                         t.targetamount=0; 
+                      }
                       tempArray2.push(t);
               }  
 
@@ -91,6 +102,9 @@ export class UnapproveActivitiesPage {
           }); 
     });
   }
+/**
+ * Method to navigate to approved actinits
+ */
   goToUnapprovedActivitiesDetail(item:any){
     this.nav.push(UnapproveActivitiesDetailsPage, { newItem: item });
   }

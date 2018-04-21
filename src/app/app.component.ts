@@ -27,6 +27,9 @@ import { AppThemeColorProvider } from '../providers/app-theme-color/app-theme-co
   selector: 'app-root',
   templateUrl: 'app.html'
 })
+/**
+ * Class for MYApp this is entry point of this app and global to whole app
+ */
 export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
@@ -93,7 +96,10 @@ export class MyApp {
     this.listenToLoginEvents();
     
   }
-
+  /**
+   * Method to open new page select from menu
+   * @param page 
+   */
   openPage(page) {
     
     // close the menu when clicking a link from the menu
@@ -109,7 +115,11 @@ export class MyApp {
 
     this.loading.present();
 
-}
+ }
+ /**
+  * Method to push new page selected from menu
+  * @param page 
+  */
   pushPage(page) {
     if (page.logsOut === true) {
       // Give the menu time to close before changing to logged out
@@ -123,12 +133,18 @@ export class MyApp {
     this.menu.close();
     this.nav.push(page.component);
   }
+  /**
+   * Method to init platform of device
+   */
   platformReady() {
     // Call any initial plugins when ready
     this.platform.ready().then(() => {
       this.splashScreen.hide();
     });
   }
+  /**
+   * Event handler for change of color theme
+   */
   listenToLoginEvents() {
     this.events.subscribe('app-color-theme-1', () => {
       this.menuColor = 'ion-menu-1';

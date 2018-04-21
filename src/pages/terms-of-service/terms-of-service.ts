@@ -11,7 +11,9 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
   selector: 'terms-of-service-page',
   templateUrl: 'terms-of-service.html'
 })
-
+/**
+ * Class representing Terms Of Service Page
+ */
 export class TermsOfServicePage {
 
   colorTheme: any;
@@ -39,7 +41,9 @@ export class TermsOfServicePage {
     });
 
   }
-
+/**
+ * Method to dismiss this model
+ */
   dismiss() {
     this.view.dismiss();
   }

@@ -35,6 +35,9 @@ import { FilesProvider } from '../../providers/files/files';
   selector: 'page-edit-activity-detail',
   templateUrl: 'edit-activity-detail.html',
 })
+/**
+ * Class representing Edit Activity Detail Page
+ */
 export class EditActivityDetailPage {
   item:any;
   colorTheme: any;
@@ -103,10 +106,14 @@ export class EditActivityDetailPage {
       startdate: new FormControl(''),
       enddate: new FormControl(''),
       voluntering:new FormControl(false),
-      sponsorship: new FormControl(false)
+      sponsorship: new FormControl(false),
+      targethours:new FormControl(),
+      targetamount: new FormControl()
     });
   }
-
+ /**
+  * Default method tigger just afer this page loads
+  */
   ionViewDidLoad() {
      this.new_activity.patchValue({
       activityname: this.item.activityname,
@@ -118,11 +125,17 @@ export class EditActivityDetailPage {
       startdate: this.item.startdate,
       enddate: this.item.enddate,
       voluntering: this.vol,
-      sponsorship: this.spon
+      sponsorship: this.spon,
+      targethours:this.item.targethours,
+      targetamount: this.item.targetamount,
+      approved: false//this.item.approved,
       });
       this.image = this.item.displayImage;
   }
-   doUpdateActivity(){
+  /**
+   * Method to Update current activity using activities Service
+   */
+  doUpdateActivity(){
     let temp = [];
     if(this.new_activity.get('voluntering').value===true){
             temp.push('Volunteering');
@@ -146,7 +159,9 @@ export class EditActivityDetailPage {
             activitytype: temp,
             approved: false,
             address: this.new_activity.get('location').value,
-            filename: img
+            filename: img,
+            targethours:this.new_activity.get('targethours').value,
+            targetamount:this.new_activity.get('targetamount').value
           };
           
           this.activitiesService.updateActivity(this.activity).then((result) => {
@@ -160,12 +175,10 @@ export class EditActivityDetailPage {
           });
       });  
     });
-
-
-    
-
    }
-   
+   /**
+    * Method to present Action Sheet to choose camera or library for image
+    */
    public presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',
@@ -191,7 +204,9 @@ export class EditActivityDetailPage {
     actionSheet.present(); 
     
   } 
-
+  /**
+   * Method to either take image using camera or choose from library
+   */
   public takePicture(sourceType) {
     // Create options for the Camera Dialog
     var options = {
@@ -222,7 +237,9 @@ export class EditActivityDetailPage {
       this.presentToast('Error while selecting image.');
     });
   } 
-
+  /**
+   * Mehtod to present Toast to present message in device
+   */
   private presentToast(text) {
     let toast = this.toastCtrl.create({
       message: text,
@@ -231,7 +248,9 @@ export class EditActivityDetailPage {
     });
     toast.present();
   } 
-
+  /**
+   * Method to upload chosen image in database using file Transfer service
+   */
   async uploadFile(imageURI) {
     return await new Promise((resolve, reject) => {
                 let loader = this.loadingCtrl.create({

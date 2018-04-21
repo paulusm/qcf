@@ -1,3 +1,9 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible to create color-radio button
+ * directive
+ * **************************************************************/
+
 import { Directive, ElementRef, Input, Renderer } from '@angular/core';
 
 @Directive({

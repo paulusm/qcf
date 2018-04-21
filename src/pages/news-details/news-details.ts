@@ -22,6 +22,9 @@ import { NewsModel } from '../news/news.model';
   selector: 'page-news-details',
   templateUrl: 'news-details.html',
 })
+/**
+ * Class representing News Details Page
+ */
 export class NewsDetailsPage {
   item:any;
   colorTheme: any;
@@ -73,9 +76,9 @@ export class NewsDetailsPage {
     });
   }
 
-  ionViewDidLoad() {
-  }
-
+/**
+ * Method to launch app to share current news
+ */
   sharePost(post) {
     //this code is to use the social sharing plugin
     // message, subject, file, url
@@ -86,11 +89,13 @@ export class NewsDetailsPage {
     .catch(() => {
        console.log('Error - Sharing');
     }); 
-   }
+  }
 
 
-
-   likeNews(){
+/**
+ * Method to update likes for current news 
+ */ 
+  likeNews(){
     this.image = this.item.displayImage;
      if(this.isLiked){
       var index = this.item.likes.indexOf(this.userModel.email);    // <-- Not supported in <IE9
@@ -103,10 +108,6 @@ export class NewsDetailsPage {
       }, (err: any) => {
             alert(`status: ${err.status}, ${err.statusText}`);
       });
-
-
-
-
      }else{
         this.item.likes.push(this.userModel.email);
         this.newsService.updateLikes(this.item).then((result) => {

@@ -13,10 +13,8 @@ import { Storage } from '@ionic/storage';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 
 /*
-  Generated class for the FilesProvider provider.
+  Class for the FilesProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
 */
 @Injectable()
 export class FilesProvider {
@@ -32,11 +30,14 @@ export class FilesProvider {
   ) {
     console.log('Hello FilesProvider Provider');
   }
-
+  /**
+   * Method to download file from database
+   * @param filename 
+   */
   async download(filename) {
     //alert("In download..." + filename);
      return await new Promise((resolve, reject) => {
-
+          //Http get request to API app to get file
           this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+ filename)
               .subscribe(res => {
                   //alert(">>>>> "+res.url);  
@@ -45,9 +46,12 @@ export class FilesProvider {
               }, (err) => {
                   reject(err);
               });
-});
-
+    });
   }
+  /**
+   * Method to upload file into database by given imageURI
+   * @param imageURI 
+   */
   async uploadFile(imageURI) {
     return await new Promise((resolve, reject) => {
                 let loader = this.loadingCtrl.create({
@@ -66,6 +70,7 @@ export class FilesProvider {
                   headers: headers
                 }
                 alert("@image@ "+ imageURI);  
+                //Http upload request to API app to get upload images
                 fileTransfer.upload(imageURI, encodeURI('https://ionic2-qcf-auth.herokuapp.com/api/files/upload'), options,true)
                   .then((data) => {
 
@@ -88,6 +93,10 @@ export class FilesProvider {
                 });
     });
   }
+  /**
+   * Method to present toast to display text in device
+   * @param text 
+   */
   private presentToast(text) {
     let toast = this.toastCtrl.create({
       message: text,

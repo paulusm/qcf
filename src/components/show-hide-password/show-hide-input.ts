@@ -1,3 +1,9 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible to create show-hide-input 
+ * directive for password fields
+ * **************************************************************/
+
 import { Directive, HostBinding, ElementRef } from '@angular/core';
 
 @Directive({

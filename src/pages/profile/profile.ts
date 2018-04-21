@@ -21,6 +21,10 @@ import { CreateActivityPage } from '../create-activity/create-activity';
 import { CreateFaqPage } from '../create-faq/create-faq';
 
 import { EditActivityListPage } from '../edit-activity-list/edit-activity-list';
+import { CloseActivityListPage } from '../close-activity-list/close-activity-list';
+
+import { ActivitiesResultsPage } from '../activities-results/activities-results';
+
 import { UnapproveActivitiesPage } from '../unapprove-activities/unapprove-activities';
 
 import { ActivitiessModel } from '../activities/activities.model';
@@ -41,12 +45,15 @@ import 'rxjs/Rx';
   selector: 'profile-page',
   templateUrl: 'profile.html'
 })
+/**
+ * Class representing ProfilePage
+ */
 export class ProfilePage {
   profile: UserModel = new UserModel();
   activities: ActivitiessModel = new ActivitiessModel();
   loading: any;
   roleStatus:boolean=false;
-  image: any;
+  image = "./assets/images/emp.png";
 
   colorTheme: any;
   colorThemeHeader:any;
@@ -86,7 +93,9 @@ export class ProfilePage {
           }
         });
   }
-
+  /**
+   * Method tigger just after this page load 
+   */
   ionViewWillLoad() {
     this.loading.present();
     this.image = "../../assets/images/profile/emp1.png";
@@ -124,42 +133,56 @@ export class ProfilePage {
                     //
                     //tempArray2.push(t);
             }  
-
-
-            this.activities.items = tempArray2;//JSON.parse(data['_body']);
-            //console.log(data['_body']);
-            //console.log("Company's Activities after -->> "+JSON.stringify(this.activities.items));
-            //this.loading.dismiss();
+            this.activities.items = tempArray2;
         }); 
       }); 
-
-
-
       this.loading.dismiss();
   }
-
-  /* private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); 
-    return Promise.reject(error.message || error);
-  } */
+  /**
+   * Method to navigate to EditActivityListPage
+   */
   goToEditActivity(){
     this.nav.push(EditActivityListPage);
   }
+    /**
+   * Method to navigate to UnapproveActivitiesPage
+   */
   goToApproveActivity(){
     this.nav.push(UnapproveActivitiesPage);
   }
-
+    /**
+   * Method to navigate to CloseActivityListPage
+   */
+  goToCloseActivity(){
+    this.nav.push(CloseActivityListPage);
+  }
+    /**
+   * Method to navigate to ActivitiesResultsPage
+   */
+  goToActivityResult(){
+    this.nav.push(ActivitiesResultsPage);
+  }
+    /**
+   * Method to navigate to AddUserPage
+   */
   goToAddUser(){
     this.nav.push(AddUserPage);
   }
-
+    /**
+   * Method to navigate to CreateActivityPage
+   */
   goToCreateActivity(){
     this.nav.push(CreateActivityPage);
   }
-
+    /**
+   * Method to navigate to EditProfilePage
+   */
   goToEditProfile() {
     this.nav.push(EditProfilePage);
   }
+    /**
+   * Method to navigate to CreateFaqPage
+   */
   goToFAQ(){
     this.nav.push(CreateFaqPage);
   }

@@ -28,6 +28,9 @@ import { ThemeProvider } from '../../providers/theme/theme';
   selector: 'page-success-stories',
   templateUrl: 'success-stories.html',
 })
+/**
+ * 
+ */
 export class SuccessStoriesPage {
 
   stories: SuccessStoriesModel = new SuccessStoriesModel();
@@ -112,12 +115,15 @@ export class SuccessStoriesPage {
     });
   }
 
-  ionViewDidLoad() {
-  }
+  /**
+ * 
+ */
   goToSuccessStoriesDetail(item:any){
     this.nav.push(SuccessStoriesDetailsPage, { newItem: item });
   }
-
+  /**
+ * 
+ */
   filterItems(searchTerm){
     return this.items.filter((item) => {
         return item.storytitle.toLowerCase()
@@ -125,6 +131,9 @@ export class SuccessStoriesPage {
     });    
 
   }
+  /**
+ * 
+ */
   setFilteredItems() {
  
     this.stories.items = this.filterItems(this.searchTerm);

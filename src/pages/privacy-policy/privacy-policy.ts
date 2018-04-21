@@ -11,7 +11,9 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
   selector: 'privacy-policy-page',
   templateUrl: 'privacy-policy.html'
 })
-
+/**
+ * Class representing Privacy Policy Page
+ */
 export class PrivacyPolicyPage {
 
   colorTheme: any;
@@ -39,8 +41,10 @@ export class PrivacyPolicyPage {
         }
       });
 
-    }
-
+  }
+/**
+ * Method to dismiss privacy policy model 
+ */  
   dismiss() {
     this.view.dismiss();
   }

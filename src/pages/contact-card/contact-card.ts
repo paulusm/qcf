@@ -19,6 +19,9 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
   selector: 'contact-card-page',
   templateUrl: 'contact-card.html'
 })
+/**
+ * Class representing Contact Card Page
+ */
 export class ContactCardPage {
   contact: ContactModel = new ContactModel();
   colorTheme: any;
@@ -50,7 +53,9 @@ export class ContactCardPage {
     });
 
   }
-
+  /**
+   * Method to launch email sending app
+   */
   sendMail(){
      let email = {
       to: 'as_baig@yahoo.com',
@@ -59,7 +64,9 @@ export class ContactCardPage {
     };
     this.emailComposer.open(email);
   }
-
+  /**
+   * Method to launch web browser to launch QCF website 
+   */
   openInAppBrowser(website: string){
     this.inAppBrowser.create(website, '_blank', "location=yes");
   }

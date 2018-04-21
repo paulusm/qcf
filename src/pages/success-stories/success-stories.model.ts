@@ -3,6 +3,9 @@
  * This ionic page provides class object model for single success-story
  * and collection of success-stories as an array.
  * **************************************************************/
+/**
+ * 
+ */
 export class SuccessStoryModel {
     approved: boolean;
     createdAt: string;
@@ -17,7 +20,10 @@ export class SuccessStoryModel {
     _id: string;
     displayImage:string;
     themeid: string;
-    }
-    export class SuccessStoriesModel {
+}
+/**
+ * 
+ */
+export class SuccessStoriesModel {
       items: Array<SuccessStoryModel>;
-    }
+}

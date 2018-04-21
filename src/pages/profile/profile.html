@@ -37,6 +37,12 @@
             <button ion-button block small ngClass="main-btn" (click)="goToEditActivity()">
                 EDIT ACTIVITY
             </button>
+            <br>
+            <button ion-button block small ngClass="main-btn" (click)="goToCloseActivity()">CLOSE ACTIVITIES
+            </button>
+            <br>
+            <button ion-button block small ngClass="main-btn" (click)="goToActivityResult()">ACTIVITIES RESULTS
+            </button>
           </ion-col>
         </ion-row>
       </ion-col>
@@ -50,6 +56,7 @@
     <div class="button-bar" [hidden]="roleStatus">
       <button ion-button  (click)="goToFAQ()">CREATE FAQ
       </button>
+      
     </div>
 
 

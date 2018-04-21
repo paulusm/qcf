@@ -20,6 +20,9 @@ import { ActivitiesService } from '../activities/activities.service';
   selector: 'page-activities-details',
   templateUrl: 'activities-details.html',
 })
+/**
+  * Class representing Activities Details Page.
+  */
 export class ActivitiesDetailsPage {
   item:any;
   colorTheme: any;
@@ -38,6 +41,9 @@ export class ActivitiesDetailsPage {
   ) {
     this.item = navParams.get("newItem");
     this.countLike = this.item.likes.length;
+    /**
+    * 
+    */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';
@@ -72,11 +78,15 @@ export class ActivitiesDetailsPage {
     
   }
 
-
+/**
+  * Method use to navigate to JoinActivityPage with current activity as item
+  */
   joinActivity(){
     this.navCtrl.push(JoinActivityPage, { newItem: this.item });
   }
-
+/**
+  * Method used to update number of likes for current activity
+  */
   likeActivities(){
     
      if(this.isLiked){

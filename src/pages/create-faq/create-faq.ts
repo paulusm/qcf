@@ -19,6 +19,9 @@ import { FAQService } from './faq.service';
   selector: 'page-create-faq',
   templateUrl: 'create-faq.html',
 })
+/**
+ * Class representing Create Faq Page
+ */
 export class CreateFaqPage {
   new_faq: FormGroup;
   main_page: { component: any };
@@ -70,103 +73,9 @@ export class CreateFaqPage {
 
   ionViewDidLoad() {
   }
-
-  /* public presentActionSheet() {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Select Image Source',
-      buttons: [
-        {
-          text: 'Load from Library',
-          handler: () => {
-            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
-          }
-        },
-        {
-          text: 'Use Camera',
-          handler: () => {
-            this.takePicture(this.camera.PictureSourceType.CAMERA);
-          }
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        }
-      ]
-    });
-    actionSheet.present(); 
-  } 
-
-  public takePicture(sourceType) {
-    // Create options for the Camera Dialog
-    var options = {
-        quality: 100,
-        destinationType: this.camera.DestinationType.NATIVE_URI,
-        sourceType: sourceType,
-        saveToPhotoAlbum: true,
-        correctOrientation: true,
-        allowEdit: true,
-        targetWidth:250,
-        targetHeight:250
-    };
-    // Get the data of an image
-    this.camera.getPicture(options).then((imagePath) => {
-      // Special handling for Android library
-      
-      if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
-            this.filePath.resolveNativePath(imagePath)
-              .then(filePath => {
-                this.image=filePath;
-                this.uploadFile(filePath);
-              });
-      } else {
-        this.image= imagePath;
-        this.uploadFile(imagePath);
-      }
-    }, (err) => {
-      this.presentToast('Error while selecting image.');
-    });
-  } 
-
-  private presentToast(text) {
-    let toast = this.toastCtrl.create({
-      message: text,
-      duration: 3000,
-      position: 'top'
-    });
-    toast.present();
-  } 
-
-  async uploadFile(imageURI) {
-    return await new Promise((resolve, reject) => {
-                let loader = this.loadingCtrl.create({
-                  content: "Uploading..."
-                });
-                loader.present();
-                const fileTransfer: FileTransferObject = this.transfer.create();
-                
-                let headers = new Headers();
-                    headers.append('Authorization', this.authService.token);
-                let options: FileUploadOptions = {
-                  fileKey: 'file',
-                  chunkedMode: false,
-                  mimeType: "image/jpeg",
-                  headers: headers
-                }
-  
-                fileTransfer.upload(imageURI, encodeURI('https://ionic2-qcf-auth.herokuapp.com/api/files/upload'), options,true)
-                  .then((data) => {
-                    let imageName = JSON.parse(data.response);
-                    this.activitiesService.setActivityImage(imageName.filename);
-                    loader.dismiss();
-                    this.presentToast("Image uploaded successfully");
-                }, (err) => {
-                  console.log(err);
-                  loader.dismiss();
-                  this.presentToast(err);
-                });
-    });
-  } */ 
-
+  /**
+   * Method to create new FAQ  using faq Service
+   */
   doCreateFAQ(){
     this.profileService.getData().then((data)=>{
           this.faq = {

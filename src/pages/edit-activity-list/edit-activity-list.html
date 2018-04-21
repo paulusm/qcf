@@ -19,7 +19,7 @@
 <ion-list>
     <div [hidden]="!noActivities"><h3 style="color:red;">   No activities to edit.</h3></div>
     <ion-item-sliding *ngFor="let item of activities.items">
-      <ion-item >
+      <ion-item (click)="goToUsersActivitiesDetail(item)">
           <ion-row>
               <ion-col>
                 <preload-image style="border-radius: 5%" [ratio]="{w:1, h:1}" [src]="item.displayImage"></preload-image>
@@ -28,17 +28,18 @@
                 <p id="title">{{item.activityname}}</p>
                 <p>Start: {{item.startdate | date:'dd/MM/yyyy'}}</p>
                 <p>End: {{item.enddate | date:'dd/MM/yyyy'}}</p>
+                <p>Target Hours: {{item.targethours}}</p>
+                <p>Target Amount: {{item.targetamount}}</p>
               </ion-col>
             </ion-row>
       </ion-item>
 
-      <ion-item-options side="right">
+      <!-- <ion-item-options side="right">
         <button ion-button class="btn-details" (click)="goToUsersActivitiesDetail(item)">
           <ion-icon name="arrow-forward"></ion-icon>
           Edit
         </button>
-        
-      </ion-item-options>
+      </ion-item-options> -->
     </ion-item-sliding>
   </ion-list>
 </ion-content>

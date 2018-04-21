@@ -1,3 +1,9 @@
+/****************************************************************
+ * Created By: Muhammad Asim Baig
+ * This ionic page is responsible to create background-image 
+ * directive
+ * **************************************************************/
+
 import { Component, Input, ElementRef, Renderer, OnChanges, SimpleChange } from '@angular/core';
 
 import { isPresent } from 'ionic-angular/util/util';

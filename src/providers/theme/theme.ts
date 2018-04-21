@@ -10,18 +10,20 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 /*
-  Generated class for the ThemeProvider provider.
+  Class for the ThemeProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
 */
 @Injectable()
+
 export class ThemeProvider {
   themes:any ;
   token:any;
   constructor(public http: Http, public storage: Storage) {
     console.log('Hello ThemeProvider Provider');
   }
+  /**
+   * Method to get all charitable theme from database
+   */
   async getThemes(){
     return await new Promise((resolve, reject) => {
 
@@ -32,7 +34,7 @@ export class ThemeProvider {
 
           let headers = new Headers();
           headers.append('Authorization', this.token);
-
+          //Http get request to API app to get themes
           this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/themes/getThemes/', {headers: headers})
               .subscribe(res => {
                   resolve(res);

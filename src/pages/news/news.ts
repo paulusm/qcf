@@ -23,6 +23,9 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
   selector: 'page-news',
   templateUrl: 'news.html',
 })
+/**
+ * Class representing News Page
+ */
 export class NewsPage {
 
   news: NewssModel = new NewssModel();
@@ -61,7 +64,9 @@ export class NewsPage {
       }
     });
   }
-
+/**
+ * Method tigger just before this page load
+ */
   ionViewDidLoad() {
     this.loading.present();
       this.newsService
@@ -85,10 +90,15 @@ export class NewsPage {
         
       });  
   }
+/**
+ * Method to navigate to details of current News
+ */
   goToNewsDetail(item:any){
     this.nav.push(NewsDetailsPage, { newItem: item });
   }
-
+/**
+ * Method to filter news by their titles
+ */
   filterItems(searchTerm){
     return this.items.filter((item) => {
         return item.storytitle.toLowerCase()
@@ -96,10 +106,11 @@ export class NewsPage {
     });    
 
   }
+/**
+ * Method set filtered news
+ */
   setFilteredItems() {
- 
-    this.news.items = this.filterItems(this.searchTerm);
-
+     this.news.items = this.filterItems(this.searchTerm);
   }
 
 }

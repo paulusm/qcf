@@ -3,6 +3,7 @@
  * This ionic page provides class object model for single Article
  * and collection of Articles as an array.
  * **************************************************************/
+
 export class ArticleModel {
   approved: boolean;
   createdAt: string;

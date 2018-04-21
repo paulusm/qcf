@@ -3,6 +3,7 @@
  * This ionic page provides class object model for single User profile
  * and collection of Users profiles as an array.
  * **************************************************************/
+
 export class UserModel {
   imagepath: string;
   _id: string;

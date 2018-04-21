@@ -37,6 +37,9 @@ export class CompanyModel{
 }
 
 @Injectable()
+/**
+ *  Class for CompanyProvider
+ */
 export class CompanyProvider {
   token: any;
 
@@ -44,23 +47,35 @@ export class CompanyProvider {
     console.log('Hello CompanyProvider Provider');
   }
   
-
+  /**
+   * Method to get company's detail from local storage
+   */
   async getCompany(): Promise<CompanyModel> {
     return await this.storage.get('company').then((value) => {
       return value;
     }).catch(this.handleError);
   };
-
+  /**
+   * Method to set company's detail in local storage
+   * @param company 
+   */
   async setCompany(company){
     await this.storage.set('company', company);
   }
 
-
+  /**
+   * Method to handle error
+   * @param error 
+   */
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); 
     return Promise.reject(error.message || error);
   }
-
+  /**
+   * Method to get company's detail from database by given id and token 
+   * @param _id 
+   * @param tkn 
+   */
   async getCompanyInfo(_id,tkn) {
     
       return await new Promise((resolve, reject) => {
@@ -83,7 +98,10 @@ export class CompanyProvider {
 
 
   }
-
+  /**
+   * Method to update company's detail by given new details
+   * @param company 
+   */
   async updateCompany(company){
     return await new Promise((resolve, reject) => {
 
@@ -94,7 +112,7 @@ export class CompanyProvider {
         let headers = new Headers();
         headers.append('Authorization', this.token);
         headers.append('Content-Type', 'application/json');
-        
+        //Http post request to API app to get update company
        this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/companies/updateCompany', JSON.stringify(company), {headers: headers})
           .subscribe(res => {
             let data = res.json();

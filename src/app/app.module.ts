@@ -14,29 +14,38 @@ import { OtherUsersPage } from '../pages/other-users/other-users';
 import { ProfilePage } from '../pages/profile/profile';
 import { TabsNavigationPage } from '../pages/tabs-navigation/tabs-navigation';
 import { WalkthroughPage } from '../pages/walkthrough/walkthrough';
-
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
-
 import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
-
 import { ContactCardPage } from '../pages/contact-card/contact-card';
 import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { AddUserPage } from '../pages/add-user/add-user';
 import { NewsPage } from '../pages/news/news';
 import { NewsDetailsPage } from '../pages/news-details/news-details';
-
 import { ArticlesPage } from '../pages/articles/articles';
 import { ArticleDetailsPage } from '../pages/article-details/article-details';
-
 import { SuccessStoriesPage } from '../pages/success-stories/success-stories';
 import { SuccessStoriesDetailsPage } from '../pages/success-stories-details/success-stories-details';
-
 import { OtherUserDetailsPage } from '../pages/other-user-details/other-user-details';
-
 import { ImageModelPage } from '../pages/image-model/image-model';
+import { ActivitiesPage } from '../pages/activities/activities';
+import { CreateActivityPage } from '../pages/create-activity/create-activity';
+import { JoinActivityPage } from '../pages/join-activity/join-activity';
+import { AppColorThemePage } from '../pages/app-color-theme/app-color-theme';
+import { CreateFaqPage } from '../pages/create-faq/create-faq';
+import { FaqsPage } from '../pages/faqs/faqs';
+import { EditFaqPage } from '../pages/edit-faq/edit-faq';
+import { ActivitiesDetailsPage } from '../pages/activities-details/activities-details';
+import { EditActivityListPage } from '../pages/edit-activity-list/edit-activity-list';
+import { EditActivityDetailPage } from '../pages/edit-activity-detail/edit-activity-detail';
+import { ActivitiesResultsPage } from '../pages/activities-results/activities-results';
+import { ActivitiesResultsDetailPage } from '../pages/activities-results-detail/activities-results-detail';
+import { CloseActivityListPage } from '../pages/close-activity-list/close-activity-list';
+import { CloseActivityDetailPage } from '../pages/close-activity-detail/close-activity-detail';
+import { UnapproveActivitiesPage } from '../pages/unapprove-activities/unapprove-activities';
+import { UnapproveActivitiesDetailsPage } from '../pages/unapprove-activities-details/unapprove-activities-details';
 
 //custom components
 import { PreloadImage } from '../components/preload-image/preload-image';
@@ -49,31 +58,16 @@ import { ValidatorsModule } from '../components/validators/validators.module';
 //services
 import { ProfileService } from '../pages/profile/profile.service';
 import { NotificationsService } from '../pages/other-users/other-users.service';
-
-
 import { NewsService } from '../pages/news/news.service';
 import { ArticlesService } from '../pages/articles/articles.service';
-
-
-import { ActivitiesPage } from '../pages/activities/activities';
 import { ActivitiesService } from '../pages/activities/activities.service';
-import { CreateActivityPage } from '../pages/create-activity/create-activity';
-import { JoinActivityPage } from '../pages/join-activity/join-activity';
-import { AppColorThemePage } from '../pages/app-color-theme/app-color-theme';
-
-import { CreateFaqPage } from '../pages/create-faq/create-faq';
 import { FAQService } from '../pages/create-faq/faq.service';
-import { FaqsPage } from '../pages/faqs/faqs';
-import { EditFaqPage } from '../pages/edit-faq/edit-faq';
-
-
-import { ActivitiesDetailsPage } from '../pages/activities-details/activities-details';
-
-import { EditActivityListPage } from '../pages/edit-activity-list/edit-activity-list';
-import { EditActivityDetailPage } from '../pages/edit-activity-detail/edit-activity-detail';
-
-import { UnapproveActivitiesPage } from '../pages/unapprove-activities/unapprove-activities';
-import { UnapproveActivitiesDetailsPage } from '../pages/unapprove-activities-details/unapprove-activities-details';
+import { AuthenticationProvider } from '../providers/authentication/authentication';
+import { ThemeProvider } from '../providers/theme/theme';
+import { FilesProvider } from '../providers/files/files';
+import { CompanyProvider } from '../providers/company/company';
+import { AppThemeColorProvider } from '../providers/app-theme-color/app-theme-color';
+import { SuccessStoriesService } from '../pages/success-stories/success-stories.service';
 
 // Ionic Native Plugins
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -86,16 +80,9 @@ import { Crop } from '@ionic-native/crop';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
-
-import { AuthenticationProvider } from '../providers/authentication/authentication';
-
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
-import { ThemeProvider } from '../providers/theme/theme';
-import { FilesProvider } from '../providers/files/files';
-import { CompanyProvider } from '../providers/company/company';
-import { AppThemeColorProvider } from '../providers/app-theme-color/app-theme-color';
-import { SuccessStoriesService } from '../pages/success-stories/success-stories.service';
+
 
 @NgModule({
   declarations: [
@@ -124,6 +111,12 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
 
     EditActivityListPage,
     EditActivityDetailPage,
+
+    CloseActivityListPage,
+    CloseActivityDetailPage,
+
+    ActivitiesResultsPage,
+    ActivitiesResultsDetailPage,
 
     UnapproveActivitiesPage,
     UnapproveActivitiesDetailsPage,
@@ -184,6 +177,10 @@ import { SuccessStoriesService } from '../pages/success-stories/success-stories.
     JoinActivityPage,
     EditActivityListPage,
     EditActivityDetailPage,
+    CloseActivityListPage,
+    CloseActivityDetailPage,
+    ActivitiesResultsPage,
+    ActivitiesResultsDetailPage,
     
     CreateFaqPage,
     FaqsPage,

@@ -26,6 +26,9 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
   selector: 'change-password-page',
   templateUrl: 'change-password.html'
 })
+/**
+ * Class representing Change Password Page
+ */
 export class ChangePasswordPage {
   main_page: { component: any };
   loading: any;
@@ -68,6 +71,9 @@ export class ChangePasswordPage {
       }
     });
   }
+  /**
+   * Default Method which will tigger before page load 
+   */
   ionViewWillLoad() {
     this.matching_passwords_group = new FormGroup({
       password: new FormControl('', Validators.compose([
@@ -85,6 +91,9 @@ export class ChangePasswordPage {
     });
 
   }
+  /**
+   * Setting Validation messages
+   */
   validation_messages = {
     'password': [
       { type: 'required', message: 'Password is required.' },
@@ -98,7 +107,9 @@ export class ChangePasswordPage {
       { type: 'areEqual', message: 'Password mismatch' }
     ]
   };
-
+  /**
+   * Method used authService to change password
+   */
   doConfirm(){
     this.profileService.getData()
       .then(data => {

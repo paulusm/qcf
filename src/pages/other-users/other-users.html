@@ -21,7 +21,7 @@
    <ion-list>
     
       <ion-item-sliding *ngFor="let notification of notifications.users">
-        <ion-item>
+        <ion-item (click)="goToUserDetail(notification)">
             <ion-row>
                 <ion-col width-25>
                   <preload-image style="border-radius: 50%" [ratio]="{w:1, h:1}" [src]="notification.displayImage"></preload-image>
@@ -39,12 +39,12 @@
               </ion-row>
         </ion-item>
 
-        <ion-item-options side="right">
+        <!-- <ion-item-options side="right">
           <button ion-button class="btn-details" (click)="goToUserDetail(notification)">
             <ion-icon name="arrow-forward"></ion-icon>
             Details
           </button>
-        </ion-item-options>
+        </ion-item-options> -->
       </ion-item-sliding>
     </ion-list>
   </ion-content>

@@ -19,6 +19,9 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
   selector: 'forgot-password-page',
   templateUrl: 'forgot-password.html'
 })
+/**
+ * Class representing Forgot Password Page
+ */
 export class ForgotPasswordPage {
   forgot_password: FormGroup;
   main_page: { component: any };
@@ -63,6 +66,9 @@ export class ForgotPasswordPage {
       { type: 'pattern', message: 'Enter a valid email.' }
     ]
   };
+/**
+ * Method to recover forgotten password
+ */
   recoverPassword(){
 
     let lcoontactemail = {
@@ -76,8 +82,5 @@ export class ForgotPasswordPage {
     }, (err) => {
       console.log(err);
     });
-    
-    
   }
-
 }

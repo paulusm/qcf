@@ -18,6 +18,9 @@ import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
   selector: 'page-unapprove-activities-details',
   templateUrl: 'unapprove-activities-details.html',
 })
+/**
+ * Class representing Unapprove Activities Details Page
+ */
 export class UnapproveActivitiesDetailsPage {
   item:any;
   colorTheme: any;
@@ -52,9 +55,11 @@ export class UnapproveActivitiesDetailsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad activitiesDetailsPage');
+    
   }
-
+/**
+ *  Method to approve activity
+ */
    approveActivity(){
      this.item.approved = true;
     this.activitiesService.approveActivity(this.item).then((result) => {

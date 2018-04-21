@@ -31,6 +31,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
   selector: 'page-join-activity',
   templateUrl: 'join-activity.html',
 })
+/**
+ * Class representing Join Activity Page
+ */
 export class JoinActivityPage {
   main_page: { component: any };
   loading: any;
@@ -92,14 +95,12 @@ export class JoinActivityPage {
     });
   
   }
-
+  
   ionViewDidLoad() {
-    console.log('ionViewDidLoad JoinActivityPage');
   }
-
-  doJoin(){
-
-  }
+/**
+ * Method to open doner's website in app browser
+ */
   openInAppBrowser(website: string){
     this.profileService.getData().then((data)=>{
       this.item.sponsors.push(data.email);
@@ -112,7 +113,9 @@ export class JoinActivityPage {
       });
     });
   }
-
+/**
+ * Method to launch app to email for voluntering 
+ */
   sendMail(){
     this.profileService.getData().then((data)=>{
       this.item.volunteers.push(data.email);

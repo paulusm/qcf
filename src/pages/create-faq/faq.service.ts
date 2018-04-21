@@ -11,10 +11,15 @@ import { ProfileService } from '../profile/profile.service';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
+/**
+ * Class representing FAQ Service
+ */
 export class FAQService {
   token: any;
   constructor(public http: Http,public storage:Storage,public profileService: ProfileService) {}
-
+/**
+ *  Mehtod to get all FAQ from database
+ */
 async getFAQs() {
     
   return await new Promise((resolve, reject) => {
@@ -24,7 +29,7 @@ async getFAQs() {
         this.token = value;
         let headers = new Headers();
         headers.append('Authorization', this.token);
-            
+        //Http get request to API app to get FAQS    
         this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/faqs/getFaqs', {headers: headers})
               .subscribe(res => {
                     
@@ -39,7 +44,9 @@ async getFAQs() {
     });    
   });
 }
-  
+/**
+ * Method to create new FAQ using FAQ service
+ */  
 async createFAQ(faq){
 
   return await new Promise((resolve, reject) => {
@@ -51,6 +58,7 @@ async createFAQ(faq){
       let headers = new Headers();
       headers.append('Authorization', this.token);
       headers.append('Content-Type', 'application/json');
+      //Http post request to API app to create FAQ
       this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/faqs/createFaq', JSON.stringify(faq), {headers: headers})
         .subscribe(res => {
 
@@ -62,7 +70,9 @@ async createFAQ(faq){
     });  
   });
 }
-
+/**
+ * Method to update FAQ using FAQ service
+ */
 async updateFAQ(faq){
 
   return await new Promise((resolve, reject) => {
@@ -74,7 +84,7 @@ async updateFAQ(faq){
       let headers = new Headers();
       headers.append('Authorization', this.token);
       headers.append('Content-Type', 'application/json');
-      //console.log("FAQ before http call"+ faq);
+      //Http post request to API app to update FAQ
       this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/faqs/updateFaq', JSON.stringify(faq), {headers: headers})
         .subscribe(res => {
 

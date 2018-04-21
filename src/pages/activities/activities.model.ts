@@ -3,6 +3,7 @@
  * This ionic page provides class object model for single Activity
  * and collection of Activities as an array.
  * **************************************************************/
+
 export class ActivityModel {
      _id: string;
     updatedAt: string;
@@ -23,7 +24,17 @@ export class ActivityModel {
     address:string;
     filename:string;
     displayImage:string;
+    targethours:number;
+    totalamount:number;
+    targetamount:number;
+    totalhours:number;
+    feedback:string;
+    status:string[];
+
   }
+  /**
+ * 
+ */
   export class ActivitiessModel {
     items: Array<ActivityModel>;
   }

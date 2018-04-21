@@ -30,6 +30,9 @@ import { ProfileService } from '../profile/profile.service';
   selector: 'page-activities',
   templateUrl: 'activities.html',
 })
+/** 
+ * Class representing List of Activities Page. 
+ * */
 export class ActivitiesPage {
 
   activities: ActivitiessModel = new ActivitiessModel();
@@ -37,7 +40,8 @@ export class ActivitiesPage {
   colorTheme: any;
   colorThemeHeader:any;
   noActivities:boolean=false;
-  
+  items: any;
+  searchTerm: string = '';
 
   constructor(
     public nav: NavController,
@@ -50,6 +54,9 @@ export class ActivitiesPage {
 
     this.loading = this.loadingCtrl.create();
     
+    /**
+    * 
+    */
      this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';
@@ -70,7 +77,10 @@ export class ActivitiesPage {
     }); 
   }
 
-  ionViewDidLoad() {
+/**
+ * Default method tigger after this page load
+ */
+  ionViewWillLoad() {
     this.loading.present();
     this.profileService.getData().then((user)=>{ 
           this.activitiesService
@@ -92,21 +102,40 @@ export class ActivitiesPage {
                       t.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+t.filename;
                       t.startdate = new Date(t.startdate);
                       t.enddate = new Date(t.enddate);
+                      
+                      if(t.targethours===undefined){
+                        t.targethours = 0;
+                      }
+                      
+                      if(t.targetamount===undefined){
+                         t.targetamount=0; 
+                      }
+                      
                       tempArray2.push(t);
               }  
 
 
               this.activities.items = tempArray2;
+              this.items = tempArray2;
               this.loading.dismiss();
           }); 
     });
   }
+/**
+ * Method to navigate to avtiity details
+ */
   goToActivitiesDetail(item:any){
     this.nav.push(ActivitiesDetailsPage, { newItem: item });
   }
+  /**
+ * Method to navigate to join activity
+ */
   goToJoinActivity(item:any){
     this.nav.push(JoinActivityPage, { newItem: item });
   }
+  /**
+ *  Method to launch navigation app
+ */
   goToNavigateActivity(item){
     let options: LaunchNavigatorOptions = {
       start: ""
@@ -117,6 +146,24 @@ export class ActivitiesPage {
             success => alert('Launched navigator'),
             error => alert('Error launching navigator: ' + error)
     ); 
+
+  }
+  /**
+   *  Method to filter activities based on activityname
+   */
+  filterItems(searchTerm){
+    return this.items.filter((item) => {
+        return item.activityname.toLowerCase()
+        .indexOf(searchTerm.toLowerCase()) > -1;
+    });    
+
+  }
+  /**
+   * Method to set filtered activities based on activityname
+   */
+  setFilteredItems() {
+ 
+    this.activities.items = this.filterItems(this.searchTerm);
 
   }
 

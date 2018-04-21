@@ -29,6 +29,9 @@ import { ProfilesModel } from '../profile/profile.model';
   selector: 'other-users-page',
   templateUrl: 'other-users.html'
 })
+/**
+ * Class representing Other Users Page
+ */
 export class OtherUsersPage {
   notifications: NotificationsModel = new NotificationsModel();
   loading: any;
@@ -66,7 +69,9 @@ export class OtherUsersPage {
       }
     });
   }
-
+/**
+ * Default method tigger just after this page load
+ */
   ionViewWillLoad() {
     this.loading.present();
       this.profileService.getData().then(user => {
@@ -81,7 +86,7 @@ export class OtherUsersPage {
                              if(p.imagepath!=null){
                                image = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+p.imagepath;
                              }else{
-                               image = './assets/images/profile/emp2.png';
+                              image = "./assets/images/emp.png";
                              }
                              let user = {
                                 displayname : p.displayname,
@@ -108,6 +113,9 @@ export class OtherUsersPage {
     
       });
   }
+/**
+ * Method filter users by their displayname
+ */
   filterItems(searchTerm){
     return this.items.filter((item) => {
         return item.displayname.toLowerCase()
@@ -115,10 +123,15 @@ export class OtherUsersPage {
     });    
 
   }
+/**
+ * Method to set filtered users in list
+ */
   setFilteredItems() {
      this.notifications.users = this.filterItems(this.searchTerm);
   }
-
+/**
+ * Method to navigate to OtherUserDetailsPage with its details
+ */
   goToUserDetail(notification){
     this.nav.push(OtherUserDetailsPage, { newItem: notification });
   }

@@ -16,6 +16,9 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
   selector: 'page-reset-password',
   templateUrl: 'reset-password.html',
 })
+/**
+ * Class representing ResetPasswordPage
+ */
 export class ResetPasswordPage {
   reset_password: FormGroup;
   email: string;
@@ -61,9 +64,10 @@ export class ResetPasswordPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ResetPasswordPage');
   }
-
+/**
+ * Method to show resetting model 
+ */
   showLoader(){
         
     this.loading = this.loadingCtrl.create({
@@ -72,7 +76,9 @@ export class ResetPasswordPage {
     this.loading.present();
 
   }
-
+/**
+ * Method to reset change password
+ */
   submitreset(){
 
         

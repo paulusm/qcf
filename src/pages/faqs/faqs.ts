@@ -27,6 +27,9 @@ import { EditFaqPage } from '../edit-faq/edit-faq';
   selector: 'page-faqs',
   templateUrl: 'faqs.html',
 })
+/**
+ * Class representing Faqs Page
+ */
 export class FaqsPage {
 
   faqs: FAQsModel = new FAQsModel();
@@ -62,7 +65,9 @@ export class FaqsPage {
       }
     });
   }
-
+/**
+ * Default method tigger just after this page load 
+ */
   ionViewWillLoad() {
     this.loading.present();
     this.profileService.getData().then((user)=>{ 
@@ -84,6 +89,9 @@ export class FaqsPage {
       });
     });  
   }
+/**
+ * Method toggle themes
+ */
   toggleGroup (group) {
     if (this.isGroupShown(group)) {
       this.shownGroup = null;
@@ -91,9 +99,15 @@ export class FaqsPage {
       this.shownGroup = group;
     }
   }
+ /**
+ * Method to show hidden group of areas under each theme
+ */
   isGroupShown(group) {
     return this.shownGroup === group;
   }
+/**
+ * Method to navigate to EditFaqPage with current faq
+ */
   doEditFAQ(fq){
     this.nav.push(EditFaqPage, { faq: fq });
   }

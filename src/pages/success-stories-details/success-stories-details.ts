@@ -22,6 +22,9 @@ import { SuccessStoryModel } from '../success-stories/success-stories.model';
   selector: 'page-success-stories-details',
   templateUrl: 'success-stories-details.html',
 })
+/**
+ * Class representing Faqs Page
+ */
 export class SuccessStoriesDetailsPage {
   item:any;
   colorTheme: any;
@@ -74,7 +77,9 @@ export class SuccessStoriesDetailsPage {
 
   ionViewDidLoad() {
   }
-
+  /**
+ * 
+ */
   sharePost(post) {
     //this code is to use the social sharing plugin
     // message, subject, file, url
@@ -86,6 +91,9 @@ export class SuccessStoriesDetailsPage {
        console.log('Error - Sharing');
     }); 
    }
+/**
+ * Method to update likes of current story
+ */
    likeSStory(){
     this.image = this.item.displayImage;
      if(this.isLiked){

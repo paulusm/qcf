@@ -19,6 +19,9 @@ import { ProfileService } from '../profile/profile.service';
   selector: 'page-other-user-details',
   templateUrl: 'other-user-details.html',
 })
+/**
+ * Class representing Other User Details Page
+ */
 export class OtherUserDetailsPage {
   item: any;
   colorTheme: any;
@@ -78,9 +81,10 @@ export class OtherUserDetailsPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OtherUserDetailsPage');
-  }
+  ionViewDidLoad() {}
+/**
+ * Method to edit role of user
+ */
   editRole(newRole){
     this.item.role = newRole;
     this.authService.updateAccount(this.item).then((result) => {
@@ -91,6 +95,9 @@ export class OtherUserDetailsPage {
           alert(`status: ${err.status}, ${err.statusText}`);
     });
   }
+/**
+ * Method to present Action Sheet to present user options of roles
+ */
   public presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Current Role: '+ this.currentRole,

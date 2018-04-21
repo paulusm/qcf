@@ -22,6 +22,9 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
   selector: 'page-add-user',
   templateUrl: 'add-user.html',
 })
+/**
+ *  Class represnting Add User page.
+ */
 export class AddUserPage {
   new_user: FormGroup;
   main_page: { component: any };
@@ -41,6 +44,9 @@ export class AddUserPage {
     public profileService:ProfileService,
     public appThemeColorProvider:AppThemeColorProvider
   ) {
+    /**
+    * 
+    */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';
@@ -85,7 +91,9 @@ export class AddUserPage {
   ionViewDidLoad() {
     
   }
-
+  /**
+    * Method use to add new user in DB
+    */
   doAddUser(){
     let details = {
       email: this.new_user.get('email').value,

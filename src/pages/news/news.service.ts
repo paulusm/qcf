@@ -12,10 +12,15 @@ import 'rxjs/add/operator/toPromise';
 
 
 @Injectable()
+/**
+ * Class representing News Service
+ */
 export class NewsService {
   token: any;
   constructor(public http: Http,public storage:Storage) {}
-
+/**
+ * Method to get all news
+ */
   async getNews() {
     
     return await new Promise((resolve, reject) => {
@@ -27,6 +32,7 @@ export class NewsService {
         let headers = new Headers();
         headers.append('Authorization', this.token);
         let companyid = '5ab7dbc0bc24e300543c';
+         //Http get request to API app to get approved news
          this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/stories/getApprovedStories/'+companyid, {headers: headers})
           .subscribe(res => {
                 
@@ -36,14 +42,12 @@ export class NewsService {
             reject(err);
           }); 
         }, (err) => {
-          
-        });    
-
-        
-    });
-
+       });    
+   });
 }
-
+/**
+ * Method to update likes news
+ */
 async updateLikes(item) {
     
   return await new Promise((resolve, reject) => {
@@ -55,7 +59,7 @@ async updateLikes(item) {
       let headers = new Headers();
       headers.append('Authorization', this.token);
       headers.append('Content-Type', 'application/json');
-      
+      //Http post request to API app to update news
       this.http.post('https://ionic2-qcf-auth.herokuapp.com/api/stories/updateStory', JSON.stringify(item), {headers: headers})
         .subscribe(res => {
               

@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams,Platform,ViewController } from 'ionic-angular';
+import { NavParams,Platform,ViewController } from 'ionic-angular';
 
-@IonicPage()
+
 @Component({
   selector: 'page-image-model',
   templateUrl: 'image-model.html',
 })
+/**
+ * Class representing Image Model Page
+ */
 export class ImageModelPage {
   character;
   item;
@@ -17,7 +20,9 @@ export class ImageModelPage {
     this.item = params.get("item");
     
   }
-
+/**
+ * Method to dismiss image model 
+ */
   dismiss() {
     this.viewCtrl.dismiss();
   }

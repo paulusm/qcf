@@ -51,12 +51,12 @@
         <ion-label  floating>Donation URL</ion-label>
         <ion-input type="text" formControlName="mydonateurl"></ion-input>
       </ion-item>
-      </ion-list>
+      <!-- </ion-list>
         
-          <ion-list>
+          <ion-list> -->
             <ion-item>
               <ion-label floating>Donation Matching</ion-label>
-              <ion-input type="number" formControlName="donationmatch"></ion-input>
+              <ion-input type="number" placeholder="%" formControlName="donationmatch"></ion-input>
             </ion-item>
           </ion-list>
         
@@ -68,10 +68,19 @@
               <ion-label clear>Voluntering</ion-label>
               <ion-checkbox formControlName="voluntering"></ion-checkbox>
             </ion-item>
+            <ion-item>
+              <ion-label floating>Target Voluntering Hours</ion-label>
+              <ion-input type="number" formControlName="targethours"></ion-input>
+            </ion-item>
+
             <ion-item >
               <ion-label  clear>Sponsorship</ion-label>
               <ion-checkbox formControlName="sponsorship"></ion-checkbox>
             </ion-item>
+            <ion-item>
+              <ion-label floating>Target Sponsorship Amount</ion-label>
+              <ion-input type="number" formControlName="targetamount"></ion-input>
+            </ion-item>            
           </ion-list>
 
 

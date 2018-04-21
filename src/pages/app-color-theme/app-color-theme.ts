@@ -19,13 +19,18 @@ import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
   selector: 'page-app-color-theme',
   templateUrl: 'app-color-theme.html',
 })
+/**
+ * Class representing App Color Theme Page
+ */
 export class AppColorThemePage {
 
   colorTheme: any;
   colorThemeHeader:any;
   
   constructor(public events: Events, public navCtrl: NavController, public navParams: NavParams,public appThemeColorProvider:AppThemeColorProvider) {
-
+    /**
+      * 
+      */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';
@@ -48,21 +53,33 @@ export class AppColorThemePage {
 
   ionViewDidLoad() {
   }
+  /**
+    * Method call to set new app color theme  'app-color-theme-1'
+    */
   onChangeTheme1(){
     this.events.publish('app-color-theme-1');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-1');
     this.navCtrl.setRoot(TabsNavigationPage);
   }
+  /**
+    * Method call to set new app color theme  'app-color-theme-2'    
+    */
   onChangeTheme2(){
     this.events.publish('app-color-theme-2');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-2');
     this.navCtrl.setRoot(TabsNavigationPage);
   }
+  /**
+    * * Method call to set new app color theme  'app-color-theme-3'
+    */
   onChangeTheme3(){
     this.events.publish('app-color-theme-3');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-3');
     this.navCtrl.setRoot(TabsNavigationPage);
   }
+  /**
+    * * Method call to set new app color theme  'app-color-theme-4' 
+    */
   onChangeTheme4(){
     this.events.publish('app-color-theme-4');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-4');

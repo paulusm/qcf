@@ -11,11 +11,8 @@ import { Storage } from '@ionic/storage';
 import { CompanyModel,CompanyProvider } from '../../providers/company/company';
 
 /*
-  Generated class for the AppThemeColorProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
+ * Class for the AppThemeColorProvider provider.
+ */
 @Injectable()
 export class AppThemeColorProvider {
   companyModel: CompanyModel =new CompanyModel();
@@ -31,6 +28,10 @@ export class AppThemeColorProvider {
     });
     
   }
+  /**
+   * Method to set color theme for app in database
+   * @param themeColor 
+   */
   setAppThemeColor(themeColor: string): void {
     this.storage.set('app-theme-color', themeColor);
     this.companyModel.colourtheme = themeColor;
@@ -40,11 +41,16 @@ export class AppThemeColorProvider {
     });
     
   }
-
+/**
+ * Method to set color theme in local storegae
+ * @param themeColor 
+ */
   setAppThemeColorLocally(themeColor: string): void {
     this.storage.set('app-theme-color', themeColor);
   }
-
+  /**
+   * Method to get color theme from local storage
+   */
   async getAppThemeColor(): Promise<string> {
     return await this.storage.get('app-theme-color').then((value) => {
       return value;

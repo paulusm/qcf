@@ -20,6 +20,9 @@ import { LoginPage } from '../login/login';
   selector: 'walkthrough-page',
   templateUrl: 'walkthrough.html'
 })
+/**
+ * Class representing Walkthrough Page
+ */
 export class WalkthroughPage {
 
   colorThemeHeader = "ion-header-5";
@@ -93,25 +96,33 @@ export class WalkthroughPage {
       }
     ];
   }
-
+/**
+ * Method to skip introduction
+ */
   skipIntro() {
     
     // Or you can skip to last slide (login/signup slide)
     this.lastSlide = true;
     this.slider.slideTo(this.slider.length());
   }
-
+  /**
+ * Method tigger when user changes screen 
+ */
   onSlideChanged() {
     // If it's the last slide, then hide the 'Skip' button on the header
     this.lastSlide = this.slider.isEnd();
   }
-
+  /**
+ * Method navigate to do login
+ */
   goToLogin() {
     this.storage.set('hasSeenWalkthrough', true);
     this.nav.push(LoginPage);
 
   }
-
+  /**
+ *  method load images 
+ */
   openScreen(itm){
     let imageModal = this.modalCtrl.create(ImageModelPage, { item: itm });
     imageModal.present(); 
