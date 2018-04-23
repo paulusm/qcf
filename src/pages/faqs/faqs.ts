@@ -38,6 +38,15 @@ export class FaqsPage {
   colorThemeHeader:any;
   shownGroup:any = null;
   roleStatus:boolean = false;
+
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param fAQService 
+   * @param profileService 
+   * @param loadingCtrl 
+   * @param appThemeColorProvider 
+   */
   constructor(
     public nav: NavController,
     public fAQService: FAQService,
@@ -46,6 +55,10 @@ export class FaqsPage {
     public appThemeColorProvider:AppThemeColorProvider
   ) {
     this.loading = this.loadingCtrl.create();
+    
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

@@ -51,6 +51,17 @@ export class ListingPage {
   companyImage:any;
 
   joinedThemes:any =[];
+
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param loadingCtrl 
+   * @param themeService 
+   * @param companyService 
+   * @param appThemeColorProvider 
+   * @param profileService 
+   * @param alertCtrl 
+   */
   constructor(
     public nav: NavController,
     public loadingCtrl: LoadingController,
@@ -62,6 +73,9 @@ export class ListingPage {
   ) {
     this.loading = this.loadingCtrl.create();
     
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

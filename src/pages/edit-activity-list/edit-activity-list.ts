@@ -39,7 +39,14 @@ export class EditActivityListPage {
   colorThemeHeader:any;
   noActivities:boolean = false;
   
-
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param activitiesService 
+   * @param loadingCtrl 
+   * @param appThemeColorProvider 
+   * @param profileService 
+   */
   constructor(
     public nav: NavController,
     public activitiesService: ActivitiesService,
@@ -50,7 +57,10 @@ export class EditActivityListPage {
   
     this.loading = this.loadingCtrl.create();
     
-     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
+    this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';
         this.colorThemeHeader = 'ion-header-4';
@@ -93,7 +103,9 @@ export class EditActivityListPage {
                       if(t.targetamount===undefined){
                          t.targetamount=0; 
                       }
-                      tempArray2.push(t);
+                      if(t.status[0]==="Open"){
+                          tempArray2.push(t);
+                      }
               }  
 
 

@@ -47,6 +47,17 @@ export class LoginPage {
   colorTheme: any;
   colorThemeHeader:any;
 
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param events 
+   * @param nav 
+   * @param storage 
+   * @param loadingCtrl 
+   * @param authService 
+   * @param companyService 
+   * @param profileService 
+   * @param appThemeColorProvider 
+   */
   constructor(
     public events: Events,
     public nav: NavController,
@@ -59,6 +70,9 @@ export class LoginPage {
   ) {
     this.main_page = { component: TabsNavigationPage };
 
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

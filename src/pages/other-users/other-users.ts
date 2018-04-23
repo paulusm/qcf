@@ -42,6 +42,14 @@ export class OtherUsersPage {
 
   profilesModel: ProfilesModel = new ProfilesModel();
 
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param notificationsService 
+   * @param loadingCtrl 
+   * @param appThemeColorProvider 
+   * @param profileService 
+   */
   constructor(
     public nav: NavController,
     public notificationsService: NotificationsService,
@@ -50,6 +58,10 @@ export class OtherUsersPage {
     public profileService: ProfileService
   ) {
     this.loading = this.loadingCtrl.create();
+
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

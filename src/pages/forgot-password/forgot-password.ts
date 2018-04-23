@@ -29,8 +29,20 @@ export class ForgotPasswordPage {
   colorTheme: any;
   colorThemeHeader:any;
 
-  constructor(public nav: NavController,public authService:AuthenticationProvider,
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param authService 
+   * @param appThemeColorProvider 
+   */
+  constructor(
+    public nav: NavController,
+    public authService:AuthenticationProvider,
     public appThemeColorProvider:AppThemeColorProvider) {
+    
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

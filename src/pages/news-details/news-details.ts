@@ -37,6 +37,15 @@ export class NewsDetailsPage {
   image:any;
   countLike:number=0;
 
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param navCtrl 
+   * @param navParams 
+   * @param socialSharing 
+   * @param profileService 
+   * @param newsService 
+   * @param appThemeColorProvider 
+   */
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -55,7 +64,9 @@ export class NewsDetailsPage {
         }
       });
       
-          
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */      
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

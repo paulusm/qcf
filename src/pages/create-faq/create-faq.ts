@@ -32,7 +32,18 @@ export class CreateFaqPage {
   colorThemeHeader:any;
 
   faq: any;
-  
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param modal 
+   * @param loadingCtrl 
+   * @param profileService 
+   * @param toastCtrl 
+   * @param storage 
+   * @param platform 
+   * @param appThemeColorProvider 
+   * @param faqService 
+   */
   constructor(
     public nav: NavController,
     public modal: ModalController,
@@ -46,6 +57,9 @@ export class CreateFaqPage {
   ) {
     this.main_page = { component: TabsNavigationPage };
 
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

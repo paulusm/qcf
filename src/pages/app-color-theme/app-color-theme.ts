@@ -26,11 +26,17 @@ export class AppColorThemePage {
 
   colorTheme: any;
   colorThemeHeader:any;
-  
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param events 
+   * @param navCtrl 
+   * @param navParams 
+   * @param appThemeColorProvider 
+   */
   constructor(public events: Events, public navCtrl: NavController, public navParams: NavParams,public appThemeColorProvider:AppThemeColorProvider) {
     /**
-      * 
-      */
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

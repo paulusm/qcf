@@ -12,6 +12,12 @@ import { NavParams,Platform,ViewController } from 'ionic-angular';
 export class ImageModelPage {
   character;
   item;
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param platform 
+   * @param params 
+   * @param viewCtrl 
+   */
   constructor(
     public platform: Platform,
     public params: NavParams,

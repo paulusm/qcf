@@ -19,6 +19,11 @@ import 'rxjs/add/operator/toPromise';
  */
 export class ArticlesService {
   token: any;
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param http 
+   * @param storage 
+   */
   constructor(public http: Http,public storage:Storage) {}
   /**
    * Method to get Articles by company's charity themes

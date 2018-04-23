@@ -32,26 +32,16 @@
 
        <p>Total Likes: {{item.likes.length}}</p>
 
-
-
+       Sponsors:
+       <ion-item *ngFor="let s_email of item.sponsors" text-wrap>
+            {{s_email}}
+        </ion-item>
+        <br>
+        Volunteers:
+        <ion-item *ngFor="let v_email of item.volunteers" text-wrap>
+            {{v_email}}
+        </ion-item>  
    </ion-card-content>
-
-<!--    <ion-row class="actions-row">
-     <ion-col width-30 text-left>
-       <button class="action-button" ion-button clear small (click)="likeActivities()" icon-start>
-         <ion-icon name='heart' [hidden]="!isLiked" id="like"></ion-icon>
-          LIKE ({{countLike}})
-       </button>
-     </ion-col>
-     
-     <ion-col width-25 text-right>
-     
-       <button class="action-button" ion-button clear small (click)="joinActivity()" icon-start [disabled]="item.status">
-         <ion-icon name='add'></ion-icon>
-         JOIN
-       </button>
-     </ion-col>
-   </ion-row> -->
  </ion-card>
 
 </ion-content>

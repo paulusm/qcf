@@ -45,7 +45,15 @@ export class ArticlesPage {
   searchTerm: string = '';  
 
   themeIds:any=[];
-
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param articlesService 
+   * @param loadingCtrl 
+   * @param appThemeColorProvider 
+   * @param companyService 
+   * @param themeService 
+   */
   constructor(
     public nav: NavController,
     public articlesService: ArticlesService,
@@ -55,7 +63,9 @@ export class ArticlesPage {
     public themeService : ThemeProvider
   ) {
     this.loading = this.loadingCtrl.create();
-    
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

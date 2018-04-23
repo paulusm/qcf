@@ -30,6 +30,10 @@ export class TabsNavigationPage {
   tab5Root: any;
   tabColorTheme: any;
 
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param appThemeColorProvider 
+   */
   constructor(public appThemeColorProvider:AppThemeColorProvider) {
     this.tab1Root = ListingPage;
     this.tab2Root = ProfilePage;
@@ -37,6 +41,9 @@ export class TabsNavigationPage {
     this.tab4Root = OtherUsersPage;
     this.tab5Root = ActivitiesPage;
 
+    /**
+     * Initializing color-theme for app's tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       
       if(value===null){

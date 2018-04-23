@@ -68,6 +68,26 @@ export class EditProfilePage {
   userModel:UserModel = new UserModel();
   
   details:any;
+
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param modal 
+   * @param loadingCtrl 
+   * @param profileService 
+   * @param appRate 
+   * @param actionSheetCtrl 
+   * @param platform 
+   * @param camera 
+   * @param filePath 
+   * @param toastCtrl 
+   * @param storage 
+   * @param authService 
+   * @param transfer 
+   * @param files 
+   * @param http 
+   * @param appThemeColorProvider 
+   */
   constructor(
     public nav: NavController,
     public modal: ModalController,
@@ -88,6 +108,9 @@ export class EditProfilePage {
   ) {
     this.imageUpload =false;
     
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

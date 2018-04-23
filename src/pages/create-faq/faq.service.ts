@@ -16,6 +16,13 @@ import 'rxjs/add/operator/toPromise';
  */
 export class FAQService {
   token: any;
+
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param http 
+   * @param storage 
+   * @param profileService 
+   */
   constructor(public http: Http,public storage:Storage,public profileService: ProfileService) {}
 /**
  *  Mehtod to get all FAQ from database

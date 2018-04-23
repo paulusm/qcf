@@ -59,6 +59,20 @@ export class ProfilePage {
   colorThemeHeader:any;
 
   noActivities:boolean=false;
+
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param menu 
+   * @param app 
+   * @param navParams 
+   * @param profileService 
+   * @param loadingCtrl 
+   * @param storage 
+   * @param files 
+   * @param appThemeColorProvider 
+   * @param nav 
+   * @param activitiesService 
+   */
   constructor(
     public menu: MenuController,
     public app: App,
@@ -74,7 +88,11 @@ export class ProfilePage {
         this.loading = this.loadingCtrl.create({
           content: 'Loading profile...'
         });
-        this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
+      this.appThemeColorProvider.getAppThemeColor().then((value)=>{
           if(value===null){
             this.colorTheme = 'app-color-theme-4';
             this.colorThemeHeader = 'ion-header-4';

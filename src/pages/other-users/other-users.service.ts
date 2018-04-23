@@ -17,6 +17,12 @@ import { Storage } from '@ionic/storage';
  */
 export class NotificationsService {
   token: any;
+
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param http 
+   * @param storage 
+   */
   constructor(public http: Http,public storage:Storage) {}
 /**
  * Method to get all users for same company

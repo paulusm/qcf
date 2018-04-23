@@ -39,7 +39,17 @@ export class ChangePasswordPage {
 
   validations_form: FormGroup;
   matching_passwords_group: FormGroup;
-
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param modal 
+   * @param loadingCtrl 
+   * @param authService 
+   * @param profileService 
+   * @param storage 
+   * @param formBuilder 
+   * @param appThemeColorProvider 
+   */
   constructor(
     public nav: NavController,
     public modal: ModalController,
@@ -51,7 +61,9 @@ export class ChangePasswordPage {
     public appThemeColorProvider:AppThemeColorProvider
   ) {
      this.main_page = { component: TabsNavigationPage };
-     
+     /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
      this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

@@ -17,6 +17,12 @@ import 'rxjs/add/operator/toPromise';
  */
 export class ActivitiesService {
   token: any;
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param http 
+   * @param storage 
+   * @param profileService 
+   */
   constructor(public http: Http,public storage:Storage,public profileService: ProfileService) {}
 /**
  *  Method return all Activities from DB  

@@ -35,6 +35,16 @@ export class AddUserPage {
   colorTheme: any;
   colorThemeHeader:any;
 
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param modal 
+   * @param loadingCtrl 
+   * @param authService 
+   * @param storage 
+   * @param profileService 
+   * @param appThemeColorProvider 
+   */
   constructor(
     public nav: NavController,
     public modal: ModalController,
@@ -45,8 +55,8 @@ export class AddUserPage {
     public appThemeColorProvider:AppThemeColorProvider
   ) {
     /**
-    * 
-    */
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

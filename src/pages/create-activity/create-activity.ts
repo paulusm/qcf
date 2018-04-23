@@ -48,7 +48,24 @@ export class CreateActivityPage {
   colorThemeHeader:any;
 
   activity: any;
-  
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param transfer 
+   * @param files 
+   * @param modal 
+   * @param loadingCtrl 
+   * @param profileService 
+   * @param authService 
+   * @param toastCtrl 
+   * @param storage 
+   * @param actionSheetCtrl 
+   * @param platform 
+   * @param filePath 
+   * @param camera 
+   * @param appThemeColorProvider 
+   * @param activitiesService 
+   */
   constructor(
     public nav: NavController,
     private transfer: FileTransfer,
@@ -68,6 +85,9 @@ export class CreateActivityPage {
   ) {
     this.main_page = { component: TabsNavigationPage };
 
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

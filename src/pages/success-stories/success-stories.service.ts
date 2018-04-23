@@ -18,6 +18,11 @@ import 'rxjs/add/operator/toPromise';
  */
 export class SuccessStoriesService {
   token: any;
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param http 
+   * @param storage 
+   */
   constructor(public http: Http,public storage:Storage) {}
 /**
  * Method to get stories for particular company's theme

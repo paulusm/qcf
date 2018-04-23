@@ -19,8 +19,18 @@ export class TermsOfServicePage {
   colorTheme: any;
   colorThemeHeader:any;
 
-  constructor(public view: ViewController,
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param view 
+   * @param appThemeColorProvider 
+   */
+  constructor(
+    public view: ViewController,
     public appThemeColorProvider:AppThemeColorProvider) {
+
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */  
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

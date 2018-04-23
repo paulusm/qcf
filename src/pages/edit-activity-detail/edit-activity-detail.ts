@@ -47,7 +47,26 @@ export class EditActivityDetailPage {
   vol: boolean=false;
   spon: boolean=false;
   activity: any;
-
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param navCtrl 
+   * @param transfer 
+   * @param files 
+   * @param modal 
+   * @param loadingCtrl 
+   * @param profileService 
+   * @param authService 
+   * @param toastCtrl 
+   * @param storage 
+   * @param actionSheetCtrl 
+   * @param platform 
+   * @param filePath 
+   * @param camera 
+   * @param appThemeColorProvider 
+   * @param activitiesService 
+   * @param navParams 
+   * @param socialSharing 
+   */
   constructor(
     public navCtrl: NavController, 
     private transfer: FileTransfer,
@@ -69,6 +88,9 @@ export class EditActivityDetailPage {
   ) {
     this.item = navParams.get("newItem");
       
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

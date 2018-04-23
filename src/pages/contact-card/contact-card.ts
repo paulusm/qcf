@@ -27,12 +27,23 @@ export class ContactCardPage {
   colorTheme: any;
   colorThemeHeader:any;
 
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param navCtrl 
+   * @param emailComposer 
+   * @param inAppBrowser 
+   * @param appThemeColorProvider 
+   */
   constructor(
     public navCtrl: NavController,
     private emailComposer: EmailComposer,
     public inAppBrowser: InAppBrowser,
     public appThemeColorProvider:AppThemeColorProvider
   ) {
+
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

@@ -45,6 +45,18 @@ export class JoinActivityPage {
   s:boolean = false;
   owersEmail:any = "as_baig@yahoo.com";
 
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param navCtrl 
+   * @param navParams 
+   * @param loadingCtrl 
+   * @param storage 
+   * @param appThemeColorProvider 
+   * @param activitiesService 
+   * @param profileService 
+   * @param emailComposer 
+   * @param inAppBrowser 
+   */
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -75,6 +87,9 @@ export class JoinActivityPage {
     }
     this.main_page = { component: TabsNavigationPage };
 
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';
@@ -98,6 +113,19 @@ export class JoinActivityPage {
   
   ionViewDidLoad() {
   }
+/**
+ * Method to join activity for cash donation
+ */
+  cashDonation(){
+    this.profileService.getData().then((data)=>{
+      this.item.sponsors.push(data.email);
+      this.activitiesService.updateActivityAsEmployee(this.item).then((result) => {
+          this.navCtrl.setRoot(TabsNavigationPage); 
+      }, (err: any) => {
+            alert(`status: ${err.status}, ${err.statusText}`);
+      });
+    });
+  } 
 /**
  * Method to open doner's website in app browser
  */

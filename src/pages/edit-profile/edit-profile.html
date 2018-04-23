@@ -19,7 +19,7 @@
       <div ngClass="main-div"> 
       <ion-row>
         <ion-col width-40>
-          <preload-image style="border-radius: 15%;" [ratio]="{w:1, h:1}" [src]="image" alt="this is the image" title="IMAGE!"></preload-image>
+          <preload-image style="border-radius: 15%;" [ratio]="{w:1, h:1}" [src]="image" alt="this is the image" title="IMAGE!" (click)="presentActionSheet()"></preload-image>
           
         </ion-col>
       </ion-row>

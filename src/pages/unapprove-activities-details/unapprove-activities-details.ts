@@ -26,6 +26,13 @@ export class UnapproveActivitiesDetailsPage {
   colorTheme: any;
   colorThemeHeader:any;
 
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param navCtrl 
+   * @param navParams 
+   * @param appThemeColorProvider 
+   * @param activitiesService 
+   */
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -34,6 +41,9 @@ export class UnapproveActivitiesDetailsPage {
   ) {
     this.item = navParams.get("newItem");
     
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

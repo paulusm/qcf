@@ -36,6 +36,18 @@ export class EditFaqPage {
   item:any;
   faqModel: FAQModel = new FAQModel();
 
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param loadingCtrl 
+   * @param fAQService 
+   * @param navParams 
+   * @param platform 
+   * @param toastCtrl 
+   * @param storage 
+   * @param http 
+   * @param appThemeColorProvider 
+   */
   constructor(
     public nav: NavController,
     public loadingCtrl: LoadingController,
@@ -49,6 +61,9 @@ export class EditFaqPage {
   ) {
     this.item = navParams.get("faq");
     
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

@@ -31,12 +31,23 @@ export class ResetPasswordPage {
   colorTheme: any;
   colorThemeHeader:any;
 
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param navCtrl 
+   * @param authService 
+   * @param loadingCtrl 
+   * @param navParams 
+   * @param appThemeColorProvider 
+   */
   constructor(public navCtrl: NavController, public authService: AuthenticationProvider, 
     public loadingCtrl: LoadingController, public navParams:NavParams,
     public appThemeColorProvider:AppThemeColorProvider) {
-        this.email = this.navParams.get('email');
-       
-        this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+      this.email = this.navParams.get('email');
+      
+      /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
+      this.appThemeColorProvider.getAppThemeColor().then((value)=>{
           if(value===null){
             this.colorTheme = 'app-color-theme-4';
             this.colorThemeHeader = 'ion-header-4';

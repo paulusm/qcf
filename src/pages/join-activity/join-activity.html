@@ -43,6 +43,15 @@
                 Go to donor's website
               </button>
             </ion-item>
+
+            <ion-item class="detail-item">
+              <ion-avatar item-left>
+                <ion-icon name="cash"></ion-icon>
+              </ion-avatar>
+              <button ion-button clear (click)="cashDonation()" [disabled]="!s">
+                Cash Donation
+              </button>
+            </ion-item>
            </ion-list> 
 
 

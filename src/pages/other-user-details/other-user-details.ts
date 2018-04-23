@@ -31,9 +31,26 @@ export class OtherUserDetailsPage {
   profile: UserModel = new UserModel();
   roleStatus:boolean=true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public activitiesService:ActivitiesService,
-    public appThemeColorProvider:AppThemeColorProvider,public actionSheetCtrl:ActionSheetController,public authService: AuthenticationProvider,
-    public nav: NavController,public profileService: ProfileService) {
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param navCtrl 
+   * @param navParams 
+   * @param activitiesService 
+   * @param appThemeColorProvider 
+   * @param actionSheetCtrl 
+   * @param authService 
+   * @param nav 
+   * @param profileService 
+   */
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public activitiesService:ActivitiesService,
+    public appThemeColorProvider:AppThemeColorProvider,
+    public actionSheetCtrl:ActionSheetController,
+    public authService: AuthenticationProvider,
+    public nav: NavController,
+    public profileService: ProfileService) {
 
     this.item = navParams.get("newItem");
     this.currentRole = this.item.role;
@@ -60,7 +77,10 @@ export class OtherUserDetailsPage {
               this.activities.items = tempArray2;
               
             });   
-
+    
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */        
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

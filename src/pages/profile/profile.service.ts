@@ -18,6 +18,12 @@ import { UserModel } from '../../pages/profile/profile.model';
  */
 export class ProfileService {
  token:any;
+
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param http 
+   * @param storage 
+   */
   constructor(
     public http: Http,
     public storage: Storage

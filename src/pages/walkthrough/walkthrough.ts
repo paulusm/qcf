@@ -33,6 +33,12 @@ export class WalkthroughPage {
   logoImage:any;
   @ViewChild('slider') slider: Slides;
 
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param storage 
+   * @param modalCtrl 
+   */
   constructor(
     public nav: NavController,
     public storage: Storage,

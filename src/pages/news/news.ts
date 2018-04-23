@@ -37,7 +37,13 @@ export class NewsPage {
   items: any;
   searchTerm: string = '';
 
-
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param newsService 
+   * @param loadingCtrl 
+   * @param appThemeColorProvider 
+   */
   constructor(
     public nav: NavController,
     public newsService: NewsService,
@@ -45,6 +51,10 @@ export class NewsPage {
     public appThemeColorProvider:AppThemeColorProvider
   ) {
     this.loading = this.loadingCtrl.create();
+
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';

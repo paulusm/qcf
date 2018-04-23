@@ -12,19 +12,15 @@
  * **************************************************************/
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
-
-import 'rxjs/Rx';
-
 import { ActivitiessModel } from './activities.model';
 import { ActivitiesService } from './activities.service';
-
 import { ActivitiesDetailsPage } from '../activities-details/activities-details';
 import { JoinActivityPage } from '../join-activity/join-activity';
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
-
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
-
 import { ProfileService } from '../profile/profile.service';
+import 'rxjs/Rx';
+
 
 @Component({
   selector: 'page-activities',
@@ -43,6 +39,15 @@ export class ActivitiesPage {
   items: any;
   searchTerm: string = '';
 
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param activitiesService 
+   * @param loadingCtrl 
+   * @param appThemeColorProvider 
+   * @param launchNavigator 
+   * @param profileService 
+   */
   constructor(
     public nav: NavController,
     public activitiesService: ActivitiesService,
@@ -53,11 +58,10 @@ export class ActivitiesPage {
   ) {
 
     this.loading = this.loadingCtrl.create();
-    
     /**
-    * 
-    */
-     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
+    this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';
         this.colorThemeHeader = 'ion-header-4';
@@ -100,6 +104,9 @@ export class ActivitiesPage {
                           t.status = false;
                       }
                       t.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+t.filename;
+                      if(t.filename===null || t.filename===undefined){
+                        t.displayImage =  './assets/images/noimage.jpeg';
+                      }
                       t.startdate = new Date(t.startdate);
                       t.enddate = new Date(t.enddate);
                       
@@ -137,16 +144,17 @@ export class ActivitiesPage {
  *  Method to launch navigation app
  */
   goToNavigateActivity(item){
-    let options: LaunchNavigatorOptions = {
-      start: ""
-    };
+    if(item.address!=null || item.address!=undefined){ 
+      let options: LaunchNavigatorOptions = {
+        start: ""
+      };
 
-    this.launchNavigator.navigate(item.address, options)
-        .then(
-            success => alert('Launched navigator'),
-            error => alert('Error launching navigator: ' + error)
-    ); 
-
+      this.launchNavigator.navigate(item.address, options)
+          .then(
+              success => alert('Launched navigator'),
+              error => alert('Error launching navigator: ' + error)
+      ); 
+    }
   }
   /**
    *  Method to filter activities based on activityname

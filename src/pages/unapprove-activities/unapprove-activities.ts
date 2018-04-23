@@ -38,7 +38,14 @@ export class UnapproveActivitiesPage {
   colorThemeHeader:any;
   noActivities:boolean=false;
   
-
+  /**
+   * Initialize class object and injecting imported dependencies and services
+   * @param nav 
+   * @param activitiesService 
+   * @param loadingCtrl 
+   * @param appThemeColorProvider 
+   * @param profileService 
+   */
   constructor(
     public nav: NavController,
     public activitiesService: ActivitiesService,
@@ -50,7 +57,10 @@ export class UnapproveActivitiesPage {
 
     this.loading = this.loadingCtrl.create();
     
-     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+    /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
+    this.appThemeColorProvider.getAppThemeColor().then((value)=>{
       if(value===null){
         this.colorTheme = 'app-color-theme-4';
         this.colorThemeHeader = 'ion-header-4';
