@@ -32,6 +32,8 @@ import { Http } from '@angular/http';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { ProfileService } from '../profile/profile.service';
 import { FilesProvider } from '../../providers/files/files';
+import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
+
 import { UserModel } from '../profile/profile.model';
 
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
@@ -40,9 +42,6 @@ import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy';
 import { ChangePasswordPage } from '../change-password/change-password';
 import { LoginPage } from '../login/login';
 import { AppColorThemePage } from '../app-color-theme/app-color-theme';
-
-import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
-
 
 import 'rxjs/Rx';
 
@@ -339,7 +338,7 @@ export class EditProfilePage {
                   mimeType: "image/jpeg",
                   headers: headers
                 }
-  
+                //Http upload request to API to upload image in database
                 fileTransfer.upload(imageURI, encodeURI('https://ionic2-qcf-auth.herokuapp.com/api/files/upload'), options,true)
                   .then((data) => {
                     let imageName = JSON.parse(data.response);

@@ -89,6 +89,9 @@ export class NewsPage {
                 if(n.type==='News'){
                     
                     n.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+n.imagepath;
+                    if(n.imagepath===null || n.imagepath===undefined){
+                      n.displayImage =  './assets/images/noimage.jpeg';
+                    }
                     activeNews.push(n);
                   }
               }

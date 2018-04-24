@@ -34,7 +34,7 @@ async getAllActivities() {
     this.storage.get('token').then((value) => {
 
       this.token = value;
-
+      
       this.profileService.getData().then(data => {
 
           let headers = new Headers();

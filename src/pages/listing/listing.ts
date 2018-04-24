@@ -144,11 +144,11 @@ export class ListingPage {
     this.categories =[
       {
           "title": "Stories",
-          "image": "./assets/images/listing/200x200basquet.png"
+          "image": "./assets/images/1.jpg"
       },
       {
           "title": "Articles",
-          "image": "./assets/images/listing/200x200boxeo.png"
+          "image": "./assets/images/2.jpg"
       }
     ];
     this.loading.dismiss();

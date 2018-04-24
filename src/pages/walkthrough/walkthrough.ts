@@ -84,9 +84,9 @@ export class WalkthroughPage {
         "description": "On Activities page users find approved activities list and can choose to see activity details by swiping list item to LEFT, join that activity or launch phone's navigation app pointing to address of that activity."
       },
       {
-        "title": "Activities Details",
-        "image": "./assets/images/activities_detail.jpg",
-        "description": "On Activities Details page users find details of selected activity. They can choose to Like or Join this activity."
+        "title": "Activity Results",
+        "image": "./assets/images/activityResults.jpg",
+        "description": "On Activity Results page users find results and feedback of selected activity."
       }
     ];
     this.items3 =[
@@ -96,10 +96,15 @@ export class WalkthroughPage {
           "description": "On Create Activity page users can create new activity which needs to be approved by their company's admin."
       },
       {
-          "title": "Join Activity",
-          "image": "./assets/images/join_activity.jpg",
-          "description": "On Join Activity page users can join activity by sending email to voluntering or go to assigned website to sponsorhip."
-      }
+          "title": "Close Activity",
+          "image": "./assets/images/closeActivity.jpg",
+          "description": "On Close Activity page users can close their own activity by providing its results and feedback."
+      },
+      {
+        "title": "FAQ",
+        "image": "./assets/images/faqs.jpg",
+        "description": "On FAQ page users can see FAQ by QCF or their own company."
+    }
     ];
   }
 /**
