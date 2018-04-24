@@ -1,5 +1,10 @@
 
 # Workflow
+##Install NodeJS and NPM
+
+##Installing Ionic CLI and Cordova
+'npm install -g cordova ionic'
+
 ##To run your app in the browser (great for initial development):
 - Install all the npm dependencies
 `npm install`
