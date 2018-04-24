@@ -27,12 +27,18 @@
   <ion-row>
     <ion-col *ngFor="let category of categories">
       <div>
+        
       <background-image tappable style="height:150px; width:150px;" [src]="category.image" (click)="goToStoryOrArticle(category)">
-       
+        <div style="padding:10px;"> 
+        <div class="transbox">
+              <p >{{category.title}}</p>
+          </div>
+        </div>
       </background-image>
-      <h2 ngClass="h2-heading">{{category.title}}</h2>
       
+        
       </div>
+
     </ion-col>
   </ion-row>
 

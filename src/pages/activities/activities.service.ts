@@ -34,13 +34,13 @@ async getAllActivities() {
     this.storage.get('token').then((value) => {
 
       this.token = value;
-      
+
       this.profileService.getData().then(data => {
 
           let headers = new Headers();
           headers.append('Authorization', this.token);
-          //Http get request to API app to get activities
-          this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/activities/getActivities/', {headers: headers})
+          //Http get request to API app to get approved activities
+          this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/activities/getActivitiesClosed/'+data.companyid, {headers: headers})
             .subscribe(res => {
                   
               resolve(res);

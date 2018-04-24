@@ -94,7 +94,7 @@ export class ActivitiesResultsPage {
               
               let tempArray2=[];
               for(let t of tempArray1){
-                      if(user.companyid===t.companyid && t.status[0]==="Closed"){
+                      //if(user.companyid===t.companyid && t.status[0]==="Closed"){
                             t.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+t.filename;
                             t.startdate = new Date(t.startdate);
                             t.enddate = new Date(t.enddate);
@@ -105,7 +105,7 @@ export class ActivitiesResultsPage {
                               t.targetamount=0; 
                             }
                             tempArray2.push(t);
-                      }
+                      //}
               }  
               console.log(tempArray2);
 

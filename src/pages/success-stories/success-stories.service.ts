@@ -37,9 +37,9 @@ export class SuccessStoriesService {
 
         let headers = new Headers();
         headers.append('Authorization', this.token);
-        let companyid = '5ab7dbc0bc24e300543c';
+        //let companyid = '5ab7dbc0bc24e300543c';
         //Http get request to API app to get approved stories
-         this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/stories/getApprovedStories/'+companyid, {headers: headers})
+         this.http.get('https://ionic2-qcf-auth.herokuapp.com/api/stories/getAllApprovedStories/', {headers: headers})
           .subscribe(res => {
                 
             resolve(res);
