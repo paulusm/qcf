@@ -12,8 +12,8 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
 import { ActivitiesService } from '../activities/activities.service';
-//import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
-import { MyApp } from '../../app/app.component';
+import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
+//import { MyApp } from '../../app/app.component';
 
 @Component({
   selector: 'page-unapprove-activities-details',
@@ -75,7 +75,7 @@ export class UnapproveActivitiesDetailsPage {
      this.item.approved = true;
     this.activitiesService.approveActivity(this.item).then((result) => {
 
-      this.navCtrl.insert(0,MyApp);
+      this.navCtrl.insert(0,TabsNavigationPage);
       this.navCtrl.popToRoot();
 
       

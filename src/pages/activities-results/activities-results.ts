@@ -116,7 +116,7 @@ export class ActivitiesResultsPage {
                             tempArray2.push(t);
                       //}
               }  
-              console.log(tempArray2);
+              //console.log(tempArray2);
 
               this.activities.items = tempArray2;
               this.loading.dismiss();

@@ -177,10 +177,12 @@ export class CreateActivityPage {
               .then(filePath => {
                 this.image=filePath;
                 this.uploadFile(filePath);
+                this.image = null;
               });
       } else {
         this.image= imagePath;
         this.uploadFile(imagePath);
+        this.image = null;
       }
     }, (err) => {
       this.presentToast('Error while selecting image.');
@@ -275,7 +277,8 @@ export class CreateActivityPage {
             this.nav.setRoot(ProfilePage);
             
           }, (err: any) => {
-                alert(`status: ${err.status}, ${err.statusText}`);
+                //alert(`status: ${err.status}, ${err.statusText}`);
+                this.presentToast(`status: ${err.status}, ${err.statusText}`);
           });
       });  
     });  
