@@ -11,7 +11,7 @@
  * **************************************************************/
 
 import { Component } from '@angular/core';
-import { NavController, LoadingController, AlertController  } from 'ionic-angular';
+import { NavController, AlertController  } from 'ionic-angular';
 
 import { ArticlesPage } from '../articles/articles';
 import { SuccessStoriesPage } from '../success-stories/success-stories';
@@ -37,7 +37,7 @@ export class ListingPage {
   roleStatus:boolean = false;
   categories: any;
 
-  loading: any;
+  //loading: any;
   companyLogo:any;
   themes:any;
   companyThemes:any;
@@ -64,16 +64,21 @@ export class ListingPage {
    */
   constructor(
     public nav: NavController,
-    public loadingCtrl: LoadingController,
+    //public loadingCtrl: LoadingController,
     public themeService:ThemeProvider,
     public companyService: CompanyProvider,
     public appThemeColorProvider:AppThemeColorProvider,
     public profileService:ProfileService,
     public alertCtrl: AlertController
   ) {
-    this.loading = this.loadingCtrl.create();
-    
-    /**
+    //this.loading = this.loadingCtrl.create();
+        
+  }
+/**
+ * Default method tigger after this page load
+ */
+ionViewWillEnter() {
+  /**
      * Initializing color-theme for app's header navbar,menu and tabs
      */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
@@ -94,12 +99,12 @@ export class ListingPage {
         this.colorThemeHeader = 'ion-header-4';
       }
     });
-  }
+}
 /**
  * Method tigger just after this page load
  */
   ionViewWillLoad() {
-    this.loading.present();
+    //this.loading.present();
 
     this.profileService.getData()
     .then(data => {
@@ -136,7 +141,7 @@ export class ListingPage {
                   this.groups = this.joinedThemes;
                 }
             }, (err) => {
-                this.loading.dismiss();
+      //          this.loading.dismiss();
         });
 
       });
@@ -151,7 +156,7 @@ export class ListingPage {
           "image": "./assets/images/2.jpg"
       }
     ];
-    this.loading.dismiss();
+    //this.loading.dismiss();
   
   }
 /**

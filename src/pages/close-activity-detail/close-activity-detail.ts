@@ -14,7 +14,7 @@ import { Validators,FormGroup, FormControl } from '@angular/forms';
 
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { ProfileService } from '../profile/profile.service';
-import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
+//import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { Storage } from '@ionic/storage';
 
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
@@ -22,6 +22,8 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
 import { ActivitiesService } from '../activities/activities.service';
 
 import { FilesProvider } from '../../providers/files/files';
+
+import { MyApp } from '../../app/app.component';
 
 @Component({
   selector: 'page-close-activity-detail',
@@ -132,7 +134,8 @@ export class CloseActivityDetailPage {
           
           this.activitiesService.updateActivity(this.activity).then((result) => {
  
-            this.navCtrl.insert(0,TabsNavigationPage);
+            this.navCtrl.insert(0,MyApp);
+            //this.navCtrl.insert(0,TabsNavigationPage);
             this.navCtrl.popToRoot();
 
             

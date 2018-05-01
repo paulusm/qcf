@@ -39,6 +39,7 @@ export class MyApp {
   loading: any;
   menuColor: any;
   hithere:any = "Hello";
+  colorTheme: any;
   //menuImage: any;
 
   pages: Array<{title: any, icon: string, component: any}>;
@@ -69,15 +70,20 @@ export class MyApp {
       }); 
     
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
-      if(value===null){
+      if(value===null || value===undefined){
+        this.colorTheme = 'app-color-theme-4';
         this.menuColor = 'ion-menu-4';
       }else if(value==='app-color-theme-1'){
+        this.colorTheme = 'app-color-theme-1';
         this.menuColor = 'ion-menu-1';
       }else if(value==='app-color-theme-2'){
+        this.colorTheme = 'app-color-theme-2';
         this.menuColor = 'ion-menu-2';
       }else if(value==='app-color-theme-3'){
+        this.colorTheme = 'app-color-theme-3';
         this.menuColor = 'ion-menu-3';
       }else if(value==='app-color-theme-4'){
+        this.colorTheme = 'app-color-theme-4';
         this.menuColor = 'ion-menu-4';
       }
     });
@@ -147,15 +153,19 @@ export class MyApp {
    */
   listenToLoginEvents() {
     this.events.subscribe('app-color-theme-1', () => {
+      console.log("Event heard for menu 1");
       this.menuColor = 'ion-menu-1';
     });
     this.events.subscribe('app-color-theme-2', () => {
+      console.log("Event heard for menu 2");
       this.menuColor = 'ion-menu-2';
     });
     this.events.subscribe('app-color-theme-3', () => {
+      console.log("Event heard for menu 3");
       this.menuColor = 'ion-menu-3';
     });
     this.events.subscribe('app-color-theme-4', () => {
+      console.log("Event heard for menu 4");
       this.menuColor = 'ion-menu-4';
     });
   }

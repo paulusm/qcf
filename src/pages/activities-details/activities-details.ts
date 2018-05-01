@@ -49,7 +49,23 @@ export class ActivitiesDetailsPage {
   ) {
     this.item = navParams.get("newItem");
     this.countLike = this.item.likes.length;
-    /**
+    
+    this.profileService.getData()
+      .then(data => {
+        this.userModel = data;
+        
+        if(this.item.likes.indexOf(this.userModel.email) !== -1){
+            this.isLiked = true;
+        }
+      
+      });
+  }
+
+  /**
+ * Default method tigger after this page load
+ */
+  ionViewWillEnter() {
+      /**
      * Initializing color-theme for app's header navbar,menu and tabs
      */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
@@ -70,18 +86,7 @@ export class ActivitiesDetailsPage {
         this.colorThemeHeader = 'ion-header-4';
       }
     });
-
-    this.profileService.getData()
-      .then(data => {
-        this.userModel = data;
-        
-        if(this.item.likes.indexOf(this.userModel.email) !== -1){
-            this.isLiked = true;
-        }
-      
-      });
   }
-
   ionViewDidLoad() {
     
   }

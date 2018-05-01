@@ -36,7 +36,7 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
 
 import { UserModel } from '../profile/profile.model';
 
-import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
+//import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { TermsOfServicePage } from '../terms-of-service/terms-of-service';
 import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy';
 import { ChangePasswordPage } from '../change-password/change-password';
@@ -44,6 +44,7 @@ import { LoginPage } from '../login/login';
 import { AppColorThemePage } from '../app-color-theme/app-color-theme';
 
 import 'rxjs/Rx';
+import { MyApp } from '../../app/app.component';
 
 @Component({
   selector: 'edit-profile-page',
@@ -398,7 +399,8 @@ export class EditProfilePage {
           this.userModel.setUser(result['user']);  
 
           this.profileService.setData(this.userModel);  
-          this.nav.insert(0,TabsNavigationPage);
+          //this.nav.insert(0,TabsNavigationPage);
+          this.nav.insert(0,MyApp);
           this.nav.popToRoot();
 
         }, (err: any) => {

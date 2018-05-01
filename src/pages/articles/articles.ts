@@ -111,7 +111,7 @@ export class ArticlesPage {
                     for(let ts of this.themeIds){
                         if(ts===n.themeid){
                           n.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+n.imagepath;
-                          if(n.imagepath===null || n.imagepath===undefined){
+                          if(n.imagepath===null || n.imagepath===undefined ||n.imagepath===""){
                             n.displayImage =  './assets/images/noimage.jpeg';
                           }
                           activeArticles.push(n);      

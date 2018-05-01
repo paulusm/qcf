@@ -15,6 +15,8 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
 
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 
+//import { MyApp } from '../../app/app.component';
+
 @Component({
   selector: 'page-app-color-theme',
   templateUrl: 'app-color-theme.html',
@@ -38,7 +40,7 @@ export class AppColorThemePage {
      * Initializing color-theme for app's header navbar,menu and tabs
      */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
-      if(value===null){
+      if(value===null ||value===undefined){
         this.colorTheme = 'app-color-theme-4';
         this.colorThemeHeader = 'ion-header-4';
       }else if(value==='app-color-theme-1'){
@@ -65,7 +67,9 @@ export class AppColorThemePage {
   onChangeTheme1(){
     this.events.publish('app-color-theme-1');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-1');
-    this.navCtrl.setRoot(TabsNavigationPage);
+    //this.navCtrl.setRoot(TabsNavigationPage);
+    this.navCtrl.insert(0,TabsNavigationPage);
+    this.navCtrl.popAll();
   }
   /**
     * Method call to set new app color theme  'app-color-theme-2'    
@@ -73,7 +77,9 @@ export class AppColorThemePage {
   onChangeTheme2(){
     this.events.publish('app-color-theme-2');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-2');
-    this.navCtrl.setRoot(TabsNavigationPage);
+    //this.navCtrl.setRoot(TabsNavigationPage);
+    this.navCtrl.insert(0,TabsNavigationPage);
+    this.navCtrl.popAll();
   }
   /**
     * * Method call to set new app color theme  'app-color-theme-3'
@@ -81,7 +87,9 @@ export class AppColorThemePage {
   onChangeTheme3(){
     this.events.publish('app-color-theme-3');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-3');
-    this.navCtrl.setRoot(TabsNavigationPage);
+    //this.navCtrl.setRoot(TabsNavigationPage);
+    this.navCtrl.insert(0,TabsNavigationPage);
+    this.navCtrl.popAll();
   }
   /**
     * * Method call to set new app color theme  'app-color-theme-4' 
@@ -89,6 +97,8 @@ export class AppColorThemePage {
   onChangeTheme4(){
     this.events.publish('app-color-theme-4');
     this.appThemeColorProvider.setAppThemeColor('app-color-theme-4');
-    this.navCtrl.setRoot(TabsNavigationPage);
+    //this.navCtrl.setRoot(TabsNavigationPage);
+    this.navCtrl.insert(0,TabsNavigationPage);
+    this.navCtrl.popAll();
   }
 }

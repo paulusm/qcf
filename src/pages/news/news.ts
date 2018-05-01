@@ -9,7 +9,7 @@
  * setFilteredItems()
  * **************************************************************/
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 import 'rxjs/Rx';
 
@@ -29,7 +29,7 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
 export class NewsPage {
 
   news: NewssModel = new NewssModel();
-  loading: any;
+  //loading: any;
   colorTheme: any;
   colorThemeHeader:any;
   image:any;
@@ -47,11 +47,17 @@ export class NewsPage {
   constructor(
     public nav: NavController,
     public newsService: NewsService,
-    public loadingCtrl: LoadingController,
+    //public loadingCtrl: LoadingController,
     public appThemeColorProvider:AppThemeColorProvider
   ) {
-    this.loading = this.loadingCtrl.create();
+    //this.loading = this.loadingCtrl.create();
 
+    
+  }
+/**
+ * Default method tigger after this page load
+ */
+ionViewWillEnter() {
     /**
      * Initializing color-theme for app's header navbar,menu and tabs
      */
@@ -73,12 +79,12 @@ export class NewsPage {
         this.colorThemeHeader = 'ion-header-4';
       }
     });
-  }
+}
 /**
  * Method tigger just before this page load
  */
   ionViewDidLoad() {
-    this.loading.present();
+    //this.loading.present();
       this.newsService
       .getNews()
       .then(data => {
@@ -89,7 +95,7 @@ export class NewsPage {
                 if(n.type==='News'){
                     
                     n.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+n.imagepath;
-                    if(n.imagepath===null || n.imagepath===undefined){
+                    if(n.imagepath===null || n.imagepath===undefined || n.imagepath===""){
                       n.displayImage =  './assets/images/noimage.jpeg';
                     }
                     activeNews.push(n);
@@ -98,7 +104,7 @@ export class NewsPage {
               this.news.items = activeNews;
               this.items = activeNews;
               
-        this.loading.dismiss();
+        //this.loading.dismiss();
       },(err) => {
         
       });  

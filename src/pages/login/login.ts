@@ -8,7 +8,7 @@
  * **************************************************************/
 
 import { Component } from '@angular/core';
-import { Events, NavController, LoadingController } from 'ionic-angular';
+import { Events, NavController, LoadingController, ToastController } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
@@ -66,31 +66,10 @@ export class LoginPage {
     public authService: AuthenticationProvider,
     public companyService: CompanyProvider,
     public profileService: ProfileService,
-    public appThemeColorProvider:AppThemeColorProvider
+    public appThemeColorProvider:AppThemeColorProvider,
+    public toastCtrl:ToastController
   ) {
     this.main_page = { component: TabsNavigationPage };
-
-    /**
-     * Initializing color-theme for app's header navbar,menu and tabs
-     */
-    this.appThemeColorProvider.getAppThemeColor().then((value)=>{
-      if(value===null){
-        this.colorTheme = 'app-color-theme-4';
-        this.colorThemeHeader = 'ion-header-4';
-      }else if(value==='app-color-theme-1'){
-        this.colorTheme = 'app-color-theme-1';
-        this.colorThemeHeader = 'ion-header-1';
-      }else if(value==='app-color-theme-2'){
-        this.colorTheme = 'app-color-theme-2';
-        this.colorThemeHeader = 'ion-header-2';
-      }else if(value==='app-color-theme-3'){
-        this.colorTheme = 'app-color-theme-3';
-        this.colorThemeHeader = 'ion-header-3';
-      }else if(value==='app-color-theme-4'){
-        this.colorTheme = 'app-color-theme-4';
-        this.colorThemeHeader = 'ion-header-4';
-      }
-    });
 
     this.login = new FormGroup({
       email: new FormControl('', Validators.compose([
@@ -112,6 +91,29 @@ export class LoginPage {
       { type: 'required', message: 'Password is required.' },
     ]
   };
+  ionViewWillEnter(){
+      /**
+     * Initializing color-theme for app's header navbar,menu and tabs
+     */
+    this.appThemeColorProvider.getAppThemeColor().then((value)=>{
+      if(value===null || value===undefined){
+        this.colorTheme = 'app-color-theme-4';
+        this.colorThemeHeader = 'ion-header-4';
+      }else if(value==='app-color-theme-1'){
+        this.colorTheme = 'app-color-theme-1';
+        this.colorThemeHeader = 'ion-header-1';
+      }else if(value==='app-color-theme-2'){
+        this.colorTheme = 'app-color-theme-2';
+        this.colorThemeHeader = 'ion-header-2';
+      }else if(value==='app-color-theme-3'){
+        this.colorTheme = 'app-color-theme-3';
+        this.colorThemeHeader = 'ion-header-3';
+      }else if(value==='app-color-theme-4'){
+        this.colorTheme = 'app-color-theme-4';
+        this.colorThemeHeader = 'ion-header-4';
+      }
+    });
+  }
   /** 
    * Default method tigger just after this page load 
    */
@@ -165,25 +167,43 @@ export class LoginPage {
             
             this.companyService.getCompanyInfo(this.userModel.companyid,this.token).then(data => {
               this.company = data['company'];
-              this.companyService.setCompany(this.company);
+
               this.appThemeColorProvider.setAppThemeColorLocally(this.company.colourtheme);
-              let companyLogo = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+this.company.filename;
-              this.events.publish('menuImage',companyLogo);
+              this.events.publish(this.company.colourtheme);
+              //alert(this.company.colourtheme);
+              this.companyService.setCompany(this.company);
+              
+              if(this.userModel.isfirstlogin==="true"){
+                //this.nav.setRoot(ChangePasswordPage);
+                this.nav.insert(0,ChangePasswordPage);
+                this.nav.popAll();
+              }if(this.userModel.isfirstlogin==="false"){
+                //this.nav.setRoot(this.main_page.component);
+                this.nav.insert(0,this.main_page.component);
+                this.nav.popAll();
+              }
+              //let companyLogo = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+this.company.filename;
+              //this.events.publish('menuImage',companyLogo);
             });  
 
 
 
-            if(this.userModel.isfirstlogin==="true"){
-              this.nav.setRoot(ChangePasswordPage);
-            }if(this.userModel.isfirstlogin==="false"){
-              this.nav.setRoot(this.main_page.component);
-            }
+            
             
 
         }, (err: any) => {
             this.loading.dismiss();
-                alert(`status: ${err.status}, ${err.statusText}`);
+                //alert(`status: ${err.status}, ${err.statusText}`);
+                this.presentToast(`status: ${err.status}, ${err.statusText}`);
           });   
+  }
+  private presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
   }
 /**
  * Method to navigate to ForgotPasswordPage

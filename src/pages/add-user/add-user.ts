@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController, LoadingController } from 'ionic-angular';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 
-import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
+//import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { ProfileService } from '../profile/profile.service';
@@ -27,7 +27,7 @@ import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme
  */
 export class AddUserPage {
   new_user: FormGroup;
-  main_page: { component: any };
+  //main_page: { component: any };
   loading: any;
   userModel:UserModel = new UserModel();
   companyId:string;
@@ -54,7 +54,34 @@ export class AddUserPage {
     public profileService:ProfileService,
     public appThemeColorProvider:AppThemeColorProvider
   ) {
-    /**
+    this.profileService.getData()
+      .then(data => {
+        this.userModel = data;
+        this.companyId = this.userModel.companyid;
+      });
+    //this.main_page = { component: TabsNavigationPage };
+
+    this.new_user = new FormGroup({
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      selected_option: new FormControl('Employee')
+    });
+
+  }
+  validation_messages = {
+    email: [
+      { type: 'required', message: 'Email is required.' },
+      { type: 'pattern', message: 'Enter a valid email.' }
+    ]
+  };
+  
+/**
+ * Default method tigger after this page load
+ */
+  ionViewWillEnter() {
+      /**
      * Initializing color-theme for app's header navbar,menu and tabs
      */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
@@ -75,31 +102,6 @@ export class AddUserPage {
         this.colorThemeHeader = 'ion-header-4';
       }
     });
-    this.profileService.getData()
-      .then(data => {
-        this.userModel = data;
-        this.companyId = this.userModel.companyid;
-      });
-    this.main_page = { component: TabsNavigationPage };
-
-    this.new_user = new FormGroup({
-      email: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-      ])),
-      selected_option: new FormControl('Employee')
-    });
-
-  }
-  validation_messages = {
-    email: [
-      { type: 'required', message: 'Email is required.' },
-      { type: 'pattern', message: 'Enter a valid email.' }
-    ]
-  };
-  
-  ionViewDidLoad() {
-    
   }
   /**
     * Method use to add new user in DB

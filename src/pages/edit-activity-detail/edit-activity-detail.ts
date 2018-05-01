@@ -20,7 +20,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { ProfileService } from '../profile/profile.service';
-import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
+//import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { Storage } from '@ionic/storage';
 
 import { Camera } from '@ionic-native/camera';
@@ -31,6 +31,7 @@ import { ActivitiesService } from '../activities/activities.service';
 
 import { FilesProvider } from '../../providers/files/files';
 
+import { MyApp } from '../../app/app.component';
 @Component({
   selector: 'page-edit-activity-detail',
   templateUrl: 'edit-activity-detail.html',
@@ -188,7 +189,8 @@ export class EditActivityDetailPage {
           
           this.activitiesService.updateActivity(this.activity).then((result) => {
  
-            this.navCtrl.insert(0,TabsNavigationPage);
+            //this.navCtrl.insert(0,TabsNavigationPage);
+            this.navCtrl.insert(0,MyApp);
             this.navCtrl.popToRoot();
 
             

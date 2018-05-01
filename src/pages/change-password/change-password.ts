@@ -21,6 +21,7 @@ import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
 
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
+import { MyApp } from '../../app/app.component';
 
 @Component({
   selector: 'change-password-page',
@@ -139,13 +140,14 @@ export class ChangePasswordPage {
     
                       console.log("Calling loginchangepassword service");
     
-                      console.log(credentialsnew);
+                      //console.log(credentialsnew);
     
                       this.authService.changePassword(credentialsnew).then((result) => {
     
                           console.log("Logged in after password change");
-                          console.log(result);
-                          this.nav.insert(0,TabsNavigationPage);
+                          //console.log(result);
+                          //this.nav.insert(0,TabsNavigationPage);
+                          this.nav.insert(0,MyApp);
                           this.nav.popToRoot();
     
                       }, (err) => {

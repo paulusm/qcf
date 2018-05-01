@@ -18,6 +18,7 @@ import { FAQService } from '../create-faq/faq.service';
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { AppThemeColorProvider } from '../../providers/app-theme-color/app-theme-color';
 import 'rxjs/Rx';
+import { MyApp } from '../../app/app.component';
 
 @Component({
   selector: 'page-edit-faq',
@@ -116,7 +117,8 @@ export class EditFaqPage {
     this.fAQService.updateFAQ(this.faqModel).then((result) => {
       console.log(result['_body']);
       console.log("FAQ updated...");
-      this.nav.insert(0,TabsNavigationPage);
+      //this.nav.insert(0,TabsNavigationPage);
+      this.nav.insert(0,MyApp);
       this.nav.popToRoot();
 
     }, (err: any) => {

@@ -14,7 +14,7 @@
 
 
 import { Component } from '@angular/core';
-import { MenuController, App, NavParams, LoadingController, NavController } from 'ionic-angular';
+import { MenuController, App, NavParams,  NavController } from 'ionic-angular';
 import { EditProfilePage } from '../edit-profile/edit-profile';
 import { AddUserPage } from '../add-user/add-user';
 import { CreateActivityPage } from '../create-activity/create-activity';
@@ -51,7 +51,7 @@ import 'rxjs/Rx';
 export class ProfilePage {
   profile: UserModel = new UserModel();
   activities: ActivitiessModel = new ActivitiessModel();
-  loading: any;
+  //loading: any;
   roleStatus:boolean=false;
   image = "./assets/images/emp.png";
 
@@ -78,17 +78,24 @@ export class ProfilePage {
     public app: App,
     public navParams: NavParams,
     public profileService: ProfileService,
-    public loadingCtrl: LoadingController,
+    //public loadingCtrl: LoadingController,
     public storage: Storage,
     public files: FilesProvider,
     public appThemeColorProvider:AppThemeColorProvider,
     public nav:NavController,
     public activitiesService:ActivitiesService
   ) {
-        this.loading = this.loadingCtrl.create({
+        /* this.loading = this.loadingCtrl.create({
           content: 'Loading profile...'
-        });
+        }); */
 
+    
+
+  }
+  /**
+   * Method tigger just after this page load 
+   */
+  ionViewWillEnter() {
     /**
      * Initializing color-theme for app's header navbar,menu and tabs
      */
@@ -110,13 +117,8 @@ export class ProfilePage {
             this.colorThemeHeader = 'ion-header-4';
           }
         });
-  }
-  /**
-   * Method tigger just after this page load 
-   */
-  ionViewWillLoad() {
-    this.loading.present();
-    this.image = "../../assets/images/profile/emp1.png";
+    //this.loading.present();
+    this.image = "./assets/images/emp.png";
    
     this.profileService.getUserImage().then((profileImg)=>{
       if(profileImg){
@@ -154,7 +156,7 @@ export class ProfilePage {
             this.activities.items = tempArray2;
         }); 
       }); 
-      this.loading.dismiss();
+      //this.loading.dismiss();    
   }
   /**
    * Method to navigate to EditActivityListPage

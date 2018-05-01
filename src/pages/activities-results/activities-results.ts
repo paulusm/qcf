@@ -55,7 +55,13 @@ export class ActivitiesResultsPage {
 
     this.loading = this.loadingCtrl.create();
     
-    /**
+     
+  }
+  /**
+ * Default method tigger after this page load
+ */
+  ionViewWillEnter() {
+      /**
      * Initializing color-theme for app's header navbar,menu and tabs
      */
      this.appThemeColorProvider.getAppThemeColor().then((value)=>{
@@ -75,9 +81,9 @@ export class ActivitiesResultsPage {
         this.colorTheme = 'app-color-theme-4';
         this.colorThemeHeader = 'ion-header-4';
       }
-    }); 
+    });
+  
   }
-
 /**
  *  Default method called just after view of this page loaded.
  */
@@ -96,6 +102,9 @@ export class ActivitiesResultsPage {
               for(let t of tempArray1){
                       //if(user.companyid===t.companyid && t.status[0]==="Closed"){
                             t.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+t.filename;
+                            if(t.filename===null || t.filename===undefined || t.filename===""){
+                              t.displayImage =  './assets/images/noimage.jpeg';
+                            }
                             t.startdate = new Date(t.startdate);
                             t.enddate = new Date(t.enddate);
                             if(t.targethours===undefined){

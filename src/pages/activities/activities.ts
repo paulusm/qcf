@@ -11,7 +11,7 @@
  * goToNavigateActivity()
  * **************************************************************/
 import { Component } from '@angular/core';
-import { NavController, LoadingController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { ActivitiessModel } from './activities.model';
 import { ActivitiesService } from './activities.service';
 import { ActivitiesDetailsPage } from '../activities-details/activities-details';
@@ -32,7 +32,7 @@ import 'rxjs/Rx';
 export class ActivitiesPage {
 
   activities: ActivitiessModel = new ActivitiessModel();
-  loading: any;
+  //loading: any;
   colorTheme: any;
   colorThemeHeader:any;
   noActivities:boolean=false;
@@ -51,14 +51,21 @@ export class ActivitiesPage {
   constructor(
     public nav: NavController,
     public activitiesService: ActivitiesService,
-    public loadingCtrl: LoadingController,
+    //public loadingCtrl: LoadingController,
     public appThemeColorProvider:AppThemeColorProvider,
     private launchNavigator: LaunchNavigator,
     public profileService:ProfileService
   ) {
 
-    this.loading = this.loadingCtrl.create();
-    /**
+    //this.loading = this.loadingCtrl.create();
+     
+  }
+
+/**
+ * Default method tigger after this page load
+ */
+ionViewWillEnter() {
+  /**
      * Initializing color-theme for app's header navbar,menu and tabs
      */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
@@ -78,14 +85,8 @@ export class ActivitiesPage {
         this.colorTheme = 'app-color-theme-4';
         this.colorThemeHeader = 'ion-header-4';
       }
-    }); 
-  }
-
-/**
- * Default method tigger after this page load
- */
-  ionViewWillLoad() {
-    this.loading.present();
+    });
+    //this.loading.present();
     this.profileService.getData().then((user)=>{ 
           this.activitiesService
             .getActivities()
@@ -104,7 +105,7 @@ export class ActivitiesPage {
                           t.status = false;
                       }
                       t.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+t.filename;
-                      if(t.filename===null || t.filename===undefined){
+                      if(t.filename===null || t.filename===undefined || t.filename===""){
                         t.displayImage =  './assets/images/noimage.jpeg';
                       }
                       t.startdate = new Date(t.startdate);
@@ -124,7 +125,7 @@ export class ActivitiesPage {
 
               this.activities.items = tempArray2;
               this.items = tempArray2;
-              this.loading.dismiss();
+              //this.loading.dismiss();
           }); 
     });
   }

@@ -95,6 +95,9 @@ export class EditActivityListPage {
               let tempArray2=[];
               for(let t of tempArray1){
                       t.displayImage = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+t.filename;
+                      if(t.filename===null || t.filename===undefined || t.filename===""){
+                        t.displayImage =  './assets/images/noimage.jpeg';
+                      }
                       t.startdate = new Date(t.startdate);
                       t.enddate = new Date(t.enddate);
                       if(t.targethours===undefined){

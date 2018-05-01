@@ -34,7 +34,15 @@ export class ActivitiesResultsDetailPage {
   ) {
     this.item = navParams.get("newItem");
     
-    /**
+    
+
+  }
+
+/**
+ * Default method tigger after this page load
+ */
+  ionViewWillEnter() {
+      /**
      * Initializing color-theme for app's header navbar,menu and tabs
      */
     this.appThemeColorProvider.getAppThemeColor().then((value)=>{
@@ -55,11 +63,6 @@ export class ActivitiesResultsDetailPage {
         this.colorThemeHeader = 'ion-header-4';
       }
     });
-
-  }
-
-  ionViewDidLoad() {
-    
   }
 
 }

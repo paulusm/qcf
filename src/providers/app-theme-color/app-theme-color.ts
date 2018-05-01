@@ -21,11 +21,11 @@ export class AppThemeColorProvider {
     public storage: Storage,
     public companyService: CompanyProvider
   ) {
-    this.companyService.getCompany().then((value) => {
+    
 
-      this.companyModel = value;
       
-    });
+      
+    
     
   }
   /**
@@ -34,12 +34,14 @@ export class AppThemeColorProvider {
    */
   setAppThemeColor(themeColor: string): void {
     this.storage.set('app-theme-color', themeColor);
-    this.companyModel.colourtheme = themeColor;
-    this.companyService.updateCompany(this.companyModel).then(data => {
-          this.companyModel = data['company'];
-          this.companyService.setCompany(this.companyModel);
+    this.companyService.getCompany().then((value) => {
+          this.companyModel = value;
+          this.companyModel.colourtheme = themeColor;
+          this.companyService.updateCompany(this.companyModel).then(data => {
+                this.companyModel = data['company'];
+                this.companyService.setCompany(this.companyModel);
+          });
     });
-    
   }
 /**
  * Method to set color theme in local storegae

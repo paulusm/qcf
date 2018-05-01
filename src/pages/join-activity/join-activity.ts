@@ -26,6 +26,7 @@ import { ActivitiesService } from '../activities/activities.service';
 
 import { EmailComposer } from '@ionic-native/email-composer';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { MyApp } from '../../app/app.component';
 
 @Component({
   selector: 'page-join-activity',
@@ -120,7 +121,10 @@ export class JoinActivityPage {
     this.profileService.getData().then((data)=>{
       this.item.sponsors.push(data.email);
       this.activitiesService.updateActivityAsEmployee(this.item).then((result) => {
-          this.navCtrl.setRoot(TabsNavigationPage); 
+          //this.navCtrl.setRoot(TabsNavigationPage);
+          //this.navCtrl.setRoot(MyApp); 
+          this.navCtrl.insert(0,MyApp);
+          this.navCtrl.popToRoot();
       }, (err: any) => {
             alert(`status: ${err.status}, ${err.statusText}`);
       });
@@ -135,7 +139,10 @@ export class JoinActivityPage {
       
       this.activitiesService.updateActivityAsEmployee(this.item).then((result) => {
         this.inAppBrowser.create(website, '_blank', "location=yes");
-        this.navCtrl.setRoot(TabsNavigationPage); 
+        //this.navCtrl.setRoot(TabsNavigationPage); 
+        //this.navCtrl.setRoot(MyApp);
+        this.navCtrl.insert(0,MyApp);
+          this.navCtrl.popToRoot();
       }, (err: any) => {
             alert(`status: ${err.status}, ${err.statusText}`);
       });
@@ -156,7 +163,10 @@ export class JoinActivityPage {
         };
         // Send a text message using default options
         this.emailComposer.open(email);
-        this.navCtrl.setRoot(TabsNavigationPage);
+        //this.navCtrl.setRoot(TabsNavigationPage);
+        //this.navCtrl.setRoot(MyApp);
+        this.navCtrl.insert(0,MyApp);
+          this.navCtrl.popToRoot();
       }, (err: any) => {
             alert(`status: ${err.status}, ${err.statusText}`);
       });

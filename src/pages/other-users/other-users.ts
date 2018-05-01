@@ -58,7 +58,12 @@ export class OtherUsersPage {
     public profileService: ProfileService
   ) {
     this.loading = this.loadingCtrl.create();
-
+   
+  }
+/**
+ * Default method tigger after this page load
+ */
+ionViewWillEnter() {
     /**
      * Initializing color-theme for app's header navbar,menu and tabs
      */
@@ -80,7 +85,7 @@ export class OtherUsersPage {
         this.colorThemeHeader = 'ion-header-4';
       }
     });
-  }
+} 
 /**
  * Default method tigger just after this page load
  */
@@ -95,7 +100,7 @@ export class OtherUsersPage {
                   for(let p of this.profilesModel.users){
                         if(p.isfirstlogin==="false" && p.companyid===user.companyid){
                           let image;
-                             if(p.imagepath!=null){
+                             if(p.imagepath!=null && p.imagepath!=undefined && p.imagepath!=""){
                                image = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+p.imagepath;
                              }else{
                               image = "./assets/images/emp.png";
