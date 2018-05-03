@@ -171,18 +171,18 @@ export class CreateActivityPage {
     // Get the data of an image
     this.camera.getPicture(options).then((imagePath) => {
       // Special handling for Android library
-      
+      this.image="";
       if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
             this.filePath.resolveNativePath(imagePath)
               .then(filePath => {
                 this.image=filePath;
+                console.log(this.image);
                 this.uploadFile(filePath);
-                this.image = null;
               });
       } else {
-        this.image= imagePath;
+        this.image=imagePath;
+        console.log(this.image);
         this.uploadFile(imagePath);
-        this.image = null;
       }
     }, (err) => {
       this.presentToast('Error while selecting image.');

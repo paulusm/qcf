@@ -182,8 +182,9 @@ export class LoginPage {
                 this.nav.insert(0,this.main_page.component);
                 this.nav.popAll();
               }
-              //let companyLogo = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+this.company.filename;
-              //this.events.publish('menuImage',companyLogo);
+              let companyLogo = 'https://ionic2-qcf-auth.herokuapp.com/api/files/file/'+this.company.filename;
+              this.storage.set('MenuImage', companyLogo);
+              this.events.publish('menuImage',companyLogo);
             });  
 
 

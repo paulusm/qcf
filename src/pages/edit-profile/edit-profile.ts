@@ -195,6 +195,9 @@ export class EditProfilePage {
     this.storage.remove('profileImage');
     this.storage.set('company', null);
     this.storage.remove('company');
+    this.storage.set('MenuImage', null);
+    this.storage.remove('MenuImage');
+    
     //this.storage.set('app-theme-color', null);
     //this.storage.remove('app-theme-color');
     this.nav.insert(0,LoginPage);

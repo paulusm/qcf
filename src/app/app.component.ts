@@ -40,7 +40,7 @@ export class MyApp {
   menuColor: any;
   hithere:any = "Hello";
   colorTheme: any;
-  //menuImage: any;
+  menuImage: any;
 
   pages: Array<{title: any, icon: string, component: any}>;
   pushPages: Array<{title: any, icon: string, component: any,logsOut?: boolean}>;
@@ -59,7 +59,15 @@ export class MyApp {
     public authService: AuthenticationProvider,
     public appThemeColorProvider:AppThemeColorProvider
   ) {
-     this.storage.get('hasSeenWalkthrough')
+    
+    this.storage.get('MenuImage').then((value) => {
+            if(value===null || value===undefined){
+              this.menuImage = "./assets/images/1024x500.png";
+            }else{
+              this.menuImage = value;
+            }
+    }); 
+    this.storage.get('hasSeenWalkthrough')
       .then((hasSeenWalkthrough) => {
         if (hasSeenWalkthrough) {
           this.rootPage = LoginPage;
@@ -167,6 +175,9 @@ export class MyApp {
     this.events.subscribe('app-color-theme-4', () => {
       console.log("Event heard for menu 4");
       this.menuColor = 'ion-menu-4';
+    });
+    this.events.subscribe('menuImage', (img) => {
+      this.menuImage = img;
     });
   }
 }

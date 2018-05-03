@@ -1,17 +1,20 @@
 <ion-menu [content]="content" [swipeEnabled]="false" [ngClass]="menuColor">
     
   <ion-content class="menu-content">
- 
+      <ion-avatar>
+        <img [src]="menuImage">
+      </ion-avatar>
+
       <ion-list class="menu-list">
         <button ion-item detail-none *ngFor="let page of pages" (click)="openPage(page)">
-        <ion-icon *ngIf="page.icon" name="{{page.icon}}" item-left></ion-icon>
-        {{page.title}}
-      </button>
+            <ion-icon *ngIf="page.icon" name="{{page.icon}}" item-left></ion-icon>
+            {{page.title}}
+        </button>
         <button ion-item detail-none *ngFor="let page of pushPages" (click)="pushPage(page)">
           <ion-icon *ngIf="page.icon" name="{{page.icon}}" item-left></ion-icon>
           {{page.title}}
         </button>
-    </ion-list>
+      </ion-list>
   </ion-content>
 </ion-menu>
 
